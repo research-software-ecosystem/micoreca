@@ -38,6 +38,7 @@ class Workflow:
         self.projects: List[str] = []
         self.keep = True
         self.deprecated = False
+        self.type = ""
 
     def init_by_importing(self, wf: dict) -> None:
         self.source = wf["source"]
@@ -57,6 +58,7 @@ class Workflow:
         self.license = wf["license"]
         self.doi = wf["doi"]
         self.projects = wf["projects"]
+        self.type = wf["type"]
         if "keep" in wf:
             self.keep = wf["keep"]
         if "deprecated" in wf:
@@ -82,6 +84,7 @@ class Workflow:
         self.doi = wf["data"]["attributes"]["doi"]
         self.edam_topic = [t["label"] for t in wf["data"]["attributes"]["topic_annotations"]]
         self.edam_operation = [t["label"] for t in wf["data"]["attributes"]["operation_annotations"]]
+        self.type = wf["data"]["attributes"]["workflow_class"]
 
         self.add_creators(wf)
         self.add_tools(wf)
@@ -106,13 +109,20 @@ class Workflow:
         Extract list of tool ids from workflow
         """
         tools = set()
-        internals = wf["data"]["attributes"].get("internals", {})
-        steps = internals.get("steps")
-        if steps is not None:
-            for tool in steps:
-                if tool.get("description") is not None:
+        # Use steps description when no tools are provided or for Galaxy workflows
+        if len(wf["data"]["attributes"]["tools"]) == 0 or self.type == "Galaxy":
+            internals = wf["data"]["attributes"].get("internals", {})        
+            steps = internals.get("steps")
+            if steps is not None:
+                for tool in steps:
+                    if tool.get("description") is not None:
                         tools.add(utils.shorten_tool_id(tool["description"]))
-        self.tools = list(tools)
+                    elif tool.get("name") is not None:
+                        tools.add(tool["name"])
+
+            self.tools = list(tools)
+        else:
+            self.tools = [t["name"] for t in wf["data"]["attributes"]["tools"]]
 
     def add_projects(self, wf: dict) -> None:
         """
