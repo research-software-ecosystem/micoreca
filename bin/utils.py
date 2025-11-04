@@ -4,9 +4,11 @@ from pathlib import Path
 import requests
 import pandas as pd
 import yaml
+import time
 from typing import (
     Dict,
-    List
+    List,
+    Any
 )
 
 def format_date(date: str) -> str:
@@ -25,6 +27,14 @@ def load_yaml(input_df: str) -> Dict:
     """
     with Path(input_df).open("r") as t:
         content = yaml.safe_load(t)
+    return content
+
+def load_json(input_df: str) -> Any:
+    """
+    Read a JSON file
+    """
+    with Path(input_df).open("r") as t:
+        content = json.load(t)
     return content
 
 def export_to_json(data: List[Dict], output_fp: str) -> None:

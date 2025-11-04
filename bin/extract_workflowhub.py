@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import argparse
+import re
 from typing import (
     Any,
     Dict,
@@ -39,6 +40,7 @@ class Workflow:
         self.keep = True
         self.deprecated = False
         self.type = ""
+        self.description = ""
 
     def init_by_importing(self, wf: dict) -> None:
         self.source = wf["source"]
@@ -59,6 +61,7 @@ class Workflow:
         self.doi = wf["doi"]
         self.projects = wf["projects"]
         self.type = wf["type"]
+        self.description = wf["description"]
         if "keep" in wf:
             self.keep = wf["keep"]
         if "deprecated" in wf:
@@ -85,6 +88,7 @@ class Workflow:
         self.edam_topic = [t["label"] for t in wf["data"]["attributes"]["topic_annotations"]]
         self.edam_operation = [t["label"] for t in wf["data"]["attributes"]["operation_annotations"]]
         self.type = wf["data"]["attributes"]["workflow_class"]["title"]
+        self.description = wf["data"]["attributes"]["description"]
 
         self.add_creators(wf)
         self.add_tools(wf)
@@ -140,15 +144,28 @@ class Workflow:
         """
         Test if there are overlap between workflow tags and target tags
         """
-        matches = set(self.tags) & set(tags)
-        return len(matches) != 0
+        for tag in tags:
+            regex = re.compile(tag, re.IGNORECASE)
+            if any(regex.fullmatch(wtag.lower()) or regex.search(wtag.lower()) for wtag in self.tags):
+                return True
+        return False
+
+    def test_edam_terms(self, keywords: dict) -> bool:
+        """
+        Test if workflow topics or operations are in keywords
+        """
+        matches_topic = set(self.edam_topic) & set(keywords['topics'])
+        matches_operation = set(self.edam_operation) & set(keywords['operations'])
+
+        return len(matches_topic) != 0 or len(matches_operation) != 0
 
     def test_name(self, tags: dict) -> bool:
         """
         Test if there are overlap between workflow tags and target tags
         """
         for tag in tags:
-            if tag in self.name:
+            regex = re.compile(tag, re.IGNORECASE)
+            if regex.fullmatch(self.name.lower()) or regex.search(self.name.lower()):
                 return True
         return False
 
@@ -231,6 +248,9 @@ class Workflows:
                 wf = Workflow()
                 wf.init_from_search(wf=wfhub_wf, source=f"{ prefix }WorkflowHub")
                 self.workflows.append(wf)
+
+            if len(self.workflows)/10 %1 == 0:
+                print(f"Workflows saved: {len(self.workflows)}")
         print(len(self.workflows))
 
     def export_workflows_to_dict(self) -> List:
@@ -247,7 +267,9 @@ class Workflows:
         for w in self.workflows:
             if w.link in status:
                 w.update_status(status[w.link])
-            if w.test_tags(tags) or w.test_name(tags):
+            if w.test_edam_terms(tags["edam"]):
+                to_keep_wf.append(w)
+            elif w.test_tags(tags["keywords"]) or w.test_name(tags["keywords"]):
                 to_keep_wf.append(w)
         self.workflows = to_keep_wf
 
