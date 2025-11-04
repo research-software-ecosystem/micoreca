@@ -81,6 +81,7 @@ class Workflow:
         self.license = wf["data"]["attributes"]["license"]
         self.doi = wf["data"]["attributes"]["doi"]
         self.edam_topic = [t["label"] for t in wf["data"]["attributes"]["topic_annotations"]]
+        self.edam_operation = [t["label"] for t in wf["data"]["attributes"]["operation_annotations"]]
 
         self.add_creators(wf)
         self.add_tools(wf)
