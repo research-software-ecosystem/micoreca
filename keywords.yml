@@ -3,7 +3,7 @@ edam:
     - Metagenomics
     - Metatranscriptomics
     - Metabarcoding
-- operations
+- operations:
     - Read binning
 
 keywords:
