@@ -1,26 +1,109 @@
 edam:
-    topics:
-        - Metagenomics
-        - Metatranscriptomics
-        - Metabarcoding
-    operations:
-        - Read binning
-
-keywords:
-- metage*
-- plasmid*
-- bin*
-- annot*
-- bact*
-- micro*
+- topics:
+    - Metagenomics
+    - Metatranscriptomics
+    - Metabarcoding
+- operations:
+    - Read binning
+    
+BioConda:
+- metage
+- metab
+- metat
+- metap
+- plasmid
+- binn
+- MAGs
+- microbiom
+- microbiot
 - 16S
-- amplicon
-- rRNA
-- profil*
-- pathogen
-- prokaryote
-- resist*
+- Amplicon
+- ASV
+- OTU
+- profil
 - amr
+- antimicrobial
 - ITS
 
+WorkflowHub:
+- Metagenomics
+- Metatranscriptomics
+- Metabarcoding
+- amr
+- amplicon
+- antimicrobial-resistance
+- bacteria
+- bacterial
+- bacterial-genomics
+- metagenomics
+- metaproteomics
+- metatranscriptomics
+- microbiome
+- pathogfair
+- virology
+- antimicrobial resistance
+- pathogen
+- name:amplicon
+- clinicalmp
+- Sciensano
+- AbritAMR
+- Taxonomic
+- taxonomy-profiling
+- prokaryote
+- tuberculosis
 
+TeSS: 
+- 16S
+- metagenom*
+- rRNA
+- shotgun
+- prokaryot*
+- bacterial
+- pathogen
+- binning
+- assembly
+- annotation
+- taxonom*
+- sequence
+
+AllKeywords:
+- 16S
+- AbritAMR
+- amplicon
+- amr
+- annotation
+- antimicrobial
+- antimicrobial-resistance
+- assembly
+- ASV
+- bacteria
+- bacterial
+- bacterial-genomics
+- binn
+- clinicalmp
+- ITS
+- MAGs
+- metage
+- metagenomics
+- metab
+- metabarcoding
+- metat
+- metatranscriptomics
+- metap
+- metaproteomics
+- microbiom
+- microbiome
+- microbiot
+- OTU
+- pathogfair
+- plasmid
+- profil
+- prokaryote
+- Read binning
+- rRNA
+- shotgun
+- Sciensano
+- Taxonomic
+- taxonomy-profiling
+- tuberculosis
+- virology
