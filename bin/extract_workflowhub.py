@@ -36,7 +36,6 @@ class Workflow:
         self.doi = ""
         self.projects: List[str] = []
         self.keep = True
-        self.deprecated = False
         self.type = ""
         self.description = ""
 
@@ -62,8 +61,6 @@ class Workflow:
         self.description = wf["description"]
         if "keep" in wf:
             self.keep = wf["keep"]
-        if "deprecated" in wf:
-            self.deprecated = wf["deprecated"]
 
     def init_from_search(self, wf: dict, source: str) -> None:
         self.source = source
@@ -188,7 +185,6 @@ class Workflow:
         Update status from status table
         """
         self.keep = wf["To keep"]
-        self.deprecated = wf["Deprecated"]
 
     def get_import_link(self) -> str:
         """
@@ -312,6 +308,7 @@ class Workflows:
             "id": "ID",
             "link": "Link",
             "creators": "Creators",
+            "type": "Type",
             "tags": "Tags",
             "create_time": "Creation time",
             "update_time": "Update time",
@@ -419,7 +416,8 @@ if __name__ == "__main__":
     curatewf.add_argument(
         "--status",
         "-s",
-        help="Path to a TSV file with workflow status",
+        required=True,
+        help="Path to a TSV file with at least column 'link' and 'To keep'",
     )
 
     args = parser.parse_args()
@@ -438,8 +436,9 @@ if __name__ == "__main__":
         # get status if file provided
         if args.status:
             try:
-                status = pd.read_csv(args.status, sep="\t", index_col=0).to_dict("index")
-            except Exception:
+                status = pd.read_csv(args.status, sep="\t", index_col="Link").to_dict("index")
+            except Exception as ex:
+                print(f"Failed to load {args.status} file or no 'Link' column with:\n{ex}")
                 status = {}
         else:
             status = {}
@@ -465,11 +464,14 @@ if __name__ == "__main__":
         wfs = Workflows()
         wfs.init_by_importing(wfs=utils.load_json(args.filtered))
         try:
-            status = pd.read_csv(args.status, sep="\t", index_col=0).to_dict("index")
+            status = pd.read_csv(args.status, sep="\t", index_col="Link").to_dict("index")
         except Exception as ex:
-            print(f"Failed to load {args.status} file with:\n{ex}")
+            print(f"Failed to load {args.status} file or no 'Link' column with:\n{ex}")
             print("Not assigning tool status for this community !")
             status = {}
         wfs.curate_workflows(status)
-        utils.export_to_json(wfs.export_workflows_to_dict(), args.curated)
-        wfs.export_workflows_to_tsv(args.tsv_curated)
+        try:
+            utils.export_to_json(wfs.export_workflows_to_dict(), args.curated)
+            wfs.export_workflows_to_tsv(args.tsv_curated)
+        except Exception as ex:
+            print("No workflow extracted after curation.")
