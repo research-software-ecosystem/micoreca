@@ -285,7 +285,9 @@ class Workflows:
                 w.update_status(status[w.link])
             if w.test_edam_terms(tags["edam"]):
                 to_keep_wf.append(w)
-            elif w.test_tags(tags["keywords"]) or w.test_name(tags["keywords"]):
+            elif w.test_tags(tags["keywords"]):
+                to_keep_wf.append(w)
+            elif w.test_name(tags["keywords"]):
                 to_keep_wf.append(w)
             elif w.test_description(tags["keywords"]):
                 to_keep_wf.append(w)
@@ -343,9 +345,7 @@ class Workflows:
         if to_keep_columns is not None:
             df = df[to_keep_columns]
 
-        df_iwc = df.query("Projects == 'Intergalactic Workflow Commission (IWC)'")
-        df_no_iwc = df.query("Projects != 'Intergalactic Workflow Commission (IWC)'")
-        pd.concat([df_iwc, df_no_iwc]).to_csv(output_fp, sep="\t", index=False)
+        df.to_csv(output_fp, sep="\t", index=False)
 
     def group_workflows(self) -> None:
         """
