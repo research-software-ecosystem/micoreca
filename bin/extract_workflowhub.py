@@ -11,8 +11,6 @@ from typing import (
 
 import pandas as pd
 import utils
-from ruamel.yaml import YAML as ruamelyaml
-
 
 class Workflow:
     """
@@ -347,80 +345,6 @@ class Workflows:
 
         df.to_csv(output_fp, sep="\t", index=False)
 
-    def group_workflows(self) -> None:
-        """
-        Split workflows in 4 levels of development
-        """
-        self.grouped_workflows = {
-            "iwc": [],
-            "other_workflowhub": [],
-            "gtn": [],
-        }
-
-        for wf in self.workflows:
-            if wf.source == "WorkflowHub":
-                if "Intergalactic Workflow Commission (IWC)" in wf.projects:
-                    self.grouped_workflows["iwc"].append(wf)
-                elif "Galaxy Training Network" in wf.projects:
-                    self.grouped_workflows["gtn"].append(wf)
-                else:
-                    self.grouped_workflows["other_workflowhub"].append(wf)
-            elif wf.source == "dev.WorkflowHub":
-                self.grouped_workflows["gtn"].append(wf)
-
-    def format_wfs(self, el_id: str) -> list:
-        """
-        Format workflows for YAML
-        """
-        formatted_wfs = []
-        for wf in self.grouped_workflows[el_id]:
-            formatted_wfs.append(
-                {
-                    "title_md": wf.name,
-                    "description_md": wf.get_description(),
-                    "button_link": wf.get_import_link(),
-                    "button_tip": "View workflow",
-                    "button_icon": "view",
-                }
-            )
-        return formatted_wfs
-
-    def fill_lab_section(self, lab_fp: str) -> None:
-        """
-        Fill lab section with grouped workflows
-        """
-        lab_section = utils.load_yaml(lab_fp)
-
-        for element in lab_section["tabs"]:
-            if element["id"] in ["iwc", "other_workflowhub", "gtn"]:
-                content = [
-                    {
-                        "title_md": "Import workflows from WorkflowHub",
-                        "description_md": "WorkflowHub is a workflow management system which allows workflows to be FAIR (Findable, Accessible, Interoperable, and Reusable), citable, have managed metadata profiles, and be openly available for review and analytics.",
-                        "button_tip": "Read Tips",
-                        "button_icon": "tutorial",
-                        "button_link": "https://training.galaxyproject.org/training-material/faqs/galaxy/workflows_import.html",
-                    },
-                ]
-                content.extend(self.format_wfs(element["id"]))
-                element["content"] = content
-            elif element["id"] == "public":
-                content = [
-                    {
-                        "title_md": "Importing a workflow",
-                        "description_md": "Import a workflow from URL or a workflow file",
-                        "button_tip": "Read Tips",
-                        "button_icon": "tutorial",
-                        "button_link": "https://training.galaxyproject.org/training-material/faqs/galaxy/workflows_import.html",
-                    },
-                ]
-                content.extend(self.format_wfs("public"))
-                element["content"] = content
-
-        with open(lab_fp, "w") as lab_f:
-            ruamelyaml().dump(lab_section, lab_f)
-
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Extract Workflows from WorkflowHub")
     subparser = parser.add_subparsers(dest="command")
@@ -498,20 +422,6 @@ if __name__ == "__main__":
         help="Path to a TSV file with workflow status",
     )
 
-    # Curate tools categories
-    labpop = subparser.add_parser("popLabSection", help="Fill in Lab section workflows")
-    labpop.add_argument(
-        "--curated",
-        "-c",
-        required=True,
-        help="Filepath to JSON with curated workflows",
-    )
-    labpop.add_argument(
-        "--lab",
-        required=True,
-        help="Filepath to YAML files for Lab section",
-    )
-
     args = parser.parse_args()
 
 # Extract all workflows from WorkflowHub
@@ -563,9 +473,3 @@ if __name__ == "__main__":
         wfs.curate_workflows(status)
         utils.export_to_json(wfs.export_workflows_to_dict(), args.curated)
         wfs.export_workflows_to_tsv(args.tsv_curated)
-
-    elif args.command == "popLabSection":
-        wfs = Workflows()
-        wfs.init_by_importing(wfs=utils.load_json(args.curated))
-        wfs.group_workflows()
-        wfs.fill_lab_section(args.lab)
