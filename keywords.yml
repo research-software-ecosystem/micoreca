@@ -1,10 +1,10 @@
 edam:
-- topics:
-    - Metagenomics
-    - Metatranscriptomics
-    - Metabarcoding
-- operations:
-    - Read binning
+    topics:
+        - Metagenomics
+        - Metatranscriptomics
+        - Metabarcoding
+    operations:
+        - Read binning
 
 keywords:
 - metage*
