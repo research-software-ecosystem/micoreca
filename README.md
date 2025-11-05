@@ -9,6 +9,10 @@ To address this critical gap, the [ELIXIR Microbiome Community](https://elixir-e
 - Standards
 - Databases
 
+Once resources have been extracted, they are filtered using the following decision tree and defined keywords in the [`keywords.yml` file](keywords.yml):
+
+![A flowchart titled "Has EDAM Topics/Operation terms?" begins with a decision point. If "Yes," it leads to "Has the defined terms?" If "No," it leads to "Has the defined keywords in the tags or keywords?" From "Has the defined terms?," "Yes" leads to "MiCoReCa resource," and "No" leads to "Has the defined keywords in the tags or keywords?" From "Has the defined keywords in the tags or keywords?," "Yes" leads to "MiCoReCa resource," and "No" leads to "Has the defined keywords in the description?" From "Has the defined keywords in the description?," "Yes" leads to "MiCoReCa resource," and "No" leads to "Not a MiCoReCa resource."](doc/decision_tree.png)
+
 # Prepare environment
 
 - Install virtualenv (if not already there)
