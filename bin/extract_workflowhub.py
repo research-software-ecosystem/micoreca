@@ -161,11 +161,21 @@ class Workflow:
 
     def test_name(self, tags: dict) -> bool:
         """
-        Test if there are overlap between workflow tags and target tags
+        Test if there are overlap between workflow name and target tags
         """
         for tag in tags:
             regex = re.compile(tag, re.IGNORECASE)
             if regex.fullmatch(self.name.lower()) or regex.search(self.name.lower()):
+                return True
+        return False
+    
+    def test_description(self, tags: dict) -> bool:
+        """
+        Test if there are overlap between workflow description and target tags
+        """
+        for tag in tags:
+            regex = re.compile(tag, re.IGNORECASE)
+            if regex.fullmatch(self.description.lower()) or regex.search(self.description.lower()):
                 return True
         return False
 
@@ -270,6 +280,8 @@ class Workflows:
             if w.test_edam_terms(tags["edam"]):
                 to_keep_wf.append(w)
             elif w.test_tags(tags["keywords"]) or w.test_name(tags["keywords"]):
+                to_keep_wf.append(w)
+            elif w.test_description(tags["keywords"]):
                 to_keep_wf.append(w)
         self.workflows = to_keep_wf
 
