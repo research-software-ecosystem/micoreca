@@ -147,6 +147,7 @@ class Workflow:
         for tag in tags:
             regex = re.compile(tag, re.IGNORECASE)
             if any(regex.fullmatch(wtag.lower()) or regex.search(wtag.lower()) for wtag in self.tags):
+                self.filtered_on = f"{tag} in tags"
                 return True
         return False
 
@@ -157,6 +158,9 @@ class Workflow:
         matches_topic = set(self.edam_topic) & set(keywords['topics'])
         matches_operation = set(self.edam_operation) & set(keywords['operations'])
 
+        if len(matches_topic) != 0 or len(matches_operation) != 0:
+            self.filtered_on = "edam"
+
         return len(matches_topic) != 0 or len(matches_operation) != 0
 
     def test_name(self, tags: dict) -> bool:
@@ -166,6 +170,7 @@ class Workflow:
         for tag in tags:
             regex = re.compile(tag, re.IGNORECASE)
             if regex.fullmatch(self.name.lower()) or regex.search(self.name.lower()):
+                self.filtered_on = f"{tag} in name"
                 return True
         return False
     
@@ -176,6 +181,7 @@ class Workflow:
         for tag in tags:
             regex = re.compile(tag, re.IGNORECASE)
             if regex.fullmatch(self.description.lower()) or regex.search(self.description.lower()):
+                self.filtered_on = f"{tag} in description"
                 return True
         return False
 
@@ -318,8 +324,8 @@ class Workflows:
             "license": "License",
             "doi": "DOI",
             "projects": "Projects",
-            "keep": "To keep",
-            "deprecated": "Deprecated",
+            "filtered_on": "Filtered on",
+            "keep": "To keep"
         }
 
         df = pd.DataFrame(self.export_workflows_to_dict())
@@ -541,7 +547,6 @@ if __name__ == "__main__":
                 "Creation time",
                 "Update time",
                 "To keep",
-                "Deprecated",
             ],
         )
 
