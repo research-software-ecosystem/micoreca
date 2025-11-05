@@ -7,20 +7,20 @@ edam:
         - Read binning
 
 keywords:
-- metage*
-- plasmid*
-- bin*
-- annot*
-- bact*
-- micro*
+- metage
+- metab
+- metat
+- metap
+- plasmid
+- binn
+- MAGs
+- microbiom
+- microbiot
 - 16S
-- amplicon
-- rRNA
-- profil*
-- pathogen
-- prokaryote
-- resist*
+- Amplicon
+- ASV
+- OTU
+- profil
 - amr
+- antimicrobial
 - ITS
-
-
