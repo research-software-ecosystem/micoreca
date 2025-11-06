@@ -33,5 +33,5 @@ The workflows that were retrieved and kept if corresponding to one or more of th
 
 - **Comparative Statistics**: identifying specific microbial features (ASVs/OTUs or taxa) that are significantly different in abundance between experimental groups with methods like differential abundance testing or multivariate statistical tests (PERMANOVA or ADONIS)
 
-- Association and Predictive Modeling: link the microbial profile to host metadata (e.g., phenotype) and build predictive models with correlation/regression test or algorithms like Random Forests or Linear Discriminant Analysis Effect Size (LEfSe) to identify microbial signatures or features that can accurately predict a phenotype.
+- **Association and Predictive Modeling**: linking the microbial profile to host metadata (e.g., phenotype) and building predictive models with correlation/regression test or algorithms like Random Forests or Linear Discriminant Analysis Effect Size (LEfSe) to identify microbial signatures or features that can accurately predict a phenotype.
 
