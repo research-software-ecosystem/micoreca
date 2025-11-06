@@ -1,6 +1,6 @@
 # Curation processes
 
-To have the most relevant workflows to the microbiome community, we manually curated the workflows extracted from WorkflowHub and programmatically filtered using the keywords defined. 
+To provide the most relevant resources to the microbiome community, we manually curate resources extracted from RSEc, WorkflowHub, etc, and programmatically filter them using the defined keywords. 
 To do so, we excluded the workfows where the description evolved around terms like: 
 - Single genome analysis  
 - whole genome sequencing 
