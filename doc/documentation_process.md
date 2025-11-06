@@ -15,7 +15,7 @@ To do so, we excluded the resources where the description evolved around terms l
 - molecular network
 
 
-The workflows that were retrieved and kept if corresponding to one or more of the following steps for microbiome analysis.
+The extracted resources are kept if they correspond to one or more of the following steps for microbiome analysis:
 
 - **Quality Control (QC) and Filtering**: trimming, removing sequencing errors, adapter sequences, and too-short reads.
 
