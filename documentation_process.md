@@ -31,7 +31,7 @@ The workflows that were retrieved and kept if corresponding to one or more of th
 
 - Diversity Analysis (Community Characterization): quantify the complexity and dissimilarity of microbial communities, through their Alpha and Beta Diversity
 
-- Comparative Statistics:identify specific microbial features (ASVs/OTUs or taxa) that are significantly different in abundance between experimental groups with methods like differential abundance testing or multivariate statistical tests (PERMANOVA or ADONIS)
+- **Comparative Statistics**: identifying specific microbial features (ASVs/OTUs or taxa) that are significantly different in abundance between experimental groups with methods like differential abundance testing or multivariate statistical tests (PERMANOVA or ADONIS)
 
 - Association and Predictive Modeling: link the microbial profile to host metadata (e.g., phenotype) and build predictive models with correlation/regression test or algorithms like Random Forests or Linear Discriminant Analysis Effect Size (LEfSe) to identify microbial signatures or features that can accurately predict a phenotype.
 
