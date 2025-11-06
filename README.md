@@ -44,13 +44,20 @@ Once resources have been extracted, they are filtered using the following decisi
 - Extract all workflows metadata from WorkflowHub as a JSON file
 
     ```
-    $ python bin/extract_workflowhub.py extract --all content/workflows.json
+    $ python bin/extract_workflowhub.py \
+        extract \
+        --all content/workflows.json
     ```
 
 - Filter workflows based on keywords and EDAM terms
 
     ```
-    $ python bin/extract_workflowhub.py filter --all content/workflows_full_description.json --filtered content workflows_filtered.json --tsv-filtered content/workflows_filtered.tsv --tags keywords.yml
+    $ python bin/extract_workflowhub.py \
+        filter \
+        --all content/workflows_full_description.json \
+        --filtered content/workflows_filtered.json \
+        --tsv-filtered content/workflows_filtered.tsv \
+        --tags keywords.yml
     ```
 
-    Workflows are filtered first on EDAM terms (topics and operations), then on tags, workflow name and finally description based on the keywords provided in "keywords.yml". 
+    As explained in the decision tree above, workflows are filtered first on EDAM terms (topics and operations), then on tags, workflow name and finally description based on the keywords provided in `keywords.yml` file. 
