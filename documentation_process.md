@@ -29,7 +29,7 @@ The workflows that were retrieved and kept if corresponding to one or more of th
 
 - **Data Normalization**: addressing the compositional nature of microbiome data (as the counts are relative, not absolute) and accounting for differences in sequencing depth (e.g. library size).
 
-- Diversity Analysis (Community Characterization): quantify the complexity and dissimilarity of microbial communities, through their Alpha and Beta Diversity
+- **Diversity Analysis** (Community Characterization): quantifying the complexity and dissimilarity of microbial communities, through their Alpha and Beta Diversity
 
 - **Comparative Statistics**: identifying specific microbial features (ASVs/OTUs or taxa) that are significantly different in abundance between experimental groups with methods like differential abundance testing or multivariate statistical tests (PERMANOVA or ADONIS)
 
