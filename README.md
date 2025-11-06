@@ -9,9 +9,9 @@ To address this critical gap, the [ELIXIR Microbiome Community](https://elixir-e
 - Standards
 - Databases
 
-Once resources have been extracted, they are filtered using the following decision tree and defined keywords in the [`keywords.yml` file](keywords.yml):
+The extraction, filtering and curation are done following the workflow below and using the defined keywords in the [`keywords.yml` file](keywords.yml):
 
-![A flowchart titled "Has EDAM Topics/Operation terms?" begins with a decision point. If "Yes," it leads to "Has the defined terms?" If "No," it leads to "Has the defined keywords in the tags or keywords?" From "Has the defined terms?," "Yes" leads to "MiCoReCa resource," and "No" leads to "Has the defined keywords in the tags or keywords?" From "Has the defined keywords in the tags or keywords?," "Yes" leads to "MiCoReCa resource," and "No" leads to "Has the defined keywords in the description?" From "Has the defined keywords in the description?," "Yes" leads to "MiCoReCa resource," and "No" leads to "Not a MiCoReCa resource."](doc/decision_tree.png)
+![A workflow diagram illustrating the process for populating the RSEC Atlas, starting with 'Scrapping' resources from Bioconda, WorkflowHub, and Elixir, which yields over 40,000 tools and 1,300 workflows. This pool is reduced by the 'Filtering for Microbiome Resources' step to about 5,000 tools and 600 workflows. After 'Community Curation,' the items are 'Displayed on RSEC Atlas.' A detailed flowchart on the right explains the filtering logic: it sequentially checks if EDAM topics are found, if defined keywords are in the tags, if keywords are in the title, and finally if keywords are in the description. A 'Yes' at any step classifies the item as a 'MiCoCo resource,' while a 'No' at all steps classifies it as 'Not a MiCoCo resource.'](doc/main_figure_poster.png)
 
 # Prepare environment
 
