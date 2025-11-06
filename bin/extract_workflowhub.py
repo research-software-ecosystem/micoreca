@@ -164,34 +164,20 @@ class Workflow:
         """
         Test if there are overlap between workflow name and target tags
         """
-        for tag in tags["keywords"]:
-            regexk = re.compile(utils.format_regex(tag), re.IGNORECASE)
-            if regexk.search(self.name):
-                self.filtered_on = f"{tag} in name"
-                return True
-            
-        for acron in tags["acronyms"]:
-            regexa = re.compile(utils.format_regex(acron))
-            if regexa.search(self.name):
-                self.filtered_on = f"{acron} in name"
-                return True
+        filtered_on = utils.test_pattern(tags, self.name)
+        if filtered_on != "":
+            self.filtered_on = filtered_on
+            return True
         return False
     
     def test_description(self, tags: dict) -> bool:
         """
         Test if there are overlap between workflow description and target tags
         """
-        for tag in tags["keywords"]:
-            regexk = re.compile(utils.format_regex(tag), re.IGNORECASE)
-            if regexk.search(self.description):
-                self.filtered_on = f"{tag} in description"
-                return True
-        
-        for acron in tags["acronyms"]:
-            regexa = re.compile(utils.format_regex(acron))
-            if regexa.search(self.description):
-                self.filtered_on = f"{acron} in description"
-                return True
+        filtered_on = utils.test_pattern(tags, self.description)
+        if filtered_on != "":
+            self.filtered_on = filtered_on
+            return True
         return False
 
     def update_status(self, wf: dict) -> None:

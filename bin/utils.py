@@ -5,6 +5,7 @@ import requests
 import pandas as pd
 import yaml
 import time
+import re
 from typing import (
     Dict,
     List,
@@ -13,7 +14,6 @@ from typing import (
 
 def format_date(date: str) -> str:
     return datetime.fromisoformat(date).strftime("%Y-%m-%d")
-
 
 def format_list_column(col: pd.Series) -> pd.Series:
     """
@@ -42,6 +42,19 @@ def load_json(input_df: str) -> Any:
     with Path(input_df).open("r") as t:
         content = json.load(t)
     return content
+
+def test_pattern(tags: dict, target: str) -> str:
+    for tag in tags["keywords"]:
+        regexk = re.compile(format_regex(tag), re.IGNORECASE)
+        if regexk.search(target):
+            return f"{tag} in description"
+    
+    for acron in tags["acronyms"]:
+        regexa = re.compile(format_regex(acron))
+        if regexa.search(target):
+            return f"{acron} in description"
+            
+    return ""
 
 def export_to_json(data: List[Dict], output_fp: str) -> None:
     """
