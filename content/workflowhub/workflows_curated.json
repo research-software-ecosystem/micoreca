@@ -1,0 +1,1964 @@
+[
+    {
+        "create_time": "2025-10-26",
+        "creators": [],
+        "description": "# 3D genome builder (3DGB)\r\n\r\n3D genome builder (3DGB) is a workflow to build 3D models of genomes from HiC raw data and to integrate omics data on the produced models for further visual exploration.\r\n3DGB bundles [HiC-Pro](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-015-0831-x), [PASTIS](https://academic.oup.com/bioinformatics/article/30/12/i26/385087) and custom Python scripts into a unified Snakemake workflow with limited inputs (see *Preparing Required Files*). 3DGB produces annotated 3D models of genome in PDB and G3D formats.\r\n\r\n## Download this repository\r\n\r\n```bash\r\ngit clone https://github.com/data-fun/3d-genome-builder.git\r\ncd 3d-genome-builder\r\n```\r\n\r\n## Install dependencies\r\n\r\n### Singularity\r\n\r\nDownload the latest version [here](https://github.com/apptainer/singularity/releases)\r\n\r\nInstall Singularity:\r\n\r\n```bash\r\nsudo apt install -y ./singularity-container_3.8.7_amd64.deb\r\n```\r\n\r\nVerify version:\r\n\r\n```\r\n$ singularity --version\r\nsingularity version 3.8.7\r\n```\r\n\r\n### Conda environment\r\n\r\nInstall [conda](https://docs.conda.io/en/latest/miniconda.html).\r\n\r\nInstall mamba:\r\n\r\n```bash\r\nconda install mamba -n base -c conda-forge\r\n```\r\n\r\nCreate conda environment and install dependendies:\r\n\r\n```bash\r\nmamba env create -f binder/environment.yml\r\n```\r\n\r\nLoad conda environment:\r\n\r\n```bash\r\nconda activate 3DGB\r\n```\r\n\r\n### Download  HiC-Pro Singularity image\r\n\r\n\r\n```bash\r\nwget --ciphers=DEFAULT:@SECLEVEL=1 https://zerkalo.curie.fr/partage/HiC-Pro/hicpro_3.1.0_ubuntu.img -P images\r\n```\r\n\r\nIf this command fails, try with an [alternate download link](https://zenodo.org/record/8376626):\r\n\r\n```bash\r\nwget https://zenodo.org/record/8376626/files/hicpro_3.1.0_ubuntu.img -P images\r\n```\r\n\r\nCheck the integrity of the image:\r\n\r\n```bash\r\n$ md5sum images/hicpro_3.1.0_ubuntu.img\r\nd480e636397c14e187608e50309eb9af  images/hicpro_3.1.0_ubuntu.img\r\n```\r\n\r\nVerify HiC-Pro version with:\r\n\r\n```bash\r\n$ singularity exec images/hicpro_3.1.0_ubuntu.img HiC-Pro --version\r\n[...]\r\nHiC-Pro version 3.1.0\r\n```\r\n\r\nand bowtie2 version:\r\n\r\n```bash\r\n$ singularity exec images/hicpro_3.1.0_ubuntu.img bowtie2 --version  2>/dev/null | head -n 1\r\n/usr/local/conda/envs/hicpro/bin/bowtie2-align-s version 2.4.4\r\n```\r\n\r\n\r\n## Prepare required files\r\n\r\n### Create the config file\r\n\r\nCreate and edit a configuration file in [yaml](https://en.wikipedia.org/wiki/YAML) format. See for instance the template `config_template.yml`\r\n\r\n### Add the reference genome\r\n\r\nThe reference genome fasta file must be located in `WORKING_DIR/genome.fasta` where `WORKING_DIR` is the name of the working directory as specified in your config file.\r\n\r\n### Add FASTQ files (optional)\r\n\r\nIf you already have fastq files stored locally or some fastq files are not available on GEO or SRA, you can use these files providing they are in the proper directory structure:\r\n\r\n<img align=\"right\" width=\"200px\" \r\n    src=\"assets/SCERE_chromosome_13.gif\"\r\n    alt=\"3D structure of the chromosome 13 of S. cerevisiae at 5 kb resolution\">\r\n\r\n```\r\nWORKING_DIR/\r\n\u251c\u2500\u2500 fastq_files\r\n\u2502\u00a0\u00a0 \u251c\u2500\u2500 ID1\r\n\u2502\u00a0\u00a0 \u2502\u00a0\u00a0 \u251c\u2500\u2500 ID1_R1.fastq.gz\r\n\u2502\u00a0\u00a0 \u2502\u00a0\u00a0 \u2514\u2500\u2500 ID1_R2.fastq.gz\r\n\u2502\u00a0\u00a0 \u251c\u2500\u2500 ID2\r\n\u2502\u00a0\u00a0 \u2502\u00a0\u00a0 \u251c\u2500\u2500 ID2_R1.fastq.gz\r\n\u2502\u00a0\u00a0 \u2502\u00a0\u00a0 \u2514\u2500\u2500 ID2_R2.fastq.gz\r\n\u2502\u00a0\u00a0 \u251c\u2500\u2500 ID3\r\n\u2502\u00a0\u00a0 \u2502\u00a0\u00a0 \u251c\u2500\u2500 ID3_R1.fastq.gz\r\n\u2502\u00a0\u00a0 \u2502\u00a0\u00a0 \u2514\u2500\u2500 ID3_R2.fastq.gz\r\n\u2502\u00a0\u00a0 \u2514\u2500\u2500 ID4\r\n\u2502\u00a0\u00a0     \u251c\u2500\u2500 ID4_R1.fastq.gz\r\n\u2502\u00a0\u00a0     \u2514\u2500\u2500 ID4_R2.fastq.gz\r\n\u2514\u2500\u2500 genome.fasta\r\n```\r\n\r\n- `WORKING_DIR` is the name of the working directory as specified in your config file.\r\n- Paired-end fastq files are in the directory `WORKING_DIR/fastq_files/IDx` with `IDx` the identifier of the paired fastq files. Fastq identifiers are reported in the config file. Please note fastq files have to follow the pattern `<sample ID>_R<1 or 2>.fastq.gz`.\r\n\r\n> **Note**\r\n>\r\n> Please strictly follow this file organization as it is required by the 3DGB workflow.\r\n\r\n## Build model\r\n\r\nRun 3DGB:\r\n\r\n```bash\r\nsnakemake --profile smk_profile -j 4 --configfile YOUR-CONFIG.yml\r\n```\r\n\r\n> **Note**\r\n> - Adapt `YOUR-CONFIG.yml` to the exact name of the config file you created.\r\n> - Option `-j 4` tells Snakemake to use up to 4 cores. If you are more cores available, you can increase this value (*e.g.* `-j 16`).\r\n\r\nOr with debugging options:\r\n\r\n```bash\r\nsnakemake --profile smk_profile_debug -j 4 --configfile YOUR-CONFIG.yml --verbose\r\n```\r\n\r\nDepending on the number and size of fastq files, the 3D construction will take a couple of hours to run.\r\n\r\nFor troubleshooting, have a look to log files in `WORKING_DIR/logs`, where `WORKING_DIR` is the name of the working directory as specified in your config file.\r\n\r\n## Map quantitative values on the 3D model\r\n\r\nTo map quantitative values on the model run:\r\n\r\n```bash\r\npython ./scripts/map_parameter.py --pdb path/to/structure.pdb --bedgraph path/to/annotation.bedgraph --output path/to/output.pdb\r\n```\r\n\r\nQuantitative values should be formatted in a 4-column bedgraph file (chromosome/start/stop/value):\r\n\r\n```\r\nchr1\t0\t50000\t116.959\r\nchr1\t50000\t100000\t48.4495\r\nchr1\t100000\t150000\t22.8726\r\nchr1\t150000\t200000\t84.3106\r\nchr1\t200000\t250000\t113.109\r\n```\r\n\r\nEach bead of the model will be assigned a quantitative value. The resolution in the bedgraph file should match the resolution used to build the model.\r\n\r\n\r\n## Get results\r\n\r\nUpon completion, the `WORKING_DIR` should look like this:\r\n\r\n```\r\nWORKING_DIR/\r\n\u251c\u2500\u2500 contact_maps\r\n\u251c\u2500\u2500 dense_matrix\r\n\u251c\u2500\u2500 fastq_files\r\n\u251c\u2500\u2500 HiC-Pro\r\n\u251c\u2500\u2500 logs\r\n\u251c\u2500\u2500 pastis\r\n\u251c\u2500\u2500 sequence\r\n\u2514\u2500\u2500 structure\r\n```\r\n\r\nThe following paths contain the most interesting results:\r\n\r\n- `WORKING_DIR/contact_maps/*.png` : contact maps.\r\n- `WORKING_DIR/HiC-Pro/output/hic_results/pic/*/*.pdf` : graphical summaries of read alignments produced by Hi-C Pro.\r\n- `WORKING_DIR/pastis/structure_RESOLUTION.pdb` : raw 3D models (in PDB format) produced by Pastis.\r\n- `WORKING_DIR/structure/RESOLUTION/structure_cleaned.*` : final (annotated) 3D models in PDB and G3D formats.\r\n\r\n> **Note**\r\n> - `WORKING_DIR` is the name of the working directory as specified in your config file.\r\n> - `RESOLUTION` is the resolution of the Hi-C data specified in the config file.\r\n\r\n## Examples\r\n\r\n- [Wild type model for *Neurospora crassa*](examples/n_crassa.md)\r\n- [Models built for the 3DGB paper](examples/paper/paper.md)\r\n\r\n## Visualize 3D model structures\r\n\r\nTo visualize 3D model structures (.pdb and .g3d files), follow this quick [tutorial](visualization/visualization.md).\r\n\r\n\r\n## Build DAG graph\r\n\r\nFor visualization purpose, you can build the graph of all computational steps involved in the 3D construction of the genome.\r\n\r\n```bash\r\nsnakemake --profile smk_profile --configfile YOUR-CONFIG.yml --rulegraph  | dot -Tpdf > rules.pdf\r\n```\r\n\r\nwhere `YOUR-CONFIG.yml` should be replaced by the name of the config file you created.\r\n\r\nWith wildcards:\r\n\r\n```bash\r\nsnakemake --profile smk_profile --configfile YOUR-CONFIG.yml --dag  | dot -Tpdf > dag.pdf\r\n```\r\n\r\n",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [
+            "Functional genomics",
+            "Genomics"
+        ],
+        "id": "2010",
+        "keep": true,
+        "latest_version": 1,
+        "license": "BSD-3-Clause",
+        "link": "https:/workflowhub.eu/workflows/2010?version=1",
+        "name": "3D genome builder (3DGB)",
+        "number_of_steps": 0,
+        "projects": [
+            "datafun"
+        ],
+        "source": "WorkflowHub",
+        "tags": [],
+        "tools": [],
+        "type": "Snakemake",
+        "update_time": "2025-10-26",
+        "versions": 1
+    },
+    {
+        "create_time": "2025-10-17",
+        "creators": [
+            "Diane Duroux"
+        ],
+        "description": "\r\n# \ud83d\udcc4 Generalizable machine learning models for rapid antimicrobial resistance prediction in unseen healthcare settings\r\n\r\nThis repository contains the code used for the experiments in the paper:\r\n\r\n**_Generalizable machine learning models for rapid antimicrobial resistance prediction in unseen healthcare settings_**  \r\nby *Diane Duroux, Paul P. Meyer, Giovanni Vison\u00e0, and Niko Beerenwinkel*.\r\n\r\n## \u2699\ufe0f Install the dependencies\r\nYou can set up the project with either pip or uv.\r\n\r\n### Option A - pip:\r\nInstall the necessary dependencies listed in the requirements.txt file\r\n\r\n```bash\r\npip install -r requirements.txt\r\n```\r\n\r\n### Option B - uv:\r\nWe provide pyproject.toml and uv.lock for macOS, Windows, and Linux.\r\n\r\nNote: On a Linux or non-apple silicon  please use the pyproject.toml file for Mac and rewrite the uv.lock after installation. \r\n\r\n```bash\r\n# 0) Install uv (one-time)\r\n# mac/linux:\r\ncurl -LsSf https://astral.sh/uv/install.sh | sh\r\n# windows (PowerShell):\r\niwr https://astral.sh/uv/install.ps1 -UseBasicParsing | iex\r\n \r\n# 1) Ensure the pinned Python is available (adjust if your pyproject pins a version)\r\nuv python install 3.11\r\n \r\n# 2) Create the exact environment from the lockfile\r\nuv sync --frozen\r\n \r\n# 3) Run your code within the env\r\nuv run python -V\r\nuv run python your_script.py\r\n```\r\n\r\n## \ud83d\udcbb AMR Classifier Training with ResMLP and inference\r\n\r\nThe following command trains a ResMLP model for AMR classification using the preprocessed DRIAMS data.\r\n\r\n### \ud83d\udce6 Output\r\n\r\nIn `output/<experiment_group>/<experiment_name>_results/`, the script generates:\r\n\r\n- `test_set_seed0.csv`  \r\n  \u27a4 Contains predictions: `species`, `sample_id`, `drug`, `response`, and `Prediction`.\r\n\r\n### \ud83d\udee0 Required Arguments\r\n\r\n| Argument                | Description                                                                                     |\r\n|-------------------------|-------------------------------------------------------------------------------------------------|\r\n| `--driams_long_table`   | Path to the metadata file for the current dataset.                                              |\r\n| `--spectra_matrix`      | Path to the input mass spectra (either raw or MAE-encoded).                                     |\r\n| `--sample_embedding_dim`| Dimension of the spectra input (6000 for raw, or same as <encoding_dim> for MAE).               |\r\n| `--drugs_df`            | Path to the antimicrobial compound encoding file.                                               |\r\n| `--fingerprint_class`   | Type of encoding: `'morgan_1024'`, `'molformer_github'`, or `'selfies_flattened_one_hot'`.      |\r\n| `--fingerprint_size`    | Size of the encoding: 1024 (Morgan), 768 (Molformer), or 24160 (SELFIES).                       |\r\n| `--split_type`          | Set to `specific` if splits are pre-defined, else random.                                       |\r\n| `--split_ids`           | Path to the `data_splits.csv` file.                                                             |\r\n| `--experiment_group`    | Name of the output folder.                                                                      |\r\n| `--experiment_name`     | Name of the output subfolder.                                                                   |\r\n| `--seed`                | Random seed for reproducibility.                                                                |\r\n| `--n_epochs`            | Number of epochs for classifier training.                                                       |\r\n| `--learning_rate`       | Learning rate for the optimizer.                                                                |\r\n| `--patience`            | Number of epochs to wait before early stopping.                                                 |\r\n| `--batch_size`          | Batch size for classifier training.                                                             |\r\n\r\n### \ud83d\ude80 Example: ResMLP Training on DRIAMS B2018 with Raw Spectra + Morgan Fingerprints\r\n\r\n```bash\r\nulimit -Sn 10000  # Optional: increase file descriptor limit if needed\r\n\r\npython3 code/ResAMR_classifier.py \\\r\n    --driams_long_table ProcessedData/B2018/combined_long_table.csv \\\r\n    --spectra_matrix ProcessedData/B2018/rawSpectra_data.npy \\\r\n    --sample_embedding_dim 6000 \\\r\n    --drugs_df OriginalData/drug_fingerprints_Mol_selfies.csv \\\r\n    --fingerprint_class morgan_1024 \\\r\n    --fingerprint_size 1024 \\\r\n    --split_type specific \\\r\n    --split_ids ProcessedData/B2018/data_splits.csv \\\r\n    --experiment_group rawMS_MorganFing \\\r\n    --experiment_name ResMLP \\\r\n    --seed 0 \\\r\n    --n_epochs 2 \\\r\n    --learning_rate 0.0003 \\\r\n    --patience 10 \\\r\n    --batch_size 128\r\n```\r\n\r\n---\r\n\r\n## \ud83d\udcb0 Funding\r\n\r\nThis research was primarily supported by the ETH AI Center.\r\n",
+        "doi": "10.48546/workflowhub.workflow.1999.1",
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "1999",
+        "keep": true,
+        "latest_version": 1,
+        "license": "GPL-3.0",
+        "link": "https:/workflowhub.eu/workflows/1999?version=1",
+        "name": "Generalizable machine learning models for rapid antimicrobial resistance prediction in unseen healthcare settings",
+        "number_of_steps": 0,
+        "projects": [
+            "AMRMALDI"
+        ],
+        "source": "WorkflowHub",
+        "tags": [],
+        "tools": [],
+        "type": "Shell Script",
+        "update_time": "2025-10-17",
+        "versions": 1
+    },
+    {
+        "create_time": "2025-10-07",
+        "creators": [
+            "Alem Gusinac",
+            "Thomas Ederveen",
+            "Jos Boekhorst",
+            "Annemarie Boleij"
+        ],
+        "description": "[![Nextflow](https://img.shields.io/badge/nextflow%20DSL2-%E2%89%A524.10.0-23aa62.svg?labelColor=000000)](https://www.nextflow.io/)\r\n[![run with docker](https://img.shields.io/badge/run%20with-docker-0db7ed?labelColor=000000&logo=docker)](https://www.docker.com/)\r\n[![run with singularity](https://img.shields.io/badge/run%20with-singularity-1d355c.svg?labelColor=000000)](https://sylabs.io/docs/)\r\n[![nf-test](https://img.shields.io/badge/tested_with-nf--test-337ab7.svg)](https://code.askimed.com/nf-test)\r\n\r\n## Introduction: **metaBIOMx**\r\n\r\nThe metagenomics microbiomics pipeline is a best-practice suite for the decontamination and annotation of sequencing data obtained via short-read shotgun sequencing. The pipeline contains [NF-core modules](https://github.com/nf-core/modules) and other local modules that are in the similar format. It can be runned via both docker and singularity containers.\r\n\r\n## Pipeline summary\r\nThe pipeline is able to perform different taxonomic annotation on either (single/paired) reads or contigs. The different subworkflows can be defined via `--bypass_<method>` flags, a full overview is shown by running `--help`. By default the pipeline will check if the right databases are present in the right formats, when the path is provided. If this is not the case, compatible databases will be automatically downloaded.\r\n\r\nFor both subworkflows the pipeline will perform read trimming via [Trimmomatic](https://github.com/timflutre/trimmomatic) and/or [AdapterRemoval](https://github.com/MikkelSchubert/adapterremoval), followed by human removal via [Kneaddata](https://huttenhower.sph.harvard.edu/kneaddata/). Before and after each step the quality control will be assessed via [fastqc](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) and a [multiqc](https://github.com/MultiQC/MultiQC) report is created as output. Then taxonomy annotation is done as follows:\r\n\r\n**Read annotation**\r\n- paired reads are interleaved using [BBTools](https://archive.jgi.doe.gov/data-and-tools/software-tools/bbtools/).\r\n- [MetaPhlAn3](https://huttenhower.sph.harvard.edu/metaphlan/) and [HUMAnN3](https://huttenhower.sph.harvard.edu/humann/) are used for taxonomy and functional profiling.\r\n- taxonomy profiles are merged into a single BIOM file using [biom-format](https://github.com/biocore/biom-format).\r\n\r\n**Contig annotation**\r\n- read assembly is performed via [SPAdes](http://cab.spbu.ru/software/spades/).\r\n- Quality assesment of contigs is done via [Busco](https://busco.ezlab.org/).\r\n- taxonomy profiles are created using [CAT](https://github.com/dutilh/CAT).\r\n- Read abundance estimation is performed on the contigs using [Bowtie2]() and [BCFtools](http://samtools.github.io/bcftools/bcftools.html).\r\n- Contigs are selected if a read can be aligned against a contig and a BIOM file is generated using [biom-format](https://github.com/biocore/biom-format).\r\n\r\n## Installation\r\n> [!NOTE]\r\n> Make sure you have installed the latest [nextflow](https://www.nextflow.io/docs/latest/install.html#install-nextflow) version! \r\n\r\nClone the repository in a directory of your choice:\r\n```bash\r\ngit clone https://github.com/CMG-GUTS/metabiomx.git\r\n```\r\n\r\nThe pipeline is containerised, meaning it can be runned via docker or singularity images. No further actions need to be performed when using the docker profile, except a docker registery needs to be set on your local system, see [docker](https://docs.docker.com/engine/install/). In case singularity is used, images are automatically cached within the project directory.\r\n\r\n## Usage\r\nSince the latest version, metaBIOMx works with both a samplesheet (CSV) format or a path to the input files. Preferably, samplesheets should be provided.\r\n```bash\r\nnextflow run main.nf --input <samplesheet.csv> -work-dir work -profile singularity\r\nnextflow run main.nf --input <'*_{1,R1,2,R2}.{fq,fq.gz,fastq,fastq.gz}'> -work-dir work -profile singularity\r\n```\r\n\r\n### \ud83d\udccb Sample Metadata File Specification\r\n\r\nmetaBIOMx expects your sample input data to follow a **simple, but strict** structure to ensure compatibility and allow upfront validation. The input should be provided as a **CSV** file where **each entry = one sample** with specified sequencing file paths. Additional properties not mentioned here will be ignored by the validation step.\r\n\r\n### **Properties and Validation Rules**\r\n\r\n#### \ud83d\udd39 Required properties\r\n\r\n| Property     | Type   | Rules / Description                                                                                   |\r\n|--------------|--------|----------------------------------------------------------------------------------------------------|\r\n| `sample_id`     | string | Unique sample ID with no spaces (`^\\S+$`). Serves as an identifier.                                  |\r\n| `forward_read` | string | File path to forward sequencing read. Must be non-empty string matching FASTQ gzipped pattern. File must exist. |\r\n\r\n#### \ud83d\udd39 Optional property\r\n\r\n| Property       | Type   | Rules / Description                                                                                   |\r\n|----------------|--------|----------------------------------------------------------------------------------------------------|\r\n| `reverse_read` | string | File path to reverse sequencing read. Same constraints as `forward_read`. Required if specified.   |\r\n\r\n#### \ud83d\udd39 Pattern\u2011based columns \r\nYou can define extra variables using special prefixes:\r\n- **`CONTRAST_...`** \u2192 grouping/category labels used in differential comparisons  \r\n  Example: `CONTRAST_Treatment` with values `Drug` / `Placebo`\r\nThese prefixes are used to generate an automated `OmicFlow` report with alpha, beta diversity and compositional plots. For more information see [OmicFlow](https://github.com/agusinac/OmicFlow).\r\n\r\n### Example cases\r\n#### \ud83d\udd39 Read annotation\r\n```bash\r\nnextflow run main.nf \\\r\n    --input <samplesheet.csv> \\\r\n    # (optional) --bypass_trim \\\r\n    # (optional) --bypass_decon \\\r\n    --bypass_contig_annotation \\\r\n    -work-dir work \\\r\n    -profile singularity\r\n```\r\n\r\n#### \ud83d\udd39 Contig annotation\r\n```bash\r\nnextflow run main.nf \\\r\n    --input <samplesheet.csv> \\\r\n    # (optional) --bypass_trim \\\r\n    # (optional) --bypass_decon \\\r\n    --bypass_read_annotation \\\r\n    -work-dir work \\\r\n    -profile singularity\r\n```\r\n\r\nIn case you only have assemblies and wish to perform contig annotation:\r\n```bash\r\nnextflow run main.nf \\\r\n    --input <samplesheet.csv> \\\r\n    --bypass_assembly \\\r\n    --bypass_read_annotation \\\r\n    -work-dir work \\\r\n    -profile singularity\r\n```\r\n\r\n## Automatic database setup\r\nThe pipeline requires a set of databases which are used by the different tools within this workflow. The user is required to specify the location in where the databases will be downloaded. It is also possible to download the databases manually. The `configure` subworkflow will evaluate the database format and presence of the compatible files automatically.\r\n```bash\r\nnextflow run main.nf \\\r\n    --bowtie_db path/to/db/bowtie2 \\\r\n    --metaphlan_db path/to/db/metaphlan \\\r\n    --humann_db path/to/db/humann \\\r\n    --cat_pack_db path/to/db/catpack \\\r\n    --busco_db path/to/db/busco_downloads \\\r\n    -work-dir <work/dir> \\\r\n    -profile <singularity,docker>\r\n```\r\n\r\n<details>\r\n<summary>Manual database setup</summary>\r\n\r\n### HUMAnN3 and MetaPhlan3 DB\r\nMake sure the `path/to/db/humann` should contain a `chocophlan`, `uniref` and `utility_mapping` directory. These can be obtained by the following command:\r\n```bash\r\ndocker pull biobakery/humann:latest\r\n\r\ndocker run --rm -v $(pwd):/scripts biobakery/humann:latest \\\r\n    humann_databases --download chocophlan full ./path/to/db/humann \\\r\n    && humann_databases --download uniref uniref90_diamond ./path/to/db/humann \\\r\n    && humann_databases --download utility_mapping full ./path/to/db/humann\r\n```\r\n\r\n### MetaPhlAn DB\r\n```bash\r\nwget http://cmprod1.cibio.unitn.it/biobakery4/metaphlan_databases/mpa_vJun23_CHOCOPhlAnSGB_202403.tar \\\r\n    && tar -xvf mpa_vJun23_CHOCOPhlAnSGB_202403.tar -C path/to/db/metaphlan \\\r\n    && rm mpa_vJun23_CHOCOPhlAnSGB_202403.tar\r\n\r\nwget http://cmprod1.cibio.unitn.it/biobakery4/metaphlan_databases/bowtie2_indexes/mpa_vJun23_CHOCOPhlAnSGB_202403_bt2.tar \\\r\n    && tar -xvf mpa_vJun23_CHOCOPhlAnSGB_202403_bt2.tar -C path/to/db/metaphlan \\\r\n    && rm mpa_vJun23_CHOCOPhlAnSGB_202403_bt2.tar\r\n\r\necho 'mpa_vJun23_CHOCOPhlAnSGB_202403' > path/to/db/metaphlan/mpa_latest\r\n```\r\n\r\n### Kneaddata DB\r\n```bash\r\ndocker pull agusinac/kneaddata:latest\r\n\r\ndocker run --rm -v $(pwd):/scripts agusinac/kneaddata:latest \\\r\n    kneaddata_database \\\r\n        --download human_genome bowtie2 ./path/to/db/bowtie2\r\n```\r\n\r\n### CAT_pack DB\r\nA pre-constructed diamond database can be [downloaded](https://tbb.bio.uu.nl/tina/CAT_pack_prepare/) manually or by command:\r\n```bash\r\ndocker pull agusinac/catpack:latest\r\n\r\ndocker run --rm -v $(pwd):/scripts agusinac/catpack:latest \\\r\n    CAT_pack download \\\r\n        --db nr \\\r\n        -o path/to/db/catpack\r\n\r\n```\r\n\r\n### busco DB\r\nBUSCO expects that the directory is called `busco_downloads`.\r\n```bash\r\ndocker pull ezlabgva/busco:v5.8.2_cv1\r\n\r\ndocker run --rm -v $(pwd):/scripts ezlabgva/busco:v5.8.2_cv1 \\\r\n    busco \\\r\n        --download bacteria_odb12 \\\r\n        --download_path path/to/db/busco_downloads\r\n```\r\n</details>\r\n\r\n## Support\r\n\r\nIf you are having issues, please [create an issue](https://github.com/CMG-GUTS/metabiomx/issues)\r\n\r\n## Citations\r\n\r\nAn extensive list of references for the tools used by the pipeline can be found in the [`CITATIONS.md`](CITATIONS.md)\r\nfile.\r\n",
+        "doi": "10.48546/workflowhub.workflow.1787.6",
+        "edam_operation": [
+            "Gene functional annotation",
+            "Taxonomic classification"
+        ],
+        "edam_topic": [
+            "Metagenomic sequencing",
+            "Metagenomics",
+            "Microbial ecology",
+            "Microbiology"
+        ],
+        "id": "1787",
+        "keep": true,
+        "latest_version": 6,
+        "license": "MIT",
+        "link": "https:/workflowhub.eu/workflows/1787?version=6",
+        "name": "metaBIOMx: Metagenomics pipeline for Microbial shot-gun sequencing data",
+        "number_of_steps": 0,
+        "projects": [
+            "CMG-GUTS"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "bioinformatics",
+            "metagenomics",
+            "nextflow"
+        ],
+        "tools": [
+            "AdapterRemoval",
+            "BCFtools",
+            "BBTools",
+            "Trimmomatic",
+            "FastQC",
+            "MultiQC",
+            "humann",
+            "MetaPhlAn",
+            "SPAdes",
+            "BUSCO",
+            "Bowtie 2",
+            "CAT and BAT",
+            "OmicFlow"
+        ],
+        "type": "Nextflow",
+        "update_time": "2025-10-08",
+        "versions": 3
+    },
+    {
+        "create_time": "2025-10-02",
+        "creators": [
+            "Ryo Mameda",
+            "Sora Yonezawa"
+        ],
+        "description": "\r\n![GitHub last commit (branch)](https://img.shields.io/github/last-commit/RyoMameda/workflow_cwl/main)\r\n![Status](https://img.shields.io/badge/status-development-yellow)\r\n[![cwltool](https://img.shields.io/badge/cwltool-3.1.20250110105449-success)](https://github.com/common-workflow-language/cwltool/releases/tag/3.1.20250110105449)\r\n[![License](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)\r\n![Version](https://img.shields.io/badge/version-1.0-brightgreen)\r\n[![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=python3.11&color=blue&logo=docker)](https://github.com/yonesora56/plant2human/tree/main/.devcontainer)\r\n\r\n# Gene Expression Analysis Workflow in Complex Microbiomes\r\n\r\n&nbsp;\r\n\r\n## Workflow Schema \r\n- more details: [Optimization of Mapping Tools and Investigation of Ribosomal RNA Influence for Data-Driven Gene Expression Analysis in Complex Microbiomes](https://doi.org/10.3390/microorganisms13050995)\r\n\r\n![image](./image/microorganisms-13-00995-g001.png)\r\n\r\n&nbsp;\r\n\r\n### 1. Overview of the Workflow\r\n\r\nThis analysis focuses on transcriptional profiling of complex microbiomes. It requires both metagenomic and metatranscriptomic NGS short-read data, along with annotation reference information (e.g., ribosomal RNA sequences and referenced protein databases, listed below). The metagenomic and metatranscriptomic reads should be derived from the same microbiome samples. Assembled metagenomic contigs are then used as reference sequences to map both types of reads, enabling gene-level quantification.\r\n\r\n&nbsp;\r\n\r\n### 2. Minimum Requirements\r\n\r\n- `Docker`\r\n- `cwltool`\r\n\r\n&nbsp;\r\n\r\n### 3. Workflow Component\r\n\r\nThis analysis workflow is composed of three sub-workflows; metagenomic contig assembling, reads mapping and annotation. \r\n\r\n&nbsp;\r\n\r\n#### Metagenomic contig assembling\r\n\r\nIn this process, the following steps are performed:\r\n\r\n\r\n1. Assembly process using `Megahit`. \r\n2. Prediction Protein sequences using `Prodigal`.\r\n3. Statical analysis of contigs useing `SeqKit`.\r\n\r\n&nbsp;\r\n\r\n#### Reads mapping\r\n\r\nIn this process, the following steps are performed:\r\n\r\n1. Mapping process using `BWA MEM`.\r\n2. Statical analysis of mapping results using `SAMtools`\r\n\r\n&nbsp;\r\n\r\n#### Annotation\r\n\r\nIn this process, the following steps are performed:\r\n\r\n1. Searching contaminated ribosomal RNA sequences using `BLAST`.\r\n2. Searching referenced proteins using `DIAMOND`.\r\n3. Creation GTF formated file contained annotation informations.\r\n\r\n&nbsp;\r\n\r\n### 4. Test Dataset and Your Own Dataset\r\n\r\n- If you are testing with the following files, please place them in the `Data` directory!\r\n- You can also obtain metagenomic and metatranscriptomic FASTQ files either by downloading them from public databases or by using your own samples, and then place them in your `Data` directory.\r\n\r\n#### Metagenome data\r\n\r\n- [SRR27548858](https://www.ncbi.nlm.nih.gov/sra/?term=SRR27548858)\r\n\r\n#### Metatranscriptome data\r\n\r\n- [SRR27548863](https://www.ncbi.nlm.nih.gov/sra/?term=SRR27548863)\r\n- [SRR27548864](https://www.ncbi.nlm.nih.gov/sra/?term=SRR27548864)\r\n- [SRR27548865](https://www.ncbi.nlm.nih.gov/sra/?term=SRR27548865)\r\n\r\n&nbsp;\r\n\r\n### 5. Annotation References\r\n\r\nThese reference files are used in the BLAST and DIAMOND processes. The downloaded files are available in the `Data` directory (accessed on September 17, 2025). If you wish to use the latest versions of the references, please download them using the following scripts.\r\n\r\n```bash\r\n# rRNA data from SILVA website (release138.1; accessed on 17,September,2025)\r\ncurl -O https://ftp.arb-silva.de/release_138.1/Exports/SILVA_138.1_LSUParc_tax_silva.fasta.gz\r\ncurl -O https://ftp.arb-silva.de/release_138.1/Exports/SILVA_138.1_SSUParc_tax_silva.fasta.gz\r\n\r\n# Swiss-Prot data from UniProt for diamond makedb process (accessed on 17,September,2025)\r\ncurl -O https://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.fasta.gz\r\n\r\n# Pfam data from InterPro (accessed on 17,September,2025)) for hmmscan proess. Appling HMMER process in this workflow is on going, however this process takes time. This step will be optional.\r\n# curl -O https://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/Pfam-A.hmm.gz\r\n```\r\n\r\n&nbsp;\r\n\r\n### 6. Command Execution\r\n\r\nWe recommend creating a `cache` directory to store cache and intermediate files. Since metagenomic and metatranscriptomic reads are mapped to contigs, the assembled results can be reused to reduce analytical costs. The `cwltool` properly recognizes caches when the `--cachedir` option is specified.\r\n\r\n```bash\r\n# main workflow\r\n\r\ncwltool --debug --cachedir <cache directory> --outdir <output directory> ./Worlkflow/main_w.cwl ./config/main_w.yml\r\n\r\n```\r\n\r\n&nbsp;\r\n\r\n### 7. based shell script & python script\r\n\r\nGitHub: https://github.com/RyoMameda/workflow\r\n\r\nThis workflow is developed at [DBCLS BioHackathon 2025](https://github.com/dbcls/bh25/), and the preprint of developing project is https://doi.org/10.37044/osf.io/qd5sz_v1.\r\n",
+        "doi": "10.48546/workflowhub.workflow.1955.2",
+        "edam_operation": [
+            "Gene expression profiling",
+            "Genome annotation",
+            "Sequence annotation",
+            "Sequence assembly",
+            "Sequence trimming"
+        ],
+        "edam_topic": [
+            "Bioinformatics",
+            "Microbiology",
+            "Sequence analysis",
+            "Sequence assembly"
+        ],
+        "id": "1955",
+        "keep": true,
+        "latest_version": 2,
+        "license": "MIT",
+        "link": "https:/workflowhub.eu/workflows/1955?version=2",
+        "name": "Gene Expression Analysis Workflow in Complex Microbiomes",
+        "number_of_steps": 3,
+        "projects": [
+            "bonohulab"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "annotation",
+            "metagenomics",
+            "metatranscriptomics"
+        ],
+        "tools": [
+            "BLASTN rRNA annotation process"
+        ],
+        "type": "Common Workflow Language",
+        "update_time": "2025-10-02",
+        "versions": 2
+    },
+    {
+        "create_time": "2025-09-18",
+        "creators": [
+            "Samuel Chaffron",
+            "Audrey Bihouee",
+            "Benjamin Churcheward",
+            "Maxime Millet",
+            "Guillaume Fertin",
+            "Hugo Lefeuvre"
+        ],
+        "description": "MAGNETO is an automated snakemake workflow dedicated to MAG (Metagenome-Assembled Genomes) reconstruction from metagenomic data. \r\n\r\nIt includes a fully-automated coassembly step informed by optimal clustering of metagenomic distances, and implements complementary genome binning strategies, for improving MAG recovery.\r\n\r\n# Key Features\r\n\r\n - **Quality Control (QC)**: Automatically assesses the quality and the contamination of input reads, ensuring that low-quality data are filtered out to improve downstream analyses.\r\n\r\n - **Assembly**: MAGNETO uses high-performance assembler to construct contigs from metagenomic reads.\r\n\r\n - **Gene Collection**: Extracts and compiles gene sequences from contigs, providing a comprehensive gene catalog directly after assembly.\r\n\r\n - **Binning**: Groups contigs into probable genomes using composition signatures and abundance profiles.\r\n\r\n - **Genomes collection**: Provides taxonomic and functional annotation of reconstructed MAGs.\r\n\r\n - **Metatranscriptomic mapping**: Mapping of transcriptomic reads on genes collection and/or MAGs obtained with previous analysis.\r\n\r\n# Documentation\r\n\r\n**Full description in the [wiki pages](https://gitlab.univ-nantes.fr/bird_pipeline_registry/magneto/-/wikis/home)**\r\n\r\n# Citing the pipeline \r\nChurcheward B, Millet M, Bihou\u00e9e A, Fertin G, Chaffron S.<br>\r\nMAGNETO: An Automated Workflow for Genome-Resolved Metagenomics.<br>\r\nmSystems. 2022 Jun 15:e0043222. doi: [10.1128/msystems.00432-22](https://doi.org/10.1128/msystems.00432-22)\r\n",
+        "doi": null,
+        "edam_operation": [
+            "Gene functional annotation",
+            "Genome assembly",
+            "Read binning",
+            "Read mapping",
+            "Sequence assembly",
+            "Sequencing quality control",
+            "Taxonomic classification"
+        ],
+        "edam_topic": [
+            "Metagenomics",
+            "Metatranscriptomics"
+        ],
+        "id": "1815",
+        "keep": true,
+        "latest_version": 3,
+        "license": "GPL-3.0",
+        "link": "https:/workflowhub.eu/workflows/1815?version=3",
+        "name": "MAGNETO (automated workflow dedicated to MAG reconstruction)",
+        "number_of_steps": 0,
+        "projects": [
+            "BiRD"
+        ],
+        "source": "WorkflowHub",
+        "tags": [],
+        "tools": [],
+        "type": "Snakemake",
+        "update_time": "2025-09-25",
+        "versions": 3
+    },
+    {
+        "create_time": "2025-09-10",
+        "creators": [
+            "Bart Nijsse",
+            "Jasper Koehorst"
+        ],
+        "description": "Workflow for quality assessment and taxonomic classification of amplicon long read sequences.<br>\r\nIn addition files are exported to their respective subfolders for easier data management in a later stage.<br>\r\n<br>\r\nInputs are expected to be basecalled fastq files<br>\r\n<br>\r\n**Steps:**<br>\r\n    - NanoPlot read quality control, before and after filtering<br>\r\n    - fastplong read quality and length filtering<br>\r\n    - Emu abundance; species-level taxonomic abundance for full-length 16S read <br>\r\n",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [
+            "Bioinformatics",
+            "Workflows"
+        ],
+        "id": "1952",
+        "keep": true,
+        "latest_version": 1,
+        "license": "Apache-2.0",
+        "link": "https:/workflowhub.eu/workflows/1952?version=1",
+        "name": "Longread 16S classification workflow",
+        "number_of_steps": 4,
+        "projects": [
+            "UNLOCK"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "amplicon",
+            "bioinformatics",
+            "long-reads",
+            "oxford-nanopore",
+            "pacbio"
+        ],
+        "tools": [
+            "NanoPlot",
+            "fastplong"
+        ],
+        "type": "Common Workflow Language",
+        "update_time": "2025-09-10",
+        "versions": 1
+    },
+    {
+        "create_time": "2025-09-09",
+        "creators": [
+            "Bart Nijsse",
+            "Jasper Koehorst",
+            "Changlin Ke"
+        ],
+        "description": "**Workflow (hybrid) metagenomic assembly and binning**<br>\r\n  - Workflow Illumina Quality: \r\n    - Sequali (control)\r\n    - hostile contamination filter\r\n    - fastp (quality trimming)\r\n  - Workflow Longread Quality:\t\r\n    - NanoPlot (control)\r\n    - fastplong (quality trimming)\r\n    - hostile contamination filter\r\n  - Kraken2 taxonomic classification of FASTQ reads\r\n  - SPAdes/Flye (Assembly)\r\n  - Medaka/PyPolCA (Assembly polishing)\r\n  - QUAST (Assembly quality report)\r\n\r\n  (optional)\r\n  - Workflow binnning\r\n    - Metabat2/MaxBin2/SemiBin\r\n    - Binette\r\n    - BUSCO\r\n    - GTDB-Tk\r\n\r\n  (optional)\r\n  - Workflow Genome-scale metabolic models https://workflowhub.eu/workflows/372\r\n    - CarveMe (GEM generation)\r\n    - MEMOTE (GEM test suite)\r\n    - SMETANA (Species METabolic interaction ANAlysis)\r\n\r\nOther UNLOCK workflows on WorkflowHub: https://workflowhub.eu/projects/16/workflows?view=default<br><br>\r\n\r\n**All tool CWL files and other workflows can be found here:**<br>\r\n  https://gitlab.com/m-unlock/cwl/ <br>\r\n\r\n**How to setup and use an UNLOCK workflow:**<br>\r\nhttps://docs.m-unlock.nl/docs/workflows/setup.html<br>\r\n",
+        "doi": null,
+        "edam_operation": [
+            "Sequence assembly"
+        ],
+        "edam_topic": [
+            "Bioinformatics",
+            "Metagenomic sequencing",
+            "Metagenomics",
+            "Sequence assembly"
+        ],
+        "id": "367",
+        "keep": true,
+        "latest_version": 3,
+        "license": "Apache-2.0",
+        "link": "https:/workflowhub.eu/workflows/367?version=3",
+        "name": "(Hybrid) Metagenomics workflow",
+        "number_of_steps": 23,
+        "projects": [
+            "UNLOCK"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "assembly",
+            "metagenomics",
+            "binning",
+            "illumina"
+        ],
+        "tools": [
+            "SPAdes",
+            "Flye",
+            "Minimap2",
+            "NanoPlot",
+            "QUAST",
+            "SemiBin",
+            "MetaBAT 2",
+            "MaxBin",
+            "kraken2",
+            "BUSCO",
+            "CheckM",
+            "InterProScan (EBI)",
+            "eggNOG",
+            "kofamscan",
+            "KofamKOALA",
+            "Sequali",
+            "Hostile",
+            "Binette"
+        ],
+        "type": "Common Workflow Language",
+        "update_time": "2025-09-09",
+        "versions": 3
+    },
+    {
+        "create_time": "2025-08-12",
+        "creators": [
+            "Martijn Melissen"
+        ],
+        "description": "**Workflow for long read quality control, contamination filtering, assembly, variant calling and annotation.**\r\n\r\nSteps:  \r\n- Preprocessing of reference file : https://workflowhub.eu/workflows/1818  \r\n- LongReadSum before and after filtering (read quality control)  \r\n- Filtlong filter on quality and length  \r\n- Flye assembly  \r\n- Minimap2 mapping of reads and assembly  \r\n- Clair3 variant calling of reads  \r\n- Freebayes variant calling of assembly  \r\n- Optional Bakta annotation of genomes with no reference  \r\n- SnpEff building or downloading of a database  \r\n- SnpEff functional annotation  \r\n- Liftoff annotation lift over  \r\n\r\n**All tool CWL files and other workflows can be found here:**\r\n  Tools: https://git.wur.nl/ssb/automated-data-analysis/cwl/-/tree/main/tools\r\n  Workflows: https://git.wur.nl/ssb/automated-data-analysis/cwl/-/tree/main/workflows\r\n",
+        "doi": null,
+        "edam_operation": [
+            "Conversion",
+            "Generation"
+        ],
+        "edam_topic": [
+            "Bioinformatics",
+            "Genomics",
+            "Sequence assembly"
+        ],
+        "id": "1868",
+        "keep": true,
+        "latest_version": 1,
+        "license": "CC-BY-4.0",
+        "link": "https:/workflowhub.eu/workflows/1868?version=1",
+        "name": "Long Read WGS pipeline",
+        "number_of_steps": 31,
+        "projects": [
+            "Systems and Synthetic Biology"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "annotation",
+            "assembly",
+            "bioinformatics",
+            "cwl",
+            "galaxy",
+            "genomics",
+            "python",
+            "workflows",
+            "plasmid",
+            "plasmids"
+        ],
+        "tools": [
+            "Flye",
+            "Filtlong",
+            "Minimap2",
+            "Clair3",
+            "FreeBayes",
+            "Bakta",
+            "snpEff",
+            "Liftoff"
+        ],
+        "type": "Common Workflow Language",
+        "update_time": "2025-08-12",
+        "versions": 1
+    },
+    {
+        "create_time": "2025-08-11",
+        "creators": [],
+        "description": "The MAPseq to Ampvis workflow processes MAPseq OTU tables and associated metadata for analysis in Ampvis2. This workflow involves reformatting MAPseq output datasets to produce structured output files suitable for Ampvis2.\n\n## Associated Tutorial\n\nThis workflows is part of the tutorial [MGnify v5.0 Amplicon Pipeline](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/mgnify-amplicon/tutorial.html), available in the [GTN](https://training.galaxyproject.org)\n\n## Features\n\n* Includes a [Galaxy Workflow Report](https://training.galaxyproject.org/training-material/faqs/galaxy/workflows_report_view.html)\n* Uses [Galaxy Workflow Comments](https://training.galaxyproject.org/training-material/faqs/galaxy/workflows_comments.html)\n\n## Thanks to...\n\n**Workflow Author(s)**: Rand Zoabi, Mara Besemer\n\n**Tutorial Author(s)**: [Rand Zoabi](https://training.galaxyproject.org/training-material/hall-of-fame/RZ9082/)\n\n**Tutorial Contributor(s)**: [Paul Zierep](https://training.galaxyproject.org/training-material/hall-of-fame/paulzierep/), [Saskia Hiltemann](https://training.galaxyproject.org/training-material/hall-of-fame/shiltemann/)\n\n**Funder(s)**: [German Competence Center Cloud Technologies for Data Management and Processing (de.KCD)](https://training.galaxyproject.org/training-material/hall-of-fame/deKCD/)\n\n[![gtn star logo followed by the word workflows](https://training.galaxyproject.org/training-material/assets/branding/gtn-workflows.png)](https://training.galaxyproject.org/training-material/)",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "1855",
+        "keep": true,
+        "latest_version": 1,
+        "license": "MIT",
+        "link": "https:/workflowhub.eu/workflows/1855?version=1",
+        "name": "MAPseq to ampvis2",
+        "number_of_steps": 9,
+        "projects": [
+            "Galaxy Training Network"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "gtn",
+            "galaxy",
+            "microbiome"
+        ],
+        "tools": [
+            "tp_awk_tool",
+            "query_tabular",
+            "ampvis2_load",
+            "collection_column_join",
+            "collapse_dataset"
+        ],
+        "type": "Galaxy",
+        "update_time": "2025-08-11",
+        "versions": 1
+    },
+    {
+        "create_time": "2025-06-02",
+        "creators": [
+            "Marie Joss\u00e9"
+        ],
+        "description": "Secondary metabolite biosynthetic gene cluster (SMBGC) Annotation using Neural Networks Trained on Interpro Signatures \r\n\r\n## Associated Tutorial\r\n\r\nThis workflows is part of the tutorial [Marine Omics identifying biosynthetic gene clusters](https://training.galaxyproject.org/training-material/topics/ecology/tutorials/marine_omics_bgc/tutorial.html), available in the [GTN](https://training.galaxyproject.org)\r\n\r\n## Features\r\n\r\n* Includes [Galaxy Workflow Tests](https://training.galaxyproject.org/training-material/faqs/gtn/workflow_run_test.html)\r\n* Includes a [Galaxy Workflow Report](https://training.galaxyproject.org/training-material/faqs/galaxy/workflows_report_view.html)\r\n* Uses [Galaxy Workflow Comments](https://training.galaxyproject.org/training-material/faqs/galaxy/workflows_comments.html)\r\n\r\n## Thanks to...\r\n\r\n**Workflow Author(s)**: Marie Joss\u00e9\r\n\r\n**Tutorial Author(s)**: [Marie Josse](https://training.galaxyproject.org/training-material/hall-of-fame/Marie59/)\r\n\r\n**Tutorial Contributor(s)**: [Bj\u00f6rn Gr\u00fcning](https://training.galaxyproject.org/training-material/hall-of-fame/bgruening/), [Saskia Hiltemann](https://training.galaxyproject.org/training-material/hall-of-fame/shiltemann/)\r\n\r\n**Grants(s)**: [Fair-Ease](https://training.galaxyproject.org/training-material/hall-of-fame/fairease/), [EuroScienceGateway](https://training.galaxyproject.org/training-material/hall-of-fame/eurosciencegateway/)\r\n\r\n[![gtn star logo followed by the word workflows](https://training.galaxyproject.org/training-material/assets/branding/gtn-workflows.png)](https://training.galaxyproject.org/training-material/)",
+        "doi": "10.48546/workflowhub.workflow.1663.1",
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "1663",
+        "keep": true,
+        "latest_version": 1,
+        "license": "CC-BY-4.0",
+        "link": "https:/workflowhub.eu/workflows/1663?version=1",
+        "name": "Marine Omics identifying biosynthetic gene clusters",
+        "number_of_steps": 5,
+        "projects": [
+            "Galaxy Training Network",
+            "EuroScienceGateway"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "earth-system",
+            "gtn",
+            "galaxy",
+            "marineomics",
+            "ocean"
+        ],
+        "tools": [
+            "interproscan",
+            "regex1",
+            "sanntis_marine",
+            "prodigal"
+        ],
+        "type": "Galaxy",
+        "update_time": "2025-07-28",
+        "versions": 1
+    },
+    {
+        "create_time": "2025-07-13",
+        "creators": [
+            "Ignacio Garach"
+        ],
+        "description": "Code and supporting data for the article: \"Exploring the role of normalization and feature selection in microbiome disease classification pipelines.\"\r\n\r\nThe repository contains the following folders:\r\n\r\n* **1. data:** contains OTU/ASV tables and class annotations for the 15 curated datasets considered.\r\n* **2. src:** code writen to perform the analyses from the article and the statistical tests\r\n* **3. results:** tables containing global nested cross validation results\r\n* **4. figures**\r\n\r\n\r\n## License: This project is licensed under GNU GPL 3.0 - check LICENSE file for more details.\r\n\r\n\r\n| Dataset | Samples (Cases, Controls) | Features | IR  | Project ID |\r\n|---------|---------------------------|----------|-----|------------|\r\n| ART     | 114 (86, 28)               | 10733    | 3.07 | PRJNA203810    |\r\n| CDI     | 336 (93, 243)              | 3456     | 2.61 | 10.1128/mbio.01021-14 (DOI)              |\r\n| CRC1    | 490 (229, 261)             | 6920     | 1.14 | PRJNA290926    |\r\n| CRC2    | 102 (46, 56)               | 837      | 1.22 | SRP005150      |\r\n| HIV     | 350 (293, 57)              | 14425    | 5.14 | PRJNA307231    |\r\n| CD1     | 140 (78, 62)               | 3547     | 1.26 | PRJNA237362    |\r\n| CD2     | 160 (68, 92)               | 3547     | 1.35 | PRJNA237362    |\r\n| IBD1    | 91 (67, 24)                | 2742     | 2.79 | PRJNA82109     |\r\n| IBD2    | 114 (68, 46)               | 1496     | 1.48 | 10.1053/j.gastro.2010.08.049 (DOI)              |\r\n| CIR     | 77 (51, 26)                | 3104     | 1.96 | PRJNA174838    |\r\n| MHE     | 77 (26, 51)                | 3104     | 1.96 | PRJNA174838    |\r\n| OB      | 281 (220, 61)              | 6386     | 3.61 | PRJNA32089     |\r\n| PAR1    | 148 (74, 74)               | 10232    | 1.00 | PRJEB4927      |\r\n| PAR2    | 333 (201, 132)             | 6844     | 1.52 | PRJNA601994    |\r\n| PAR3    | 507 (323, 184)             | 12198    | 1.76 | PRJNA601994    |\r\n\r\n*Notes:*  \r\n- ART: Arthritis; CDI: Clostridium difficile Infection; CRC1 and CRC2: Colorectal Cancer; HIV: Human Immunodeficiency Virus; CD1 and CD2: Crohn's Disease; IBD1 and IBD2: Inflammatory Bowel Disease; CIR: Cirrhosis; MHE: Minimal Hepatic Encephalopathy; OB: Obesity; PAR1, PAR2, and PAR3: Parkinson's Disease.  \r\n- CD1 and CD2 were taken from MLRepo, PAR2 and PAR3 were retrieved from their respective article sources, and the remaining datasets were obtained from MicrobiomeHD.\r\n- Project IDs from NCBI for raw data. IBD2 data is only available via MicrobiomeHD repository, CDI raw data is available at mothur (https://mothur.org/CDI_MicrobiomeModeling/)\r\n",
+        "doi": "10.48546/workflowhub.workflow.1807.1",
+        "edam_operation": [],
+        "edam_topic": [
+            "Machine learning",
+            "Metagenomics"
+        ],
+        "id": "1807",
+        "keep": true,
+        "latest_version": 1,
+        "license": "GPL-3.0",
+        "link": "https:/workflowhub.eu/workflows/1807?version=1",
+        "name": "Exploring the role of normalization and feature selection in microbiome disease classification pipelines",
+        "number_of_steps": 0,
+        "projects": [
+            "Machine Learning Techniques in Microbiome"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "bioinformatics",
+            "machine learning",
+            "metagenomics"
+        ],
+        "tools": [],
+        "type": "Python",
+        "update_time": "2025-07-13",
+        "versions": 1
+    },
+    {
+        "create_time": "2025-07-07",
+        "creators": [],
+        "description": "Building an amplicon sequence variant (ASV) table from 16S data using DADA2\n\n## Associated Tutorial\n\nThis workflows is part of the tutorial [Building an amplicon sequence variant (ASV) table from 16S data using DADA2](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/dada-16S/tutorial.html), available in the [GTN](https://training.galaxyproject.org)\n\n## Features\n\n* Includes [Galaxy Workflow Tests](https://training.galaxyproject.org/training-material/faqs/gtn/workflow_run_test.html)\n\n## Thanks to...\n\n**Workflow Author(s)**: , B\u00e9r\u00e9nice Batut\n\n**Tutorial Author(s)**: [B\u00e9r\u00e9nice Batut](https://training.galaxyproject.org/training-material/hall-of-fame/bebatut/)\n\n**Tutorial Contributor(s)**: [Matthias Bernt](https://training.galaxyproject.org/training-material/hall-of-fame/bernt-matthias/), [Clea Siguret](https://training.galaxyproject.org/training-material/hall-of-fame/clsiguret/), [Saskia Hiltemann](https://training.galaxyproject.org/training-material/hall-of-fame/shiltemann/), [Deepti Varshney](https://training.galaxyproject.org/training-material/hall-of-fame/deeptivarshney/), [B\u00e9r\u00e9nice Batut](https://training.galaxyproject.org/training-material/hall-of-fame/bebatut/), [Helena Rasche](https://training.galaxyproject.org/training-material/hall-of-fame/hexylena/), [Linelle Abueg](https://training.galaxyproject.org/training-material/hall-of-fame/abueg/), [Paul Zierep](https://training.galaxyproject.org/training-material/hall-of-fame/paulzierep/), [Santino Faack](https://training.galaxyproject.org/training-material/hall-of-fame/santamccloud/)\n\n[![gtn star logo followed by the word workflows](https://training.galaxyproject.org/training-material/assets/branding/gtn-workflows.png)](https://training.galaxyproject.org/training-material/)",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "1395",
+        "keep": true,
+        "latest_version": 2,
+        "license": "MIT",
+        "link": "https:/workflowhub.eu/workflows/1395?version=2",
+        "name": "Building an amplicon sequence variant (ASV) table from 16S data using DADA2",
+        "number_of_steps": 21,
+        "projects": [
+            "Galaxy Training Network"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "gtn",
+            "galaxy",
+            "microbiome"
+        ],
+        "tools": [
+            "dada2_removeBimeraDenovo",
+            "__UNZIP_COLLECTION__",
+            "__SORTLIST__",
+            "tp_replace_in_line",
+            "Add_a_column1",
+            "dada2_plotQualityProfile",
+            "dada2_dada",
+            "cat1",
+            "phyloseq_from_dada2",
+            "dada2_seqCounts",
+            "tp_head_tool",
+            "tp_replace_in_column",
+            "dada2_mergePairs",
+            "collection_element_identifiers",
+            "dada2_filterAndTrim",
+            "dada2_assignTaxonomyAddspecies",
+            "dada2_learnErrors",
+            "dada2_makeSequenceTable"
+        ],
+        "type": "Galaxy",
+        "update_time": "2025-07-07",
+        "versions": 2
+    },
+    {
+        "create_time": "2025-06-25",
+        "creators": [
+            "Joon-Klaps None",
+            "Joon-Klaps None"
+        ],
+        "description": "A bioinformatics best-practice analysis pipeline for reconstructing consensus genomes and to identify intra-host variants from metagenomic sequencing data or enriched based sequencing data like hybrid capture.",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "1757",
+        "keep": true,
+        "latest_version": 2,
+        "license": "MIT",
+        "link": "https:/workflowhub.eu/workflows/1757?version=2",
+        "name": "Joon-Klaps/viralgenie",
+        "number_of_steps": 0,
+        "projects": [
+            "nf-core"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "fastq",
+            "ngs",
+            "virology",
+            "epidemiology",
+            "viral-metagenomics",
+            "virus-genomes"
+        ],
+        "tools": [],
+        "type": "Nextflow",
+        "update_time": "2025-06-25",
+        "versions": 2
+    },
+    {
+        "create_time": "2025-06-17",
+        "creators": [
+            "Alejandra Escobar"
+        ],
+        "description": "# Introduction\r\n\r\n**ebi-metagenomics/biosiftr** is a bioinformatics pipeline that generates taxonomic and functional profiles for low-yield (shallow shotgun: < 10 M reads) short raw-reads using [`MGnify biome-specific genome catalogues`](https://www.ebi.ac.uk/metagenomics/browse/genomes) as a reference.\r\n\r\nThe biome selection includes all the biomes available in the [`MGnify genome catalogues`](https://www.ebi.ac.uk/metagenomics/browse/genomes).\r\n\r\nThe main sections of the pipeline include the following steps:\r\n\r\n1. Raw-reads quality control ([`fastp`](https://github.com/OpenGene/fastp))\r\n2. HQ reads decontamination versus human, phyX, and host ([`bwa-mem2`](https://github.com/bwa-mem2/bwa-mem2))\r\n3. QC report of decontaminated reads ([`FastQC`](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/))\r\n4. Integrated quality report of reads before and after decontamination ([`MultiQC`](http://multiqc.info/))\r\n5. Mapping HQ clean reads using [`Sourmash`](https://github.com/sourmash-bio/sourmash) and bwa-mem2 (optional)\r\n6. Taxonomic profile generation\r\n7. Functional profile inference\r\n\r\nThe final output includes a species relative abundance table, Pfam and KEGG Orthologs (KO) count tables, a KEGG modules completeness table, and DRAM-style visuals (optional). In addition, the shallow-mapping pipeline will integrate the taxonomic and functional tables of all the samples in the input samplesheet.\r\n\r\n## Installation\r\n\r\nThis workflow was built using [Nextflow](https://www.nextflow.io/) and follows [nf-core](https://nf-co.re/) good practices. It is containerised, so users can use either Docker or Apptainer/Singularity to run the pipeline. At the moment, it doesn't support Conda environments.\r\n\r\nThe pipeline requires [Nextflow](https://www.nextflow.io/docs/latest/getstarted.html#installation) and a container technology such as [Apptainer/Singularity](https://github.com/apptainer/singularity/blob/master/INSTALL.md) or [Docker](https://www.docker.com/).\r\n\r\n### Required Reference Databases\r\n\r\nThe first time you run the pipeline, it will download the required MGnify genomes catalogue reference files and the human_phiX BWAMEM2 index. If you select a different host for decontamination, you must provide the index yourself.\r\n\r\nRunning the pipeline using bwamem2 is optional. If you want to run the pipeline with this option set the `--download_bwa true`. This database will occupy considerable storage in your system depending on the biome.\r\n\r\nIn addition, instructions to generate the databases from custom catalogues can be found in the [BioSIFTR paper's repository](https://github.com/EBI-Metagenomics/biosiftr_extended_methods?tab=readme-ov-file#31-processing-custom-genome-catalogues).\r\n\r\n### Usage\r\n\r\nPrepare a samplesheet with your input data that looks as follows:\r\n\r\n`samplesheet.csv`:\r\n\r\n```csv\r\nsample,fastq_1,fastq_2\r\npaired_sample,/PATH/test_R1.fq.gz,/PATH/test_R2.fq.gz\r\nsingle_sample,/PATH/test.fq.gz\r\n```\r\n\r\nEach row represents a fastq file (single-end) or a pair of fastq files (paired end) where 'sample' is a unique identifier for each dataset, 'fastq_1' is the path to the first FASTQ file, and 'fastq_2' is the path to the second FASTQ file for paired-end data.\r\n\r\nNow, you can run the pipeline using the minimum of arguments:\r\n\r\n```bash\r\nnextflow run ebi-metagenomics/biosiftr \\\r\n   --biome <CATALOGUE_ID> \\\r\n   --input samplesheet.csv \\\r\n   --outdir <PROJECT_NAME> default = `results` \\\r\n   --dbs </path/to/dbs> \\\r\n   --decontamination_indexes </path to folder with bwamem2 indexes>\r\n```\r\n\r\nThe central location for the databases can be set in the config file.\r\n\r\nOptional arguments include:\r\n\r\n```bash\r\n--run_bwa <boolean> default = `false`   # To generate results using bwamem2 besides sourmash\r\n--core_mode <boolean> default = `false` # To use core functions instead of pangenome functions\r\n--run_dram <boolean> default = `false`  # To generate DRAM results\r\n```\r\n\r\nUse `--core_mode true` for large catalogues like the human-gut to avoid over-prediction due to a large number of accessory genes in the pangenome.\r\nNextflow option `-profile` can be used to select a suitable config for your computational resources. You can add profile files to the `config` directory.\r\nNextflow option `-resume` can be used to re-run the pipeline from the last successfully finished step.\r\n\r\n\r\n#### Available biomes\r\n\r\nThis can be any of the MGnify catalogues for which shallow-mapping databases are currently available\r\n\r\n| Biome              | Catalogue Version                                                                    |\r\n| ------------------ | ------------------------------------------------------------------------------------ |\r\n| chicken-gut        | [v1.0.1](https://www.ebi.ac.uk/metagenomics/genome-catalogues/chicken-gut-v1-0-1)    |\r\n| cow-rumen          | [v1.0.1](https://www.ebi.ac.uk/metagenomics/genome-catalogues/cow-rumen-v1-0-1)      |\r\n| human-gut          | [v2.0.2 \u26a0\ufe0f](https://www.ebi.ac.uk/metagenomics/genome-catalogues/human-gut-v2-0-2)   |\r\n| human-oral         | [v1.0.1](https://www.ebi.ac.uk/metagenomics/genome-catalogues/human-oral-v1-0-1)     |\r\n| human-vaginal      | [v1.0](https://www.ebi.ac.uk/metagenomics/genome-catalogues/human-vaginal-v1-0)      |\r\n| honeybee-gut       | [v1.0.1](https://www.ebi.ac.uk/metagenomics/genome-catalogues/honeybee-gut-v1-0-1)   |\r\n| marine             | [v2.0](https://www.ebi.ac.uk/metagenomics/genome-catalogues/marine-v2-0)             |\r\n| mouse-gut          | [v1.0](https://www.ebi.ac.uk/metagenomics/genome-catalogues/mouse-gut-v1-0)          |\r\n| non-model-fish-gut | [v2.0](https://www.ebi.ac.uk/metagenomics/genome-catalogues/non-model-fish-gut-v2-0) |\r\n| pig-gut            | [v1.0](https://www.ebi.ac.uk/metagenomics/genome-catalogues/pig-gut-v1-0)            |\r\n| sheep-rumen        | [v1.0](https://www.ebi.ac.uk/metagenomics/genome-catalogues/sheep-rumen-v1-0)        |\r\n| zebrafish-fecal    | [v1.0](https://www.ebi.ac.uk/metagenomics/genome-catalogues/zebrafish-fecal-v1-0)    |\r\n\r\n> **\u26a0\ufe0f Note for human-gut**:\r\n>\r\n> The human-gut shallow-mapping database was created manually by re-running Panaroo to reconstruct the pangenomes. This is likely to have caused discrepancies in the pangenomes, so please bear that in mind.\r\n\r\n## Test\r\n\r\nTo test the installed tool with your downloaded databases, you can run the pipeline using the small test dataset. Even if there are no hits with the biome you are interested in, the pipeline should finish successfully. Add `-profile` if you have set up a config profile for your compute resources.\r\n\r\n```bash\r\ncd biosiftr/tests\r\nnextflow run ../main.nf \\\r\n    --input test_samplesheet.csv \\\r\n    --biome <CATALOGUE_ID> \\\r\n    --dbs </path/to/dbs> \\\r\n    --decontamination_indexes </path to folder with bwamem2 indexes>\r\n```\r\n\r\n## Credits\r\n\r\nebi-metagenomics/biosiftr pipeline was originally written by @Ales-ibt.\r\n\r\nWe thank the following people for their extensive assistance in the development of this pipeline:\r\n@mberacochea\r\n",
+        "doi": "10.48546/workflowhub.workflow.1735.1",
+        "edam_operation": [],
+        "edam_topic": [
+            "Metagenomics"
+        ],
+        "id": "1735",
+        "keep": true,
+        "latest_version": 1,
+        "license": "Apache-2.0",
+        "link": "https:/workflowhub.eu/workflows/1735?version=1",
+        "name": "BioSIFTR",
+        "number_of_steps": 0,
+        "projects": [
+            "MGnify"
+        ],
+        "source": "WorkflowHub",
+        "tags": [],
+        "tools": [],
+        "type": "Nextflow",
+        "update_time": "2025-06-17",
+        "versions": 1
+    },
+    {
+        "create_time": "2025-06-16",
+        "creators": [],
+        "description": "Assembly of metagenomic sequencing data\n\n## Associated Tutorial\n\nThis workflows is part of the tutorial [Assembly of metagenomic sequencing data](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/metagenomics-assembly/tutorial.html), available in the [GTN](https://training.galaxyproject.org)\n\n## Features\n\n* Includes [Galaxy Workflow Tests](https://training.galaxyproject.org/training-material/faqs/gtn/workflow_run_test.html)\n* Includes a [Galaxy Workflow Report](https://training.galaxyproject.org/training-material/faqs/galaxy/workflows_report_view.html)\n\n## Thanks to...\n\n**Workflow Author(s)**: Polina Polunina, B\u00e9r\u00e9nice Batut\n\n**Tutorial Author(s)**: [Polina Polunina](https://training.galaxyproject.org/training-material/hall-of-fame/plushz/), [B\u00e9r\u00e9nice Batut](https://training.galaxyproject.org/training-material/hall-of-fame/bebatut/)\n\n**Tutorial Contributor(s)**: [B\u00e9r\u00e9nice Batut](https://training.galaxyproject.org/training-material/hall-of-fame/bebatut/), [Saskia Hiltemann](https://training.galaxyproject.org/training-material/hall-of-fame/shiltemann/), [Polina Polunina](https://training.galaxyproject.org/training-material/hall-of-fame/plushz/), [Helena Rasche](https://training.galaxyproject.org/training-material/hall-of-fame/hexylena/)\n\n**Grants(s)**: [Gallantries: Bridging Training Communities in Life Science, Environment and Health](https://training.galaxyproject.org/training-material/hall-of-fame/gallantries/)\n\n[![gtn star logo followed by the word workflows](https://training.galaxyproject.org/training-material/assets/branding/gtn-workflows.png)](https://training.galaxyproject.org/training-material/)",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "1390",
+        "keep": true,
+        "latest_version": 2,
+        "license": "MIT",
+        "link": "https:/workflowhub.eu/workflows/1390?version=2",
+        "name": "Assembly of metagenomic sequencing data",
+        "number_of_steps": 9,
+        "projects": [
+            "Galaxy Training Network"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "gtn",
+            "galaxy",
+            "microbiome"
+        ],
+        "tools": [
+            "bandage_info",
+            "megahit",
+            "megahit_contig2fastg",
+            "collection_column_join",
+            "bandage_image",
+            "bowtie2",
+            "metaspades",
+            "coverm_contig",
+            "quast"
+        ],
+        "type": "Galaxy",
+        "update_time": "2025-06-16",
+        "versions": 2
+    },
+    {
+        "create_time": "2025-06-12",
+        "creators": [],
+        "description": "<div align=\"center\">\r\n\r\n[<img src=\"https://raw.githubusercontent.com/sanjaynagi/AmpSeeker/main/docs/ampseeker-docs/logo.png\" width=\"400\"/>](https://raw.githubusercontent.com/sanjaynagi/AmpSeeker/main/docs/ampseeker-docs/logo.png)   \r\n\r\n\r\n[![Snakemake](https://img.shields.io/badge/snakemake-\u22658.0.0-brightgreen.svg)](https://snakemake.bitbucket.io)\r\n[![GitHub release](https://img.shields.io/github/release/sanjaynagi/AmpSeeker?include_prereleases=&sort=semver&color=blue)](https://github.com/sanjaynagi/AmpSeeker/releases/)\r\n[![License](https://img.shields.io/badge/License-MIT-blue)](#license)\r\n\r\n</div>\r\n\r\n**Documentation**: https://sanjaynagi.github.io/AmpSeeker/ \r\n\r\nAmpSeeker is a snakemake workflow for Amplicon Sequencing data analysis. The pipeline is generic and can work on any data, but is tailored towards insecticide resistance monitoring. It implements:\r\n\r\n- BCL to Fastq conversion\r\n- Genome alignment\r\n- Variant calling\r\n- Quality control\r\n- Coverage\r\n- Visualisation of reads in IGV\r\n- VCF to DataFrame/.xlsx \r\n- Allele frequency calculation\r\n- Population structure\r\n- Geographic sample maps\r\n- Genetic diversity\r\n\r\n- Kdr origin analysis (Ag-vampIR panel)\r\n- Species assignment (Ag-vampIR panel)\r\n\r\nThe workflow uses a combination of papermill and jupyter book, so that users can visually explore the results in a local webpage for convenience.\r\n\r\n## Usage\r\n\r\nPlease see the [documentation](https://sanjaynagi.github.io/AmpSeeker/) for more information on running the workflow.\r\n\r\n## Citation \r\n\r\n**Targeted genomic surveillance of insecticide resistance in African malaria vectors**  \r\nNagi, *et al*., 2025. *bioRxiv*. doi: https://doi.org/10.1101/2025.02.14.637727\r\n\r\n## Testing\r\n\r\nTest cases are in the subfolder `.test`. They are automatically executed via continuous integration with [GitHub Actions](https://github.com/features/actions).\r\n\r\n## Contributing to AmpSeeker\r\n\r\n1. Fork the repository to your own GitHub user account\r\n2. Clone your fork\r\n3. Create a branch to implement the changes or features you would like `git checkout -b my_new_feature-24-03-23`\r\n4. Implement the changes\r\n5. Use `git add FILES`, `git commit -m COMMENT`, and `git push` to push your changes back to the branch\r\n6. Open a Pull request to the main repository \r\n7. Once the pull request is merged, either delete your fork, or switch back to the main branch `git checkout main` and use `git pull upstream main` to incorporate the changes back in your local repo. Prior to `git pull upstream main`, you may need to set sanjaynagi/AmpSeeker as the upstream remote url, with `git remote set-url upstream git@github.com:sanjaynagi/AmpSeeker.git`. \r\n8. At this stage, your local repo should be up to date with the main Ampseeker branch and you are ready to start from #3 if you have more contributions!\r\n",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "1729",
+        "keep": true,
+        "latest_version": 1,
+        "license": "CC-BY-4.0",
+        "link": "https:/workflowhub.eu/workflows/1729?version=1",
+        "name": "AmpSeeker",
+        "number_of_steps": 0,
+        "projects": [
+            "Vector informatics and genomics group"
+        ],
+        "source": "WorkflowHub",
+        "tags": [],
+        "tools": [],
+        "type": "Snakemake",
+        "update_time": "2025-06-12",
+        "versions": 1
+    },
+    {
+        "create_time": "2025-06-02",
+        "creators": [],
+        "description": "Starting from the BAM files produced by snippy, generate a table that summarizes the drug-resistance profile for each sample\n\n## Associated Tutorial\n\nThis workflows is part of the tutorial [Identifying tuberculosis transmission links: from SNPs to transmission clusters](https://training.galaxyproject.org/training-material/topics/evolution/tutorials/mtb_transmission/tutorial.html), available in the [GTN](https://training.galaxyproject.org)\n\n\n\n\n\n## Thanks to...\n\n**Tutorial Author(s)**: [Galo A. Goig](https://training.galaxyproject.org/training-material/hall-of-fame/GaloGS/), [Daniela Brites](https://training.galaxyproject.org/training-material/hall-of-fame/dbrites/), [Christoph Stritt](https://training.galaxyproject.org/training-material/hall-of-fame/cstritt/)\n\n**Tutorial Contributor(s)**: [Wolfgang Maier](https://training.galaxyproject.org/training-material/hall-of-fame/wm75/), [Saskia Hiltemann](https://training.galaxyproject.org/training-material/hall-of-fame/shiltemann/), [Helena Rasche](https://training.galaxyproject.org/training-material/hall-of-fame/hexylena/), [Galo A. Goig](https://training.galaxyproject.org/training-material/hall-of-fame/GaloGS/), [Bj\u00f6rn Gr\u00fcning](https://training.galaxyproject.org/training-material/hall-of-fame/bgruening/), [Peter van Heusden](https://training.galaxyproject.org/training-material/hall-of-fame/pvanheus/), [Christoph Stritt](https://training.galaxyproject.org/training-material/hall-of-fame/cstritt/), [Lucille Delisle](https://training.galaxyproject.org/training-material/hall-of-fame/lldelisle/)\n\n[![gtn star logo followed by the word workflows](https://training.galaxyproject.org/training-material/assets/branding/gtn-workflows.png)](https://training.galaxyproject.org/training-material/)",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "1564",
+        "keep": true,
+        "latest_version": 1,
+        "license": "CC-BY-4.0",
+        "link": "https:/workflowhub.eu/workflows/1564?version=1",
+        "name": "From BAMs to drug resistance prediction with TB-profiler",
+        "number_of_steps": 9,
+        "projects": [
+            "Galaxy Training Network"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "gtn",
+            "galaxy",
+            "evolution"
+        ],
+        "tools": [
+            "tp_replace_in_line",
+            "samtools_view",
+            "tp_grep_tool",
+            "tp_sed_tool",
+            "addName",
+            "tb_profiler_profile",
+            "Merge single-end and paired-end BAMs in a single collection to be analyzed alltogether\n__MERGE_COLLECTION__",
+            "tp_cat"
+        ],
+        "type": "Galaxy",
+        "update_time": "2025-06-02",
+        "versions": 1
+    },
+    {
+        "create_time": "2025-06-02",
+        "creators": [],
+        "description": "## Associated Tutorial\n\nThis workflows is part of the tutorial [Secondary metabolite discovery](https://training.galaxyproject.org/training-material/topics/genome-annotation/tutorials/secondary-metabolite-discovery/tutorial.html), available in the [GTN](https://training.galaxyproject.org)\n\n\n\n\n\n## Thanks to...\n\n**Tutorial Author(s)**: [Paul Zierep](https://training.galaxyproject.org/training-material/hall-of-fame/paulzierep/)\n\n[![gtn star logo followed by the word workflows](https://training.galaxyproject.org/training-material/assets/branding/gtn-workflows.png)](https://training.galaxyproject.org/training-material/)",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "1558",
+        "keep": true,
+        "latest_version": 1,
+        "license": "CC-BY-4.0",
+        "link": "https:/workflowhub.eu/workflows/1558?version=1",
+        "name": "Gene Cluster Product Similarity Search",
+        "number_of_steps": 12,
+        "projects": [
+            "Galaxy Training Network"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "gtn",
+            "galaxy",
+            "sempi3"
+        ],
+        "tools": [
+            "tp_awk_tool",
+            "ncbi_acc_download",
+            "openbabel_remDuplicates",
+            "ctb_np-likeness-calculator",
+            "interactive_tool_jupyter_notebook",
+            "ctb_chemfp_mol2fps",
+            "Remove beginning1",
+            "collapse_dataset",
+            "antismash",
+            "ctb_silicos_qed",
+            "ctb_simsearch"
+        ],
+        "type": "Galaxy",
+        "update_time": "2025-06-02",
+        "versions": 1
+    },
+    {
+        "create_time": "2025-06-02",
+        "creators": [],
+        "description": "Nanopore datasets analysis - Phylogenetic Identification - antibiotic resistance genes detection and contigs building\n\n## Associated Tutorial\n\nThis workflows is part of the tutorial [Pathogen detection from (direct Nanopore) sequencing data using Galaxy - Foodborne Edition](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/pathogen-detection-from-nanopore-foodborne-data/tutorial.html), available in the [GTN](https://training.galaxyproject.org)\n\n## Features\n\n* Includes [Galaxy Workflow Tests](https://training.galaxyproject.org/training-material/faqs/gtn/workflow_run_test.html)\n* Includes a [Galaxy Workflow Report](https://training.galaxyproject.org/training-material/faqs/galaxy/workflows_report_view.html)\n* Uses [Galaxy Workflow Comments](https://training.galaxyproject.org/training-material/faqs/galaxy/workflows_comments.html)\n\n## Thanks to...\n\n**Workflow Author(s)**: Engy Nasr, B\u00e9r\u00e9nice Batut, Paul Zierep\n\n**Tutorial Author(s)**: [B\u00e9r\u00e9nice Batut](https://training.galaxyproject.org/training-material/hall-of-fame/bebatut/), [Engy Nasr](https://training.galaxyproject.org/training-material/hall-of-fame/EngyNasr/), [Paul Zierep](https://training.galaxyproject.org/training-material/hall-of-fame/paulzierep/)\n\n**Tutorial Contributor(s)**: [Hans-Rudolf Hotz](https://training.galaxyproject.org/training-material/hall-of-fame/hrhotz/), [Wolfgang Maier](https://training.galaxyproject.org/training-material/hall-of-fame/wm75/), [Saskia Hiltemann](https://training.galaxyproject.org/training-material/hall-of-fame/shiltemann/), [Deepti Varshney](https://training.galaxyproject.org/training-material/hall-of-fame/deeptivarshney/), [Paul Zierep](https://training.galaxyproject.org/training-material/hall-of-fame/paulzierep/), [B\u00e9r\u00e9nice Batut](https://training.galaxyproject.org/training-material/hall-of-fame/bebatut/), [Bj\u00f6rn Gr\u00fcning](https://training.galaxyproject.org/training-material/hall-of-fame/bgruening/), [Crist\u00f3bal Gallardo](https://training.galaxyproject.org/training-material/hall-of-fame/gallardoalba/), [Engy Nasr](https://training.galaxyproject.org/training-material/hall-of-fame/EngyNasr/), [Helena Rasche](https://training.galaxyproject.org/training-material/hall-of-fame/hexylena/)\n\n**Grants(s)**: [Gallantries: Bridging Training Communities in Life Science, Environment and Health](https://training.galaxyproject.org/training-material/hall-of-fame/gallantries/), [EOSC-Life](https://training.galaxyproject.org/training-material/hall-of-fame/eosc-life/)\n\n[![gtn star logo followed by the word workflows](https://training.galaxyproject.org/training-material/assets/branding/gtn-workflows.png)](https://training.galaxyproject.org/training-material/)",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "1495",
+        "keep": true,
+        "latest_version": 1,
+        "license": "MIT",
+        "link": "https:/workflowhub.eu/workflows/1495?version=1",
+        "name": "Gene-based Pathogen Identification",
+        "number_of_steps": 15,
+        "projects": [
+            "Galaxy Training Network"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "gtn",
+            "galaxy",
+            "name:iwc",
+            "name:microgalaxy",
+            "name:pathogfair",
+            "name:collection"
+        ],
+        "tools": [
+            "compose_text_param",
+            "medaka_consensus_pipeline",
+            "tab2fasta",
+            "bandage_image",
+            "abricate",
+            "collection_element_identifiers",
+            "tp_find_and_replace",
+            "flye",
+            "param_value_from_file",
+            "__BUILD_LIST__",
+            "fasta2tab",
+            "split_file_to_collection"
+        ],
+        "type": "Galaxy",
+        "update_time": "2025-06-02",
+        "versions": 1
+    },
+    {
+        "create_time": "2025-06-02",
+        "creators": [],
+        "description": "Microbiome - Variant calling and Consensus Building\n\n## Associated Tutorial\n\nThis workflows is part of the tutorial [Pathogen detection from (direct Nanopore) sequencing data using Galaxy - Foodborne Edition](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/pathogen-detection-from-nanopore-foodborne-data/tutorial.html), available in the [GTN](https://training.galaxyproject.org)\n\n## Features\n\n* Includes [Galaxy Workflow Tests](https://training.galaxyproject.org/training-material/faqs/gtn/workflow_run_test.html)\n* Includes a [Galaxy Workflow Report](https://training.galaxyproject.org/training-material/faqs/galaxy/workflows_report_view.html)\n* Uses [Galaxy Workflow Comments](https://training.galaxyproject.org/training-material/faqs/galaxy/workflows_comments.html)\n\n## Thanks to...\n\n**Workflow Author(s)**: Engy Nasr, B\u00e9r\u00e9nice Batut, Paul Zierep\n\n**Tutorial Author(s)**: [B\u00e9r\u00e9nice Batut](https://training.galaxyproject.org/training-material/hall-of-fame/bebatut/), [Engy Nasr](https://training.galaxyproject.org/training-material/hall-of-fame/EngyNasr/), [Paul Zierep](https://training.galaxyproject.org/training-material/hall-of-fame/paulzierep/)\n\n**Tutorial Contributor(s)**: [Hans-Rudolf Hotz](https://training.galaxyproject.org/training-material/hall-of-fame/hrhotz/), [Wolfgang Maier](https://training.galaxyproject.org/training-material/hall-of-fame/wm75/), [Saskia Hiltemann](https://training.galaxyproject.org/training-material/hall-of-fame/shiltemann/), [Deepti Varshney](https://training.galaxyproject.org/training-material/hall-of-fame/deeptivarshney/), [Paul Zierep](https://training.galaxyproject.org/training-material/hall-of-fame/paulzierep/), [B\u00e9r\u00e9nice Batut](https://training.galaxyproject.org/training-material/hall-of-fame/bebatut/), [Bj\u00f6rn Gr\u00fcning](https://training.galaxyproject.org/training-material/hall-of-fame/bgruening/), [Crist\u00f3bal Gallardo](https://training.galaxyproject.org/training-material/hall-of-fame/gallardoalba/), [Engy Nasr](https://training.galaxyproject.org/training-material/hall-of-fame/EngyNasr/), [Helena Rasche](https://training.galaxyproject.org/training-material/hall-of-fame/hexylena/)\n\n**Grants(s)**: [Gallantries: Bridging Training Communities in Life Science, Environment and Health](https://training.galaxyproject.org/training-material/hall-of-fame/gallantries/), [EOSC-Life](https://training.galaxyproject.org/training-material/hall-of-fame/eosc-life/)\n\n[![gtn star logo followed by the word workflows](https://training.galaxyproject.org/training-material/assets/branding/gtn-workflows.png)](https://training.galaxyproject.org/training-material/)",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "1479",
+        "keep": true,
+        "latest_version": 1,
+        "license": "MIT",
+        "link": "https:/workflowhub.eu/workflows/1479?version=1",
+        "name": "Allele-based Pathogen Identification",
+        "number_of_steps": 23,
+        "projects": [
+            "Galaxy Training Network"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "gtn",
+            "galaxy",
+            "name:iwc",
+            "name:microgalaxy",
+            "name:pathogfair",
+            "name:collection"
+        ],
+        "tools": [
+            "snpSift_filter",
+            "regexColumn1",
+            "Count1",
+            "minimap2",
+            "Cut1",
+            "CONVERTER_gz_to_uncompressed",
+            "tp_head_tool",
+            "bcftools_norm",
+            "samtools_depth",
+            "samtools_coverage",
+            "Remove beginning1",
+            "table_compute",
+            "collapse_dataset",
+            "Paste1",
+            "clair3",
+            "tp_cut_tool",
+            "bcftools_consensus",
+            "snpSift_extractFields"
+        ],
+        "type": "Galaxy",
+        "update_time": "2025-06-02",
+        "versions": 1
+    },
+    {
+        "create_time": "2025-06-02",
+        "creators": [],
+        "description": "Antibiotic resistance detection\n\n## Associated Tutorial\n\nThis workflows is part of the tutorial [Antibiotic resistance detection](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/plasmid-metagenomics-nanopore/tutorial.html), available in the [GTN](https://training.galaxyproject.org)\n\n\n\n\n\n## Thanks to...\n\n**Tutorial Author(s)**: [Willem de Koning](https://training.galaxyproject.org/training-material/hall-of-fame/willemdek11/), [Saskia Hiltemann](https://training.galaxyproject.org/training-material/hall-of-fame/shiltemann/)\n\n[![gtn star logo followed by the word workflows](https://training.galaxyproject.org/training-material/assets/branding/gtn-workflows.png)](https://training.galaxyproject.org/training-material/)",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "1477",
+        "keep": true,
+        "latest_version": 1,
+        "license": "CC-BY-4.0",
+        "link": "https:/workflowhub.eu/workflows/1477?version=1",
+        "name": "Copy Of GTN Training - Antibiotic Resistance Detection",
+        "number_of_steps": 12,
+        "projects": [
+            "Galaxy Training Network"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "gtn",
+            "galaxy",
+            "microbiome"
+        ],
+        "tools": [
+            "nanoplot",
+            "unicycler",
+            "racon",
+            "gfa_to_fa",
+            "minimap2",
+            "miniasm",
+            "bandage_image",
+            "PlasFlow",
+            "staramr_search"
+        ],
+        "type": "Galaxy",
+        "update_time": "2025-06-02",
+        "versions": 1
+    },
+    {
+        "create_time": "2025-06-02",
+        "creators": [],
+        "description": "Analyses of metagenomics data - The global picture\n\n## Associated Tutorial\n\nThis workflows is part of the tutorial [Analyses of metagenomics data - The global picture](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/general-tutorial/tutorial.html), available in the [GTN](https://training.galaxyproject.org)\n\n## Features\n\n* Includes [Galaxy Workflow Tests](https://training.galaxyproject.org/training-material/faqs/gtn/workflow_run_test.html)\n\n## Thanks to...\n\n**Tutorial Author(s)**: [Saskia Hiltemann](https://training.galaxyproject.org/training-material/hall-of-fame/shiltemann/), [B\u00e9r\u00e9nice Batut](https://training.galaxyproject.org/training-material/hall-of-fame/bebatut/)\n\n[![gtn star logo followed by the word workflows](https://training.galaxyproject.org/training-material/assets/branding/gtn-workflows.png)](https://training.galaxyproject.org/training-material/)",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "1476",
+        "keep": true,
+        "latest_version": 1,
+        "license": "CC-BY-4.0",
+        "link": "https:/workflowhub.eu/workflows/1476?version=1",
+        "name": "Amplicon Tutorial",
+        "number_of_steps": 17,
+        "projects": [
+            "Galaxy Training Network"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "gtn",
+            "galaxy",
+            "microbiome"
+        ],
+        "tools": [
+            "mothur_screen_seqs",
+            "mothur_filter_seqs",
+            "mothur_make_shared",
+            "mothur_classify_otu",
+            "mothur_make_biom",
+            "mothur_summary_seqs",
+            "mothur_cluster_split",
+            "krona-text",
+            "mothur_align_seqs",
+            "mothur_count_seqs",
+            "mothur_make_group",
+            "mothur_merge_files",
+            "mothur_pre_cluster",
+            "mothur_unique_seqs",
+            "mothur_classify_seqs"
+        ],
+        "type": "Galaxy",
+        "update_time": "2025-06-02",
+        "versions": 1
+    },
+    {
+        "create_time": "2025-06-02",
+        "creators": [],
+        "description": "Identification of the micro-organisms in a beer using Nanopore sequencing\n\n## Associated Tutorial\n\nThis workflows is part of the tutorial [Identification of the micro-organisms in a beer using Nanopore sequencing](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/beer-data-analysis/tutorial.html), available in the [GTN](https://training.galaxyproject.org)\n\n## Features\n\n* Includes [Galaxy Workflow Tests](https://training.galaxyproject.org/training-material/faqs/gtn/workflow_run_test.html)\n\n## Thanks to...\n\n**Workflow Author(s)**: B\u00e9r\u00e9nice Batut, Teresa M\u00fcller, Polina Polunina\n\n**Tutorial Author(s)**: [Polina Polunina](https://training.galaxyproject.org/training-material/hall-of-fame/plushz/), [Siyu Chen](https://training.galaxyproject.org/training-material/hall-of-fame/chensy96/), [B\u00e9r\u00e9nice Batut](https://training.galaxyproject.org/training-material/hall-of-fame/bebatut/), [Teresa M\u00fcller](https://training.galaxyproject.org/training-material/hall-of-fame/teresa-m/)\n\n**Tutorial Contributor(s)**: [Helena Rasche](https://training.galaxyproject.org/training-material/hall-of-fame/hexylena/), [Saskia Hiltemann](https://training.galaxyproject.org/training-material/hall-of-fame/shiltemann/), [Teresa M\u00fcller](https://training.galaxyproject.org/training-material/hall-of-fame/teresa-m/), [Siyu Chen](https://training.galaxyproject.org/training-material/hall-of-fame/chensy96/), [Nuwan Goonasekera](https://training.galaxyproject.org/training-material/hall-of-fame/nuwang/), [B\u00e9r\u00e9nice Batut](https://training.galaxyproject.org/training-material/hall-of-fame/bebatut/), [Crist\u00f3bal Gallardo](https://training.galaxyproject.org/training-material/hall-of-fame/gallardoalba/)\n\n**Grants(s)**: [Gallantries: Bridging Training Communities in Life Science, Environment and Health](https://training.galaxyproject.org/training-material/hall-of-fame/gallantries/)\n\n[![gtn star logo followed by the word workflows](https://training.galaxyproject.org/training-material/assets/branding/gtn-workflows.png)](https://training.galaxyproject.org/training-material/)",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "1439",
+        "keep": true,
+        "latest_version": 1,
+        "license": "MIT",
+        "link": "https:/workflowhub.eu/workflows/1439?version=1",
+        "name": "Identification of the micro-organisms in a beer using Nanopore sequencing",
+        "number_of_steps": 8,
+        "projects": [
+            "Galaxy Training Network"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "gtn",
+            "galaxy",
+            "microbiome"
+        ],
+        "tools": [
+            "fastp",
+            "krakentools_kreport2krona",
+            "fastqc",
+            "porechop",
+            "Filter1",
+            "taxonomy_krona_chart",
+            "kraken2"
+        ],
+        "type": "Galaxy",
+        "update_time": "2025-06-02",
+        "versions": 1
+    },
+    {
+        "create_time": "2025-06-02",
+        "creators": [],
+        "description": "Calculating diversity from bracken output\n\n## Associated Tutorial\n\nThis workflows is part of the tutorial [Calculating \u03b1 and \u03b2 diversity from microbiome taxonomic data](https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/diversity/tutorial.html), available in the [GTN](https://training.galaxyproject.org)\n\n## Features\n\n* Includes [Galaxy Workflow Tests](https://training.galaxyproject.org/training-material/faqs/gtn/workflow_run_test.html)\n* Includes a [Galaxy Workflow Report](https://training.galaxyproject.org/training-material/faqs/galaxy/workflows_report_view.html)\n\n## Thanks to...\n\n**Workflow Author(s)**: Paul Zierep, Sophia Hampe, B\u00e9r\u00e9nice Batut\n\n**Tutorial Author(s)**: [Sophia Hampe](https://training.galaxyproject.org/training-material/hall-of-fame/sophia120199/), [B\u00e9r\u00e9nice Batut](https://training.galaxyproject.org/training-material/hall-of-fame/bebatut/), [Paul Zierep](https://training.galaxyproject.org/training-material/hall-of-fame/paulzierep/)\n\n**Tutorial Contributor(s)**: [B\u00e9r\u00e9nice Batut](https://training.galaxyproject.org/training-material/hall-of-fame/bebatut/), [Paul Zierep](https://training.galaxyproject.org/training-material/hall-of-fame/paulzierep/), [Saskia Hiltemann](https://training.galaxyproject.org/training-material/hall-of-fame/shiltemann/), [Teresa M\u00fcller](https://training.galaxyproject.org/training-material/hall-of-fame/teresa-m/), [Deepti Varshney](https://training.galaxyproject.org/training-material/hall-of-fame/deeptivarshney/), [Sophia Hampe](https://training.galaxyproject.org/training-material/hall-of-fame/sophia120199/)\n\n[![gtn star logo followed by the word workflows](https://training.galaxyproject.org/training-material/assets/branding/gtn-workflows.png)](https://training.galaxyproject.org/training-material/)",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "1431",
+        "keep": true,
+        "latest_version": 1,
+        "license": "MIT",
+        "link": "https:/workflowhub.eu/workflows/1431?version=1",
+        "name": "Calculating diversity from microbiome taxonomic data",
+        "number_of_steps": 6,
+        "projects": [
+            "Galaxy Training Network"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "gtn",
+            "galaxy",
+            "name:gtn"
+        ],
+        "tools": [
+            "krakentools_beta_diversity",
+            "krakentools_alpha_diversity"
+        ],
+        "type": "Galaxy",
+        "update_time": "2025-06-02",
+        "versions": 1
+    },
+    {
+        "create_time": "2025-06-22",
+        "creators": [
+            "B\u00e9r\u00e9nice Batut",
+            "Paul Zierep",
+            "Mina Hojat Ansari",
+            "Patrick B\u00fchler",
+            "Santino Faack"
+        ],
+        "description": "This workflow constructs Metagenome-Assembled Genomes (MAGs) using SPAdes or MEGAHIT as assemblers, followed by binning with four different tools and refinement using Binette. The resulting MAGs are dereplicated across the entire input sample set, then annotated and evaluated for quality.\nYou can provide pooled reads (for co-assembly/binning), individual read sets, or a combination of both. The input samples must consist of the original reads, which are used for abundance estimation. In all cases, reads should be trimmed, adapters removed, and cleaned of host or other contaminants before processing.",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "1352",
+        "keep": true,
+        "latest_version": 3,
+        "license": "MIT",
+        "link": "https:/workflowhub.eu/workflows/1352?version=3",
+        "name": "mags-building/main",
+        "number_of_steps": 36,
+        "projects": [
+            "Intergalactic Workflow Commission (IWC)"
+        ],
+        "source": "WorkflowHub",
+        "tags": [],
+        "tools": [
+            "__UNZIP_COLLECTION__",
+            "binette",
+            "megahit",
+            "samtools_sort",
+            "metabat2",
+            "__BUILD_LIST__",
+            "concoct_cut_up_fasta",
+            "pick_value",
+            "tp_awk_tool",
+            "metabat2_jgi_summarize_bam_contig_depths",
+            "__FLATTEN__",
+            "bakta",
+            "checkm_lineage_wf",
+            "gtdbtk_classify_wf",
+            "metaspades",
+            "Fasta_to_Contig2Bin",
+            "semibin",
+            "quast",
+            "multiqc",
+            "concoct",
+            "concoct_merge_cut_up_clustering",
+            "concoct_extract_fasta_bins",
+            "collection_column_join",
+            "bowtie2",
+            "checkm2",
+            "coverm_genome",
+            "concoct_coverage_table",
+            "maxbin2",
+            "drep_dereplicate",
+            "map_param_value"
+        ],
+        "type": "Galaxy",
+        "update_time": "2025-08-18",
+        "versions": 3
+    },
+    {
+        "create_time": "2025-04-20",
+        "creators": [
+            "Jonas Kasmanas"
+        ],
+        "description": "## gSpreadComp: Streamlining Microbial Community Analysis for Resistance, Virulence, and Plasmid-Mediated Spread\r\n\r\n\r\n<p align=\"center\" width=\"100%\">\r\n\t<img width=\"30%\" src=\"/gspreadcomp_logo_noback.png\">\r\n</p>\r\n\r\n### Overview\r\n\r\ngSpreadComp is a UNIX-based, modular bioinformatics toolkit designed to streamline comparative genomics for analyzing microbial communities. It integrates genome annotation, gene spread calculation, plasmid-mediated horizontal gene transfer (HGT) detection and resistance-virulence ranking within the analysed microbial community to help researchers identify potential resistance-virulence hotspots in complex microbial datasets.\r\n\r\n> [!TIP]\r\n> After installation, the user may want to check a detailed tutorial with example input and output data [here](usage_tutorial.md)\r\n\r\n### Objectives and Features\r\n- **Six Integrated Modules**: Offers modules for taxonomy assignment, genome quality estimation, ARG annotation, plasmid/chromosome classification, virulence factor annotation, and in-depth downstream analysis, including target-based gene spread analysis and prokaryotic resistance-virulence ranking.\r\n- **Weighted Average Prevalence (WAP)**: Employs WAP for calculating the spread of target genes at different taxonomical levels or target groups, enabling refined analyses and interpretations of microbial communities.\r\n- **Reference Pathogen Identification**: Compares genomes to the NCBI pathogens database to create a resistance-virulence ranking within the community.\r\n- **HTML Reporting**: Culminates in a structured HTML report after the complete downstream analysis, providing users with an overview of the results.\r\n\r\n### Modular Approach and Flexibility\r\n`gSpreadComp`\u2019s modular nature enables researchers to use the tool's main analysis and report generation steps independently or to integrate only specific pieces of `gSpreadComp` into their pipelines, providing flexibility and accommodating the varying software management needs of investigators.\r\n\r\n#### Using other annotation tools with gSpreadComp\r\n> [!TIP]\r\n> Users can incorporate results from other annotation tools within gSpreadComp's workflow, provided the input is formatted according to gSpreadComp's specifications. This allows for the integration of preferred or specialized tools for specific steps (e.g., alternative ARG or plasmid detection methods) while still benefiting from gSpreadComp's downstream analysis capabilities.\r\n> \r\n> For the quality data it should look like: [Quality DataFrame Format](test_data/checkm_df_format_gSpread.csv)\r\n> \r\n> For the taxonomy data it should look like: [Taxonomy DataFrame Format](test_data/gtdb_df_format_gSpread.csv)\r\n> \r\n> For the gene annotation (e.g. ARGs) data it should look like: [Gene annotation DataFrame Format](test_data/deeparg_df_format_gSpread.csv)\r\n> \r\n> For the plasmid identification data it should look like: [Plasmid identification DataFrame Format](test_data/plasflow_combined_format_gSpread.csv)\r\n>\r\n> Metadata information data should look like: [Metadata Sample](test_data/02_metadata_gspread_sample.csv)\r\n\r\nBy the end of a successful run, you should have a report that looks like this: [Download Example Report](https://raw.githubusercontent.com/mdsufz/gSpreadComp/refs/heads/main/test_data/gSpread_example_result_report.html)\r\n\r\n### Comprehensive Workflow\r\n\r\n![ScreenShot](/test_data/01_Kasmanas_gSpread_Fig_1.png)\r\n\r\ngSpreadComp consists of the following modules:\r\n\r\n1. **Taxonomy Assignment**: Uses [GTDBtk v2](https://academic.oup.com/bioinformatics/article/38/23/5315/6758240) for taxonomic classification.\r\n2. **Genome Quality Estimation**: Employs [CheckM](https://genome.cshlp.org/content/25/7/1043) for assessing genome completeness and contamination.\r\n3. **ARG Annotation**: Utilizes [DeepARG](https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-018-0401-z) for antimicrobial resistance gene prediction.\r\n4. **Plasmid Classification**: Implements [Plasflow](https://academic.oup.com/nar/article/46/6/e35/4807335) for plasmid sequence identification.\r\n5. **Virulence Factor Annotation**: Annotates virulence factors using the [Victors](https://academic.oup.com/nar/article/47/D1/D693/5144967?login=false) and/or [VFDB](http://www.mgc.ac.cn/VFs/main.htm) databases.\r\n6. **Downstream Analysis**: Performs gene spread analysis, resistance-virulence ranking, and potential plasmid-mediated HGT detection.\r\n\r\n\r\n# Requirements\r\n\r\nBefore installing and running `gSpreadComp`, ensure that your system meets the following requirements:\r\n\r\n## 1. Operating System\r\n- Linux x64 system\r\n\r\n## 2. Package Managers\r\n- [Miniconda](https://docs.conda.io/en/latest/miniconda.html): Required for creating environments and managing packages.\r\n- [Mamba](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html): A faster package manager used within the `gSpreadComp` installation.\r\n\r\n## 3. Storage\r\n- Approximately 15 GB for software installation.\r\n- Around 92 GB for the entire database requirements.\r\n\r\n# Installation\r\n\r\n## Database Management\r\n`gSpreadComp` includes an easy-to-use script for automatic download and configuration of the required databases, with scheduled updates every January and July.\r\n\r\n## Compatibility and Requirements\r\nDesigned to support Linux x64 systems, requiring approximately 15 GB for software installation and around 92 GB for the entire database requirements.\r\n\r\n## 1 - Install miniconda\r\n\r\nTo bypass conflicting dependencies, the gSpreadComp approach uses miniconda to create automatically orchestrated environments. [Mamba](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html) is a much faster package manager than conda and is used within the gSpreadComp installation. Consequently, miniconda and mamba are required to be previously installed in your system. Below is a possible way of installing miniconda and mamba. Please, be aware that mamba works best when installed in your base environment.\r\n\r\n```console\r\n# See documentation: https://docs.conda.io/en/latest/miniconda.html\r\n\r\n$ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh\r\n$ chmod +x Miniconda3-latest-Linux-x86_64.sh\r\n$ ./Miniconda3-latest-Linux-x86_64.sh\r\n$ export PATH=~/miniconda3/bin:$PATH\r\n\r\n# Install mamba. See documentation: https://mamba.readthedocs.io/en/latest/installation.html\r\n$ conda install mamba -n base -c conda-forge\r\n```\r\n\r\n## 2 - Install gSpreadComp\r\n\r\nOnce you have miniconda and mamba installed and on your PATH, you can proceed to install gSpreadComp.\r\nThe installation script was designed to install and set up all necessary tools and packages.\r\n\r\n```console\r\n# Clone repository\r\n$ git clone https://github.com/mdsufz/gSpreadComp.git\r\n\r\n# Go to the gSpreadComp cloned repository folder\r\n$ cd gSpreadComp\r\n\r\n# Make sure you have conda ready and that you are in your base environment.\r\n$ conda activate base\r\n$ echo $CONDA_PREFIX\r\n\r\n# You should see something like the following:\r\n/path/to/miniconda3\r\n\r\n# Run the installation script as follows\r\n$ bash -i installation/install.sh\r\n\r\n# Follow the instructions on the screen:\r\n# Enter \"y\" if you want to install all modules; otherwise, enter \"n\".\r\n# If you entered \"n\", enter \"y\" for each of the modules you would like to install individually.\r\n\r\n\tThe MuDoGeR's installation will begin..\r\n\r\n\r\n\t      (  )   (   )  )\t\t\t\r\n\t       ) (   )  (  (\t\t\t\r\n\t       ( )  (    ) )\t\t\t\r\n\t       _____________\t\t\t\r\n\t      <_____________> ___\t\t\r\n\t      |             |/ _ \\\t\t\r\n\t      |               | | |\t\t\r\n\t      |               |_| |\t\t\r\n\t   ___|             |\\___/\t\t\r\n\t  /    \\___________/    \\\t\t\r\n\t  \\_____________________/\t\t\r\n\r\n\tThis might take a while. Time to grab a coffee...\r\n```\r\n\r\n## 3 - Install necessary databases\r\n\r\n**Make sure to run the database setup after gSpreadComp is installed.**\r\n\r\nSome bioinformatics tools used within gSpreadComp require specific databases to work. We developed a database download and set up tool to make our lives easier. You can choose to install only the databases you intend to use. You can use the flag `--dbs` to choose and set up the selected databases (all [default], install all databases).\r\n\r\nUse this script if you want gSpreadComp to take care of everything.\r\n\r\n```console\r\n# Make sure gSpreadComp_env is activated. It should have been created when you ran 'bash -i installation/install.sh'\r\n$ conda activate gspreadcomp_env\r\n\r\n# Go to gSpreadComp cloned directory\r\n$ cd gSpreadComp\r\n\r\n# Run the database setup script\r\n$ bash -i installation/database-setup.sh --dbs all -o /path/to/save/databases\r\n\r\n# You can also check out the database-setup help information\r\n$ bash -i installation/database-setup.sh --help\r\n\r\n        gSpreadComp database script v=1.0\r\n        Usage: bash -i database-setup.sh --dbs [module] -o output_folder_for_dbs\r\n\t\t    USE THE SAME DATABASE LOCATION OUTPUT FOLDER FOR ALL DATABASES USED WITH gSpreadComp\r\n          --dbs all\t\t\t\tdownload and install the required and optional databases [default]\"\r\n          --dbs required              \t\tdownload and install the required databases (Victors and VFDB) for gSpreadComp\r\n          --dbs optional              \t\tdownload and install all the optional (ARGs, GTDB-tk, CheckM) databases for gSpreadComp\r\n          --dbs args\t\t\t\tdownload and install the required and the ARGs databases.\r\n          -o path/folder/to/save/dbs\t\toutput folder where you want to save the downloaded databases\r\n          --help | -h\t\t\t\tshow this help message\r\n          --version | -v\t\t\tshow database install script version\r\n\r\n\r\n```\r\n\r\n## Usage\r\n\r\n### Activating the Conda Environment\r\nBefore using `gSpreadComp`, activate the appropriate conda environment using the following command:\r\n```sh\r\nconda activate gSpreadComp_env\r\n```\r\n\r\n### Command-Line Usage\r\n`gSpreadComp` provides several modules, each performing a specific task within the pipeline. The quick command-line usage is as follows:\r\n```sh\r\ngspreadcomp --help\r\n```\r\n\r\n### Modules and Their Descriptions\r\n`gSpreadComp` comprises several modules, each serving a specific purpose in the genome analysis workflow:\r\n\r\n#### 1. Taxonomy Assignment\r\n```sh\r\ngspreadcomp taxonomy [options] --genome_dir genome_folder -o output_dir\r\n```\r\n- Assigns taxonomy to genomes using [GTDBtk v2](https://academic.oup.com/bioinformatics/article/38/23/5315/6758240).\r\n- Options:\r\n  - `--genome_dir STR`: folder with the bins to be classified (in fasta format)\r\n  - `--extension STR`: fasta file extension (e.g. fa or fasta) [default: fa]\r\n  - `-o STR`: output directory\r\n  - `-t INT`: number of threads\r\n\r\n#### 2. Genome Quality Estimation\r\n```sh\r\ngspreadcomp quality [options] --genome_dir genome_folder -o output_dir\r\n```\r\n- Estimates genome completeness and contamination using [CheckM](https://genome.cshlp.org/content/25/7/1043).\r\n- Options:\r\n  - `--genome_dir STR`: folder with the genomes to estimate quality (in fasta format)\r\n  - `--extension STR`: fasta file extension (e.g. fa or fasta) [default: fa]\r\n  - `-o STR`: output directory\r\n  - `-t INT`: number of threads [default: 1]\r\n  - `-h --help`: print this message\r\n\r\n#### 3. ARG Prediction\r\n```sh\r\ngspreadcomp args [options] --genome_dir genome_folder -o output_dir\r\n```\r\n- Predicts the Antimicrobial Resistance Genes (ARGs) in a genome using [DeepARG](https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-018-0401-z).\r\n- Options:\r\n  - `--genome_dir STR`: folder with the genomes to be classified (in fasta format)\r\n  - `--extension STR`: fasta file extension (e.g. fa or fasta) [default: fa]\r\n  - `--min_prob NUM`: Minimum probability cutoff for DeepARG [Default: 0.8]\r\n  - `--arg_alignment_identity NUM`: Identity cutoff for sequence alignment for DeepARG [Default: 35]\r\n  - `--arg_alignment_evalue NUM`: Evalue cutoff for DeepARG [Default: 1e-10]\r\n  - `--arg_alignment_overlap NUM`: Alignment read overlap for DeepARG [Default: 0.8]\r\n  - `--arg_num_alignments_per_entry NUM`: Diamond, minimum number of alignments per entry [Default: 1000]\r\n  - `-o STR`: output directory\r\n  - `-h --help`: print this message\r\n\r\n#### 4. Plasmid Prediction\r\n```sh\r\ngspreadcomp plasmid [options] --genome_dir genome_folder -o output_dir\r\n```\r\n- Predicts if a sequence within a fasta file is a chromosome, plasmid, or undetermined using [Plasflow](https://academic.oup.com/nar/article/46/6/e35/4807335).\r\n- Options:\r\n  - `--genome_dir STR`: folder with the genomes to be classified (in fasta format)\r\n  - `--extension STR`: fasta file extension (e.g. fa or fasta) [default: fa]\r\n  - `--threshold NUM`: threshold for probability filtering [default: 0.7]\r\n  - `-o STR`: output directory\r\n  - `-h --help`: print this message\r\n\r\n#### 5. Virulence Factor annotation\r\n```sh\r\ngspreadcomp pathogens [options] --genome_dir genome_folder -o output_dir\r\n```\r\n- Aligns provided genomes to Virulence Factors databases and formats the output.\r\n- Options:\r\n  - `--genome_dir STR`: folder with the genomes to be aligned against Virulence factors (in fasta format)\r\n  - `--extension STR`: fasta file extension (e.g. fa or fasta) [default: fa]\r\n  - `--evalue NUM`: evalue, expect value, threshold as defined by NCBI-BLAST [default: 1e-50]\r\n  - `-t INT`: number of threads\r\n  - `-o STR`: output directory\r\n  - `-h --help`: print this message\r\n\r\n#### 6. Main Analysis\r\n```sh\r\ngspreadcomp gspread [options] -o output_dir\r\n```\r\n- Runs the main `gSpreadComp` to compare spread and plasmid-mediated HGT.\r\n- Options:\r\n  - `--checkm STR`: Path to the formatted Quality estimation dataframe\r\n  - `--gene STR`: Path to the formatted target Gene dataframe to calculate the spread\r\n  - `--gtdbtk STR`: Path to the formatted Taxonomy assignment dataframe\r\n  - `--meta STR`: Path to the formatted Sample's Metadata dataframe\r\n  - `--vf STR`: Path to the formatted Virulence Factors assignment dataframe\r\n  - `--plasmid STR`: Path to the formatted Plasmid prediction dataframe\r\n  - `--nmag INT`: Minimum number of Genomes per Library accepted [default=0]\r\n  - `--spread_taxa STR`: Taxonomic level to check gene spread [default=Phylum]\r\n  - `--target_gene_col STR`: Name of the column from the gene dataset with the Gene_ids to analyse [default=Gene_id]\r\n  - `-t INT`: number of threads\r\n  - `-o STR`: output directory\r\n  - `-h --help`: print this message\r\n\r\n\r\n## Important Considerations\r\n\r\n- gSpreadComp is designed for hypothesis generation and is not a standalone risk assessment tool.\r\n- Results should be interpreted cautiously and used to guide further experimental validation.\r\n- The tool provides relative rankings within analyzed communities, not absolute risk assessments.\r\n\r\n## Citation\r\n\r\nIf you use gSpreadComp in your research, please cite:\r\n\r\n[Citation information will be added upon publication]\r\n\r\n",
+        "doi": "10.48546/workflowhub.workflow.1340.3",
+        "edam_operation": [],
+        "edam_topic": [
+            "Bioinformatics",
+            "Comparative genomics",
+            "Data curation and archival",
+            "Microbiology"
+        ],
+        "id": "1340",
+        "keep": true,
+        "latest_version": 3,
+        "license": "GPL-3.0",
+        "link": "https:/workflowhub.eu/workflows/1340?version=3",
+        "name": "gSpreadComp",
+        "number_of_steps": 0,
+        "projects": [
+            "Kasmanas"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "bioinformatics",
+            "genomics",
+            "antimicrobial resistance",
+            "microbiome"
+        ],
+        "tools": [],
+        "type": "Shell Script",
+        "update_time": "2025-04-20",
+        "versions": 3
+    },
+    {
+        "create_time": "2025-03-26",
+        "creators": [
+            "Engy Nasr",
+            "B\u00e9r\u00e9nice Batut",
+            "Paul Zierep"
+        ],
+        "description": "Microbiome - Variant calling and Consensus Building",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "1063",
+        "keep": true,
+        "latest_version": 5,
+        "license": "MIT",
+        "link": "https:/workflowhub.eu/workflows/1063?version=5",
+        "name": "allele-based-pathogen-identification/main",
+        "number_of_steps": 23,
+        "projects": [
+            "Intergalactic Workflow Commission (IWC)"
+        ],
+        "source": "WorkflowHub",
+        "tags": [],
+        "tools": [
+            "snpSift_filter",
+            "regexColumn1",
+            "Count1",
+            "minimap2",
+            "Cut1",
+            "CONVERTER_gz_to_uncompressed",
+            "tp_head_tool",
+            "bcftools_norm",
+            "samtools_depth",
+            "samtools_coverage",
+            "Remove beginning1",
+            "table_compute",
+            "collapse_dataset",
+            "Paste1",
+            "clair3",
+            "tp_cut_tool",
+            "bcftools_consensus",
+            "snpSift_extractFields"
+        ],
+        "type": "Galaxy",
+        "update_time": "2025-08-18",
+        "versions": 5
+    },
+    {
+        "create_time": "2025-03-26",
+        "creators": [
+            "Rand Zoabi",
+            "Mara Besemer"
+        ],
+        "description": "The MAPseq to Ampvis workflow processes MAPseq OTU tables and associated metadata for analysis in Ampvis2. This workflow involves reformatting MAPseq output datasets to produce structured output files suitable for Ampvis2.",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "1275",
+        "keep": true,
+        "latest_version": 2,
+        "license": "MIT",
+        "link": "https:/workflowhub.eu/workflows/1275?version=2",
+        "name": "mapseq-to-ampvis2/main",
+        "number_of_steps": 9,
+        "projects": [
+            "Intergalactic Workflow Commission (IWC)"
+        ],
+        "source": "WorkflowHub",
+        "tags": [],
+        "tools": [
+            "tp_awk_tool",
+            "query_tabular",
+            "ampvis2_load",
+            "collection_column_join",
+            "collapse_dataset"
+        ],
+        "type": "Galaxy",
+        "update_time": "2025-08-18",
+        "versions": 2
+    },
+    {
+        "create_time": "2024-12-10",
+        "creators": [
+            "Subina Mehta"
+        ],
+        "description": "Workflow for clinical metaproteomics database searching",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "1225",
+        "keep": true,
+        "latest_version": 1,
+        "license": "CC-BY-4.0",
+        "link": "https:/workflowhub.eu/workflows/1225?version=1",
+        "name": "clinicalmp-discovery/main",
+        "number_of_steps": 24,
+        "projects": [
+            "Intergalactic Workflow Commission (IWC)"
+        ],
+        "source": "WorkflowHub",
+        "tags": [],
+        "tools": [
+            "fasta_merge_files_and_filter_unique_sequences",
+            "filter_tabular",
+            "search_gui",
+            "query_tabular",
+            "Grep1",
+            "maxquant",
+            "Cut1",
+            "peptide_shaker",
+            "Filter1",
+            "Remove beginning1",
+            "Grouping1",
+            "msconvert",
+            "tp_cat",
+            "ident_params",
+            "fasta_cli",
+            "fasta2tab",
+            "dbbuilder"
+        ],
+        "type": "Galaxy",
+        "update_time": "2025-08-18",
+        "versions": 1
+    },
+    {
+        "create_time": "2024-11-26",
+        "creators": [
+            "Pratik Jagtap"
+        ],
+        "description": "In proteomics research, verifying detected peptides is essential for ensuring data accuracy and biological relevance. This tutorial continues from the clinical metaproteomics discovery workflow, focusing on verifying identified microbial peptides using the PepQuery tool.",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "1218",
+        "keep": true,
+        "latest_version": 1,
+        "license": "CC-BY-4.0",
+        "link": "https:/workflowhub.eu/workflows/1218?version=1",
+        "name": "clinicalmp-verification/main",
+        "number_of_steps": 19,
+        "projects": [
+            "Intergalactic Workflow Commission (IWC)"
+        ],
+        "source": "WorkflowHub",
+        "tags": [],
+        "tools": [
+            "dbbuilder",
+            "uniprotxml_downloader",
+            "query_tabular",
+            "Cut1",
+            "Filter1",
+            "Remove beginning1",
+            "Grouping1",
+            "collapse_dataset",
+            "pepquery2",
+            "tp_cat",
+            "fasta_merge_files_and_filter_unique_sequences"
+        ],
+        "type": "Galaxy",
+        "update_time": "2025-08-18",
+        "versions": 1
+    },
+    {
+        "create_time": "2024-11-14",
+        "creators": [
+            "Helena Rasche",
+            "Dennis Doll\u00e9e",
+            "Birgit Rijvers"
+        ],
+        "description": "This is an aggregation of the work done in [Seq4AMR](https://workflowhub.eu/projects/110) consisting of the following workflows:\r\n\r\n- [WF1: AbritAMR / AMRFinderPlus](https://workflowhub.eu/workflows/634)\r\n- [WF2: Sciensano](https://workflowhub.eu/workflows/644) (**not currently included**)\r\n- [WF3: SRST2](https://workflowhub.eu/workflows/407) \r\n- [WF4: StarAMR](https://workflowhub.eu/workflows/470)\r\n\r\n## Installation\r\n\r\n- You will need to:\r\n    - run the [RGI Database Builder](https://my.galaxy.training/?path=?tool_id=toolshed.g2.bx.psu.edu%2Frepos%2Fcard%2Frgi%2Frgi_database_builder%2F1.2.0) as a Galaxy admin (if this hasn't been done already)\r\n    - [Have the en_US.UTF-8 locale installed](https://github.com/galaxyproject/tools-iuc/issues/6467) on the compute nodes executing cast/melt jobs.\r\n    - Install the requisite tools with e.g. [`shed-tools`](https://ephemeris.readthedocs.io/en/latest/commands/shed-tools.html) command from the [`ephemeris`](https://ephemeris.readthedocs.io/en/latest/) suite: `shed-tools install -g https://galaxy.example.com -a API_KEY -t tools.yaml` (tools.yaml is provided in this repository.)\r\n- Then you can import this workflow\r\n    - Navigate to `/workflows/import` of your Galaxy server\r\n    - Select \"GA4GH servers\"\r\n    - Enter `name:\"AMR-Pathfinder\"`\r\n- And run it\r\n    - You must provide a Sequencing collection (list:paired of fastq files)\r\n    - And a Genomes collection (list of fasta files) \r\n    - Both of these should use **identical** collection element identifiers\r\n\r\n## Outputs\r\n\r\nThis will produce two important tables: \"Binary Comparison\" and a \"% Identity Scored Outputs\". \r\n\r\n### Binary comparison\r\n\r\nThis file reports the discovery or absence of specific AMR genes across all tested AMR Analysis tools. You will mostly see 1s (presence) or 0s (absence) but you may occasionally see higher numbers when an AMR tool reports multiple hits for a specific gene.\r\n\r\n### % Identity Scored Outputs\r\n\r\nThis is similar to binary comparison, but using the % identity reported by each AMR tool. For cases where multiple hits were detected, we take the highest.\r\n\r\n## Known Issues\r\n\r\nThe names for identified AMR genes is highly inconsistent across AMR analysis tools. We urge the AMR community to rectify this by standardising gene names used in their tooling.",
+        "doi": null,
+        "edam_operation": [
+            "Antimicrobial resistance prediction"
+        ],
+        "edam_topic": [],
+        "id": "1189",
+        "keep": true,
+        "latest_version": 2,
+        "license": "MIT",
+        "link": "https:/workflowhub.eu/workflows/1189?version=2",
+        "name": "AMR-Pathfinder",
+        "number_of_steps": 36,
+        "projects": [
+            "Seq4AMR",
+            "ErasmusMC Clinical Bioinformatics"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "amr",
+            "amr-detection",
+            "benchamrking"
+        ],
+        "tools": [
+            "",
+            "tp_split_on_column",
+            "Cut1",
+            "tp_text_file_with_recurring_lines",
+            "datamash_ops",
+            "cat1",
+            "staramr_search",
+            "addValue",
+            "tp_find_and_replace",
+            "hamronize_summarize",
+            "cast",
+            "__MERGE_COLLECTION__",
+            "cat_multi_datasets",
+            "hamronize_tool",
+            "shovill",
+            "__APPLY_RULES__",
+            "abricate",
+            "collapse_dataset",
+            "Grep1"
+        ],
+        "type": "Galaxy",
+        "update_time": "2024-12-24",
+        "versions": 2
+    },
+    {
+        "create_time": "2024-10-21",
+        "creators": [],
+        "description": "# Metagenome-Atlas\r\n\r\n[![Anaconda-Server Badge](https://anaconda.org/bioconda/metagenome-atlas/badges/latest_release_relative_date.svg)](https://anaconda.org/bioconda/metagenome-atlas)\r\n[![Bioconda](https://img.shields.io/conda/dn/bioconda/metagenome-atlas.svg?label=Bioconda )](https://anaconda.org/bioconda/metagenome-atlas)\r\n[![Documentation Status](https://readthedocs.org/projects/metagenome-atlas/badge/?version=latest)](https://metagenome-atlas.readthedocs.io/en/latest/?badge=latest)\r\n![Mastodon Follow](https://img.shields.io/mastodon/follow/109273833677404282?domain=https%3A%2F%2Fmstdn.science&style=social)\r\n<!--[![follow on twitter](https://img.shields.io/twitter/follow/SilasKieser.svg?style=social&label=Follow)](https://twitter.com/search?f=tweets&q=%40SilasKieser%20%23metagenomeAtlas&src=typd) -->\r\n\r\n\r\nMetagenome-atlas is a easy-to-use metagenomic pipeline based on snakemake. It handles all steps from QC, Assembly, Binning, to Annotation.\r\n\r\n![scheme of workflow](resources/images/atlas_list.png?raw=true)\r\n\r\nYou can start using atlas with three commands:\r\n```\r\n    mamba install -y -c bioconda -c conda-forge metagenome-atlas={latest_version}\r\n    atlas init --db-dir databases path/to/fastq/files\r\n    atlas run all\r\n```\r\nwhere `{latest_version}` should be replaced by [![Version](https://anaconda.org/bioconda/metagenome-atlas/badges/version.svg)](https://anaconda.org/bioconda/metagenome-atlas)\r\n\r\n\r\n# Webpage\r\n\r\n[metagenome-atlas.github.io](https://metagenome-atlas.github.io/)\r\n\r\n# Documentation\r\n\r\nhttps://metagenome-atlas.readthedocs.io/\r\n\r\n[Tutorial](https://github.com/metagenome-atlas/Tutorial)\r\n\r\n# Citation\r\n\r\n> ATLAS: a Snakemake workflow for assembly, annotation, and genomic binning of metagenome sequence data.  \r\n> Kieser, S., Brown, J., Zdobnov, E. M., Trajkovski, M. & McCue, L. A.   \r\n> BMC Bioinformatics 21, 257 (2020).  \r\n> doi: [10.1186/s12859-020-03585-4](https://doi.org/10.1186/s12859-020-03585-4)\r\n\r\n\r\n# Developpment/Extensions\r\n\r\nHere are some ideas I work or want to work on when I have time. If you want to contribute or have some ideas let me know via a feature request issue.\r\n\r\n- Optimized MAG recovery (e.g. [Spacegraphcats](https://github.com/spacegraphcats/spacegraphcats))\r\n- Integration of viruses/plasmid that live for now as [extensions](https://github.com/metagenome-atlas/virome_atlas)\r\n- Add statistics and visualisations as in [atlas_analyze](https://github.com/metagenome-atlas/atlas_analyze)\r\n- Implementation of most rules as snakemake wrapper\r\n- Cloud execution\r\n- Update to new Snakemake version and use cool reports.\r\n",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [
+            "Metagenomics"
+        ],
+        "id": "1183",
+        "keep": true,
+        "latest_version": 1,
+        "license": "BSD-3-Clause",
+        "link": "https:/workflowhub.eu/workflows/1183?version=1",
+        "name": "Metaenome-Atlas",
+        "number_of_steps": 0,
+        "projects": [
+            "Snakemake-Workflows"
+        ],
+        "source": "WorkflowHub",
+        "tags": [],
+        "tools": [],
+        "type": "Python",
+        "update_time": "2024-10-21",
+        "versions": 1
+    },
+    {
+        "create_time": "2024-10-07",
+        "creators": [
+            "GalaxyP"
+        ],
+        "description": "Clinical Metaproteomics 4: Quantitation ",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "1177",
+        "keep": true,
+        "latest_version": 1,
+        "license": "CC-BY-4.0",
+        "link": "https:/workflowhub.eu/workflows/1177?version=1",
+        "name": "clinicalmp-quantitation/main",
+        "number_of_steps": 7,
+        "projects": [
+            "Intergalactic Workflow Commission (IWC)"
+        ],
+        "source": "WorkflowHub",
+        "tags": [],
+        "tools": [
+            "extract peptides\nCut1",
+            "maxquant",
+            "extracting microbial Peptides\nGrep1",
+            "extracting microbial Proteins\nGrep1",
+            "Quantified-Proteins\nGrouping1",
+            "extract proteins\nCut1",
+            "Quantified-Peptides\nGrouping1"
+        ],
+        "type": "Galaxy",
+        "update_time": "2025-08-18",
+        "versions": 1
+    },
+    {
+        "create_time": "2024-08-21",
+        "creators": [
+            "Marie Joss\u00e9"
+        ],
+        "description": "Secondary metabolite biosynthetic gene cluster (SMBGC) Annotation using Neural Networks Trained on Interpro Signatures ",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [
+            "Marine biology"
+        ],
+        "id": "1105",
+        "keep": true,
+        "latest_version": 1,
+        "license": "CC-BY-4.0",
+        "link": "https:/workflowhub.eu/workflows/1105?version=1",
+        "name": "Marine Omics identifying biosynthetic gene clusters",
+        "number_of_steps": 5,
+        "projects": [
+            "FAIR-EASE",
+            "usegalaxy-eu"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "earth-system",
+            "ecology",
+            "marine omics",
+            "ocean"
+        ],
+        "tools": [
+            "Create the protein fasta file",
+            "Create TSV file for Sanntis",
+            "Use of Sanntis",
+            "Remove useless * in the protein fasta file"
+        ],
+        "type": "Galaxy",
+        "update_time": "2024-08-21",
+        "versions": 1
+    },
+    {
+        "create_time": "2025-07-31",
+        "creators": [
+            "ABRomics None",
+            "Pierre Marin",
+            "Clea Siguret"
+        ],
+        "description": "Annotation of an assembled bacterial genomes to detect genes, potential plasmids, integrons and Insertion sequence (IS) elements.",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "1050",
+        "keep": true,
+        "latest_version": 12,
+        "license": "GPL-3.0-or-later",
+        "link": "https:/workflowhub.eu/workflows/1050?version=12",
+        "name": "bacterial_genome_annotation/main",
+        "number_of_steps": 6,
+        "projects": [
+            "Intergalactic Workflow Commission (IWC)"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "abromics",
+            "annotation",
+            "genomics",
+            "bacterial-genomics",
+            "fasta",
+            "genome-annotation"
+        ],
+        "tools": [
+            "tooldistillator",
+            "isescan",
+            "bakta",
+            "integron_finder",
+            "plasmidfinder",
+            "tooldistillator_summarize"
+        ],
+        "type": "Galaxy",
+        "update_time": "2025-08-18",
+        "versions": 12
+    },
+    {
+        "create_time": "2025-09-18",
+        "creators": [
+            "ABRomics None",
+            "Pierre Marin",
+            "Clea Siguret"
+        ],
+        "description": "Antimicrobial resistance gene detection from assembled bacterial genomes",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "1049",
+        "keep": true,
+        "latest_version": 8,
+        "license": "GPL-3.0-or-later",
+        "link": "https:/workflowhub.eu/workflows/1049?version=8",
+        "name": "amr_gene_detection/main",
+        "number_of_steps": 5,
+        "projects": [
+            "Intergalactic Workflow Commission (IWC)"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "abromics",
+            "amr",
+            "amr-detection",
+            "genomics",
+            "antibiotic-resistance",
+            "antimicrobial resistance",
+            "antimicrobial-resistance-genes",
+            "bacterial-genomics",
+            "fasta"
+        ],
+        "tools": [
+            "tooldistillator",
+            "abricate",
+            "amrfinderplus",
+            "tooldistillator_summarize",
+            "staramr_search"
+        ],
+        "type": "Galaxy",
+        "update_time": "2025-09-18",
+        "versions": 8
+    },
+    {
+        "create_time": "2021-11-11",
+        "creators": [
+            "Michael Roach"
+        ],
+        "description": "A hecatomb is a great sacrifice or an extensive loss. Heactomb the software empowers an analyst to make data driven decisions to 'sacrifice' false-positive viral reads from metagenomes to enrich for true-positive viral reads. This process frequently results in a great loss of suspected viral sequences / contigs.\r\n\r\nFor information about installation, usage, tutorial etc please refer to the documentation: https://hecatomb.readthedocs.io/en/latest/\r\n\r\n### Quick start guide\r\n\r\nInstall Hecatomb from Bioconda\r\n```bash\r\n# create an env called hecatomb and install Hecatomb in it\r\nconda create -n hecatomb -c conda-forge -c bioconda hecatomb\r\n\r\n# activate conda env\r\nconda activate hecatomb\r\n\r\n# check the installation\r\nhecatomb -h\r\n\r\n# download the databases - you only have to do this once\r\nhecatomb install\r\n\r\n# Run the test dataset\r\nhecatomb run --test\r\n```",
+        "doi": "10.48546/workflowhub.workflow.235.1",
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "235",
+        "keep": true,
+        "latest_version": 1,
+        "license": "MIT",
+        "link": "https:/workflowhub.eu/workflows/235?version=1",
+        "name": "Hecatomb",
+        "number_of_steps": 0,
+        "projects": [
+            "HecatombDevelopment"
+        ],
+        "source": "WorkflowHub",
+        "tags": [],
+        "tools": [],
+        "type": "Snakemake",
+        "update_time": "2024-05-13",
+        "versions": 1
+    },
+    {
+        "create_time": "2025-03-26",
+        "creators": [
+            "Matthias Bernt"
+        ],
+        "description": "dada2 amplicon analysis for paired end data\n\nThe workflow has three main outputs: \n- the sequence table (output of makeSequenceTable)\n- the taxonomy (output of assignTaxonomy)\n- the counts which allow to track the number of sequences in the samples through the steps (output of sequence counts)",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "790",
+        "keep": true,
+        "latest_version": 3,
+        "license": "MIT",
+        "link": "https:/workflowhub.eu/workflows/790?version=3",
+        "name": "dada2/main",
+        "number_of_steps": 14,
+        "projects": [
+            "Intergalactic Workflow Commission (IWC)"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "name:amplicon"
+        ],
+        "tools": [
+            "dada2_removeBimeraDenovo",
+            "__UNZIP_COLLECTION__",
+            "dada2_plotQualityProfile",
+            "dada2_dada",
+            "dada2_seqCounts",
+            "__APPLY_RULES__",
+            "dada2_mergePairs",
+            "dada2_filterAndTrim",
+            "dada2_assignTaxonomyAddspecies",
+            "dada2_learnErrors",
+            "dada2_makeSequenceTable"
+        ],
+        "type": "Galaxy",
+        "update_time": "2025-08-18",
+        "versions": 3
+    },
+    {
+        "create_time": "2024-01-24",
+        "creators": [],
+        "description": "![workflow](https://github.com/naturalis/barcode-constrained-phylogeny/actions/workflows/python-package-conda.yml/badge.svg)\r\n[![License: Apache-2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)\r\n[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10519081.svg)](https://doi.org/10.5281/zenodo.10519081)\r\n\r\n![Logo](https://github.com/naturalis/barcode-constrained-phylogeny/blob/main/doc/logo-small.png?raw=true)\r\n\r\n# Bactria: BarCode TRee Inference and Analysis\r\nThis repository contains code and data for building very large, topologically-constrained \r\nbarcode phylogenies through a divide-and-conquer strategy. Such trees are useful as \r\nreference materials for curating barcode data by detecting rogue terminals (indicating\r\nincorrect taxonomic annotation) and in the comparable calculation of alpha and beta \r\nbiodiversity metrics across metabarcoding assays. \r\n\r\nThe input data for the approach we develop here currently comes from BOLD data dumps. \r\nThe international database [BOLD Systems](https://www.boldsystems.org/index.php) \r\ncontains DNA barcodes for hundreds of thousands of species, with multiple barcodes per \r\nspecies. The data dumps we use here are TSV files whose columns conform to the nascent\r\nBCDM (barcode data model) vocabulary. As such, other data sources that conform to this\r\nvocabulary could in the future be used as well, such as [UNITE](https://unite.ut.ee/).\r\n\r\nTheoretically, such data could be filtered and aligned per DNA marker to make \r\nphylogenetic trees. However, there are two limiting factors: building very large \r\nphylogenies is computationally intensive, and barcodes are not considered ideal for \r\nbuilding big trees because they are short (providing insufficient signal to resolve large \r\ntrees) and because they tend to saturate across large patristic distances.\r\n\r\n![concept](https://github.com/naturalis/barcode-constrained-phylogeny/blob/main/doc/concept.png)\r\n\r\nBoth problems can be mitigated by using the \r\n[Open Tree of Life](https://tree.opentreeoflife.org/opentree/argus/opentree13.4@ott93302) \r\nas a further source of phylogenetic signal. The BOLD data can be split into chunks that \r\ncorrespond to Open Tree of Life clades. These chunks can be made into alignments and \r\nsubtrees. The OpenTOL can be used as a constraint in the algorithms to make these. The \r\nchunks are then combined in a large synthesis by grafting them on a backbone made from \r\nexemplar taxa from the subtrees. Here too, the OpenTOL is a source of phylogenetic \r\nconstraint.\r\n\r\nIn this repository this concept is developed for both animal species and plant species.\r\n\r\n## Installation\r\n\r\nThe pipeline and its dependencies are managed using conda. On a linux or osx system, you \r\ncan follow these steps to set up the `bactria` Conda environment using an `environment.yml` \r\nfile and a `requirements.txt` file:\r\n\r\n1. **Clone the Repository:**  \r\n   Clone the repository containing the environment files to your local machine:\r\n   ```bash\r\n   git clone https://github.com/naturalis/barcode-constrained-phylogeny.git\r\n   cd barcode-constrained-phylogeny\r\n   ```\r\n2. **Create the Conda Environment:**\r\n   Create the bactria Conda environment using the environment.yml file with the following \r\n   command:\r\n   ```bash\r\n   conda env create -f workflow/envs/environment.yml\r\n   ```\r\n   This command will create a new Conda environment named bactria with the packages \r\n   specified in the environment.yml file. This step is largely a placeholder because\r\n   most of the dependency management is handled at the level of individual pipeline\r\n   steps, which each have their own environment specification.\r\n3. **Activate the Environment:**\r\n   After creating the environment, activate it using the conda activate command:\r\n   ```bash\r\n   conda activate bactria\r\n   ```\r\n4. **Verify the Environment:**\r\n   Verify that the bactria environment was set up correctly and that all packages were \r\n   installed using the conda list command:\r\n   ```bash\r\n   conda list\r\n   ```\r\n   This command will list all packages installed in the active conda environment. You should \r\n   see all the packages specified in the environment.yml file and the requirements.txt file.\r\n\r\n## How to run\r\n\r\nThe pipeline is implemented using snakemake, which is available within the conda \r\nenvironment that results from the installation. Important before running the snakemake pipeline \r\nis to change in [config/config.yaml](config/config.yaml) the number of threads available on your \r\ncomputer. Which marker gene is used in the pipeline is also specified in the config.yaml (default \r\nCOI-5P). Prior to execution, the BOLD data package to use (we used the \r\n[release of 30 December 2022](https://www.boldsystems.org/index.php/datapackage?id=BOLD_Public.30-Dec-2022)) \r\nmust be downloaded manually and stored in the [resources/](resources/) directory. If a BOLD release \r\nfrom another date is used the file names in config.yaml need to be updated. \r\n\r\nHow to run the entire pipeline:\r\n\r\n```bash \r\nsnakemake -j {number of threads} --use-conda\r\n```\r\n\r\nSnakemake rules can be performed separately:\r\n```bash \r\nsnakemake -R {Rule} -j {number of threads} --use-conda\r\n```\r\n\r\nEnter the same number at {number of threads} as you filled in previously in src/config.yaml.\r\nIn {Rule} insert the rule to be performed.\r\n\r\nHere is an overview of all the rules in the Snakefile:\r\n\r\n![graphviz (1)](https://github.com/naturalis/barcode-constrained-phylogeny/blob/main/doc/dag.svg)\r\n(zoomed view is available [here](https://raw.githubusercontent.com/naturalis/barcode-constrained-phylogeny/main/doc/dag.svg))\r\n\r\n## Repository layout\r\n\r\nBelow is the top-level layout of the repository. This layout is in line with \r\n[community standards](https://snakemake.readthedocs.io/en/stable/snakefiles/deployment.html) and must be adhered to.\r\nAll of these subfolders contains further explanatory READMEs to explain their contents in more detail.\r\n\r\n- [config](config/) - configuration files\r\n- [doc](doc/) - documentation and background literature\r\n- [logs](logs/) - where log files are written during pipeline runtime\r\n- [resources](resources/) - external data resources (from BOLD and OpenTree) are downloaded here\r\n- [results](results/) - intermediate and final results are generated here\r\n- [workflow](workflow/) - script source code and driver snakefile \r\n\r\n## License\r\n\r\n&copy; 2023 Naturalis Biodiversity Center\r\n\r\nLicensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except \r\nin compliance with the License. You may obtain a copy of the License at\r\n\r\n[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)\r\n   \r\nUnless required by applicable law or agreed to in writing, software distributed under the License \r\nis distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express \r\nor implied. See the License for the specific language governing permissions and limitations under \r\nthe License.",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "706",
+        "keep": true,
+        "latest_version": 1,
+        "license": "Apache-2.0",
+        "link": "https:/workflowhub.eu/workflows/706?version=1",
+        "name": "Bactria: BarCode TRee Inference and Analysis",
+        "number_of_steps": 0,
+        "projects": [
+            "Biodiversity Genomics Europe (general)"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "bioinformatics",
+            "python",
+            "snakemake",
+            "phylogenetics"
+        ],
+        "tools": [],
+        "type": "Snakemake",
+        "update_time": "2024-02-05",
+        "versions": 1
+    },
+    {
+        "create_time": "2023-10-26",
+        "creators": [
+            "Valentine Murigneux",
+            "Mike Thang",
+            "Saskia Hiltemann",
+            "B\u00e9r\u00e9nice Batut"
+        ],
+        "description": "The aim of this workflow is to handle the routine part of shotgun metagenomics data processing on Galaxy Australia. \r\n\r\nThe workflow is using the tools MetaPhlAn2 for taxonomy classification and HUMAnN2 for functional profiling of the metagenomes. The workflow is based on the Galaxy Training tutorial 'Analyses of metagenomics data - The global picture' (Saskia Hiltemann, B\u00e9r\u00e9nice Batut) https://training.galaxyproject.org/training-material/topics/metagenomics/tutorials/general-tutorial/tutorial.html#shotgun-metagenomics-data. \r\n\r\nThe how-to guide is available here: https://vmurigneu.github.io/shotgun_howto_ga_workflows/\r\n",
+        "doi": "10.48546/workflowhub.workflow.624.1",
+        "edam_operation": [
+            "Taxonomic classification"
+        ],
+        "edam_topic": [
+            "Metagenomic sequencing",
+            "Metagenomics"
+        ],
+        "id": "624",
+        "keep": true,
+        "latest_version": 1,
+        "license": "CC-BY-4.0",
+        "link": "https:/workflowhub.eu/workflows/624?version=1",
+        "name": "Analyses of shotgun metagenomics data with MetaPhlAn2",
+        "number_of_steps": 17,
+        "projects": [
+            "QCIF Bioinformatics"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "gucfg2galaxy",
+            "metagenomics",
+            "shotgun"
+        ],
+        "tools": [
+            "",
+            "metaphlan2",
+            "humann2_regroup_table",
+            "Cut1",
+            "merge_metaphlan_tables",
+            "taxonomy_krona_chart",
+            "humann2",
+            "metaphlan2krona",
+            "humann2_renorm_table"
+        ],
+        "type": "Galaxy",
+        "update_time": "2024-04-05",
+        "versions": 1
+    },
+    {
+        "create_time": "2023-05-19",
+        "creators": [],
+        "description": "# EukRecover\r\nPipeline to recover eukaryotic MAGs using CONCOCT, metaBAT2 and EukCC's merging algorythm.\r\n\r\nNeeds paired end shotgun metagenomic reads.\r\n\r\n## Environment\r\n\r\nEukrecover requires an environment with snakemake and metaWRAP.\r\n\r\n## Quickstart\r\n\r\nDefine your samples in the file `samples.csv`.\r\nThis file needs to have the columns project and run to identify each metagenome. \r\n\r\nThis pipeline does not support co-binning, but feel free to change it. \r\n\r\nClone this repro wherever you want to run the pipeline:\r\n```\r\ngit clone https://github.com/openpaul/eukrecover/\r\n```\r\n\r\n\r\nYou can then run the snakemake like so\r\n\r\n```\r\nsnakemake --use-singularity\r\n```\r\n\r\nThe pipeline used dockerhub to fetch all tools, so make sure you have singularity installed.\r\n\r\n\r\n\r\n## Prepare databases\r\nThe pipeline will setup databases for you, but if you already have a EukCC or a BUSCO 5 database you can use them \r\nby specifying the location in the file `config/config.yaml`\r\n\r\n\r\n## Output:\r\nIn the folder results you will find a folder `MAGs` which will contain a folder\r\n`fa` containing the actual MAG fastas.\r\nIn addition you will find stats for each MAG in the table `QC.csv`.\r\n\r\nThis table contains the following columns:\r\n\r\nname,eukcc_compl,eukcc_cont,BUSCO_C,BUSCO_M,BUSCO_D,BUSCO_F,BUSCO_tax,N50,bp\r\n\r\n\r\n\r\n## Citation:\r\n\r\nIf you use this pipeline please make sure to cite all used software. \r\n\r\nFor this please reffer to the used rules.\r\n",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "475",
+        "keep": true,
+        "latest_version": 1,
+        "license": "CC-BY-4.0",
+        "link": "https:/workflowhub.eu/workflows/475?version=1",
+        "name": "EukRecover",
+        "number_of_steps": 0,
+        "projects": [
+            "HoloFood at MGnify"
+        ],
+        "source": "WorkflowHub",
+        "tags": [],
+        "tools": [],
+        "type": "Snakemake",
+        "update_time": "2023-05-19",
+        "versions": 1
+    },
+    {
+        "create_time": "2023-05-16",
+        "creators": [
+            "Haris Zafeiropoulos",
+            "Martin Beracochea"
+        ],
+        "description": "# metaGOflow: A workflow for marine Genomic Observatories' data analysis\r\n\r\n![logo](https://raw.githubusercontent.com/hariszaf/metaGOflow-use-case/gh-pages/assets/img/metaGOflow_logo_italics.png)\r\n\r\n\r\n## An EOSC-Life project\r\n\r\nThe workflows developed in the framework of this project are based on `pipeline-v5` of the MGnify resource.\r\n\r\n> This branch is a child of the [`pipeline_5.1`](https://github.com/hariszaf/pipeline-v5/tree/pipeline_5.1) branch\r\n> that contains all CWL descriptions of the MGnify pipeline version 5.1.\r\n\r\n## Dependencies\r\n\r\nTo run metaGOflow you need to make sure you have the following set on your computing environmnet first:\r\n\r\n- python3 [v 3.8+]\r\n- [Docker](https://www.docker.com) [v 19.+] or [Singularity](https://apptainer.org) [v 3.7.+]/[Apptainer](https://apptainer.org) [v 1.+]\r\n- [cwltool](https://github.com/common-workflow-language/cwltool) [v 3.+]\r\n- [rdflib](https://rdflib.readthedocs.io/en/stable/) [v 6.+]\r\n- [rdflib-jsonld](https://pypi.org/project/rdflib-jsonld/) [v 0.6.2]\r\n- [ro-crate-py](https://github.com/ResearchObject/ro-crate-py) [v 0.7.0]\r\n- [pyyaml](https://pypi.org/project/PyYAML/) [v 6.0]\r\n- [Node.js](https://nodejs.org/) [v 10.24.0+]\r\n- Available storage ~235GB for databases\r\n\r\n### Storage while running\r\n\r\nDepending on the analysis you are about to run, disk requirements vary.\r\nIndicatively, you may have a look at the metaGOflow publication for computing resources used in various cases.\r\n\r\n## Installation\r\n\r\n### Get the EOSC-Life marine GOs workflow\r\n\r\n```bash\r\ngit clone https://github.com/emo-bon/MetaGOflow\r\ncd MetaGOflow\r\n```\r\n\r\n### Download necessary databases (~235GB)\r\n\r\nYou can download databases for the EOSC-Life GOs workflow by running the\r\n`download_dbs.sh` script under the `Installation` folder.\r\n\r\n```bash\r\nbash Installation/download_dbs.sh -f [Output Directory e.g. ref-dbs] \r\n```\r\nIf you have one or more already in your system, then create a symbolic link pointing\r\nat the `ref-dbs` folder or at one of its subfolders/files.\r\n\r\nThe final structure of the DB directory should be like the following:\r\n\r\n````bash\r\nuser@server:~/MetaGOflow: ls ref-dbs/\r\ndb_kofam/  diamond/  eggnog/  GO-slim/  interproscan-5.57-90.0/  kegg_pathways/  kofam_ko_desc.tsv  Rfam/  silva_lsu/  silva_ssu/\r\n````\r\n\r\n## How to run\r\n\r\n### Ensure that `Node.js` is installed on your system before running metaGOflow\r\n\r\nIf you have root access on your system, you can run the commands below to install it:\r\n\r\n##### DEBIAN/UBUNTU\r\n```bash\r\nsudo apt-get update -y\r\nsudo apt-get install -y nodejs\r\n```\r\n\r\n##### RH/CentOS\r\n```bash\r\nsudo yum install rh-nodejs<stream version> (e.g. rh-nodejs10)\r\n```\r\n\r\n### Set up the environment\r\n\r\n#### Run once - Setup environment\r\n\r\n- ```bash\r\n  conda create -n EOSC-CWL python=3.8\r\n  ```\r\n\r\n- ```bash\r\n  conda activate EOSC-CWL\r\n  ```\r\n\r\n- ```bash\r\n  pip install cwlref-runner cwltool[all] rdflib-jsonld rocrate pyyaml\r\n\r\n  ```\r\n\r\n#### Run every time\r\n\r\n```bash\r\nconda activate EOSC-CWL\r\n``` \r\n\r\n### Run the workflow\r\n\r\n- Edit the `config.yml` file to set the parameter values of your choice. For selecting all the steps, then set to `true` the variables in lines [2-6].\r\n\r\n#### Using Singularity\r\n\r\n##### Standalone\r\n- run:\r\n   ```bash\r\n   ./run_wf.sh -s -n osd-short -d short-test-case -f test_input/wgs-paired-SRR1620013_1.fastq.gz -r test_input/wgs-paired-SRR1620013_2.fastq.gz\r\n   ``\r\n\r\n##### Using a cluster with a queueing system (e.g. SLURM)\r\n\r\n- Create a job file (e.g., SBATCH file)\r\n\r\n- Enable Singularity, e.g. module load Singularity & all other dependencies \r\n\r\n- Add the run line to the job file\r\n\r\n\r\n#### Using Docker\r\n\r\n##### Standalone\r\n- run:\r\n    ``` bash\r\n    ./run_wf.sh -n osd-short -d short-test-case -f test_input/wgs-paired-SRR1620013_1.fastq.gz -r test_input/wgs-paired-SRR1620013_2.fastq.gz\r\n  ```\r\n  HINT: If you are using Docker, you may need to run the above command without the `-s' flag.\r\n\r\n## Testing samples\r\nThe samples are available in the `test_input` folder.\r\n\r\nWe provide metaGOflow with partial samples from the Human Metagenome Project ([SRR1620013](https://www.ebi.ac.uk/ena/browser/view/SRR1620013) and [SRR1620014](https://www.ebi.ac.uk/ena/browser/view/SRR1620014))\r\nThey are partial as only a small part of their sequences have been kept, in terms for the pipeline to test in a fast way. \r\n\r\n\r\n## Hints and tips\r\n\r\n1. In case you are using Docker, it is strongly recommended to **avoid** installing it through `snap`.\r\n\r\n2. `RuntimeError`: slurm currently does not support shared caching, because it does not support cleaning up a worker\r\n   after the last job finishes.\r\n   Set the `--disableCaching` flag if you want to use this batch system.\r\n\r\n3. In case you are having errors like:\r\n\r\n```\r\ncwltool.errors.WorkflowException: Singularity is not available for this tool\r\n```\r\n\r\nYou may run the following command:\r\n\r\n```\r\nsingularity pull --force --name debian:stable-slim.sif docker://debian:stable-sli\r\n```\r\n\r\n## Contribution\r\n\r\nTo make contribution to the project a bit easier, all the MGnify `conditionals` and `subworkflows` under\r\nthe `workflows/` directory that are not used in the metaGOflow framework, have been removed.   \r\nHowever, all the MGnify `tools/` and `utils/` are available in this repo, even if they are not invoked in the current\r\nversion of metaGOflow.\r\nThis way, we hope we encourage people to implement their own `conditionals` and/or `subworkflows` by exploiting the\r\ncurrently supported `tools` and `utils` as well as by developing new `tools` and/or `utils`.\r\n\r\n\r\n<!-- cwltool --print-dot my-wf.cwl | dot -Tsvg > my-wf.svg -->\r\n",
+        "doi": "10.48546/workflowhub.workflow.384.3",
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "384",
+        "keep": true,
+        "latest_version": 3,
+        "license": "Apache-2.0",
+        "link": "https:/workflowhub.eu/workflows/384?version=3",
+        "name": "A workflow for marine Genomic Observatories data analysis",
+        "number_of_steps": 0,
+        "projects": [
+            "emo-bon"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "biodiversity"
+        ],
+        "tools": [],
+        "type": "Common Workflow Language",
+        "update_time": "2023-05-16",
+        "versions": 3
+    },
+    {
+        "create_time": "2022-04-21",
+        "creators": [
+            "Bart Nijsse",
+            "Jasper Koehorst",
+            "Germ\u00e1n Royval"
+        ],
+        "description": "### Workflow for LongRead Quality Control and Filtering\r\n\r\n- NanoPlot  (read quality control) before and after filtering\r\n- Filtlong  (read trimming)\r\n- Kraken2 taxonomic read classification before and after filtering\r\n- Minimap2 read filtering based on given references<br><br>\r\n\r\nOther UNLOCK workflows on WorkflowHub: https://workflowhub.eu/projects/16/workflows?view=default<br><br>\r\n\r\n**All tool CWL files and other workflows can be found here:**<br>\r\nhttps://gitlab.com/m-unlock/cwl/workflows\r\n\r\n**How to setup and use an UNLOCK workflow:**<br>\r\nhttps://m-unlock.gitlab.io/docs/setup/setup.html<br>\r\n",
+        "doi": null,
+        "edam_operation": [
+            "Sequencing quality control"
+        ],
+        "edam_topic": [
+            "Metagenomic sequencing",
+            "Metagenomics",
+            "Sequence analysis",
+            "Sequencing"
+        ],
+        "id": "337",
+        "keep": true,
+        "latest_version": 1,
+        "license": "Apache-2.0",
+        "link": "https:/workflowhub.eu/workflows/337?version=1",
+        "name": "LongRead Quality Control and Filtering",
+        "number_of_steps": 9,
+        "projects": [
+            "UNLOCK"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "assembly",
+            "cwl",
+            "genomics",
+            "nanopore"
+        ],
+        "tools": [
+            "Converts the file array to a single file object",
+            "Removal of contaminated reads using minimap2 mapping",
+            "Preparation of fastp output files to a specific output folder",
+            "Quality assessment and report of reads before filter",
+            "Merge fastq files",
+            "Prepare BBMap references to a single fasta file and unique headers",
+            "Visualization of Kraken2 classification with Krona",
+            "Taxonomic classification of FASTQ reads"
+        ],
+        "type": "Common Workflow Language",
+        "update_time": "2023-04-07",
+        "versions": 1
+    },
+    {
+        "create_time": "2022-11-24",
+        "creators": [
+            "Saskia Hiltemann",
+            "Willem de Koning"
+        ],
+        "description": "Workflow for the GTN training \"Antibiotic resistance detection\"",
+        "doi": null,
+        "edam_operation": [
+            "Antimicrobial resistance prediction"
+        ],
+        "edam_topic": [
+            "Microbiology"
+        ],
+        "id": "406",
+        "keep": true,
+        "latest_version": 1,
+        "license": "CC-BY-4.0",
+        "link": "https:/workflowhub.eu/workflows/406?version=1",
+        "name": "GTN Training - Antibiotic Resistance Detection",
+        "number_of_steps": 12,
+        "projects": [
+            "Galaxy Training Network"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "metagenomics"
+        ],
+        "tools": [
+            "nanoplot",
+            "unicycler",
+            "racon",
+            "gfa_to_fa",
+            "minimap2",
+            "miniasm",
+            "bandage_image",
+            "PlasFlow",
+            "staramr_search"
+        ],
+        "type": "Galaxy",
+        "update_time": "2023-02-13",
+        "versions": 1
+    },
+    {
+        "create_time": "2021-11-21",
+        "creators": [],
+        "description": "`atavide` is a complete workflow for metagenomics data analysis, including QC/QA, optional host removal, assembly and cross-assembly, and individual read based annotations. We have also built in some advanced analytics including tools to assign annotations from reads to contigs, and to generate metagenome-assembled genomes in several different ways, giving you the power to explore your data!\r\n\r\n`atavide` is 100% snakemake and conda, so you only need to install the snakemake workflow, and then everything else will be installed with conda.\r\n\r\nSteps:\r\n1. QC/QA with [prinseq++](https://github.com/Adrian-Cantu/PRINSEQ-plus-plus)\r\n2. optional host removal using bowtie2 and samtools, [as described previously](https://edwards.flinders.edu.au/command-line-deconseq/). To enable this, you need to provide a path to the host db and a host db.\r\n\r\nMetagenome assembly\r\n1. pairwise assembly of each sample using [megahit](https://github.com/voutcn/megahit)\r\n2. extraction of all reads that do not assemble using samtools flags\r\n3. assembly of all unassembled reads using [megahit](https://github.com/voutcn/megahit)\r\n4. compilation of _all_ contigs into a single unified set using [Flye](https://github.com/fenderglass/Flye)\r\n5. comparison of reads -> contigs to generate coverage\r\n\r\nMAG creation\r\n1. [metabat](https://bitbucket.org/berkeleylab/metabat/src/master/)\r\n2. [concoct](https://github.com/BinPro/CONCOCT)\r\n3. Pairwise comparisons using [turbocor](https://github.com/dcjones/turbocor) followed by clustering\r\n\r\nRead-based annotations\r\n1. [Kraken2](https://ccb.jhu.edu/software/kraken2/)\r\n2. [singlem](https://github.com/wwood/singlem)\r\n3. [SUPER-focus](https://github.com/metageni/SUPER-FOCUS)\r\n4. [FOCUS](https://github.com/metageni/FOCUS)\r\n\r\nWant something else added to the suite? File an issue on github and we'll add it ASAP!\r\n\r\n### Installation\r\n\r\nYou will need to install\r\n1. The NCBI taxonomy database somewhere\r\n2. The superfocus databases somewhere, and set the SUPERFOCUS_DB environmental variable\r\n\r\nEverything else should install automatically.",
+        "doi": "10.48546/workflowhub.workflow.241.1",
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "241",
+        "keep": true,
+        "latest_version": 1,
+        "license": "MIT",
+        "link": "https:/workflowhub.eu/workflows/241?version=1",
+        "name": "atavide",
+        "number_of_steps": 0,
+        "projects": [
+            "FAME"
+        ],
+        "source": "WorkflowHub",
+        "tags": [],
+        "tools": [],
+        "type": "Snakemake",
+        "update_time": "2023-01-16",
+        "versions": 1
+    },
+    {
+        "create_time": "2021-11-10",
+        "creators": [],
+        "description": "",
+        "doi": null,
+        "edam_operation": [
+            "Taxonomic classification"
+        ],
+        "edam_topic": [
+            "Metagenomics"
+        ],
+        "id": "233",
+        "keep": true,
+        "latest_version": 1,
+        "license": "GPL-3.0",
+        "link": "https:/workflowhub.eu/workflows/233?version=1",
+        "name": "16S_biodiversity_for_nonoverlap_paired_end",
+        "number_of_steps": 25,
+        "projects": [
+            "QCIF Bioinformatics"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "metadegalaxy"
+        ],
+        "tools": [
+            "\n addValue",
+            "vsearch_chimera_detection",
+            "uclust2otutable",
+            "phyloseq_abundance",
+            "samtools_fastx",
+            "vsearch_search",
+            "bwa_mem",
+            "vsearch_clustering",
+            "phyloseq_taxonomy",
+            "biom_add_metadata",
+            "symmetricPlot",
+            "phyloseq_net",
+            "\n Cut1",
+            "vsearch_dereplication",
+            "fastqc",
+            "phyloseq_DESeq2",
+            "picard_FilterSamReads",
+            "phyloseq_richness",
+            "cat_multi_datasets",
+            "\n cat1",
+            "biom_convert",
+            "trimmomatic"
+        ],
+        "type": "Galaxy",
+        "update_time": "2024-04-17",
+        "versions": 1
+    },
+    {
+        "create_time": "2021-11-10",
+        "creators": [],
+        "description": "MetaDEGalaxy: Galaxy workflow for differential abundance analysis of 16s metagenomic data",
+        "doi": null,
+        "edam_operation": [
+            "Taxonomic classification"
+        ],
+        "edam_topic": [
+            "Metagenomics"
+        ],
+        "id": "232",
+        "keep": true,
+        "latest_version": 1,
+        "license": "GPL-3.0",
+        "link": "https:/workflowhub.eu/workflows/232?version=1",
+        "name": "16S_biodiversity_for_overlap_paired_end",
+        "number_of_steps": 27,
+        "projects": [
+            "QCIF Bioinformatics"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "metadegalaxy"
+        ],
+        "tools": [
+            "\n addValue",
+            "vsearch_chimera_detection",
+            "uclust2otutable",
+            "phyloseq_abundance",
+            "samtools_fastx",
+            "vsearch_search",
+            "bwa_mem",
+            "vsearch_clustering",
+            "phyloseq_taxonomy",
+            "picard_MergeSamFiles",
+            "biom_add_metadata",
+            "symmetricPlot",
+            "phyloseq_net",
+            "\n Cut1",
+            "iuc_pear",
+            "vsearch_dereplication",
+            "fastqc",
+            "phyloseq_DESeq2",
+            "picard_FilterSamReads",
+            "phyloseq_richness",
+            "\n cat1",
+            "biom_convert",
+            "trimmomatic"
+        ],
+        "type": "Galaxy",
+        "update_time": "2024-04-17",
+        "versions": 1
+    },
+    {
+        "create_time": "2021-08-11",
+        "creators": [
+            "Mike Thang"
+        ],
+        "description": "This is a Galaxy workflow that uses to convert the16S BIOM file to table and figures. It is part of the metaDEGalaxy workflow MetaDEGalaxy: Galaxy workflow for differential abundance analysis of 16s metagenomic data. ",
+        "doi": null,
+        "edam_operation": [
+            "Taxonomic classification"
+        ],
+        "edam_topic": [
+            "Metagenomics"
+        ],
+        "id": "142",
+        "keep": true,
+        "latest_version": 1,
+        "license": "GPL-3.0",
+        "link": "https:/workflowhub.eu/workflows/142?version=1",
+        "name": "16S_biodiversity_BIOM",
+        "number_of_steps": 8,
+        "projects": [
+            "Galaxy Australia"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "metadegalaxy"
+        ],
+        "tools": [
+            "biom_convert",
+            "phyloseq_DESeq2",
+            "phyloseq_abundance",
+            "phyloseq_taxonomy",
+            "biom_add_metadata",
+            "symmetricPlot",
+            "phyloseq_richness",
+            "phyloseq_net"
+        ],
+        "type": "Galaxy",
+        "update_time": "2024-04-17",
+        "versions": 1
+    },
+    {
+        "create_time": "2021-06-17",
+        "creators": [],
+        "description": "Metagenomic dataset taxonomic classification using kraken2",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "124",
+        "keep": true,
+        "latest_version": 1,
+        "license": "Apache-2.0",
+        "link": "https:/workflowhub.eu/workflows/124?version=1",
+        "name": "1: Plant virus detection with kraken2 (SE)",
+        "number_of_steps": 3,
+        "projects": [
+            "Integrated and Urban Plant Pathology Laboratory"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "virology",
+            "kraken"
+        ],
+        "tools": [
+            "taxonomy_krona_chart",
+            "kraken2",
+            "Kraken2Tax"
+        ],
+        "type": "Galaxy",
+        "update_time": "2023-02-13",
+        "versions": 1
+    },
+    {
+        "create_time": "2021-02-04",
+        "creators": [],
+        "description": "Metagenomic dataset taxonomic classification using kraken2",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [],
+        "id": "101",
+        "keep": true,
+        "latest_version": 1,
+        "license": "Apache-2.0",
+        "link": "https:/workflowhub.eu/workflows/101?version=1",
+        "name": "1: Plant virus detection with kraken2 (PE)",
+        "number_of_steps": 3,
+        "projects": [
+            "Integrated and Urban Plant Pathology Laboratory"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "virology",
+            "kraken"
+        ],
+        "tools": [
+            "taxonomy_krona_chart",
+            "kraken2",
+            "Kraken2Tax"
+        ],
+        "type": "Galaxy",
+        "update_time": "2023-02-13",
+        "versions": 1
+    }
+]
