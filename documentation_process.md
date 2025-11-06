@@ -27,7 +27,7 @@ The workflows that were retrieved and kept if corresponding to one or more of th
 
 - **Functional Annotation** (for Metagenomics/Shotgun Sequencing)
 
-- Data Normalization: address the compositional nature of microbiome data (the counts are relative, not absolute) and account for differences in sequencing depth (library size).
+- **Data Normalization**: addressing the compositional nature of microbiome data (as the counts are relative, not absolute) and accounting for differences in sequencing depth (e.g. library size).
 
 - Diversity Analysis (Community Characterization): quantify the complexity and dissimilarity of microbial communities, through their Alpha and Beta Diversity
 
