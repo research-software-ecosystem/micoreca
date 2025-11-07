@@ -15,20 +15,14 @@ except ImportError:
     yaml = None
 
 # --- Configuration paths (ROBUST PATHS) ---
-
-# 1. Define the script path (independent of the execution directory)
+# Define paths relative to the script's location for robustness.
 SCRIPT_PATH = Path(__file__).resolve()
-# 2. Define the BIN directory (script's parent)
 SCRIPT_BIN_DIR = SCRIPT_PATH.parent
-
-# 3. BASE_DIR is the micoreca repository root (parent directory of 'bin')
-# This ensures that BASE_DIR is the repository root, regardless of where the script is executed.
+# BASE_DIR is the repository root (parent directory of 'bin')
 BASE_DIR = SCRIPT_BIN_DIR.parent 
 
 # Directory containing the RSEC data to be filtered (micoreca/content/rsec)
 RSEC_DIR = BASE_DIR / "content" / "rsec"
-
-# Path to the configuration file containing keywords and EDAM terms
 KEYWORDS_FILEPATH = BASE_DIR / "keywords.yml"
 
 
@@ -38,7 +32,7 @@ OUTPUT_DIR: Path
 REPORTING_FILE: Path
 VALIDATED_METADATA_FILE: Path
 FAILED_METADATA_FILE: Path
-TSV_OUTPUT_FILE: Path # Path for the summary TSV file
+TSV_OUTPUT_FILE: Path 
 
 METADATA_FILE_PATTERN = "*biotools.json" 
 
@@ -47,6 +41,8 @@ TARGET_OPERATIONS: List[str] = []
 TARGET_TOPICS: List[str] = []
 STRICT_KEYWORDS: List[str] = [] 
 COMPILED_FRAGMENT_PATTERNS: List[re.Pattern] = [] 
+# OPTIMIZATION: New list for pre-compiled strict word boundary regex patterns
+COMPILED_STRICT_PATTERNS: List[re.Pattern] = [] 
 
 # --- CRITERIA KEYS (MUST match the filtering priority order) ---
 # Keys in the JSON that indicate a successful filter match.
@@ -63,6 +59,7 @@ CRITERIA_KEYS = [
 def load_keywords_from_yaml(filepath: Path) -> Dict[str, Any]:
     """
     Loads EDAM terms, fragment keywords (REGEX), and strict acronyms from the YAML file.
+
     """
     if yaml is None:
         raise ImportError("PyYAML is required but not installed (pip install PyYAML).")
@@ -94,22 +91,31 @@ def load_keywords_from_yaml(filepath: Path) -> Dict[str, Any]:
             except re.error as e:
                 print(f"  [WARNING] Could not compile regex pattern '{pattern_raw}': {e}")
 
-    # 3. Acronyms (strict search, case-sensitive)
-    strict_keywords = [str(k).strip() for k in data.get('acronyms', []) if isinstance(k, str) and k.strip()]
+    # 3. Acronyms (strict search, case-sensitive check, but stored as lower case match)
+    strict_keywords_list = [str(k).strip() for k in data.get('acronyms', []) if isinstance(k, str) and k.strip()]
     
     # Add potentially missed "strict" keywords (like MAGs) from 'keywords' that are ALL CAPS
     for kw in fragment_patterns_raw:
-        if isinstance(kw, str) and kw.strip() and not ('.' in kw or '*' in kw or '+' in kw or '?' in kw):
+        if isinstance(kw, str) and kw.strip() and not any(c in kw for c in ['.', '*', '+', '?']):
              if kw.upper() == kw: 
-                strict_keywords.append(kw.strip())
+                strict_keywords_list.append(kw.strip())
 
-    strict_keywords = list(set([k.strip().upper() for k in strict_keywords if k.strip()]))
+    strict_keywords_list = list(set([k.strip().upper() for k in strict_keywords_list if k.strip()]))
+    
+    # NEW OPTIMIZATION: Pre-compile strict acronym patterns for word boundary search
+    compiled_stricts = []
+    for strict_ref in strict_keywords_list:
+        # We need the word boundary \b and escape to handle special characters
+        regex_pattern = re.compile(r'\b' + re.escape(strict_ref) + r'\b')
+        compiled_stricts.append(regex_pattern)
+
 
     return {
         "operations": target_operations,
         "topics": target_topics,
         "compiled_fragments": compiled_fragments,
-        "stricts": strict_keywords,
+        "stricts": strict_keywords_list, # List of strict keywords (case-sensitive reference)
+        "compiled_stricts": compiled_stricts # List of pre-compiled word boundary regex
     }
 
 # --------------------------------------------------------------------------
@@ -120,6 +126,7 @@ def generate_tsv_summary(json_path: Path, tsv_path: Path):
     """
     Loads validated metadata and writes the summary (tool_id, filter key, match value, 
     EDAM, description, file presence flags) to a TSV file.
+    (Functionality is retained, as it was already robust.)
     """
     
     # 1. Load JSON data
@@ -143,7 +150,7 @@ def generate_tsv_summary(json_path: Path, tsv_path: Path):
     # 2. Prepare summary data
     summary_data: List[Dict[str, str]] = []
     
-    # Define fixed column order, including new EDAM and Description fields + NEW INFOS
+    # Define fixed column order
     fieldnames = [
         'tool_id', 
         'filtered_on', 
@@ -151,27 +158,25 @@ def generate_tsv_summary(json_path: Path, tsv_path: Path):
         'to_keep',
         'EDAM_operations',
         'EDAM_topics',
-        'description', # Note: This maps to 'biotools_description_full' in the JSON
-        'has_biocontainers_infos', # NOUVEAU
-        'has_biotools_infos', # NOUVEAU
-        'has_galaxy_infos' # NOUVEAU
+        'description', 
+        'has_biocontainers_infos', 
+        'has_biotools_infos', 
+        'has_galaxy_infos' 
     ]
     
     for item in data:
         tool_id = item.get('tool_id', 'N/A')
         
-        # Extract the new required fields, defaulting to empty strings
+        # Extract required fields, defaulting to empty strings
         edam_operations = item.get('EDAM_operations_full', '')
         edam_topics = item.get('EDAM_topics_full', '')
         description = item.get('biotools_description_full', '')
         
-        # NEW: Extract file presence flags and convert them to string "True"/"False"
-        # The key names match the ones stored in Tool._check_file_presence()
+        # Extract file presence flags
         has_biocontainers = str(item.get('has_biocontainers_infos', False))
         has_biotools = str(item.get('has_biotools_infos', False))
         has_galaxy = str(item.get('has_galaxy_infos', False))
 
-        # Iterate over CRITERIA_KEYS in priority order to find the first reason for success
         found_match = False
         
         entry = {
@@ -182,13 +187,13 @@ def generate_tsv_summary(json_path: Path, tsv_path: Path):
             'EDAM_operations': edam_operations,
             'EDAM_topics': edam_topics,
             'description': description,
-            'has_biocontainers_infos': has_biocontainers, # NOUVEAU
-            'has_biotools_infos': has_biotools, # NOUVEAU
-            'has_galaxy_infos': has_galaxy # NOUVEAU
+            'has_biocontainers_infos': has_biocontainers, 
+            'has_biotools_infos': has_biotools, 
+            'has_galaxy_infos': has_galaxy 
         }
         
+        # Iterate over CRITERIA_KEYS in priority order to find the first reason for success
         for key in CRITERIA_KEYS:
-            # Check if the key exists and has a non-empty, non-None value (used for 'filtered_on'/'reason')
             if item.get(key):
                 entry['filtered_on'] = key
                 entry['reason'] = str(item[key]) 
@@ -205,7 +210,7 @@ def generate_tsv_summary(json_path: Path, tsv_path: Path):
                 f, 
                 fieldnames=fieldnames, 
                 delimiter='\t', 
-                extrasaction='ignore' # Ignore extra keys if they somehow appear
+                extrasaction='ignore'
             )
             
             writer.writeheader()
@@ -220,7 +225,7 @@ def generate_tsv_summary(json_path: Path, tsv_path: Path):
         print(f"ERROR writing TSV file: {e}")
 
 # -------------------------------------------------------------
-#                  TOOL class
+#                  TOOL class 
 # -------------------------------------------------------------
 
 class Tool:
@@ -235,33 +240,74 @@ class Tool:
         self.keep = False
         self.validation_data: Dict[str, Any] = {"tool_id": self.tool_id}
         
-        # 1. Load description content from various metadata files
-        # These are used for filtering (Check 3)
-        self.biocontainers_description = self._load_description("*.biocontainers.yaml", 'description')
-        self.biotools_description = self._load_description("*biotools.json", 'description')
-        self.galaxy_description = self._load_description("*.galaxy.json", 'description')
+        # OPTIMIZATION: Consolidated metadata storage
+        self.metadata: Dict[str, Dict[str, Any] | List[Any]] = {} 
+        self.descriptions: Dict[str, str] = {}
         
-        # 2. Extract full EDAM and Description from biotools.json for reporting/TSV
-        self._load_biotools_full_metadata(METADATA_FILE_PATTERN)
-        
-        # 3. Check for presence of metadata files (NOUVEAU)
-        self._check_file_presence()
+        # 1. Centralized loading of all metadata files
+        self._load_all_metadata()
 
-    def _load_description(self, pattern: str, key: str) -> str:
-        """Helper to safely load a specific key (e.g., 'description') from a metadata file."""
-        files = list(self.folder_path.glob(pattern))
-        if not files: return ""
-        filepath = files[0]
+        # 2. Assign descriptions for easy access in checks
+        self.biocontainers_description = self.descriptions.get('biocontainers', '')
+        self.biotools_description = self.descriptions.get('biotools', '')
+        self.galaxy_description = self.descriptions.get('galaxy', '')
+        
+        # 3. Extract and store full EDAM and Description for reporting/TSV
+        self._store_full_report_metadata()
+
+    def _safe_load(self, filepath: Path) -> Optional[Dict[str, Any]]:
+        """Helper to safely load JSON or YAML content."""
         try:
             with open(filepath, 'r', encoding='utf-8') as fh:
-                if filepath.suffix in ['.json']: data = json.load(fh)
-                elif filepath.suffix in ['.yaml'] and yaml: data = yaml.safe_load(fh)
-                else: return ""
-            if isinstance(data, dict): return data.get(key, '')
-        except Exception:
+                if filepath.suffix in ['.json']: 
+                    return json.load(fh)
+                elif filepath.suffix in ['.yaml'] and yaml: 
+                    return yaml.safe_load(fh)
+        except Exception as e:
+            # Coherence: Log the error but don't stop the process
+            print(f"  [Error Loading] {filepath.name}: {e}")
             pass
-        return ""
+        return None
+
+    def _load_all_metadata(self):
+        """
+        OPTIMIZATION: Loads all required metadata files (biotools, biocontainers, galaxy) 
+        and stores the data once.
+        """
         
+        # Track file presence for reporting
+        self.validation_data['has_biocontainers_infos'] = False
+        self.validation_data['has_biotools_infos'] = False
+        self.validation_data['has_galaxy_infos'] = False
+
+        # Load biotools.json (mandatory for Check 1)
+        biotools_files = list(self.folder_path.glob("*biotools.json"))
+        if biotools_files:
+            data = self._safe_load(biotools_files[0])
+            if data and isinstance(data, dict):
+                self.metadata['biotools'] = data
+                self.descriptions['biotools'] = data.get('description', '')
+                self.validation_data['has_biotools_infos'] = True
+
+        # Load biocontainers.yaml
+        biocontainers_files = list(self.folder_path.glob("*.biocontainers.yaml"))
+        if biocontainers_files:
+            data = self._safe_load(biocontainers_files[0])
+            if data and isinstance(data, dict):
+                self.metadata['biocontainers'] = data
+                self.descriptions['biocontainers'] = data.get('description', '')
+                self.validation_data['has_biocontainers_infos'] = True
+
+        # Load galaxy.json
+        galaxy_files = list(self.folder_path.glob("*.galaxy.json"))
+        if galaxy_files:
+            data = self._safe_load(galaxy_files[0])
+            if data and isinstance(data, dict):
+                self.metadata['galaxy'] = data
+                self.descriptions['galaxy'] = data.get('description', '')
+                self.validation_data['has_galaxy_infos'] = True
+        
+
     def _extract_edam_terms(self, data: Dict[str, Any], key: str) -> str:
         """
         Extracts and concatenates EDAM terms (operations or topics), 
@@ -269,7 +315,6 @@ class Tool:
         """
         terms = set()
         
-        # Logic for 'function' (EDAM operations)
         if key == 'function' and 'function' in data and isinstance(data['function'], list):
             for func in data['function']:
                 if 'operation' in func and isinstance(func['operation'], list):
@@ -277,26 +322,17 @@ class Tool:
                         if 'term' in op:
                             terms.add(op['term'])
                             
-        # Logic for 'topic' (EDAM topics)
         elif key == 'topic' and 'topic' in data and isinstance(data['topic'], list):
             for topic in data['topic']:
                 if 'term' in topic:
                     terms.add(topic['term'])
                     
-        # Change separator from '; ' to ', '
         return ", ".join(sorted(list(terms)))
 
-    def _load_biotools_full_metadata(self, metadata_pattern: str):
-        """Loads all EDAM operations, topics, and description from biotools.json for the TSV."""
-        json_files = list(self.folder_path.glob(metadata_pattern))
-        if not json_files: return
-        json_path = json_files[0]
-        
-        try:
-            with open(json_path, 'r', encoding='utf-8') as f: 
-                data = json.load(f)
-        except Exception: 
-            return
+    def _store_full_report_metadata(self):
+        """Extracts all EDAM operations, topics, and description from cached biotools.json for the TSV."""
+        data = self.metadata.get('biotools')
+        if not data: return
 
         # 1. Full EDAM Operations List
         full_operations = self._extract_edam_terms(data, 'function')
@@ -310,41 +346,22 @@ class Tool:
         description = data.get('description', '')
         self.validation_data['biotools_description_full'] = description
 
-    def _check_file_presence(self):
-        """Checks for the presence of the required metadata files and stores the result."""
-        
-        # Check for *.biocontainers.yaml
-        has_biocontainers = bool(list(self.folder_path.glob("*.biocontainers.yaml")))
-        self.validation_data['has_biocontainers_infos'] = has_biocontainers
-
-        # Check for *biotools.json
-        has_biotools = bool(list(self.folder_path.glob("*biotools.json")))
-        self.validation_data['has_biotools_infos'] = has_biotools
-
-        # Check for *.galaxy.json
-        has_galaxy = bool(list(self.folder_path.glob("*.galaxy.json")))
-        self.validation_data['has_galaxy_infos'] = has_galaxy
-
-
     # --- Filtering criteria checks ---
 
-    def check_criteria_1(self, metadata_pattern: str) -> bool:
-        """Check for EDAM operations or topics in the biotools.json file (matching TARGET_...)."""
-        json_files = list(self.folder_path.glob(metadata_pattern))
-        if not json_files: return False
-        json_path = json_files[0]
+    def check_criteria_1(self) -> bool:
+        """
+        Check for EDAM operations or topics in the cached biotools.json metadata.
+        (Optimized to use self.metadata['biotools'] instead of re-reading file)
+        """
+        data = self.metadata.get('biotools')
+        if not data: return False
         
-        try:
-            with open(json_path, 'r', encoding='utf-8') as f: data = json.load(f)
-        except Exception: return False
-
         # Check EDAM operations
         if 'function' in data and isinstance(data['function'], list):
             for func in data['function']:
                 if 'operation' in func and isinstance(func['operation'], list):
                     for operation in func['operation']:
                         if 'term' in operation and operation['term'] in TARGET_OPERATIONS:
-                            # Store the specific term that triggered the keep action
                             self.validation_data['EDAM_operation'] = operation['term'] 
                             return True
                             
@@ -352,51 +369,50 @@ class Tool:
         if 'topic' in data and isinstance(data['topic'], list):
             for topic in data['topic']:
                 if 'term' in topic and topic['term'] in TARGET_TOPICS:
-                    # Store the specific term that triggered the keep action
                     self.validation_data['EDAM_topics'] = topic['term']
                     return True
                             
         return False
 
     def check_criteria_2(self) -> bool:
-        """Check for strict acronyms or regex fragments in biocontainers YAML keywords."""
-        matches = list(self.folder_path.glob("*.biocontainers.yaml"))
-        if not matches: return False
+        """
+        Check for strict acronyms or regex fragments in biocontainers YAML keywords.
+        (Optimized to use self.metadata['biocontainers'] instead of re-reading file)
+        """
+        data = self.metadata.get('biocontainers')
+        if not data: return False
 
-        for yaml_file in matches:
-            try:
-                if yaml is None: raise ImportError()
-                with open(yaml_file, 'r', encoding='utf-8') as fh:
-                    data = yaml.safe_load(fh)
-            except Exception: continue
+        file_keywords = data.get('keywords')
+        if not file_keywords: return False
+        
+        candidates_with_case = [] 
+        if isinstance(file_keywords, list):
+            candidates_with_case = [str(x).strip() for x in file_keywords if x is not None]
+        elif isinstance(file_keywords, str):
+            candidates_with_case = [x.strip() for x in file_keywords.replace(';', ',').split(',') if x.strip()]
 
-            file_keywords = data.get('keywords')
-            if not file_keywords: continue
-            
-            candidates_with_case = [] 
-            if isinstance(file_keywords, list):
-                candidates_with_case = [str(x).strip() for x in file_keywords if x is not None]
-            elif isinstance(file_keywords, str):
-                candidates_with_case = [x.strip() for x in file_keywords.replace(';', ',').split(',') if x.strip()]
+        # 1. Strict acronyms check (Using case-insensitive keyword list for fast check)
+        # Note: STRICT_KEYWORDS list is ALL CAPS
+        for kw_case in candidates_with_case:
+            if kw_case.upper() in STRICT_KEYWORDS: 
+                self.validation_data['biocontainers_keywords'] = kw_case.lower()
+                return True
 
-            # 1. Strict acronyms check
-            for kw_case in candidates_with_case:
-                if kw_case.upper() in STRICT_KEYWORDS: 
-                    self.validation_data['biocontainers_keywords'] = kw_case.lower()
+        # 2. Regex checks
+        for kw_case in candidates_with_case:
+            kw_lower = kw_case.lower()
+            for pattern in COMPILED_FRAGMENT_PATTERNS:
+                if pattern.search(kw_lower): 
+                    self.validation_data['biocontainers_keywords'] = kw_lower
                     return True
-
-            # 2. Regex checks
-            for kw_case in candidates_with_case:
-                kw_lower = kw_case.lower()
-                for pattern in COMPILED_FRAGMENT_PATTERNS:
-                    if pattern.search(kw_lower): 
-                        self.validation_data['biocontainers_keywords'] = kw_lower
-                        return True
             
         return False
 
     def _search_keywords_in_content(self, content: str) -> str | None:
-        """Searches the given string content for fragment patterns or strict acronyms."""
+        """
+        Searches the given string content for fragment patterns (regex) or strict acronyms (pre-compiled regex).
+        (Optimized to use pre-compiled strict patterns)
+        """
         if not content: return None
         
         # 1. Regex checks (fragment patterns)
@@ -406,17 +422,20 @@ class Tool:
             if match:
                 return match.group(0)
                 
-        # 2. Strict acronym checks (word boundary search)
-        for strict_ref in STRICT_KEYWORDS: 
-            # Use regex for whole word match to avoid false positives (e.g., checking for 'MAG' doesn't match 'MAGNIFICENT')
-            regex_pattern = r'\b' + re.escape(strict_ref) + r'\b'
-            if re.search(regex_pattern, content):
-                return strict_ref.lower()
+        # 2. Strict acronym checks (word boundary search using pre-compiled patterns)
+        for strict_ref_upper, pattern in zip(STRICT_KEYWORDS, COMPILED_STRICT_PATTERNS): 
+            # Search case-sensitively using the pre-compiled pattern (e.g., matching 'MAG')
+            if pattern.search(content):
+                # Return the acronym in lowercase as the reason
+                return strict_ref_upper.lower()
                 
         return None
 
     def check_criteria_3(self) -> bool:
         """Check for keywords in file descriptions (biocontainers, biotools, galaxy)."""
+        
+        # populated during the single _load_all_metadata call.
+        
         match = self._search_keywords_in_content(self.biocontainers_description)
         if match:
             self.validation_data['biocontainers_description'] = match
@@ -434,21 +453,24 @@ class Tool:
 
         return False
 
-    def run_checks(self, metadata_pat: str) -> bool:
+    def run_checks(self) -> bool:
         """Runs the three filtering checks sequentially (stop at first match)."""
         print(f"\n-> Processing folder : {self.tool_id}")
 
-        if self.check_criteria_1(metadata_pat):
+        # Check 1: EDAM Terms (Highest Priority)
+        if self.check_criteria_1():
             print("  [KEPT] CHECK 1 PASSED (JSON Term found).")
             self.keep = True
             return True
         
+        # Check 2: YAML Keywords (Medium Priority)
         print("  [CHECK 2] Moving to secondary criterion (YAML Keywords)...")
         if self.check_criteria_2():
             print("  [KEPT] CHECK 2 PASSED.")
             self.keep = True
             return True
 
+        # Check 3: Descriptions (Lowest Priority)
         print("  [CHECK 3] Moving to tertiary criterion (File Descriptions)...")
         if self.check_criteria_3():
             print("  [KEPT] CHECK 3 PASSED.")
@@ -467,6 +489,7 @@ class ToolSet:
     """
     Manages a collection of Tool objects, runs the filtering logic, 
     and handles reporting/file operations.
+    (No significant changes needed here, as the logic was robust)
     """
     def __init__(self, root_dir: Path):
         self.root_dir = root_dir
@@ -497,11 +520,13 @@ class ToolSet:
         data = []
         if metadata_file.exists():
             try:
-                # Need to read content first in case the file was not cleaned up
+                # Read content first in case the file was not cleaned up
                 with open(metadata_file, 'r', encoding='utf-8') as f:
                     content = json.load(f)
                 if isinstance(content, list): data = content
-            except Exception: pass
+            except Exception: 
+                # If file exists but is corrupted, start fresh
+                pass 
         
         data.append(tool_data)
         
@@ -512,7 +537,7 @@ class ToolSet:
             print(f"  [META ERROR] Could not write metadata file ({metadata_file.name}) to {metadata_file.parent.name}/ : {e}")
 
 
-    def run_filtering(self, metadata_pat: str):
+    def run_filtering(self):
         self._prepare_output_dir(OUTPUT_DIR)
         subfolders_to_delete = []
 
@@ -522,11 +547,11 @@ class ToolSet:
         print(f"WARNING : Non-kept folders will be PERMANENTLY DELETED.")
 
         for item in self.root_dir.iterdir():
-            if item.is_dir() and item != OUTPUT_DIR:
+            if item.is_dir() and item.name != OUTPUT_DIR.name: # Ensure not to process the output directory
                 self.report_counts["total_folders"] += 1
                 
                 tool = Tool(item)
-                tool.run_checks(metadata_pat)
+                tool.run_checks() # Removed metadata_pat parameter
                 self.tools.append(tool)
                 
                 if tool.keep:
@@ -549,7 +574,7 @@ class ToolSet:
     def _finalize_operation(self, subfolders_to_delete: List[Path]):
         """Prints final stats and performs folder deletion."""
         total_deleted = len(subfolders_to_delete)
-        total_kept = self.report_counts['validated_filter_1'] + self.report_counts['validated_filter_2'] + self.report_counts['validated_filter_3']
+        total_kept = sum(self.report_counts[k] for k in ['validated_filter_1', 'validated_filter_2', 'validated_filter_3'])
 
         print("\n" + "="*50)
         print(f"Total subfolders found : {self.report_counts['total_folders']}")
@@ -602,7 +627,6 @@ if __name__ == "__main__":
     # 1. Directory checks
     if not RSEC_DIR.is_dir():
         print(f"ERROR: The directory to process 'content/rsec' was not found at the default location: '{RSEC_DIR}'")
-        print(f"Ensure you run the script from the 'micoreca' directory, and that the subfolder 'content/rsec' exists.")
         sys.exit(1)
         
     if not KEYWORDS_FILEPATH.is_file():
@@ -627,6 +651,8 @@ if __name__ == "__main__":
         TARGET_TOPICS = keywords_data["topics"]
         STRICT_KEYWORDS = keywords_data["stricts"] # Acronyms
         COMPILED_FRAGMENT_PATTERNS = keywords_data["compiled_fragments"] # Regex 
+        # NEW: Global assignment of pre-compiled strict patterns
+        COMPILED_STRICT_PATTERNS = keywords_data["compiled_stricts"] 
         
         print("\n--- LOADED CRITERIA ---")
         print(f"EDAM Operations: {TARGET_OPERATIONS}")
@@ -641,7 +667,7 @@ if __name__ == "__main__":
 
     # 4. Start filtering
     tool_set = ToolSet(ROOT_DIRECTORY)
-    tool_set.run_filtering(METADATA_FILE_PATTERN)
+    tool_set.run_filtering() # Removed METADATA_FILE_PATTERN argument
     
     # 5. Generate TSV summary after successful filtering
     print("\n--- Generating TSV Summary ---")
