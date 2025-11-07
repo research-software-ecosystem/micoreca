@@ -35,7 +35,7 @@ class Workflow:
         self.license = ""
         self.doi = ""
         self.projects: List[str] = []
-        self.keep = True
+        self.keep = None
         self.type = ""
         self.description = ""
 
@@ -180,11 +180,12 @@ class Workflow:
             return True
         return False
 
-    def update_status(self, wf: dict) -> None:
+    def update_status(self, wf_status: dict) -> None:
         """
         Update status from status table
         """
-        self.keep = wf["To keep"]
+        if isinstance(wf_status["To keep"], bool):
+            self.keep = wf_status["To keep"]
 
     def get_import_link(self) -> str:
         """
@@ -277,7 +278,11 @@ class Workflows:
         for w in self.workflows:
             if w.link in status:
                 w.update_status(status[w.link])
-            if w.test_edam_terms(tags["edam"]):
+            # If workflow status is True, skip test and keep it
+            if w.keep:
+                to_keep_wf.append(w)
+                w.filtered_on = status[w.link]["Filtered on"]
+            elif w.test_edam_terms(tags["edam"]):
                 to_keep_wf.append(w)
             elif w.test_tags(tags):
                 to_keep_wf.append(w)
@@ -293,8 +298,9 @@ class Workflows:
         """
         curated_wfs = []
         for w in self.workflows:
-            if w.link in status and status[w.link]["To keep"]:
+            if w.link in status:
                 w.update_status(status[w.link])
+            if w.keep:
                 curated_wfs.append(w)
         self.workflows = curated_wfs
 
@@ -385,7 +391,8 @@ if __name__ == "__main__":
     filterwf.add_argument(
         "--tags",
         "-c",
-        help="Path to a YAML file with WorkflowHub tags to keep in the extraction",
+        required=True,
+        help="Path to a YAML file with the EDAM terms and keywords for the filtering",
     )
     filterwf.add_argument(
         "--status",
@@ -455,6 +462,7 @@ if __name__ == "__main__":
                 "Creators",
                 "Creation time",
                 "Update time",
+                "Filtered on",
                 "To keep",
             ],
         )
