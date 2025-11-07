@@ -1,0 +1,343 @@
+{
+    "Description": "\"Bakta is a tool for the rapid & standardized annotation of bacterial genomes and plasmids from both isolates and MAGs.It provides dbxref-rich and sORF-including annotations in machine-readable JSON & bioinformatics standard file formats for automatic downstream analysis.\"",
+    "EDAM_operations": [
+        "Genome annotation"
+    ],
+    "EDAM_reduced_operations": [
+        "Genome annotation"
+    ],
+    "EDAM_reduced_topics": [
+        "Genomics",
+        "Sequence analysis",
+        "Bioinformatics"
+    ],
+    "EDAM_topics": [
+        "Genomics",
+        "Sequence analysis",
+        "Bioinformatics"
+    ],
+    "Homepage": "https://github.com/oschwengers/bakta",
+    "Latest_suite_conda_package_version": "1.11.4",
+    "Number_of_tools_on_APOSTL": 0,
+    "Number_of_tools_on_BioBix": 0,
+    "Number_of_tools_on_CIRM-CFBP": 0,
+    "Number_of_tools_on_ChemFlow": 0,
+    "Number_of_tools_on_Coloc-stats": 0,
+    "Number_of_tools_on_CorGAT": 0,
+    "Number_of_tools_on_CropGalaxy": 0,
+    "Number_of_tools_on_Dintor": 0,
+    "Number_of_tools_on_FreeBioinfo": 0,
+    "Number_of_tools_on_GASLINI": 0,
+    "Number_of_tools_on_Galaxy@AuBi": 1,
+    "Number_of_tools_on_Galaxy@Pasteur": 0,
+    "Number_of_tools_on_GalaxyTrakr": 1,
+    "Number_of_tools_on_Genomic_Hyperbrowser": 0,
+    "Number_of_tools_on_IPK_Galaxy_Blast_Suite": 0,
+    "Number_of_tools_on_ImmPort_Galaxy": 0,
+    "Number_of_tools_on_InteractoMIX": 0,
+    "Number_of_tools_on_MISSISSIPPI": 0,
+    "Number_of_tools_on_Mandoiu_Lab": 0,
+    "Number_of_tools_on_MiModD_NacreousMap": 0,
+    "Number_of_tools_on_Oqtans": 0,
+    "Number_of_tools_on_Palfinder": 0,
+    "Number_of_tools_on_PepSimili": 0,
+    "Number_of_tools_on_PhagePromotor": 0,
+    "Number_of_tools_on_UseGalaxy.be": 0,
+    "Number_of_tools_on_UseGalaxy.cz": 1,
+    "Number_of_tools_on_UseGalaxy.eu": 1,
+    "Number_of_tools_on_UseGalaxy.fr": 1,
+    "Number_of_tools_on_UseGalaxy.no": 1,
+    "Number_of_tools_on_UseGalaxy.org.au": 1,
+    "Number_of_tools_on_UseGalaxy.org_(Main)": 1,
+    "Number_of_tools_on_Viral_Variant_Visualizer_(VVV)": 0,
+    "Related_Tutorials": [
+        "https://training.galaxyproject.org/training-material/topics/genome-annotation/tutorials/amr-gene-detection/tutorial.html",
+        "https://training.galaxyproject.org/training-material/topics/genome-annotation/tutorials/bacterial-genome-annotation/tutorial.html"
+    ],
+    "Related_Workflows": [
+        {
+            "create_time": "2025-06-02",
+            "latest_version": 1,
+            "link": "https://workflowhub.eu/workflows/1513?version=1",
+            "name": "Bacterial Genome Annotation"
+        },
+        {
+            "create_time": "2025-06-02",
+            "latest_version": 1,
+            "link": "https://workflowhub.eu/workflows/1488?version=1",
+            "name": "mrsa AMR gene detection"
+        },
+        {
+            "create_time": "2025-06-22",
+            "latest_version": 3,
+            "link": "https://workflowhub.eu/workflows/1352?version=3",
+            "name": "mags-building/main"
+        },
+        {
+            "create_time": "2025-07-31",
+            "latest_version": 12,
+            "link": "https://workflowhub.eu/workflows/1050?version=12",
+            "name": "bacterial_genome_annotation/main"
+        },
+        {
+            "create_time": "2024-01-25",
+            "latest_version": 6,
+            "link": "https://usegalaxy.fr/published/workflow?id=7964ddc68853458f",
+            "name": "Bacterial genome annotation"
+        },
+        {
+            "create_time": "2025-07-31",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=fd63b9884fda75b6",
+            "name": "bacterial_genome_annotation (release v1.1.11)"
+        },
+        {
+            "create_time": "2025-04-09",
+            "latest_version": 7,
+            "link": "https://usegalaxy.eu/published/workflow?id=29c565eff0080e42",
+            "name": "ICE transfert analysis"
+        },
+        {
+            "create_time": "2025-06-20",
+            "latest_version": 11,
+            "link": "https://usegalaxy.eu/published/workflow?id=4f9f7065975b3f97",
+            "name": "MCT 5D T90-2"
+        },
+        {
+            "create_time": "2025-07-17",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=2c1a6da84d891cf2",
+            "name": "bacterial_genome_annotation (release v1.1.10)"
+        },
+        {
+            "create_time": "2025-07-01",
+            "latest_version": 6,
+            "link": "https://usegalaxy.eu/published/workflow?id=968f0ac2617aa524",
+            "name": "Complete Genome Assembly "
+        },
+        {
+            "create_time": "2025-06-19",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=b1afc8d1e81fc904",
+            "name": "bacterial_genome_annotation (release v1.1.9)"
+        },
+        {
+            "create_time": "2024-09-19",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=4a218fb93d78ba67",
+            "name": "bacterial_genome_annotation (release v1.1.3)"
+        },
+        {
+            "create_time": "2024-09-19",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=bcd50e655809cfcb",
+            "name": "bacterial_genome_annotation (release v1.1.2)"
+        },
+        {
+            "create_time": "2024-09-19",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=36ea584e0f60893e",
+            "name": "bacterial_genome_annotation (release v1.1.1)"
+        },
+        {
+            "create_time": "2024-09-19",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=8792eaecb69fbc26",
+            "name": "bacterial_genome_annotation (release v1.1)"
+        },
+        {
+            "create_time": "2024-09-19",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=61948fcaefa1418a",
+            "name": "bacterial_genome_annotation (release v1.0)"
+        },
+        {
+            "create_time": "2024-09-26",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=d8db0b2e30370b84",
+            "name": "bacterial_genome_annotation (release v1.1.4)"
+        },
+        {
+            "create_time": "2024-10-17",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=a18aed4b03ffd27e",
+            "name": "bacterial_genome_annotation (release v1.1.6)"
+        },
+        {
+            "create_time": "2024-10-17",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=dfb8e0f3c534000e",
+            "name": "bacterial_genome_annotation (release v1.1.5)"
+        },
+        {
+            "create_time": "2024-10-31",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=6b69ab27c565257b",
+            "name": "bacterial_genome_annotation (release v1.1.7)"
+        },
+        {
+            "create_time": "2025-03-12",
+            "latest_version": 3,
+            "link": "https://usegalaxy.eu/published/workflow?id=cc59ae1a9878942c",
+            "name": "Metagenomic Genome Annotation_Bakta"
+        },
+        {
+            "create_time": "2024-09-27",
+            "latest_version": 37,
+            "link": "https://usegalaxy.eu/published/workflow?id=7ecd92cb382d8168",
+            "name": "MAGs individual workflow v1.9"
+        },
+        {
+            "create_time": "2024-07-31",
+            "latest_version": 14,
+            "link": "https://usegalaxy.eu/published/workflow?id=fde21b5f5c169114",
+            "name": "[WGSBAC] Salmonella characterization from short-reads WGS data"
+        },
+        {
+            "create_time": "2024-08-02",
+            "latest_version": 5,
+            "link": "https://usegalaxy.eu/published/workflow?id=309fc4fc2e0da89c",
+            "name": "[WGSBAC] Brucella characterization from short-reads WGS data"
+        },
+        {
+            "create_time": "2024-01-25",
+            "latest_version": 3,
+            "link": "https://usegalaxy.eu/published/workflow?id=3f5fe28793ed0c6c",
+            "name": "Bacterial genome annotation (imported from uploaded file)"
+        },
+        {
+            "create_time": "2025-09-01",
+            "latest_version": 0,
+            "link": "https://usegalaxy.org/published/workflow?id=9c0fbd9f51a9857f",
+            "name": "daniel_workflow2"
+        },
+        {
+            "create_time": "2025-07-22",
+            "latest_version": 1,
+            "link": "https://usegalaxy.org/published/workflow?id=562bcaa9b4d2e8a4",
+            "name": "Vnat_WorkFlow_Basic"
+        },
+        {
+            "create_time": "2025-07-31",
+            "latest_version": 1,
+            "link": "https://usegalaxy.org/published/workflow?id=49da012e2839c046",
+            "name": "bacterial_genome_annotation (release v1.1.11)"
+        },
+        {
+            "create_time": "2025-07-22",
+            "latest_version": 3,
+            "link": "https://usegalaxy.org/published/workflow?id=00596e862edb23f2",
+            "name": "Bioinformatics Pipeline for Nanopore Sequencing Analysis"
+        },
+        {
+            "create_time": "2025-07-22",
+            "latest_version": 0,
+            "link": "https://usegalaxy.org/published/workflow?id=69d8863d40524120",
+            "name": "Vnat_20250721"
+        },
+        {
+            "create_time": "2025-07-22",
+            "latest_version": 4,
+            "link": "https://usegalaxy.org/published/workflow?id=80ac6adead9f97d8",
+            "name": "Workflow without bowtie quality=10"
+        },
+        {
+            "create_time": "2025-07-24",
+            "latest_version": 3,
+            "link": "https://usegalaxy.org/published/workflow?id=7dd6e4150bb81ad1",
+            "name": "Bioinformatics workflow-Ava Kuey"
+        },
+        {
+            "create_time": "2025-07-17",
+            "latest_version": 1,
+            "link": "https://usegalaxy.org/published/workflow?id=649cdc14757e5755",
+            "name": "bacterial_genome_annotation (release v1.1.10)"
+        },
+        {
+            "create_time": "2025-06-19",
+            "latest_version": 1,
+            "link": "https://usegalaxy.org/published/workflow?id=3940186d02245b1d",
+            "name": "bacterial_genome_annotation (release v1.1.9)"
+        },
+        {
+            "create_time": "2025-01-15",
+            "latest_version": 3,
+            "link": "https://usegalaxy.org/published/workflow?id=547f86db467bf620",
+            "name": "Genome Assembly of MRSA using Oxford Nanopore MinION Data (imported from uploaded file)"
+        },
+        {
+            "create_time": "2024-09-26",
+            "latest_version": 1,
+            "link": "https://usegalaxy.org/published/workflow?id=8cb8a588a0495cfa",
+            "name": "bacterial_genome_annotation (release v1.1.4)"
+        },
+        {
+            "create_time": "2024-09-26",
+            "latest_version": 1,
+            "link": "https://usegalaxy.org/published/workflow?id=04c5ea133de3204c",
+            "name": "bacterial_genome_annotation (release v1.1.3)"
+        },
+        {
+            "create_time": "2024-10-03",
+            "latest_version": 1,
+            "link": "https://usegalaxy.org/published/workflow?id=993534c11310a207",
+            "name": "bacterial_genome_annotation (release v1.1.5)"
+        },
+        {
+            "create_time": "2024-10-17",
+            "latest_version": 1,
+            "link": "https://usegalaxy.org/published/workflow?id=d2a5f6a5181aada5",
+            "name": "bacterial_genome_annotation (release v1.1.6)"
+        },
+        {
+            "create_time": "2024-10-31",
+            "latest_version": 1,
+            "link": "https://usegalaxy.org/published/workflow?id=4f8bdd61c524b901",
+            "name": "bacterial_genome_annotation (release v1.1.7)"
+        },
+        {
+            "create_time": "2025-05-06",
+            "latest_version": 8,
+            "link": "https://usegalaxy.org.au/published/workflow?id=b6bad1f167257248",
+            "name": "DMarkGlasgow Genome Assembly Annotation"
+        }
+    ],
+    "Suite_ID": "bakta",
+    "Suite_conda_package": "bakta",
+    "Suite_first_commit_date": "2022-09-01",
+    "Suite_owner": "iuc",
+    "Suite_parsed_folder": "https://github.com/galaxyproject/tools-iuc/tree/main/tools/bakta",
+    "Suite_runs_(last_5_years)_(usegalaxy.eu)": 67465,
+    "Suite_runs_(last_5_years)_(usegalaxy.fr)": 3664,
+    "Suite_runs_(last_5_years)_(usegalaxy.org)": 14351,
+    "Suite_runs_(last_5_years)_(usegalaxy.org.au)": 33530,
+    "Suite_runs_(last_5_years)_on_main_servers": 119010,
+    "Suite_runs_(usegalaxy.eu)": 67465,
+    "Suite_runs_(usegalaxy.fr)": 3664,
+    "Suite_runs_(usegalaxy.org)": 14351,
+    "Suite_runs_(usegalaxy.org.au)": 33530,
+    "Suite_runs_on_main_servers": 119010,
+    "Suite_source": "https://github.com/galaxyproject/tools-iuc/tree/main/tools/bakta",
+    "Suite_users_(last_5_years)_(usegalaxy.eu)": 1503,
+    "Suite_users_(last_5_years)_(usegalaxy.fr)": 84,
+    "Suite_users_(last_5_years)_(usegalaxy.org)": 1017,
+    "Suite_users_(last_5_years)_(usegalaxy.org.au)": 399,
+    "Suite_users_(last_5_years)_on_main_servers": 3003,
+    "Suite_users_(usegalaxy.eu)": 1503,
+    "Suite_users_(usegalaxy.fr)": 84,
+    "Suite_users_(usegalaxy.org)": 1017,
+    "Suite_users_(usegalaxy.org.au)": 399,
+    "Suite_users_on_main_servers": 3003,
+    "Suite_version": "1.9.4",
+    "Suite_version_status": "To update",
+    "ToolShed_categories": [
+        "Sequence Analysis"
+    ],
+    "Tool_IDs": [
+        "bakta"
+    ],
+    "biii_ID": null,
+    "bio.tool_ID": "bakta",
+    "bio.tool_description": "Rapid & standardized annotation of bacterial genomes, MAGs & plasmids",
+    "bio.tool_name": "Bakta"
+}

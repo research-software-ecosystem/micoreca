@@ -1,0 +1,42 @@
+about:
+  description: This package calculates metrics which quantify the level of similarity
+    between ChIP-Seq profiles. More specifically, the package implements six pseudometrics
+    specialized in pattern similarity detection in ChIP-Seq profiles.
+  home: https://bioconductor.org/packages/3.20/bioc/html/similaRpeak.html
+  license: Artistic-2.0
+  summary: Metrics to estimate a level of similarity between two ChIP-Seq profiles
+build:
+  noarch: generic
+  number: 0
+  rpaths:
+  - lib/R/lib/
+  - lib/
+  run_exports: None
+extra:
+  identifiers:
+  - biotools:similarpeak
+  - doi:10.1371/journal.pcbi.1004751
+  parent_recipe:
+    name: bioconductor-similarpeak
+    path: recipes/bioconductor-similarpeak
+    version: 1.12.0
+package:
+  name: bioconductor-similarpeak
+  version: 1.38.0
+requirements:
+  host:
+  - r-base
+  - r-r6 >=2.0
+  run:
+  - r-base
+  - r-r6 >=2.0
+source:
+  md5: 326a9c389d85c0e026cad982ae4aa5cd
+  url:
+  - https://bioconductor.org/packages/3.20/bioc/src/contrib/similaRpeak_1.38.0.tar.gz
+  - https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/similaRpeak/similaRpeak_1.38.0.tar.gz
+  - https://bioarchive.galaxyproject.org/similaRpeak_1.38.0.tar.gz
+  - https://depot.galaxyproject.org/software/bioconductor-similarpeak/bioconductor-similarpeak_1.38.0_src_all.tar.gz
+test:
+  commands:
+  - $R -e "library('similaRpeak')"

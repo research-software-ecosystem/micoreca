@@ -1,0 +1,48 @@
+about:
+  description: MS-based metabolomics data processing and compound annotation pipeline.
+  home: https://bioconductor.org/packages/3.20/bioc/html/metaMS.html
+  license: GPL (>= 2)
+  license_file: /lib/R/share/licenses/GPL-3
+  summary: MS-based metabolomics annotation pipeline
+build:
+  noarch: generic
+  number: 0
+  rpaths:
+  - lib/R/lib/
+  - lib/
+  run_exports: None
+extra:
+  identifiers:
+  - biotools:metams
+  parent_recipe:
+    name: bioconductor-metams
+    path: recipes/bioconductor-metams
+    version: 1.18.0
+package:
+  name: bioconductor-metams
+  version: 1.42.0
+requirements:
+  host:
+  - bioconductor-biocgenerics >=0.52.0,<0.53.0
+  - bioconductor-camera >=1.62.0,<1.63.0
+  - bioconductor-xcms >=4.4.0,<4.5.0
+  - r-base
+  - r-matrix
+  - r-robustbase
+  run:
+  - bioconductor-biocgenerics >=0.52.0,<0.53.0
+  - bioconductor-camera >=1.62.0,<1.63.0
+  - bioconductor-xcms >=4.4.0,<4.5.0
+  - r-base
+  - r-matrix
+  - r-robustbase
+source:
+  md5: f83ed753222affdaaa30a48cdd250c76
+  url:
+  - https://bioconductor.org/packages/3.20/bioc/src/contrib/metaMS_1.42.0.tar.gz
+  - https://bioconductor.org/packages/3.20/bioc/src/contrib/Archive/metaMS/metaMS_1.42.0.tar.gz
+  - https://bioarchive.galaxyproject.org/metaMS_1.42.0.tar.gz
+  - https://depot.galaxyproject.org/software/bioconductor-metams/bioconductor-metams_1.42.0_src_all.tar.gz
+test:
+  commands:
+  - $R -e "library('metaMS')"

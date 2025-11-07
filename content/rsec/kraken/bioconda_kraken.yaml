@@ -1,0 +1,51 @@
+about:
+  dev_url: https://github.com/DerrickWood/kraken
+  doc_url: https://ccb.jhu.edu/software/kraken
+  home: https://ccb.jhu.edu/software/kraken
+  license: GPL-3.0-or-later
+  license_family: GPL3
+  license_file: LICENSE
+  summary: Kraken is a system for assigning taxonomic labels to short DNA sequences,
+    usually obtained through metagenomic studies.
+build:
+  number: 12
+  run_exports:
+  - None
+extra:
+  additional-platforms:
+  - linux-aarch64
+  - osx-arm64
+  identifiers:
+  - biotools:kraken
+  - doi:10.1186/gb-2014-15-3-r46
+package:
+  name: kraken
+  version: 1.1.1
+requirements:
+  build:
+  - make
+  - perl
+  - None
+  - pkg-config
+  - clangdev
+  host:
+  - perl
+  - llvm-openmp
+  run:
+  - kmer-jellyfish 1.*
+  - perl
+  - tar
+  - rsync
+  - wget
+  - llvm-openmp
+source:
+  sha256: 73e48f40418f92b8cf036ca1da727ca3941da9b78d4c285b81ba3267326ac4ee
+  url: https://github.com/DerrickWood/kraken/archive/v1.1.1.tar.gz
+test:
+  commands:
+  - kraken --version
+  - kraken-build --version
+  - kraken-filter --version
+  - kraken-mpa-report --version
+  - kraken-report --version
+  - kraken-translate --version

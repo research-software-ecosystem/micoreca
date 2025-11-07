@@ -1,0 +1,239 @@
+{
+    "Description": "MetaPhlAn for Metagenomic Phylogenetic Analysis",
+    "EDAM_operations": [
+        "Taxonomic classification",
+        "Taxonomic classification"
+    ],
+    "EDAM_reduced_operations": [
+        "Taxonomic classification",
+        "Taxonomic classification"
+    ],
+    "EDAM_reduced_topics": [
+        "Metagenomics",
+        "Phylogenomics"
+    ],
+    "EDAM_topics": [
+        "Metagenomics",
+        "Phylogenomics"
+    ],
+    "Homepage": "https://github.com/biobakery/MetaPhlAn",
+    "Latest_suite_conda_package_version": "4.2.4",
+    "Number_of_tools_on_APOSTL": 0,
+    "Number_of_tools_on_BioBix": 0,
+    "Number_of_tools_on_CIRM-CFBP": 0,
+    "Number_of_tools_on_ChemFlow": 0,
+    "Number_of_tools_on_Coloc-stats": 0,
+    "Number_of_tools_on_CorGAT": 0,
+    "Number_of_tools_on_CropGalaxy": 0,
+    "Number_of_tools_on_Dintor": 0,
+    "Number_of_tools_on_FreeBioinfo": 0,
+    "Number_of_tools_on_GASLINI": 0,
+    "Number_of_tools_on_Galaxy@AuBi": 4,
+    "Number_of_tools_on_Galaxy@Pasteur": 0,
+    "Number_of_tools_on_GalaxyTrakr": 4,
+    "Number_of_tools_on_Genomic_Hyperbrowser": 0,
+    "Number_of_tools_on_IPK_Galaxy_Blast_Suite": 0,
+    "Number_of_tools_on_ImmPort_Galaxy": 0,
+    "Number_of_tools_on_InteractoMIX": 0,
+    "Number_of_tools_on_MISSISSIPPI": 0,
+    "Number_of_tools_on_Mandoiu_Lab": 0,
+    "Number_of_tools_on_MiModD_NacreousMap": 0,
+    "Number_of_tools_on_Oqtans": 0,
+    "Number_of_tools_on_Palfinder": 0,
+    "Number_of_tools_on_PepSimili": 0,
+    "Number_of_tools_on_PhagePromotor": 0,
+    "Number_of_tools_on_UseGalaxy.be": 1,
+    "Number_of_tools_on_UseGalaxy.cz": 4,
+    "Number_of_tools_on_UseGalaxy.eu": 4,
+    "Number_of_tools_on_UseGalaxy.fr": 4,
+    "Number_of_tools_on_UseGalaxy.no": 4,
+    "Number_of_tools_on_UseGalaxy.org.au": 2,
+    "Number_of_tools_on_UseGalaxy.org_(Main)": 1,
+    "Number_of_tools_on_Viral_Variant_Visualizer_(VVV)": 0,
+    "Related_Tutorials": [
+        "https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/metatranscriptomics/tutorial.html",
+        "https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/metatranscriptomics-short/tutorial.html",
+        "https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/taxonomic-profiling/tutorial.html"
+    ],
+    "Related_Workflows": [
+        {
+            "create_time": "2025-06-23",
+            "latest_version": 2,
+            "link": "https://workflowhub.eu/workflows/1466?version=2",
+            "name": "Metatranscriptomics analysis using microbiome RNA-seq data"
+        },
+        {
+            "create_time": "2025-06-23",
+            "latest_version": 2,
+            "link": "https://workflowhub.eu/workflows/1451?version=2",
+            "name": "Metatranscriptomics analysis using microbiome RNA-seq data - Workflow 2: Community profile"
+        },
+        {
+            "create_time": "2025-06-02",
+            "latest_version": 1,
+            "link": "https://workflowhub.eu/workflows/1470?version=1",
+            "name": "Taxonomic Profiling and Visualization of Metagenomic Data"
+        },
+        {
+            "create_time": "2023-10-26",
+            "latest_version": 1,
+            "link": "https://workflowhub.eu/workflows/624?version=1",
+            "name": "Analyses of shotgun metagenomics data with MetaPhlAn2"
+        },
+        {
+            "create_time": "2025-06-16",
+            "latest_version": 4,
+            "link": "https://usegalaxy.fr/published/workflow?id=c4f6062e51d0f45e",
+            "name": "Metatranscriptomics analysis using microbiome RNA-seq data"
+        },
+        {
+            "create_time": "2025-06-16",
+            "latest_version": 1,
+            "link": "https://usegalaxy.fr/published/workflow?id=09e8293456ee6d99",
+            "name": "Metatranscriptomics analysis using microbiome RNA-seq data - Workflow 2: Community profile"
+        },
+        {
+            "create_time": "2024-12-20",
+            "latest_version": 17,
+            "link": "https://usegalaxy.eu/published/workflow?id=cb2df493f5e334f7",
+            "name": "Metagenomic Taxonomy and Functional Analysis"
+        },
+        {
+            "create_time": "2023-06-30",
+            "latest_version": 16,
+            "link": "https://usegalaxy.eu/published/workflow?id=05f5f040337786bf",
+            "name": " pAllori ASiam Community Profile MT"
+        },
+        {
+            "create_time": "2025-03-29",
+            "latest_version": 8,
+            "link": "https://usegalaxy.eu/published/workflow?id=39d36a7ce0ef268d",
+            "name": "Taxonomic Profiling and Visualization of Metagenomic Data (Updated)"
+        },
+        {
+            "create_time": "2025-01-28",
+            "latest_version": 0,
+            "link": "https://usegalaxy.eu/published/workflow?id=9472be79da012999",
+            "name": "Workflow constructed from history 'Data Analysis Presentation'"
+        },
+        {
+            "create_time": "2025-01-24",
+            "latest_version": 0,
+            "link": "https://usegalaxy.eu/published/workflow?id=87cc0cd143a12c41",
+            "name": "metatranscriptomics and RNA-seq"
+        },
+        {
+            "create_time": "2025-01-22",
+            "latest_version": 7,
+            "link": "https://usegalaxy.eu/published/workflow?id=5f0faac42b0a5062",
+            "name": "metatranscriptomics and RNA-seq"
+        },
+        {
+            "create_time": "2024-11-21",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=b14845359b702444",
+            "name": "Metagenomic_Workflow-Taxonomy_and_functional_analysis_with_alpha_diversity_mesure"
+        },
+        {
+            "create_time": "2024-08-11",
+            "latest_version": 0,
+            "link": "https://usegalaxy.eu/published/workflow?id=79b4ae4403772098",
+            "name": "Microbiome workflow"
+        },
+        {
+            "create_time": "2024-01-23",
+            "latest_version": 0,
+            "link": "https://usegalaxy.eu/published/workflow?id=fdca6c9d394986bf",
+            "name": "Workflow constructed from history 'metatranscriptomics and rna seq'"
+        },
+        {
+            "create_time": "2023-12-14",
+            "latest_version": 0,
+            "link": "https://usegalaxy.eu/published/workflow?id=4f0daf8e9dd54127",
+            "name": "Taxonomic Profiling and Visualization of Metagenomic Data"
+        },
+        {
+            "create_time": "2022-03-30",
+            "latest_version": 3,
+            "link": "https://usegalaxy.eu/published/workflow?id=4f21205e71cabd37",
+            "name": "2.Community Profile"
+        },
+        {
+            "create_time": "2022-03-30",
+            "latest_version": 5,
+            "link": "https://usegalaxy.eu/published/workflow?id=21a17d6c473a88c0",
+            "name": "6.merged_samples_functional_analysis"
+        },
+        {
+            "create_time": "2022-05-24",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=4d32b1b3ac0a7161",
+            "name": "metatranscriptmoics"
+        },
+        {
+            "create_time": "2022-05-24",
+            "latest_version": 2,
+            "link": "https://usegalaxy.eu/published/workflow?id=713a5485e2007f90",
+            "name": "merged results"
+        },
+        {
+            "create_time": "2021-06-22",
+            "latest_version": 14,
+            "link": "https://usegalaxy.eu/published/workflow?id=a8f829deb69b30ab",
+            "name": "Taxonomic and functional community profiling of raw metagenomic shotgun data workflow"
+        },
+        {
+            "create_time": "2021-05-25",
+            "latest_version": 2,
+            "link": "https://usegalaxy.eu/published/workflow?id=19de5cbae7f48103",
+            "name": "Metatranscriptomcis-WF2: Community Profile"
+        },
+        {
+            "create_time": "2023-06-06",
+            "latest_version": 125,
+            "link": "https://usegalaxy.org.au/published/workflow?id=6b7e565258a9da2a",
+            "name": "analyses-of-shotgun-metagenomics-data-with-metaphlan-v2 "
+        }
+    ],
+    "Suite_ID": "metaphlan",
+    "Suite_conda_package": "metaphlan",
+    "Suite_first_commit_date": "2021-03-11",
+    "Suite_owner": "iuc",
+    "Suite_parsed_folder": "https://github.com/galaxyproject/tools-iuc/tree/main/tools/metaphlan",
+    "Suite_runs_(last_5_years)_(usegalaxy.eu)": 30934,
+    "Suite_runs_(last_5_years)_(usegalaxy.fr)": 211,
+    "Suite_runs_(last_5_years)_(usegalaxy.org)": 20021,
+    "Suite_runs_(last_5_years)_(usegalaxy.org.au)": 6347,
+    "Suite_runs_(last_5_years)_on_main_servers": 57513,
+    "Suite_runs_(usegalaxy.eu)": 31014,
+    "Suite_runs_(usegalaxy.fr)": 211,
+    "Suite_runs_(usegalaxy.org)": 20021,
+    "Suite_runs_(usegalaxy.org.au)": 6347,
+    "Suite_runs_on_main_servers": 57593,
+    "Suite_source": "https://github.com/galaxyproject/tools-iuc/tree/main/tools/metaphlan",
+    "Suite_users_(last_5_years)_(usegalaxy.eu)": 1552,
+    "Suite_users_(last_5_years)_(usegalaxy.fr)": 28,
+    "Suite_users_(last_5_years)_(usegalaxy.org)": 1122,
+    "Suite_users_(last_5_years)_(usegalaxy.org.au)": 314,
+    "Suite_users_(last_5_years)_on_main_servers": 3016,
+    "Suite_users_(usegalaxy.eu)": 1552,
+    "Suite_users_(usegalaxy.fr)": 28,
+    "Suite_users_(usegalaxy.org)": 1122,
+    "Suite_users_(usegalaxy.org.au)": 314,
+    "Suite_users_on_main_servers": 3016,
+    "Suite_version": "4.1.1",
+    "Suite_version_status": "To update",
+    "ToolShed_categories": [
+        "Metagenomics"
+    ],
+    "Tool_IDs": [
+        "customize_metaphlan_database",
+        "extract_metaphlan_database",
+        "merge_metaphlan_tables",
+        "metaphlan"
+    ],
+    "biii_ID": null,
+    "bio.tool_ID": "metaphlan",
+    "bio.tool_description": "Computational tool for profiling the composition of microbial communities from metagenomic shotgun sequencing data.",
+    "bio.tool_name": "MetaPhlAn"
+}

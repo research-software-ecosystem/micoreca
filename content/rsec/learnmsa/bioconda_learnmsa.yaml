@@ -1,0 +1,54 @@
+about:
+  dev_url: https://github.com/Gaius-Augustus/learnMSA
+  home: https://github.com/Gaius-Augustus/learnMSA
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE.md
+  summary: 'learnMSA: Learning and Aligning large Protein Families'
+build:
+  entry_points:
+  - learnMSA = learnMSA.run:run_main
+  noarch: python
+  number: 0
+  run_exports:
+  - None
+  script: -m pip install . --no-deps --no-build-isolation --no-cache-dir -vvv
+extra:
+  identifiers:
+  - doi:10.1093/gigascience/giac104
+  - biotools:learnMSA
+  recipe-maintainers:
+  - felbecker
+package:
+  name: learnmsa
+  version: 2.0.13
+requirements:
+  host:
+  - pip
+  - python =3.12
+  - setuptools
+  run:
+  - logomaker
+  - networkx
+  - seaborn
+  - python =3.12
+  - tensorflow =2.18
+  - biopython >=1.69
+  - pyfamsa
+  - transformers
+  - imageio
+  - sentencepiece
+  - tf-keras =2.18
+  - pytorch =2.6
+  - mmseqs2
+source:
+  sha256: b625e0a424ff581455e14e7f535d16381e0939afd04ed6660207017aa140cce9
+  url: https://pypi.io/packages/source/l/learnMSA/learnmsa-2.0.13.tar.gz
+test:
+  commands:
+  - learnMSA --help
+  imports:
+  - learnMSA
+  - learnMSA.msa_hmm
+  - learnMSA.protein_language_models
+  - learnMSA.run

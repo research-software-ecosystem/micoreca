@@ -1,0 +1,175 @@
+[
+    {
+        "@id": "https://openebench.bsc.es/monitor/metrics/biotools:likeltd:6.3.0/lib/sites.google.com",
+        "@license": "https://creativecommons.org/licenses/by/4.0/",
+        "@nmsp": "biotools",
+        "@type": "metrics",
+        "deprecated": true,
+        "distribution": {
+            "binaries": {
+                "freeness": null,
+                "registration": null
+            },
+            "packages": null,
+            "source_packages": true,
+            "sourcecode": {
+                "free": true,
+                "interpreted": true,
+                "license": false,
+                "public": true,
+                "readme": false,
+                "repository": {
+                    "anonymous": true,
+                    "online": true
+                }
+            }
+        },
+        "project": {
+            "build": {},
+            "deployment": {},
+            "documentation": {
+                "manual": true,
+                "training_material": true
+            },
+            "license": {
+                "open_source": true,
+                "osi": true
+            },
+            "publications": [
+                {
+                    "entries": [
+                        {
+                            "cit_count": 0,
+                            "citations": [],
+                            "doi": "10.1515/sagmb-2016-0038",
+                            "pmid": "27416618",
+                            "ref_count": 24,
+                            "refs": [
+                                {
+                                    "count": 1,
+                                    "year": "1950"
+                                },
+                                {
+                                    "count": 1,
+                                    "year": "1993"
+                                },
+                                {
+                                    "count": 1,
+                                    "year": "1994"
+                                },
+                                {
+                                    "count": 1,
+                                    "year": "2000"
+                                },
+                                {
+                                    "count": 1,
+                                    "year": "2006"
+                                },
+                                {
+                                    "count": 1,
+                                    "year": "2009"
+                                },
+                                {
+                                    "count": 1,
+                                    "year": "2011"
+                                },
+                                {
+                                    "count": 2,
+                                    "year": "2008"
+                                },
+                                {
+                                    "count": 2,
+                                    "year": "2016"
+                                },
+                                {
+                                    "count": 4,
+                                    "year": "2014"
+                                },
+                                {
+                                    "count": 4,
+                                    "year": "2015"
+                                },
+                                {
+                                    "count": 5,
+                                    "year": "2013"
+                                }
+                            ],
+                            "title": "Evaluation of low-template DNA profiles using peak heights.",
+                            "year": 2016
+                        }
+                    ]
+                }
+            ],
+            "readme": false,
+            "summary": {
+                "description": true
+            },
+            "website": {
+                "bioschemas": false,
+                "copyright": false,
+                "https": true,
+                "license": false,
+                "operational": 200,
+                "redirects": [
+                    {
+                        "status": 302,
+                        "url": "https://accounts.google.com/InteractiveLogin?continue=https://sites.google.com/site/baldingstatisticalgenetics/&followup=https://sites.google.com/site/baldingstatisticalgenetics/&osid=1&passive=1209600&dsh=S1494340055:1761985617820585&ifkv=ARESoU1Z_XsxdH6pHGLg6KyyjjKTR9Tiwj-leUqMq_EtcvZiqNDFnk_-ahAdYvv6EMBgM63Fd87ArA"
+                    },
+                    {
+                        "status": 302,
+                        "url": "https://accounts.google.com/ServiceLogin?passive=1209600&osid=1&continue=https://sites.google.com/site/baldingstatisticalgenetics/&followup=https://sites.google.com/site/baldingstatisticalgenetics/"
+                    },
+                    {
+                        "status": 302,
+                        "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fsites.google.com%2Fsite%2Fbaldingstatisticalgenetics%2F&dsh=S1494340055%3A1761985617820585&followup=https%3A%2F%2Fsites.google.com%2Fsite%2Fbaldingstatisticalgenetics%2F&ifkv=ARESoU3MeSWBtMhmBgjdoYbzVUOVhkVNtbYrCOH6TSbtmpyvbSx0Jic0nGusreUCdSAU2cINQpUM8Q&osid=1&passive=1209600&flowName=GlifWebSignIn&flowEntry=ServiceLogin"
+                    }
+                ],
+                "ssl": true,
+                "ssl_err": null
+            }
+        },
+        "support": {
+            "issue_tracking": {
+                "public_tracker": null,
+                "resolve_time": null
+            }
+        }
+    },
+    {
+        "@id": "https://openebench.bsc.es/monitor/metrics/likeltd",
+        "@license": "https://creativecommons.org/licenses/by/4.0/",
+        "@nmsp": null,
+        "@type": "metrics",
+        "project": {
+            "build": {},
+            "deployment": {},
+            "publications": [],
+            "summary": {
+                "description": true
+            },
+            "website": {
+                "bioschemas": false,
+                "copyright": false,
+                "https": true,
+                "license": false,
+                "operational": 200,
+                "redirects": [
+                    {
+                        "status": 302,
+                        "url": "https://accounts.google.com/InteractiveLogin?continue=https://sites.google.com/site/baldingstatisticalgenetics/&followup=https://sites.google.com/site/baldingstatisticalgenetics/&osid=1&passive=1209600&dsh=S1378145770:1761985617683297&ifkv=ARESoU1aN6v8lkvQYgr1RX91xpwENT6Ys0Vd4RvBY8xB98ruTsUCgxi26GY-C4ESOfs3hLVws_1Z6g"
+                    },
+                    {
+                        "status": 302,
+                        "url": "https://accounts.google.com/ServiceLogin?passive=1209600&osid=1&continue=https://sites.google.com/site/baldingstatisticalgenetics/&followup=https://sites.google.com/site/baldingstatisticalgenetics/"
+                    },
+                    {
+                        "status": 302,
+                        "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fsites.google.com%2Fsite%2Fbaldingstatisticalgenetics%2F&dsh=S1378145770%3A1761985617683297&followup=https%3A%2F%2Fsites.google.com%2Fsite%2Fbaldingstatisticalgenetics%2F&ifkv=ARESoU38lXe2XbLG3L6Vr-sQyYPLwdPhofsek1MDhbLm1uPdAQOEbB7o4VXomx5C7kan_CxblVBHWA&osid=1&passive=1209600&flowName=GlifWebSignIn&flowEntry=ServiceLogin"
+                    }
+                ],
+                "ssl": true,
+                "ssl_err": null
+            }
+        }
+    }
+]

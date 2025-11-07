@@ -1,0 +1,33 @@
+package: giira
+distribution: prospective
+release: vcs
+component: main
+version: 0.0.20140625
+source: giira
+homepage: http://sourceforge.net/projects/giira/
+license: GPL-3
+blend: debian-med
+registries:
+- entry: OMICS_07360
+  name: OMICtools
+- entry: SCR_015507
+  name: SciCrunch
+- entry: GIIRA
+  name: bio.tools
+bib:
+- key: doi
+  value: 10.1093/bioinformatics/btt577
+popcon:
+- insts: 3
+  olde: 3
+descr:
+- package: giira
+  description: RNA-Seq driven gene finding incorporating ambiguous reads
+  long_description: " GIIRA is a gene prediction method that identifies potential
+    coding\n regions exclusively based on the mapping of reads from an RNA-Seq\n experiment.\
+    \  It was foremost designed for prokaryotic gene prediction\n and is able to resolve
+    genes within the expressed region of an operon.\n However, it is also applicable
+    to eukaryotes and predicts exon intron\n structures as well as alternative isoforms."
+  release: vcs
+  license: GPL-3
+  blend: debian-med

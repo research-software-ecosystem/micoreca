@@ -1,0 +1,53 @@
+about:
+  home: https://github.com/soedinglab/mmseqs2
+  license: MIT
+  license_file: LICENSE.md
+  summary: 'MMseqs2: ultra fast and sensitive sequence search and clustering suite'
+build:
+  number: 0
+  run_exports:
+  - None
+extra:
+  additional-platforms:
+  - linux-aarch64
+  - osx-arm64
+  identifiers:
+  - doi:10.1038/nbt.3988
+  - doi:10.1038/s41467-018-04964-5
+  - doi:10.1093/bioinformatics/bty1057
+  - doi:10.1093/bioinformatics/btab184
+  - doi:10.1101/2024.11.13.623350v1
+  - biotools:mmseqs2
+  - biotools:linclust
+  recipe-maintainers:
+  - milot-mirdita
+package:
+  name: mmseqs2
+  version: 18.8cc5c
+requirements:
+  build:
+  - None
+  - None
+  - cmake
+  - make
+  - llvm-openmp
+  - libgomp
+  - cuda-nvcc
+  - cuda-cudart-dev
+  - cuda-version >=12.6
+  - perl
+  host:
+  - gawk
+  - zlib
+  - bzip2
+  run:
+  - aria2
+  - gawk
+  - zlib
+  - bzip2
+source:
+  sha256: 3541b67322aee357fd9ca529750d36cb1426aa9bcd1efb2dc916e35219e1a41c
+  url: https://github.com/soedinglab/mmseqs2/archive/18-8cc5c.tar.gz
+test:
+  commands:
+  - mmseqs > /dev/null

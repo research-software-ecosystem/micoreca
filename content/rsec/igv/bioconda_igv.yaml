@@ -1,0 +1,39 @@
+about:
+  dev_url: https://github.com/igvteam/igv
+  doc_url: https://igv.org
+  home: https://igv.org/doc/desktop
+  license: MIT
+  license_family: MIT
+  license_file: license.txt
+  summary: 'Integrative Genomics Viewer. Fast, efficient, scalable visualization tool
+    for genomics
+
+    data and annotations.
+
+    '
+build:
+  noarch: generic
+  number: 0
+  run_exports:
+  - None
+extra:
+  identifiers:
+  - biotools:igv
+  - doi:10.1038/nbt.1754
+  - doi:10.1093/bioinformatics/btac830
+package:
+  name: igv
+  version: 2.19.7
+requirements:
+  host:
+  - openjdk <22
+  - glib
+  run:
+  - openjdk <22
+source:
+  sha256: 00a9f77e52f5b8b92971e5ef70b48943a08472ac681ffa9c213057e5b321eec6
+  url: https://github.com/igvteam/igv/archive/v2.19.7.tar.gz
+test:
+  commands:
+  - igv --version
+  - igv_hidpi --version

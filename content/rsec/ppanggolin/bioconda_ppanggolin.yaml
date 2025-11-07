@@ -1,0 +1,73 @@
+about:
+  dev_url: https://github.com/labgem/PPanGGOLiN
+  doc_url: https://ppanggolin.readthedocs.io
+  home: https://github.com/labgem/PPanGGOLiN
+  license: CeCiLL-2.1
+  license_family: OTHER
+  license_file: LICENSE.txt
+  summary: 'PPanGGOLiN: Depicting microbial species diversity via a Partitioned PanGenome
+    Graph.'
+build:
+  entry_points:
+  - ppanggolin = ppanggolin.main:main
+  number: 1
+  run_exports:
+  - None
+  script:
+  - export LDFLAGS="${LDFLAGS} -L${PREFIX}/lib"
+  - export CPPFLAGS="${CPPFLAGS} -I${PREFIX}/include"
+  - export CFLAGS="${CFLAGS} -O3 -fcommon -Wno-implicit-function-declaration"
+  - -m pip install . --no-deps --no-build-isolation --no-cache-dir --use-pep517 -vvv
+  script_env:
+  - SETUPTOOLS_SCM_PRETEND_VERSION=2.2.5
+extra:
+  additional-platforms:
+  - linux-aarch64
+  - osx-arm64
+  identifiers:
+  - biotools:PPanGGOLiN
+  - usegalaxy-eu:ppanggolin_all
+  - usegalaxy-eu:ppanggolin_msa
+  - doi:10.1101/836239
+  recipe-maintainers:
+  - axbazin
+  - jpjarnoux
+  - JeanMainguy
+package:
+  name: ppanggolin
+  version: 2.2.5
+requirements:
+  build:
+  - None
+  host:
+  - python
+  - pip
+  - cython <3
+  - setuptools-scm
+  run:
+  - python
+  - tqdm >=4.0.0,<5.0.0
+  - pytables >=3.0.0,<4.0.0
+  - pyrodigal >=3.0.0,<4.0.0
+  - networkx >=3.0.0,<4.0.0
+  - dataclasses =0.8
+  - scipy >=1.0.0,<2.0.0
+  - plotly >=5.0.0,<6.0.0
+  - gmpy2 >=2.0.0,<3.0.0
+  - pandas >=2.0.0,<3.0.0
+  - numpy >1.24.0,<2.0.0
+  - bokeh >=3.0.0,<4.0.0
+  - infernal =1
+  - aragorn =1
+  - mmseqs2 =15
+  - mafft =7
+source:
+  sha256: 90012a45c36ceedf8d57535abfb8599ffec92903a47559daab856f427441d8ef
+  url: https://github.com/labgem/PPanGGOLiN/archive/2.2.5.tar.gz
+test:
+  commands:
+  - ppanggolin --version
+  - ppanggolin --help
+  - ppanggolin workflow -h
+  imports:
+  - ppanggolin

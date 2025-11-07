@@ -1,0 +1,81 @@
+about:
+  dev_url: https://github.com/EI-CoreBioinformatics/mikado
+  doc_url: https://mikado.readthedocs.io/en/stable
+  home: https://github.com/EI-CoreBioinformatics/mikado
+  license: LGPL-3.0-or-later
+  license_family: LGPL
+  license_file: LICENSE.txt
+  summary: A Python3 annotation program to select the best gene model in each locus.
+build:
+  entry_points:
+  - mikado = Mikado.__main__:main
+  - daijin = Mikado.daijin.__main__:main
+  number: 2
+  run_exports:
+  - None
+  script: -m pip install . --no-deps --no-build-isolation --no-cache-dir --use-pep517
+    -vvv
+extra:
+  additional-platforms:
+  - linux-aarch64
+  - osx-arm64
+  identifiers:
+  - biotools:mikado
+  recipe-maintainers:
+  - lucventurini
+  - ljyanesm
+  - gemygk
+  - swarbred
+package:
+  name: mikado
+  version: 2.3.4
+requirements:
+  build:
+  - None
+  - None
+  - pkg-config
+  host:
+  - cython
+  - numpy <2
+  - pip
+  - python
+  - scipy
+  run:
+  - biopython >=1.78
+  - datrie >=0.8
+  - drmaa
+  - hypothesis
+  - marshmallow >=3.1.0
+  - marshmallow-dataclass >=8.3.1
+  - msgpack-python >=1.0.0
+  - networkx >=2.3
+  - numpy <2
+  - pandas >=1.0
+  - portcullis
+  - pyfaidx >=0.5.8
+  - pysam >=0.15.3
+  - pytest
+  - python
+  - pyyaml >=5.1.2
+  - python-rapidjson >=1.0
+  - scipy
+  - six >=1.12.0
+  - snakemake-minimal <8
+  - sqlalchemy <2
+  - sqlalchemy-utils >=0.34.1
+  - sqlite
+  - tabulate >=0.8.5
+  - toml >=0.10.0
+  - typeguard >=2.9.1
+source:
+  patches:
+  - 0001-scipy-build.patch
+  sha256: 6d8844bacacc776214cf35cb148fa638c029b2972751d04fc1f7d0d8f3e961c2
+  url: https://pypi.org/packages/source/m/mikado/Mikado-2.3.4.tar.gz
+test:
+  commands:
+  - mikado --help
+  - daijin --help
+  imports:
+  - Mikado
+  - Mikado.configuration

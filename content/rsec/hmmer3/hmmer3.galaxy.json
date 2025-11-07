@@ -1,0 +1,264 @@
+{
+    "Description": "HMMER is used for searching sequence databases for homologs of proteinsequences, and for making protein sequence alignments. It implementsmethods using probabilistic models called profile hidden Markov models(profile HMMs).",
+    "EDAM_operations": [
+        "Formatting",
+        "Multiple sequence alignment",
+        "Sequence profile generation",
+        "Format validation",
+        "Conversion",
+        "Sequence generation",
+        "Data retrieval",
+        "Statistical calculation",
+        "Database search",
+        "Formatting",
+        "Database search",
+        "Database search",
+        "Probabilistic sequence generation",
+        "Statistical calculation",
+        "Statistical calculation",
+        "Sequence database search",
+        "Formatting",
+        "Sequence database search",
+        "Database search",
+        "Sequence database search"
+    ],
+    "EDAM_reduced_operations": [
+        "Formatting",
+        "Multiple sequence alignment",
+        "Sequence profile generation",
+        "Format validation",
+        "Conversion",
+        "Data retrieval",
+        "Statistical calculation",
+        "Formatting",
+        "Probabilistic sequence generation",
+        "Statistical calculation",
+        "Statistical calculation",
+        "Sequence database search",
+        "Formatting",
+        "Sequence database search",
+        "Sequence database search"
+    ],
+    "EDAM_reduced_topics": [
+        "Sequence analysis",
+        "Sequence sites, features and motifs",
+        "Gene and protein families"
+    ],
+    "EDAM_topics": [
+        "Sequence analysis",
+        "Sequence sites, features and motifs",
+        "Gene and protein families"
+    ],
+    "Homepage": "http://hmmer.org/",
+    "Latest_suite_conda_package_version": "3.4",
+    "Number_of_tools_on_APOSTL": 0,
+    "Number_of_tools_on_BioBix": 0,
+    "Number_of_tools_on_CIRM-CFBP": 0,
+    "Number_of_tools_on_ChemFlow": 0,
+    "Number_of_tools_on_Coloc-stats": 0,
+    "Number_of_tools_on_CorGAT": 0,
+    "Number_of_tools_on_CropGalaxy": 0,
+    "Number_of_tools_on_Dintor": 0,
+    "Number_of_tools_on_FreeBioinfo": 0,
+    "Number_of_tools_on_GASLINI": 0,
+    "Number_of_tools_on_Galaxy@AuBi": 12,
+    "Number_of_tools_on_Galaxy@Pasteur": 12,
+    "Number_of_tools_on_GalaxyTrakr": 12,
+    "Number_of_tools_on_Genomic_Hyperbrowser": 0,
+    "Number_of_tools_on_IPK_Galaxy_Blast_Suite": 0,
+    "Number_of_tools_on_ImmPort_Galaxy": 0,
+    "Number_of_tools_on_InteractoMIX": 0,
+    "Number_of_tools_on_MISSISSIPPI": 0,
+    "Number_of_tools_on_Mandoiu_Lab": 0,
+    "Number_of_tools_on_MiModD_NacreousMap": 0,
+    "Number_of_tools_on_Oqtans": 0,
+    "Number_of_tools_on_Palfinder": 0,
+    "Number_of_tools_on_PepSimili": 0,
+    "Number_of_tools_on_PhagePromotor": 0,
+    "Number_of_tools_on_UseGalaxy.be": 12,
+    "Number_of_tools_on_UseGalaxy.cz": 12,
+    "Number_of_tools_on_UseGalaxy.eu": 12,
+    "Number_of_tools_on_UseGalaxy.fr": 12,
+    "Number_of_tools_on_UseGalaxy.no": 12,
+    "Number_of_tools_on_UseGalaxy.org.au": 12,
+    "Number_of_tools_on_UseGalaxy.org_(Main)": 0,
+    "Number_of_tools_on_Viral_Variant_Visualizer_(VVV)": 0,
+    "Related_Tutorials": [],
+    "Related_Workflows": [
+        {
+            "create_time": "2021-02-04",
+            "latest_version": 1,
+            "link": "https://workflowhub.eu/workflows/100?version=1",
+            "name": "0: View complete virus identification"
+        },
+        {
+            "create_time": "2020-06-18",
+            "latest_version": 1,
+            "link": "https://workflowhub.eu/workflows/37?version=1",
+            "name": "Assembly using Tophat2 and annotation (alternate)"
+        },
+        {
+            "create_time": "2020-06-18",
+            "latest_version": 1,
+            "link": "https://workflowhub.eu/workflows/38?version=1",
+            "name": "Unicycler assembly and annotation"
+        },
+        {
+            "create_time": "2020-06-18",
+            "latest_version": 1,
+            "link": "https://workflowhub.eu/workflows/39?version=1",
+            "name": "StringTie assembly and annotation"
+        },
+        {
+            "create_time": "2020-06-18",
+            "latest_version": 1,
+            "link": "https://workflowhub.eu/workflows/40?version=1",
+            "name": "Assembly using Tophat2 and annotation"
+        },
+        {
+            "create_time": "2024-03-13",
+            "latest_version": 4,
+            "link": "https://usegalaxy.fr/published/workflow?id=7ebb54181b404733",
+            "name": "Genfam_introgrice_wf_2.1_cds_build_33_species"
+        },
+        {
+            "create_time": "2023-11-22",
+            "latest_version": 5,
+            "link": "https://usegalaxy.fr/published/workflow?id=5ec6d378e60f7ccc",
+            "name": "Genfam_introgrice_wf_1.1_prot_build_13_species"
+        },
+        {
+            "create_time": "2023-11-22",
+            "latest_version": 2,
+            "link": "https://usegalaxy.fr/published/workflow?id=d425a77157cae2ee",
+            "name": "Genfam_introgrice_wf_2.1_cds_build_6_species"
+        },
+        {
+            "create_time": "2023-11-22",
+            "latest_version": 4,
+            "link": "https://usegalaxy.fr/published/workflow?id=b131218bec7eacb4",
+            "name": "Genfam_introgrice_wf_1.1_prot_build_8_species"
+        },
+        {
+            "create_time": "2024-09-30",
+            "latest_version": 14,
+            "link": "https://usegalaxy.eu/published/workflow?id=667bac8d7453e5f1",
+            "name": "MetaG: Preparation, Building and Annotation of Metagenomics Assembled Genomes "
+        },
+        {
+            "create_time": "2024-04-25",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=8deb08d4f228e198",
+            "name": "Metawin"
+        },
+        {
+            "create_time": "2023-12-14",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=d57d41e306241396",
+            "name": "MetaG_extended"
+        },
+        {
+            "create_time": "2023-03-29",
+            "latest_version": 13,
+            "link": "https://usegalaxy.eu/published/workflow?id=3eaa913306c16146",
+            "name": "MetaG_Galaxy_workshop"
+        },
+        {
+            "create_time": "2023-04-12",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=6416cfdbd5273063",
+            "name": "Multi-omics Workshop Workflow"
+        },
+        {
+            "create_time": "2023-02-10",
+            "latest_version": 22,
+            "link": "https://usegalaxy.eu/published/workflow?id=6158c3b5fc12044e",
+            "name": "MetaG_extended"
+        },
+        {
+            "create_time": "2020-05-02",
+            "latest_version": 14,
+            "link": "https://usegalaxy.eu/published/workflow?id=5be158931abca947",
+            "name": "COVID-19: assembly using Tophat2 and annotation (alternate)"
+        },
+        {
+            "create_time": "2020-04-16",
+            "latest_version": 26,
+            "link": "https://usegalaxy.eu/published/workflow?id=24eaa682897379c8",
+            "name": "COVID-19: Unicycler assembly and annotation"
+        },
+        {
+            "create_time": "2020-04-13",
+            "latest_version": 7,
+            "link": "https://usegalaxy.eu/published/workflow?id=9a60ecf98d4f8134",
+            "name": "COVID-19: StringTie assembly and annotation"
+        },
+        {
+            "create_time": "2020-04-18",
+            "latest_version": 13,
+            "link": "https://usegalaxy.eu/published/workflow?id=0ab3e47ebd3b520e",
+            "name": "COVID-19: assembly using Tophat2 and annotation"
+        },
+        {
+            "create_time": "2019-12-11",
+            "latest_version": 27,
+            "link": "https://usegalaxy.eu/published/workflow?id=02631612a43a4d9b",
+            "name": "MetaG"
+        },
+        {
+            "create_time": "2018-01-17",
+            "latest_version": 0,
+            "link": "https://usegalaxy.eu/published/workflow?id=58955868b504c60d",
+            "name": "EBI Metagenomics workflow (3.0) (imported from uploaded file)"
+        }
+    ],
+    "Suite_ID": "hmmer3",
+    "Suite_conda_package": "hmmer",
+    "Suite_first_commit_date": "2015-02-16",
+    "Suite_owner": "iuc",
+    "Suite_parsed_folder": "https://github.com/galaxyproject/tools-iuc/tree/main/tools/hmmer3",
+    "Suite_runs_(last_5_years)_(usegalaxy.eu)": 36302,
+    "Suite_runs_(last_5_years)_(usegalaxy.fr)": 540,
+    "Suite_runs_(last_5_years)_(usegalaxy.org)": 0,
+    "Suite_runs_(last_5_years)_(usegalaxy.org.au)": 4731,
+    "Suite_runs_(last_5_years)_on_main_servers": 41573,
+    "Suite_runs_(usegalaxy.eu)": 43262,
+    "Suite_runs_(usegalaxy.fr)": 543,
+    "Suite_runs_(usegalaxy.org)": 0,
+    "Suite_runs_(usegalaxy.org.au)": 4887,
+    "Suite_runs_on_main_servers": 48692,
+    "Suite_source": "https://github.com/galaxyproject/tools-iuc/tree/main/tools/hmmer3",
+    "Suite_users_(last_5_years)_(usegalaxy.eu)": 380,
+    "Suite_users_(last_5_years)_(usegalaxy.fr)": 97,
+    "Suite_users_(last_5_years)_(usegalaxy.org)": 0,
+    "Suite_users_(last_5_years)_(usegalaxy.org.au)": 83,
+    "Suite_users_(last_5_years)_on_main_servers": 560,
+    "Suite_users_(usegalaxy.eu)": 403,
+    "Suite_users_(usegalaxy.fr)": 97,
+    "Suite_users_(usegalaxy.org)": 0,
+    "Suite_users_(usegalaxy.org.au)": 84,
+    "Suite_users_on_main_servers": 584,
+    "Suite_version": "3.4",
+    "Suite_version_status": "Up-to-date",
+    "ToolShed_categories": [
+        "Sequence Analysis"
+    ],
+    "Tool_IDs": [
+        "hmmer_alimask",
+        "hmmer_hmmalign",
+        "hmmer_hmmbuild",
+        "hmmer_hmmconvert",
+        "hmmer_hmmemit",
+        "hmmer_hmmfetch",
+        "hmmer_hmmscan",
+        "hmmer_hmmsearch",
+        "hmmer_jackhmmer",
+        "hmmer_nhmmer",
+        "hmmer_nhmmscan",
+        "hmmer_phmmer"
+    ],
+    "biii_ID": null,
+    "bio.tool_ID": "hmmer3",
+    "bio.tool_description": "This tool is used for searching sequence databases for homologs of protein sequences, and for making protein sequence alignments. It implements methods using probabilistic models called profile hidden Markov models. The new HMMER3 project, HMMER is now as fast as BLAST for protein search.",
+    "bio.tool_name": "HMMER3"
+}

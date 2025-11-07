@@ -1,0 +1,36 @@
+about:
+  home: http://www.ebi.ac.uk/~zerbino/oases/
+  license: GPL-3.0-or-later
+  license_file: LICENSE.txt
+  summary: De novo transcriptome assembler for short reads
+build:
+  number: 2
+  run_exports:
+  - None
+  skip: false
+extra:
+  additional-platforms:
+  - linux-aarch64
+  identifiers:
+  - biotools:oases
+  skip-lints:
+  - uses_vcs_url
+  - missing_hash
+package:
+  name: oases
+  version: 0.2.09
+requirements:
+  build:
+  - make
+  - None
+  - llvm-openmp
+  - git-lfs
+  run:
+  - velvet
+source:
+  git_rev: 0.2.09
+  git_url: https://github.com/dzerbino/oases.git
+test:
+  commands:
+  - oases | grep "oases - De novo transcriptome assembler for the Velvet package"
+    > /dev/null

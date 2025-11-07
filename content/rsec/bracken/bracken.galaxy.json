@@ -1,0 +1,313 @@
+{
+    "Description": "Bayesian Reestimation of Abundance with KrakEN",
+    "EDAM_operations": [
+        "Statistical calculation"
+    ],
+    "EDAM_reduced_operations": [
+        "Statistical calculation"
+    ],
+    "EDAM_reduced_topics": [
+        "Metagenomics",
+        "Microbial ecology"
+    ],
+    "EDAM_topics": [
+        "Metagenomics",
+        "Microbial ecology"
+    ],
+    "Homepage": "https://github.com/jenniferlu717/Bracken/releases",
+    "Latest_suite_conda_package_version": "3.1",
+    "Number_of_tools_on_APOSTL": 0,
+    "Number_of_tools_on_BioBix": 0,
+    "Number_of_tools_on_CIRM-CFBP": 0,
+    "Number_of_tools_on_ChemFlow": 0,
+    "Number_of_tools_on_Coloc-stats": 0,
+    "Number_of_tools_on_CorGAT": 0,
+    "Number_of_tools_on_CropGalaxy": 0,
+    "Number_of_tools_on_Dintor": 0,
+    "Number_of_tools_on_FreeBioinfo": 0,
+    "Number_of_tools_on_GASLINI": 0,
+    "Number_of_tools_on_Galaxy@AuBi": 1,
+    "Number_of_tools_on_Galaxy@Pasteur": 0,
+    "Number_of_tools_on_GalaxyTrakr": 1,
+    "Number_of_tools_on_Genomic_Hyperbrowser": 0,
+    "Number_of_tools_on_IPK_Galaxy_Blast_Suite": 0,
+    "Number_of_tools_on_ImmPort_Galaxy": 0,
+    "Number_of_tools_on_InteractoMIX": 0,
+    "Number_of_tools_on_MISSISSIPPI": 0,
+    "Number_of_tools_on_Mandoiu_Lab": 0,
+    "Number_of_tools_on_MiModD_NacreousMap": 0,
+    "Number_of_tools_on_Oqtans": 0,
+    "Number_of_tools_on_Palfinder": 0,
+    "Number_of_tools_on_PepSimili": 0,
+    "Number_of_tools_on_PhagePromotor": 0,
+    "Number_of_tools_on_UseGalaxy.be": 0,
+    "Number_of_tools_on_UseGalaxy.cz": 1,
+    "Number_of_tools_on_UseGalaxy.eu": 1,
+    "Number_of_tools_on_UseGalaxy.fr": 1,
+    "Number_of_tools_on_UseGalaxy.no": 1,
+    "Number_of_tools_on_UseGalaxy.org.au": 1,
+    "Number_of_tools_on_UseGalaxy.org_(Main)": 1,
+    "Number_of_tools_on_Viral_Variant_Visualizer_(VVV)": 0,
+    "Related_Tutorials": [
+        "https://training.galaxyproject.org/training-material/topics/ecology/tutorials/bacterial-isolate-species-contamination-checking/tutorial.html",
+        "https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/taxonomic-profiling/tutorial.html",
+        "https://training.galaxyproject.org/training-material/topics/sequence-analysis/tutorials/quality-contamination-control/tutorial.html"
+    ],
+    "Related_Workflows": [
+        {
+            "create_time": "2025-08-28",
+            "latest_version": 2,
+            "link": "https://workflowhub.eu/workflows/1882?version=2",
+            "name": "bacterial-quality-and-contamination-control-post-assembly/main"
+        },
+        {
+            "create_time": "2025-08-22",
+            "latest_version": 1,
+            "link": "https://workflowhub.eu/workflows/1881?version=1",
+            "name": "quality-and-contamination-control-raw-reads/main"
+        },
+        {
+            "create_time": "2025-06-02",
+            "latest_version": 1,
+            "link": "https://workflowhub.eu/workflows/1674?version=1",
+            "name": "Checking expected species and contamination in bacterial isolate"
+        },
+        {
+            "create_time": "2025-06-02",
+            "latest_version": 1,
+            "link": "https://workflowhub.eu/workflows/1644?version=1",
+            "name": "Quality and contamination control in bacterial isolate using Illumina MiSeq Data"
+        },
+        {
+            "create_time": "2025-06-02",
+            "latest_version": 1,
+            "link": "https://workflowhub.eu/workflows/1470?version=1",
+            "name": "Taxonomic Profiling and Visualization of Metagenomic Data"
+        },
+        {
+            "create_time": "2024-12-10",
+            "latest_version": 2,
+            "link": "https://workflowhub.eu/workflows/1199?version=2",
+            "name": "Taxonomy classification using Kraken2 and Bracken"
+        },
+        {
+            "create_time": "2025-06-19",
+            "latest_version": 11,
+            "link": "https://workflowhub.eu/workflows/1052?version=11",
+            "name": "quality-and-contamination-control/main"
+        },
+        {
+            "create_time": "2024-01-29",
+            "latest_version": 8,
+            "link": "https://usegalaxy.fr/published/workflow?id=3d3b40398d1cd1ae",
+            "name": "Checking expected species and contamination in bacterial isolate"
+        },
+        {
+            "create_time": "2024-12-20",
+            "latest_version": 17,
+            "link": "https://usegalaxy.eu/published/workflow?id=cb2df493f5e334f7",
+            "name": "Metagenomic Taxonomy and Functional Analysis"
+        },
+        {
+            "create_time": "2025-06-19",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=c930a54a30dcc7e3",
+            "name": "Quality and Contamination Control For Genome Assembly (release v1.1.9)"
+        },
+        {
+            "create_time": "2025-05-15",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=bb63b5bb983fd49c",
+            "name": "Quality and Contamination Control For Genome Assembly (release v1.1.8)"
+        },
+        {
+            "create_time": "2024-09-19",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=0a82eb8b44d9d502",
+            "name": "Quality and Contamination Control For Genome Assembly (release v1.1.2)"
+        },
+        {
+            "create_time": "2024-09-19",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=0c47571d20535426",
+            "name": "Quality and Contamination Control For Genome Assembly (release v1.1.1)"
+        },
+        {
+            "create_time": "2024-09-19",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=aafcfcb585c5ca75",
+            "name": "Quality and Contamination Control For Genome Assembly (release v1.1)"
+        },
+        {
+            "create_time": "2024-09-19",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=884a4415b669690c",
+            "name": "Quality and Contamination Control For Genome Assembly (release v1.0)"
+        },
+        {
+            "create_time": "2024-10-17",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=ebb131f2a6172081",
+            "name": "Quality and Contamination Control For Genome Assembly (release v1.1.4)"
+        },
+        {
+            "create_time": "2024-10-17",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=47e14222073e7192",
+            "name": "Quality and Contamination Control For Genome Assembly (release v1.1.3)"
+        },
+        {
+            "create_time": "2024-10-31",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=0abd32dbc5207b88",
+            "name": "Quality and Contamination Control For Genome Assembly (release v1.1.5)"
+        },
+        {
+            "create_time": "2024-11-28",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=2fa2f67603772413",
+            "name": "Quality and Contamination Control For Genome Assembly (release v1.1.6)"
+        },
+        {
+            "create_time": "2025-04-24",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=c14d2e8b3c191bc4",
+            "name": "Quality and Contamination Control For Genome Assembly (release v1.1.7)"
+        },
+        {
+            "create_time": "2025-03-29",
+            "latest_version": 8,
+            "link": "https://usegalaxy.eu/published/workflow?id=39d36a7ce0ef268d",
+            "name": "Taxonomic Profiling and Visualization of Metagenomic Data (Updated)"
+        },
+        {
+            "create_time": "2024-11-21",
+            "latest_version": 1,
+            "link": "https://usegalaxy.eu/published/workflow?id=b14845359b702444",
+            "name": "Metagenomic_Workflow-Taxonomy_and_functional_analysis_with_alpha_diversity_mesure"
+        },
+        {
+            "create_time": "2023-12-14",
+            "latest_version": 0,
+            "link": "https://usegalaxy.eu/published/workflow?id=4f0daf8e9dd54127",
+            "name": "Taxonomic Profiling and Visualization of Metagenomic Data"
+        },
+        {
+            "create_time": "2024-11-19",
+            "latest_version": 11,
+            "link": "https://usegalaxy.org/published/workflow?id=9ba6da7dae465d3e",
+            "name": "Metagenomics assembly illumina workflow"
+        },
+        {
+            "create_time": "2025-06-19",
+            "latest_version": 1,
+            "link": "https://usegalaxy.org/published/workflow?id=323c651ca583c9e5",
+            "name": "Quality and Contamination Control For Genome Assembly (release v1.1.9)"
+        },
+        {
+            "create_time": "2025-05-15",
+            "latest_version": 1,
+            "link": "https://usegalaxy.org/published/workflow?id=de9bf4c1024f8d53",
+            "name": "Quality and Contamination Control For Genome Assembly (release v1.1.8)"
+        },
+        {
+            "create_time": "2024-10-03",
+            "latest_version": 1,
+            "link": "https://usegalaxy.org/published/workflow?id=9f68718f025bed30",
+            "name": "Quality and Contamination Control For Genome Assembly (release v1.1.3)"
+        },
+        {
+            "create_time": "2024-10-17",
+            "latest_version": 1,
+            "link": "https://usegalaxy.org/published/workflow?id=b6a795834009ce06",
+            "name": "Quality and Contamination Control For Genome Assembly (release v1.1.4)"
+        },
+        {
+            "create_time": "2024-10-31",
+            "latest_version": 1,
+            "link": "https://usegalaxy.org/published/workflow?id=623fc80c7f91a33a",
+            "name": "Quality and Contamination Control For Genome Assembly (release v1.1.5)"
+        },
+        {
+            "create_time": "2024-11-28",
+            "latest_version": 1,
+            "link": "https://usegalaxy.org/published/workflow?id=1be5c982c2d36a6c",
+            "name": "Quality and Contamination Control For Genome Assembly (release v1.1.6)"
+        },
+        {
+            "create_time": "2025-03-20",
+            "latest_version": 1,
+            "link": "https://usegalaxy.org/published/workflow?id=f378960ee55f567e",
+            "name": "Quality and Contamination Control For Genome Assembly (release v1.1.2)"
+        },
+        {
+            "create_time": "2025-03-20",
+            "latest_version": 1,
+            "link": "https://usegalaxy.org/published/workflow?id=dfd73857c0eb2a21",
+            "name": "Quality and Contamination Control For Genome Assembly (release v1.1.1)"
+        },
+        {
+            "create_time": "2025-03-20",
+            "latest_version": 1,
+            "link": "https://usegalaxy.org/published/workflow?id=2a782ad24271f570",
+            "name": "Quality and Contamination Control For Genome Assembly (release v1.1)"
+        },
+        {
+            "create_time": "2025-04-24",
+            "latest_version": 1,
+            "link": "https://usegalaxy.org/published/workflow?id=4f698eaeef30e364",
+            "name": "Quality and Contamination Control For Genome Assembly (release v1.1.7)"
+        },
+        {
+            "create_time": "2025-02-12",
+            "latest_version": 58,
+            "link": "https://usegalaxy.org.au/published/workflow?id=92fcdd490831c6c5",
+            "name": "Genomic Assembly and analysis - RDH"
+        },
+        {
+            "create_time": "2023-10-02",
+            "latest_version": 130,
+            "link": "https://usegalaxy.org.au/published/workflow?id=a335b9c9103b57ad",
+            "name": "Taxonomy classification using Kraken2 and Bracken"
+        }
+    ],
+    "Suite_ID": "bracken",
+    "Suite_conda_package": "bracken",
+    "Suite_first_commit_date": "2019-10-15",
+    "Suite_owner": "iuc",
+    "Suite_parsed_folder": "https://github.com/galaxyproject/tools-iuc/tree/main/tools/bracken",
+    "Suite_runs_(last_5_years)_(usegalaxy.eu)": 108307,
+    "Suite_runs_(last_5_years)_(usegalaxy.fr)": 12432,
+    "Suite_runs_(last_5_years)_(usegalaxy.org)": 27569,
+    "Suite_runs_(last_5_years)_(usegalaxy.org.au)": 8873,
+    "Suite_runs_(last_5_years)_on_main_servers": 157181,
+    "Suite_runs_(usegalaxy.eu)": 108307,
+    "Suite_runs_(usegalaxy.fr)": 12432,
+    "Suite_runs_(usegalaxy.org)": 27569,
+    "Suite_runs_(usegalaxy.org.au)": 8873,
+    "Suite_runs_on_main_servers": 157181,
+    "Suite_source": "https://github.com/galaxyproject/tools-iuc/tree/main/tools/bracken",
+    "Suite_users_(last_5_years)_(usegalaxy.eu)": 1714,
+    "Suite_users_(last_5_years)_(usegalaxy.fr)": 59,
+    "Suite_users_(last_5_years)_(usegalaxy.org)": 804,
+    "Suite_users_(last_5_years)_(usegalaxy.org.au)": 265,
+    "Suite_users_(last_5_years)_on_main_servers": 2842,
+    "Suite_users_(usegalaxy.eu)": 1714,
+    "Suite_users_(usegalaxy.fr)": 59,
+    "Suite_users_(usegalaxy.org)": 804,
+    "Suite_users_(usegalaxy.org.au)": 265,
+    "Suite_users_on_main_servers": 2842,
+    "Suite_version": "3.1",
+    "Suite_version_status": "Up-to-date",
+    "ToolShed_categories": [
+        "Sequence Analysis",
+        "Metagenomics"
+    ],
+    "Tool_IDs": [
+        "est_abundance"
+    ],
+    "biii_ID": null,
+    "bio.tool_ID": "bracken",
+    "bio.tool_description": "Bracken is a companion program to Kraken 1, KrakenUniq, or Kraken 2 While Kraken classifies reads to multiple levels in the taxonomic tree, Bracken allows estimation of abundance at a single level using those classifications (e.g. Bracken can estimate abundance of species within a sample).",
+    "bio.tool_name": "Bracken"
+}

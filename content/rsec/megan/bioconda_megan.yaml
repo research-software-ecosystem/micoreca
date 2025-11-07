@@ -1,0 +1,49 @@
+about:
+  home: https://megan.cs.uni-tuebingen.de/
+  license: GPL >=3
+  summary: A tool for studying the taxonomic content of a set of DNA reads
+build:
+  number: 0
+  run_exports:
+  - None
+  skip: true
+extra:
+  additional-platforms:
+  - linux-aarch64
+  identifiers:
+  - biotools:megan
+  skip-lints:
+  - should_be_noarch_generic
+  - should_not_be_noarch_source
+package:
+  name: megan
+  version: 6.25.10
+requirements:
+  host:
+  - openjdk >=11
+  run:
+  - openjdk >=11
+source:
+- sha256: 3e884ac1ca7d4f76f646224678575d74b4e398c1f6b5dd5c2c9afc69834b3070
+  url: https://maira.cs.uni-tuebingen.de/download/megan6/MEGAN_Community_unix_6_25_10.sh
+- sha256: 02fd82ba3ec99d9b60a28f56fd515bc9ad8e582744ea077c17ee49a425892ff6
+  url: https://maira.cs.uni-tuebingen.de/download/megan6/MEGAN_Community_unix_ARM_6_25_10.sh
+test:
+  commands:
+  - aadder-run -h
+  - aadder-build -h
+  - blast2lca -h
+  - blast2rma -h
+  - compute-comparison -h
+  - daa2info -h
+  - daa2rma -h
+  - daa-meganizer -h
+  - extract-biome -h
+  - gc-assembler -h
+  - maf2daa -h
+  - read-extractor -h
+  - reanalyzer -h
+  - rma2info -h
+  - sam2rma -h
+  - sort-last-maf -h
+  - references-annotator -h
