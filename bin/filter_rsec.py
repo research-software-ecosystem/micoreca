@@ -118,8 +118,8 @@ def load_keywords_from_yaml(filepath: Path) -> Dict[str, Any]:
 
 def generate_tsv_summary(json_path: Path, tsv_path: Path):
     """
-    Loads validated metadata and writes the summary (tool_id, filter key, match value) 
-    to a TSV file, retaining the original filter key names.
+    Loads validated metadata and writes the summary (tool_id, filter key, match value, 
+    EDAM, description, file presence flags) to a TSV file.
     """
     
     # 1. Load JSON data
@@ -127,51 +127,75 @@ def generate_tsv_summary(json_path: Path, tsv_path: Path):
         with open(json_path, 'r', encoding='utf-8') as f:
             data: List[Dict[str, Any]] = json.load(f)
     except FileNotFoundError:
-        print(f"❌ ERROR: Input JSON file '{json_path}' not found. Cannot generate TSV.")
+        print(f"ERROR: Input JSON file '{json_path}' not found. Cannot generate TSV.")
         return
     except json.JSONDecodeError:
-        print(f"❌ ERROR: Input file '{json_path}' is not valid JSON. Cannot generate TSV.")
+        print(f"ERROR: Input file '{json_path}' is not valid JSON. Cannot generate TSV.")
         return
     except Exception as e:
-        print(f"❌ ERROR: An unexpected error occurred while loading JSON: {e}")
+        print(f"ERROR: An unexpected error occurred while loading JSON: {e}")
         return
     
     if not isinstance(data, list) or not data:
-        print("ℹ️ WARNING: JSON content is empty or not a list. Skipping TSV generation.")
+        print("ℹWARNING: JSON content is empty or not a list. Skipping TSV generation.")
         return
 
     # 2. Prepare summary data
     summary_data: List[Dict[str, str]] = []
     
-    # Define fixed column order
-    fieldnames = ['tool_id', 'filtered_on', 'reason', 'to_keep']
+    # Define fixed column order, including new EDAM and Description fields + NEW INFOS
+    fieldnames = [
+        'tool_id', 
+        'filtered_on', 
+        'reason', 
+        'to_keep',
+        'EDAM_operations',
+        'EDAM_topics',
+        'description', # Note: This maps to 'biotools_description_full' in the JSON
+        'has_biocontainers_infos', # NOUVEAU
+        'has_biotools_infos', # NOUVEAU
+        'has_galaxy_infos' # NOUVEAU
+    ]
     
     for item in data:
         tool_id = item.get('tool_id', 'N/A')
         
+        # Extract the new required fields, defaulting to empty strings
+        edam_operations = item.get('EDAM_operations_full', '')
+        edam_topics = item.get('EDAM_topics_full', '')
+        description = item.get('biotools_description_full', '')
+        
+        # NEW: Extract file presence flags and convert them to string "True"/"False"
+        # The key names match the ones stored in Tool._check_file_presence()
+        has_biocontainers = str(item.get('has_biocontainers_infos', False))
+        has_biotools = str(item.get('has_biotools_infos', False))
+        has_galaxy = str(item.get('has_galaxy_infos', False))
+
         # Iterate over CRITERIA_KEYS in priority order to find the first reason for success
         found_match = False
         
+        entry = {
+            'tool_id': tool_id,
+            'filtered_on': "UNKNOWN_REASON",
+            'reason': "N/A",
+            'to_keep': '',
+            'EDAM_operations': edam_operations,
+            'EDAM_topics': edam_topics,
+            'description': description,
+            'has_biocontainers_infos': has_biocontainers, # NOUVEAU
+            'has_biotools_infos': has_biotools, # NOUVEAU
+            'has_galaxy_infos': has_galaxy # NOUVEAU
+        }
+        
         for key in CRITERIA_KEYS:
-            # Check if the key exists and has a non-empty, non-None value
+            # Check if the key exists and has a non-empty, non-None value (used for 'filtered_on'/'reason')
             if item.get(key):
-                
-                # The 'filtered_on' column uses the JSON key name (e.g., biotools_description)
-                summary_data.append({
-                    'tool_id': tool_id,
-                    'filtered_on': key,  # <-- Keep the original key name
-                    'reason': str(item[key]) 
-                })
+                entry['filtered_on'] = key
+                entry['reason'] = str(item[key]) 
                 found_match = True
-                break # Stop at the first successful criterion (matching the filter logic)
+                break # Stop at the first successful criterion
                 
-        # This case should ideally not happen if data comes from validated_tools_metadata.json
-        if not found_match:
-            summary_data.append({
-                'tool_id': tool_id,
-                'filtered_on': "UNKNOWN_REASON",
-                'reason': "N/A"
-            })
+        summary_data.append(entry)
 
 
     # 3. Write the TSV file
@@ -187,13 +211,13 @@ def generate_tsv_summary(json_path: Path, tsv_path: Path):
             writer.writeheader()
             writer.writerows(summary_data)
 
-        print(f"\n✅ Summary successfully created (Keys retained).")
+        print(f"\nSummary successfully created (Keys retained).")
         print(f"TSV file created: {tsv_path.name}")
         print(f"Path: {tsv_path.relative_to(BASE_DIR)}")
         print(f"Number of tool entries written: {len(summary_data)}")
 
     except IOError as e:
-        print(f"❌ ERROR writing TSV file: {e}")
+        print(f"ERROR writing TSV file: {e}")
 
 # -------------------------------------------------------------
 #                  TOOL class
@@ -210,10 +234,18 @@ class Tool:
         self.tool_id = folder_path.name
         self.keep = False
         self.validation_data: Dict[str, Any] = {"tool_id": self.tool_id}
-        # Load description content from various metadata files
+        
+        # 1. Load description content from various metadata files
+        # These are used for filtering (Check 3)
         self.biocontainers_description = self._load_description("*.biocontainers.yaml", 'description')
         self.biotools_description = self._load_description("*biotools.json", 'description')
         self.galaxy_description = self._load_description("*.galaxy.json", 'description')
+        
+        # 2. Extract full EDAM and Description from biotools.json for reporting/TSV
+        self._load_biotools_full_metadata(METADATA_FILE_PATTERN)
+        
+        # 3. Check for presence of metadata files (NOUVEAU)
+        self._check_file_presence()
 
     def _load_description(self, pattern: str, key: str) -> str:
         """Helper to safely load a specific key (e.g., 'description') from a metadata file."""
@@ -229,11 +261,75 @@ class Tool:
         except Exception:
             pass
         return ""
+        
+    def _extract_edam_terms(self, data: Dict[str, Any], key: str) -> str:
+        """
+        Extracts and concatenates EDAM terms (operations or topics), 
+        separated by a comma and a space (', ').
+        """
+        terms = set()
+        
+        # Logic for 'function' (EDAM operations)
+        if key == 'function' and 'function' in data and isinstance(data['function'], list):
+            for func in data['function']:
+                if 'operation' in func and isinstance(func['operation'], list):
+                    for op in func['operation']:
+                        if 'term' in op:
+                            terms.add(op['term'])
+                            
+        # Logic for 'topic' (EDAM topics)
+        elif key == 'topic' and 'topic' in data and isinstance(data['topic'], list):
+            for topic in data['topic']:
+                if 'term' in topic:
+                    terms.add(topic['term'])
+                    
+        # Change separator from '; ' to ', '
+        return ", ".join(sorted(list(terms)))
+
+    def _load_biotools_full_metadata(self, metadata_pattern: str):
+        """Loads all EDAM operations, topics, and description from biotools.json for the TSV."""
+        json_files = list(self.folder_path.glob(metadata_pattern))
+        if not json_files: return
+        json_path = json_files[0]
+        
+        try:
+            with open(json_path, 'r', encoding='utf-8') as f: 
+                data = json.load(f)
+        except Exception: 
+            return
+
+        # 1. Full EDAM Operations List
+        full_operations = self._extract_edam_terms(data, 'function')
+        self.validation_data['EDAM_operations_full'] = full_operations
+        
+        # 2. Full EDAM Topics List
+        full_topics = self._extract_edam_terms(data, 'topic')
+        self.validation_data['EDAM_topics_full'] = full_topics
+        
+        # 3. Full biotools description
+        description = data.get('description', '')
+        self.validation_data['biotools_description_full'] = description
+
+    def _check_file_presence(self):
+        """Checks for the presence of the required metadata files and stores the result."""
+        
+        # Check for *.biocontainers.yaml
+        has_biocontainers = bool(list(self.folder_path.glob("*.biocontainers.yaml")))
+        self.validation_data['has_biocontainers_infos'] = has_biocontainers
+
+        # Check for *biotools.json
+        has_biotools = bool(list(self.folder_path.glob("*biotools.json")))
+        self.validation_data['has_biotools_infos'] = has_biotools
+
+        # Check for *.galaxy.json
+        has_galaxy = bool(list(self.folder_path.glob("*.galaxy.json")))
+        self.validation_data['has_galaxy_infos'] = has_galaxy
+
 
     # --- Filtering criteria checks ---
 
     def check_criteria_1(self, metadata_pattern: str) -> bool:
-        """Check for EDAM operations or topics in the biotools.json file."""
+        """Check for EDAM operations or topics in the biotools.json file (matching TARGET_...)."""
         json_files = list(self.folder_path.glob(metadata_pattern))
         if not json_files: return False
         json_path = json_files[0]
@@ -248,13 +344,15 @@ class Tool:
                 if 'operation' in func and isinstance(func['operation'], list):
                     for operation in func['operation']:
                         if 'term' in operation and operation['term'] in TARGET_OPERATIONS:
-                            self.validation_data['EDAM_operation'] = operation['term']
+                            # Store the specific term that triggered the keep action
+                            self.validation_data['EDAM_operation'] = operation['term'] 
                             return True
                             
         # Check EDAM topics
         if 'topic' in data and isinstance(data['topic'], list):
             for topic in data['topic']:
                 if 'term' in topic and topic['term'] in TARGET_TOPICS:
+                    # Store the specific term that triggered the keep action
                     self.validation_data['EDAM_topics'] = topic['term']
                     return True
                             
