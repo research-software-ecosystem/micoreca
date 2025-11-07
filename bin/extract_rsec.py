@@ -65,7 +65,7 @@ def clone_rsec_data():
     # We use BASE_DIR as CWD for the git clone command.
     
     print("="*60)
-    print(f"🚀 Preparing to re-clone RSEC/data to {RSEC_DIR.relative_to(BASE_DIR)}/")
+    print(f"Preparing to re-clone RSEC/data to {RSEC_DIR.relative_to(BASE_DIR)}/")
     print(f"Project Root (BASE_DIR) set to: {BASE_DIR.name}/")
     print("="*60)
 
@@ -123,7 +123,7 @@ def clone_rsec_data():
         # Move the 'data' folder to 'content/rsec'
         # RSEC_DIR is micoreca/content/rsec
         shutil.move(source_dir, RSEC_DIR)
-        print(f"✅ Move complete: {source_dir.name}/ -> {RSEC_DIR.relative_to(BASE_DIR)}/")
+        print(f" Move complete: {source_dir.name}/ -> {RSEC_DIR.relative_to(BASE_DIR)}/")
         
         # Final cleanup of the temporary directory
         shutil.rmtree(TEMP_CLONE_DIR)
@@ -149,12 +149,12 @@ if __name__ == "__main__":
 
     if success:
         print("\n" + "#"*60)
-        print(f"🎉 CLONING AND PREPARATION COMPLETED SUCCESSFULLY!")
+        print(f"CLONING AND PREPARATION COMPLETED SUCCESSFULLY!")
         print(f"The directory {RSEC_DIR.relative_to(BASE_DIR)}/ is ready for filtering.")
         print("#"*60)
         
     else:
         print("\n" + "!"*60)
-        print("❌ CLONING FAILED. Please check the error messages above.")
+        print("CLONING FAILED. Please check the error messages above.")
         print("!"*60)
         sys.exit(1)
