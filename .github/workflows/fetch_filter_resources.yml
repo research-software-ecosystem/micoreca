@@ -1,0 +1,140 @@
+name: Weekly resource scrapping and community filtering
+
+on:
+  workflow_dispatch:
+  schedule:
+    #Every Sunday at 8:00 am
+    - cron: "0 8 * * 0" 
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "tools"
+  cancel-in-progress: false
+
+jobs:
+  #fetch-rsec:
+  #  runs-on: ubuntu-latest
+  #  name: Fetch RSEc resources
+  #  environment: fetch-tools
+  #  steps:
+  #    - name: Checkout main
+  #      uses: actions/checkout@v5
+  #    - uses: actions/setup-python@v6
+  #      with:
+  #        python-version: '3.11'
+  #    - name: Install requirement
+  #      run: python -m pip install -r requirements.txt
+  #    - name: Fetch RSEc
+  #      run: | 
+  #        bash sources/bin/extract_all_tools.sh
+  #    - name: Archive tools
+  #      uses: actions/upload-artifact@v5
+  #      with:
+  #        name: tools-${{ matrix.subset }}
+  #        path: communities/all/resources/${{ matrix.subset }}_tools.*
+  #fetch-tutorials:
+  #  runs-on: ubuntu-latest
+  #  name: Fetch tutorials
+  #  steps:
+  #    - name: Checkout main
+  #      uses: actions/checkout@v5
+  #    - uses: actions/setup-python@v6
+  #      with:
+  #        python-version: '3.11'
+  #    - name: Install requirement
+  #      run: |
+  #        python -m pip install -r requirements.txt
+  #        sudo apt-get install jq
+  #    - name: Fetch all tutorials
+  #      run: | 
+  #        bash sources/bin/extract_all_tutorials.sh
+  #    - name: Archive tutorials artifacts
+  #      uses: actions/upload-artifact@v5
+  #      with:
+  #        name: tutorials
+  #        path: communities/all/resources/tutorials.*
+  fetch-workflows:
+    runs-on: ubuntu-latest
+    name: Fetch workflows
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - name: Install requirement
+        run: |
+          python -m pip install -r requirements.txt
+          sudo apt-get install jq
+      - name: Extract all workflows metadata from WorkflowHub
+        run: | 
+          python bin/extract_workflowhub.py \
+            extract \
+            --all content/workflowhub/workflows_full.json
+      - name: Filter workflows based on keywords and EDAM terms
+        run: | 
+          python bin/extract_workflowhub.py \
+            filter \
+            --all content/workflowhub/workflows_full.json \
+            --filtered content/workflowhub/workflows_filtered.json \
+            --tsv-filtered content/workflowhub/workflows_filtered.tsv \
+            --tags keywords.yml \
+            --status content/workflowhub/workflows_status.tsv
+      - name: Extract all workflows metadata from WorkflowHu
+        run: | 
+          python bin/extract_workflowhub.py \
+            curate \
+            --filtered content/workflowhub/workflows_filtered.json \
+            --curated content/workflowhub/workflows_curated.json \
+            --tsv-curated content/workflowhub/workflows_curated.tsv \
+            --status content/workflowhub/workflows_status.tsv
+      - name: Archive workflows artifacts
+        uses: actions/upload-artifact@v5
+        with:
+          name: workflows
+          path: content/workflowhub/workflows*
+  merge-resources:
+    runs-on: ubuntu-latest
+    needs: 
+    #  - fetch-rsec
+    #  - fetch-tutorials
+      - fetch-workflows
+    name: Merge resources and extract missing tools
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - name: Install requirement
+        run: |
+          python -m pip install -r requirements.txt
+          sudo apt-get install jq
+      #- name: Download RSEc resources
+      #  uses: actions/download-artifact@v6
+      #  with:
+      #    pattern: tools-*
+      #    merge-multiple: true
+      #    path: communities/all/resources/
+      #- name: Download tutorials
+      #  uses: actions/download-artifact@v6
+      #  with:
+      #    pattern: tutorials
+      #    merge-multiple: true
+      #    path: communities/all/resources/
+      - name: Download workflows
+        uses: actions/download-artifact@v6
+        with:
+          pattern: workflows
+          merge-multiple: true
+          path: content/workflowhub/
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: Update resources
+          title: Automatic resources update
+          body: Automatic resource update done via GitHub Action once a week
+          base: main
+          branch: resource-update
+          delete-branch: true

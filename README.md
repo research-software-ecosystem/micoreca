@@ -9,6 +9,10 @@ To address this critical gap, the [ELIXIR Microbiome Community](https://elixir-e
 - Standards
 - Databases
 
+The extraction, filtering and curation are done following the workflow below and using the defined keywords in the [`keywords.yml` file](keywords.yml):
+
+![A workflow diagram illustrating the process for populating the RSEC Atlas, starting with 'Scrapping' resources from Bioconda, WorkflowHub, and Elixir, which yields over 40,000 tools and 1,300 workflows. This pool is reduced by the 'Filtering for Microbiome Resources' step to about 5,000 tools and 600 workflows. After 'Community Curation,' the items are 'Displayed on RSEC Atlas.' A detailed flowchart on the right explains the filtering logic: it sequentially checks if EDAM topics are found, if defined keywords are in the tags, if keywords are in the title, and finally if keywords are in the description. A 'Yes' at any step classifies the item as a 'MiCoCo resource,' while a 'No' at all steps classifies it as 'Not a MiCoCo resource.'](doc/main_figure_poster.png)
+
 # Prepare environment
 
 - Install virtualenv (if not already there)
@@ -35,5 +39,26 @@ To address this critical gap, the [ELIXIR Microbiome Community](https://elixir-e
     $ python3 -m pip install -r requirements.txt
     ```
 
+# WorkflowHub
 
+- Extract all workflows metadata from WorkflowHub as a JSON file
 
+    ```
+    $ python bin/extract_workflowhub.py \
+        extract \
+        --all content/workflowhub/workflows_full.json
+    ```
+
+- Filter workflows based on keywords and EDAM terms
+
+    ```
+    $ python bin/extract_workflowhub.py \
+        filter \
+        --all content/workflowhub/workflows_full.json \
+        --filtered content/workflowhub/workflows_filtered.json \
+        --tsv-filtered content/workflowhub/workflows_filtered.tsv \
+        --tags keywords.yml \
+        --status content/workflowhub/workflows_status.tsv
+    ```
+
+    As explained in the decision tree above, workflows are filtered first on EDAM terms (topics and operations), then on tags, workflow name and finally description based on the keywords provided in `keywords.yml` file. 

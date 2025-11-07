@@ -1,0 +1,35 @@
+# Curation processes
+
+To provide the most relevant resources to the microbiome community, we manually curate resources extracted from RSEc, WorkflowHub, etc, and programmatically filter them using the defined keywords. 
+To do so, we excluded the resources where the description evolved around terms like: 
+- Single genome analysis  
+- whole genome sequencing 
+- single-end ChIP-Seq data
+- reference genome annotation
+- biomedical
+- Human
+- rare diseases 
+- NGS SARS-Cov2 samples
+- Calculation not related to the microbiome (LU matrix factorization on a sparse blocked matrix)
+- Images and Image reconstruction 
+- molecular network
+
+
+The extracted resources are kept if they correspond to one or more of the following steps for microbiome analysis:
+
+- **Quality Control (QC) and Filtering**: trimming, removing sequencing errors, adapter sequences, and too-short reads.
+
+- **Denoising or Clustering** (Feature Table Generation): denoising reads into Amplicon Sequence Variants (ASVs) or Exact Sequence Variants (ESVs), for example.
+
+- **Taxonomic Assignment and Phylogenetic Tree Construction**: comparison of ASV/OTU sequences against curated reference databases using a classifier, phylogenetic tree constructed from aligning the sequences, and inferring evolutionary distance. 
+
+- **Functional Annotation** (for Metagenomics/Shotgun Sequencing)
+
+- **Data Normalization**: addressing the compositional nature of microbiome data (as the counts are relative, not absolute) and accounting for differences in sequencing depth (e.g. library size).
+
+- **Diversity Analysis** (Community Characterization): quantifying the complexity and dissimilarity of microbial communities, through their Alpha and Beta Diversity
+
+- **Comparative Statistics**: identifying specific microbial features (ASVs/OTUs or taxa) that are significantly different in abundance between experimental groups with methods like differential abundance testing or multivariate statistical tests (PERMANOVA or ADONIS)
+
+- **Association and Predictive Modeling**: linking the microbial profile to host metadata (e.g., phenotype) and building predictive models with correlation/regression test or algorithms like Random Forests or Linear Discriminant Analysis Effect Size (LEfSe) to identify microbial signatures or features that can accurately predict a phenotype.
+
