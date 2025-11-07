@@ -144,7 +144,7 @@ def generate_tsv_summary(json_path: Path, tsv_path: Path):
     summary_data: List[Dict[str, str]] = []
     
     # Define fixed column order
-    fieldnames = ['tool_id', 'filtered_on', 'reason']
+    fieldnames = ['tool_id', 'filtered_on', 'reason', 'to_keep']
     
     for item in data:
         tool_id = item.get('tool_id', 'N/A')
