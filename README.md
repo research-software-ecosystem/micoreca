@@ -75,5 +75,5 @@ The extraction, filtering and curation are done following the workflow below and
 - Filter tools based on keywords and EDAM terms in content/rsec
 
     ```
-    $ python bin/extract_rsec.py
+    $ python bin/filter_rsec.py
     ```
