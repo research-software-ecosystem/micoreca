@@ -348,6 +348,20 @@ class Workflows:
 
         df.to_csv(output_fp, sep="\t", index=False)
 
+    def extract_tools(self, output_tools: str):
+        tools_dict = {}
+        for wf in self.workflows:
+            tools_list = wf.tools
+            for tool in tools_list:
+                clean_tool_name = tool.replace("\n ", "")
+                if clean_tool_name != "":
+                    if clean_tool_name in tools_dict.keys():
+                        tools_dict[clean_tool_name].append(wf.name)
+                    else:
+                        tools_dict[clean_tool_name] = [wf.name]
+
+        utils.export_to_json(tools_dict, output_tools)
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Extract Workflows from WorkflowHub")
     subparser = parser.add_subparsers(dest="command")
@@ -427,6 +441,21 @@ if __name__ == "__main__":
         help="Path to a TSV file with at least column 'link' and 'To keep'",
     )
 
+    # Extract tools from workflows
+    extractools = subparser.add_parser("extract_tools", help="Extract tools ")
+    extractools.add_argument(
+        "--workflows",
+        "-w",
+        required=True,
+        help="Filepath to JSON with curated workflows"
+    )
+    extractools.add_argument(
+        "--tools",
+        "-t",
+        required=True,
+        help="Filepath to a JSON file to save tools"
+    )
+
     args = parser.parse_args()
 
 # Extract all workflows from WorkflowHub
@@ -483,3 +512,12 @@ if __name__ == "__main__":
             wfs.export_workflows_to_tsv(args.tsv_curated)
         except Exception as ex:
             print("No workflow extracted after curation.")
+
+# Extract all tools used in a list of workflows
+    elif args.command == "extract_tools":
+        wfs = Workflows()
+        wfs.init_by_importing(wfs=utils.load_json(args.workflows))
+        try:
+            wfs.extract_tools(output_tools=args.tools)
+        except Exception as ex:
+            print(f"Failed to load JSON file {args.workflows} or to extract tools.\n{ex}")
