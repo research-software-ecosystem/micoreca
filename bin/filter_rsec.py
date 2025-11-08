@@ -6,7 +6,7 @@ import re
 import sys 
 from pathlib import Path
 from typing import Dict, List, Any, Optional, Tuple
-import csv # Added for TSV generation
+import csv 
 
 # Attempt to import YAML. If it fails, sets yaml to None.
 try:
@@ -15,7 +15,6 @@ except ImportError:
     yaml = None
 
 # --- Configuration paths (ROBUST PATHS) ---
-# Define paths relative to the script's location for robustness.
 SCRIPT_PATH = Path(__file__).resolve()
 SCRIPT_BIN_DIR = SCRIPT_PATH.parent
 # BASE_DIR is the repository root (parent directory of 'bin')
@@ -41,18 +40,18 @@ TARGET_OPERATIONS: List[str] = []
 TARGET_TOPICS: List[str] = []
 STRICT_KEYWORDS: List[str] = [] 
 COMPILED_FRAGMENT_PATTERNS: List[re.Pattern] = [] 
-# OPTIMIZATION: New list for pre-compiled strict word boundary regex patterns
+# OPTIMIZATION: list for pre-compiled strict word boundary regex patterns
 COMPILED_STRICT_PATTERNS: List[re.Pattern] = [] 
 
-# --- CRITERIA KEYS (MUST match the filtering priority order) ---
+# --- CRITERIA KEYS ( matches the filtering priority order explained in the README) ---
 # Keys in the JSON that indicate a successful filter match.
 CRITERIA_KEYS = [
-    "EDAM_operation",
     "EDAM_topics",
+    "EDAM_operation",
     "biocontainers_keywords",
-    "biocontainers_description",
     "biotools_description",
-    "galaxy_description",
+    "biocontainers_description",
+    "galaxy_description"
 ]
 
 
