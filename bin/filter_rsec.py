@@ -15,7 +15,7 @@ try:
 except ImportError:
     yaml = None
 
-# --- Configuration paths (ROBUST PATHS) ---
+# --- Configuration paths  ---
 SCRIPT_PATH = Path(__file__).resolve()
 SCRIPT_BIN_DIR = SCRIPT_PATH.parent
 BASE_DIR = SCRIPT_BIN_DIR.parent
@@ -40,7 +40,7 @@ STRICT_KEYWORDS: List[str] = []
 COMPILED_FRAGMENT_PATTERNS: List[re.Pattern] = []
 COMPILED_STRICT_PATTERNS: List[re.Pattern] = []
 
-# CRITERIA KEYS and REASON MAPPING (remain the same for reporting consistency)
+# CRITERIA KEYS and REASON MAPPING 
 CRITERIA_KEYS = [
     "EDAM_topics",
     "EDAM_operation",
@@ -163,7 +163,6 @@ def generate_tsv_summary(json_path: Path, tsv_path: Path):
                 entry['filtered_on'] = key
                 reason_template = REASON_MAPPING.get(key, "Match found on key: {key} (value: {value})")
                 formatted_value = str(match_value)
-                # Correction: remove the {keyword} placeholder that was causing issues, use {value}
                 entry['reason'] = reason_template.format(value=formatted_value)
                 break
         summary_data.append(entry)
@@ -199,7 +198,6 @@ class Tool:
         self.descriptions: Dict[str, str] = {}
         self._load_all_metadata_optimized()
         self._store_full_report_metadata()
-        # NOTE: combined_description_content is removed as check_criteria_3 now checks individual sources
 
     def _safe_load(self, filepath: Path) -> Optional[Dict[str, Any]]:
         """Helper to safely load JSON or YAML content (silent failure)."""
@@ -417,9 +415,7 @@ class ToolSet:
         total_items = len(all_items)
         # --- Processing Loop (Utilisation de sys.stdout.write pour la progression) ---
         for i, item in enumerate(all_items):
-            # Le compteur de dossier commence à 1
             dossier_actuel = i + 1
-            # Mise à jour de la progression sur une seule ligne
             message = f"Progression: Traitement du dossier {dossier_actuel} sur {total_items} ({item.name})"
             sys.stdout.write('\r' + message)
             sys.stdout.flush()
@@ -433,7 +429,6 @@ class ToolSet:
                     self.report_counts["validated_filter_1"] += 1
                 elif 'biocontainers_keywords' in tool.validation_data:
                     self.report_counts["validated_filter_2"] += 1
-                # Filter 3 now correctly checks for any description match key
                 elif any(key in tool.validation_data for key in ['biotools_description', 'biocontainers_description', 'galaxy_description']):
                     self.report_counts["validated_filter_3"] += 1
             else:
