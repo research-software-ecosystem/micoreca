@@ -44964,7 +44964,7 @@
         "biotools_id": "hybrid-denovo",
         "EDAM_operations_full": "Phylogenetic tree generation, Sequence merging",
         "EDAM_topics_full": "Functional, regulatory and non-coding RNA, Phylogenetics, Sequencing",
-        "biotools_description": "OTU"
+        "biotools_description": "16S"
     },
     {
         "tool_id": "metaline",
