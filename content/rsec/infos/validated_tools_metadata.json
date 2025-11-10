@@ -20602,7 +20602,7 @@
         "biotools_id": "PEMA",
         "EDAM_operations_full": "Community profiling",
         "EDAM_topics_full": "Biodiversity",
-        "biotools_description": "16S"
+        "biotools_description": "ITS"
     },
     {
         "tool_id": "bioconductor-genefilter",
@@ -26062,7 +26062,7 @@
         "biotools_id": "gani",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "Microbiology",
-        "biotools_description": "16S"
+        "biotools_description": "ITS"
     },
     {
         "tool_id": "animalassociatedmetagenomedb",
@@ -35656,7 +35656,7 @@
         "biotools_id": "phylotrac",
         "EDAM_operations_full": "Expression data visualisation",
         "EDAM_topics_full": "Microarray experiment, Phylogenetics",
-        "biotools_description": "16S"
+        "biotools_description": "ITS"
     },
     {
         "tool_id": "hlppred-fuse",
@@ -35747,7 +35747,7 @@
         "biotools_id": "metaworks",
         "EDAM_operations_full": "Filtering, Formatting, Sequence trimming",
         "EDAM_topics_full": "Biodiversity, Microbial ecology, Model organisms, Sequence sites, features and motifs, Workflows",
-        "biotools_description": "16S"
+        "biotools_description": "ITS"
     },
     {
         "tool_id": "bioconductor-snm",
