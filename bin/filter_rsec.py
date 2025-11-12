@@ -353,44 +353,11 @@ class Tool:
             for pattern in COMPILED_FRAGMENT_PATTERNS:
                 match = pattern.search(content_lower)
                 if match:
-                    matched_text = match.group(0)
-
-                    # 1) Try to find a single word token inside the matched substring
-                    #    that itself matches the fragment pattern. This avoids returning
-                    #    a long sentence fragment when the regex was permissive.
-                    tokens = re.findall(r"[A-Za-z0-9_-]+", matched_text)
-                    chosen = None
-                    for tok in tokens:
-                        if pattern.search(tok):
-                            chosen = tok
-                            break
-
-                    # 2) If no token inside the matched substring matches, fall back to
-                    #    extracting the nearest word around the match start (previous logic).
-                    if not chosen:
-                        s, e = match.span()
-                        ws = content_lower
-                        # Shrink the span inward to the first internal alnum if possible
-                        # then expand to word boundaries to capture a single token.
-                        # Move s right until it hits an alnum
-                        while s < e and not re.match(r'[A-Za-z0-9_-]', ws[s]):
-                            s += 1
-                        # Move e left until it hits an alnum
-                        while e > s and not re.match(r'[A-Za-z0-9_-]', ws[e-1]):
-                            e -= 1
-
-                        # Expand left to include word characters
-                        while s > 0 and re.match(r'[A-Za-z0-9_-]', ws[s-1]):
-                            s -= 1
-                        # Expand right similarly
-                        while e < len(ws) and re.match(r'[A-Za-z0-9_-]', ws[e]):
-                            e += 1
-
-                        token = ws[s:e].strip()
-                        chosen = token if token else matched_text.strip()
-
-                    # Normalize chosen token and store
-                    self.validation_data[key_report] = chosen
+                    matched = match.group(0)
+                    # Try to capture the whole token that contains the matched substring
+                    wrap = re.search(r'\b[\w-]*' + re.escape(matched) + r'[\w-]*\b', content_lower)
+                    token = wrap.group(0) if wrap else matched.strip()
+                    self.validation_data[key_report] = token
                     return True
 
         return False
