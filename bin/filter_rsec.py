@@ -353,7 +353,23 @@ class Tool:
             for pattern in COMPILED_FRAGMENT_PATTERNS:
                 match = pattern.search(content_lower)
                 if match:
-                    self.validation_data[key_report] = match.group(0)
+                    # Extract the smallest sensible token that contains the match.
+                    # We expand the match span to the nearest "word" boundaries to avoid
+                    # returning a long sentence fragment. This captures hyphenated words
+                    # and underscores as part of the token as well.
+                    s, e = match.span()
+                    ws = content_lower
+                    # Expand left to include word characters (letters, digits, underscore, hyphen)
+                    while s > 0 and re.match(r'[A-Za-z0-9_-]', ws[s-1]):
+                        s -= 1
+                    # Expand right similarly
+                    while e < len(ws) and re.match(r'[A-Za-z0-9_-]', ws[e]):
+                        e += 1
+                    token = ws[s:e].strip()
+                    # Fallback: if token is empty (shouldn't happen), use the raw match
+                    if not token:
+                        token = match.group(0).strip()
+                    self.validation_data[key_report] = token
                     return True
 
         return False

@@ -49,7 +49,7 @@
         "biotools_id": "damageprofiler",
         "EDAM_operations_full": "Read mapping, Visualisation",
         "EDAM_topics_full": "DNA, Mapping, Sequencing, Workflows",
-        "biotools_description": "profiler calculates damage profiles of mapped reads and provides a graphical as well as text based representation."
+        "biotools_description": "damageprofiler calculates damage profiles of mapped reads and provides a graphical as well as text based representation."
     },
     {
         "tool_id": "group_humann2_uniref_abundances_to_go",
@@ -751,7 +751,7 @@
         "biotools_id": "epga",
         "EDAM_operations_full": "Data handling, Visualisation",
         "EDAM_topics_full": "Genotype and phenotype, Personalised medicine, Pharmacogenomics, Rare diseases",
-        "biotools_description": "profiles with gene haplotypes and infering the corresponding diplotype and phenotype profiles."
+        "biotools_description": "genotype-profiles with gene haplotypes and infering the corresponding diplotype and phenotype profiles."
     },
     {
         "tool_id": "qiime",
@@ -2207,7 +2207,7 @@
         "biotools_id": "starr",
         "EDAM_operations_full": "Analysis",
         "EDAM_topics_full": "ChIP-on-chip, Data management",
-        "biotools_description": "profiles."
+        "biotools_description": "chip-profiles."
     },
     {
         "tool_id": "metaminer",
@@ -2272,7 +2272,7 @@
         "biotools_id": "DesignSignatures",
         "EDAM_operations_full": "PCR primer design",
         "EDAM_topics_full": "Genetic variation, Probes and primers, Sequencing",
-        "biotools_description": "amplicon"
+        "biotools_description": "amplicons"
     },
     {
         "tool_id": "mapgaps",
@@ -2298,7 +2298,7 @@
         "biotools_id": "abritamr",
         "EDAM_operations_full": "Antimicrobial resistance prediction",
         "EDAM_topics_full": "Antimicrobial resistance, Infectious disease, Microbiology, Public health and epidemiology",
-        "biocontainers_description": "amr"
+        "biocontainers_description": "amrfinderplus"
     },
     {
         "tool_id": "bioconductor-ancombc",
@@ -2506,7 +2506,7 @@
         "biotools_id": "",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "",
-        "biocontainers_description": "profiling data"
+        "biocontainers_description": "ribosome-profiling data"
     },
     {
         "tool_id": "procheck",
@@ -3104,7 +3104,7 @@
         "biotools_id": "pyampli",
         "EDAM_operations_full": "Variant filtering",
         "EDAM_topics_full": "DNA polymorphism, Sequencing",
-        "biotools_description": "amplicon"
+        "biotools_description": "amplicon-based"
     },
     {
         "tool_id": "bc_intrinsic_subtyping",
@@ -3689,7 +3689,7 @@
         "biotools_id": "primerclip",
         "EDAM_operations_full": "PCR primer design, Sequence trimming",
         "EDAM_topics_full": "Probes and primers, Sequencing",
-        "biocontainers_description": "amplicon"
+        "biocontainers_description": "accel-amplicon"
     },
     {
         "tool_id": "bioconductor-rdgidb",
@@ -3897,7 +3897,7 @@
         "biotools_id": "circrnaprofiler",
         "EDAM_operations_full": "SNP annotation, miRNA expression analysis, miRNA target prediction",
         "EDAM_topics_full": "Functional, regulatory and non-coding RNA, GWAS study, Gene expression, Gene transcripts, Workflows",
-        "biotools_description": "profiler is an r-based framework that only requires an r installation and offers 15 modules for a comprehensive in silico analysis of circrnas. this computational framework allows to combine and analyze circrnas previously detected by multiple publicly available annotation-based circrna detection tools. it covers different aspects of circrnas analysis from differential expression analysis, evolutionary conservation, biogenesis to functional analysis. the pipeline used by circrnaprofiler is highly automated and customizable. furthermore, circrnaprofiler includes additional functions for data visualization which facilitate the interpretation of the results."
+        "biotools_description": "circrnaprofiler is an r-based framework that only requires an r installation and offers 15 modules for a comprehensive in silico analysis of circrnas. this computational framework allows to combine and analyze circrnas previously detected by multiple publicly available annotation-based circrna detection tools. it covers different aspects of circrnas analysis from differential expression analysis, evolutionary conservation, biogenesis to functional analysis. the pipeline used by circrnaprofiler is highly automated and customizable. furthermore, circrnaprofiler includes additional functions for data visualization which facilitate the interpretation of the results."
     },
     {
         "tool_id": "smorfer",
@@ -4924,7 +4924,7 @@
         "biotools_id": "",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "",
-        "biocontainers_description": "profiler: an r-based computational framework for the downstream analysis of circular rnas"
+        "biocontainers_description": "circrnaprofiler: an r-based computational framework for the downstream analysis of circular rnas"
     },
     {
         "tool_id": "manta",
@@ -4976,7 +4976,7 @@
         "biotools_id": "cellprofiler_analyst",
         "EDAM_operations_full": "Dimensionality reduction, Image analysis, Quantification",
         "EDAM_topics_full": "Bioimaging, Genotype and phenotype, Machine learning",
-        "biotools_description": "profiler analyst allows interactive exploration and analysis of data, particularly from high-throughput, image-based experiments. included is a supervised machine learning system which can be trained to recognize complex and subtle phenotypes, for automatic scoring of millions of cells"
+        "biotools_description": "cellprofiler analyst allows interactive exploration and analysis of data, particularly from high-throughput, image-based experiments. included is a supervised machine learning system which can be trained to recognize complex and subtle phenotypes, for automatic scoring of millions of cells"
     },
     {
         "tool_id": "taxpasta",
@@ -5353,7 +5353,7 @@
         "biotools_id": "prism-rna",
         "EDAM_operations_full": "Gene expression profiling, Sample comparison",
         "EDAM_topics_full": "Oncology, RNA-Seq, Surgery, Transcriptomics, Whole genome sequencing",
-        "biotools_description": "profile identification in scaled mixtures) is statistical framework that allows simultaneous extraction of a tumor sample composition and cell type and sample specific whole-transcriptome profiles from individual bulk rna-seq samples, by exploiting single-cell reference data. this facilitates a separate analysis of cancer cell and the microenvironment phenotypes and of the tumor composition."
+        "biotools_description": "rna-profile identification in scaled mixtures) is statistical framework that allows simultaneous extraction of a tumor sample composition and cell type and sample specific whole-transcriptome profiles from individual bulk rna-seq samples, by exploiting single-cell reference data. this facilitates a separate analysis of cancer cell and the microenvironment phenotypes and of the tumor composition."
     },
     {
         "tool_id": "samcluster",
@@ -5847,7 +5847,7 @@
         "biotools_id": "",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "",
-        "biocontainers_description": "amplicon"
+        "biocontainers_description": "amplicons"
     },
     {
         "tool_id": "deephiscom",
@@ -7251,7 +7251,7 @@
         "biotools_id": "Muscle2View",
         "EDAM_operations_full": "Image analysis, Quantification",
         "EDAM_topics_full": "Imaging, Workflows",
-        "biotools_description": "profiler pipeline for detection of the capillary-to-muscle fiber interface and high-content quantification of fiber type-specific histology."
+        "biotools_description": "cellprofiler pipeline for detection of the capillary-to-muscle fiber interface and high-content quantification of fiber type-specific histology."
     },
     {
         "tool_id": "hic-te",
@@ -7680,7 +7680,7 @@
         "biotools_id": "amplikyzer",
         "EDAM_operations_full": "Base-calling, Methylation analysis, Read mapping, Sequence trimming",
         "EDAM_topics_full": "DNA, Epigenetics, Methylated DNA immunoprecipitation, Sequence analysis, Sequencing",
-        "biotools_description": "amplicon"
+        "biotools_description": "amplicons"
     },
     {
         "tool_id": "gutmgene",
@@ -8096,7 +8096,7 @@
         "biotools_id": "meta-basic",
         "EDAM_operations_full": "Protein secondary structure analysis, Protein secondary structure comparison, Protein secondary structure prediction, Protein structure comparison",
         "EDAM_topics_full": "Protein secondary structure",
-        "biotools_description": "profiles which combine both sequence positional variability and secondary structure."
+        "biotools_description": "meta-profiles which combine both sequence positional variability and secondary structure."
     },
     {
         "tool_id": "3cac",
@@ -8941,7 +8941,7 @@
         "biotools_id": "anota2seq",
         "EDAM_operations_full": "Differential gene expression analysis, Regression analysis, Standardisation and normalisation",
         "EDAM_topics_full": "GWAS study, Gene expression, Gene regulation, Microarray experiment, RNA-seq, Sequencing",
-        "biotools_description": "profiling and ribosome-profiling studies (two or more sample classes) quantified by rna sequencing or dna-microarray. polysome-profiling and ribosome-profiling typically generate data for two rna sources; translated mrna and total mrna."
+        "biotools_description": "polysome-profiling and ribosome-profiling studies (two or more sample classes) quantified by rna sequencing or dna-microarray. polysome-profiling and ribosome-profiling typically generate data for two rna sources; translated mrna and total mrna."
     },
     {
         "tool_id": "mgkit",
@@ -9838,7 +9838,7 @@
         "biotools_id": "",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "",
-        "biocontainers_description": "amr"
+        "biocontainers_description": "pamr"
     },
     {
         "tool_id": "molscribe",
@@ -10774,7 +10774,7 @@
         "biotools_id": "",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "",
-        "biocontainers_description": "binner processes high-throughput sequencing data of an rna virus population."
+        "biocontainers_description": "motifbinner processes high-throughput sequencing data of an rna virus population."
     },
     {
         "tool_id": "bioconductor-rtrmui",
@@ -10917,7 +10917,7 @@
         "biotools_id": "iantisplodge",
         "EDAM_operations_full": "Deisotoping, Gene expression profiling, Splitting",
         "EDAM_topics_full": "Gene transcripts, Machine learning, RNA-Seq, Transcriptomics, Workflows",
-        "biotools_description": "profile deconvolution pipeline designed for spatial transcriptomics."
+        "biotools_description": "rna-profile deconvolution pipeline designed for spatial transcriptomics."
     },
     {
         "tool_id": "slither",
@@ -12113,7 +12113,7 @@
         "biotools_id": "ivar",
         "EDAM_operations_full": "Text annotation, Variant calling, Variant classification",
         "EDAM_topics_full": "Biological databases, Evolutionary biology, Sequencing",
-        "biocontainers_description": "amplicon"
+        "biocontainers_description": "amplicon-based"
     },
     {
         "tool_id": "bioconductor-tsrchitect",
@@ -12204,7 +12204,7 @@
         "biotools_id": "bioprofiling.de",
         "EDAM_operations_full": "Gene-set enrichment analysis",
         "EDAM_topics_full": "Gene and protein families, Molecular interactions, pathways and networks, Protein interactions, Proteins, Statistics and probability",
-        "biotools_description": "profiling.de provides a toolkit for the interpretation of gene or protein lists using enrichment of network based statistical frameworks."
+        "biotools_description": "bioprofiling.de provides a toolkit for the interpretation of gene or protein lists using enrichment of network based statistical frameworks."
     },
     {
         "tool_id": "bioconductor-geneplotter",
@@ -12529,7 +12529,7 @@
         "biotools_id": "CellProfiler",
         "EDAM_operations_full": "Image analysis, Parsing, Quantification",
         "EDAM_topics_full": "Genotype and phenotype, Imaging, Microarray experiment",
-        "biocontainers_description": "profiler is free, open-source software for quantitative analysis of biological images"
+        "biocontainers_description": "cellprofiler is free, open-source software for quantitative analysis of biological images"
     },
     {
         "tool_id": "casboundary",
@@ -15168,7 +15168,7 @@
         "biotools_id": "neddpred",
         "EDAM_operations_full": "Feature extraction, PTM localisation, PTM site prediction",
         "EDAM_topics_full": "Pathology, Protein modifications, Statistics and probability",
-        "biotools_description": "profile bayes feature extraction via the chou's 5-steps rule and general pseudo components."
+        "biotools_description": "bi-profile bayes feature extraction via the chou's 5-steps rule and general pseudo components."
     },
     {
         "tool_id": "isa",
@@ -16377,7 +16377,7 @@
         "biotools_id": "",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "",
-        "biocontainers_description": "profiller, ilastik, fiji etc"
+        "biocontainers_description": "cellprofiller, ilastik, fiji etc"
     },
     {
         "tool_id": "ncbi-amrfinderplus",
@@ -16390,7 +16390,7 @@
         "biotools_id": "",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "",
-        "biocontainers_description": "amr"
+        "biocontainers_description": "amrfinderplus"
     },
     {
         "tool_id": "ffas",
@@ -16507,7 +16507,7 @@
         "biotools_id": "methpanel",
         "EDAM_operations_full": "Gene methylation analysis, Methylation calling, Whole genome methylation analysis",
         "EDAM_topics_full": "Biomarkers, DNA, Epigenetics, Sequencing, Workflows",
-        "biotools_description": "amplicon"
+        "biotools_description": "amplicons"
     },
     {
         "tool_id": "bioconductor-dta",
@@ -16689,7 +16689,7 @@
         "biotools_id": "structurechecker",
         "EDAM_operations_full": "Filtering",
         "EDAM_topics_full": "Computational chemistry, Protein binding sites, Small molecules",
-        "biotools_description": "profiler was developed as an all-in-one tool to screen structures based on selection criteria typically used upon dataset assembly for structure-based design methods. test configurations based on either the astex, the iridium ht, the platinum, or the combination of all three criteria catalogs. (note that rscc as an electron density validation criteria was replaced by ediam scoring)."
+        "biotools_description": "structureprofiler was developed as an all-in-one tool to screen structures based on selection criteria typically used upon dataset assembly for structure-based design methods. test configurations based on either the astex, the iridium ht, the platinum, or the combination of all three criteria catalogs. (note that rscc as an electron density validation criteria was replaced by ediam scoring)."
     },
     {
         "tool_id": "osacc",
@@ -18119,7 +18119,7 @@
         "biotools_id": "CDMetaPOP",
         "EDAM_operations_full": "Modelling and simulation, Regression analysis, Visualisation",
         "EDAM_topics_full": "Ecology, Genetics, Model organisms",
-        "biotools_description": "metapop v1.0 release! this release includes installation instructions, version notes, some examples, and technical documentation."
+        "biotools_description": "cdmetapop v1.0 release! this release includes installation instructions, version notes, some examples, and technical documentation."
     },
     {
         "tool_id": "tmbeta-net",
@@ -19081,7 +19081,7 @@
         "biotools_id": "block_aligner",
         "EDAM_operations_full": "Global alignment, Pairwise sequence alignment, Sequence profile alignment",
         "EDAM_topics_full": "Microarray experiment, Proteomics experiment, Sequence analysis",
-        "biotools_description": "profile alignments using an adaptive block-based algorithm."
+        "biotools_description": "sequence-to-profile alignments using an adaptive block-based algorithm."
     },
     {
         "tool_id": "coils",
@@ -19367,7 +19367,7 @@
         "biotools_id": "kgem",
         "EDAM_operations_full": "Pairwise sequence alignment",
         "EDAM_topics_full": "Genetics, Sequencing",
-        "biotools_description": "amplicon"
+        "biotools_description": "single-amplicon"
     },
     {
         "tool_id": "lungmap",
@@ -19978,7 +19978,7 @@
         "biotools_id": "",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "",
-        "biocontainers_description": "profiles: an r package for the statistical analysis of functional profiles"
+        "biocontainers_description": "goprofiles: an r package for the statistical analysis of functional profiles"
     },
     {
         "tool_id": "amon",
@@ -20602,7 +20602,7 @@
         "biotools_id": "PEMA",
         "EDAM_operations_full": "Community profiling",
         "EDAM_topics_full": "Biodiversity",
-        "biotools_description": "ITS"
+        "biotools_description": "16S"
     },
     {
         "tool_id": "bioconductor-genefilter",
@@ -21616,7 +21616,7 @@
         "biotools_id": "",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "",
-        "biocontainers_description": "profiler uses k-mer profiles to predict hla types from paired-end rna-seq data."
+        "biocontainers_description": "hlaprofiler uses k-mer profiles to predict hla types from paired-end rna-seq data."
     },
     {
         "tool_id": "miams",
@@ -21629,7 +21629,7 @@
         "biotools_id": "MIAmS",
         "EDAM_operations_full": "Standardisation and normalisation",
         "EDAM_topics_full": "DNA polymorphism, Sequencing, Workflows",
-        "biotools_description": "amplicon"
+        "biotools_description": "amplicons"
     },
     {
         "tool_id": "cil-expmrm",
@@ -21798,7 +21798,7 @@
         "biotools_id": "syntoxprofiler",
         "EDAM_operations_full": "Standardisation and normalisation",
         "EDAM_topics_full": "Oncology, Pharmacogenomics, Preclinical and clinical studies, Safety sciences, Small molecules",
-        "biotools_description": "profiler: an approach for top drug combination selection based on integrated profiling of synergy, toxicity and efficacy."
+        "biotools_description": "syntoxprofiler: an approach for top drug combination selection based on integrated profiling of synergy, toxicity and efficacy."
     },
     {
         "tool_id": "upobase",
@@ -21889,7 +21889,7 @@
         "biotools_id": "tkna",
         "EDAM_operations_full": "Network analysis",
         "EDAM_topics_full": "Bioinformatics, Microbial ecology, Molecular interactions, pathways and networks, Transcriptomics",
-        "biotools_description": "microbiota and other multi-omic interactions."
+        "biotools_description": "host-microbiota and other multi-omic interactions."
     },
     {
         "tool_id": "mantis_ga",
@@ -21928,7 +21928,7 @@
         "biotools_id": "",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "",
-        "biocontainers_description": "profile building."
+        "biocontainers_description": "antiprofile building."
     },
     {
         "tool_id": "bioconductor-chipsim",
@@ -22292,7 +22292,7 @@
         "biotools_id": "GPseudoClust",
         "EDAM_operations_full": "Deisotoping, Expression profile clustering, Visualisation",
         "EDAM_topics_full": "Gene expression, Gene transcripts, Microarray experiment, RNA-Seq",
-        "biotools_description": "profiles at single-cell resolution."
+        "biotools_description": "pseudo-profiles at single-cell resolution."
     },
     {
         "tool_id": "virmine_2.0",
@@ -22422,7 +22422,7 @@
         "biotools_id": "mlplasmids",
         "EDAM_operations_full": "Genome assembly, Prediction and recognition",
         "EDAM_topics_full": "Public health and epidemiology, Sequence assembly, Whole genome sequencing",
-        "biotools_description": "plasmids consists of binary classifiers to predict contigs either as plasmid-derived or chromosome-derived."
+        "biotools_description": "mlplasmids consists of binary classifiers to predict contigs either as plasmid-derived or chromosome-derived."
     },
     {
         "tool_id": "scellnetor",
@@ -22630,7 +22630,7 @@
         "biotools_id": "camregbase",
         "EDAM_operations_full": "Database search, Essential dynamics, Expression analysis",
         "EDAM_topics_full": "Gene regulation, Lipids, Plant biology, Transcription factors and regulatory sites, Transcriptomics",
-        "biotools_description": "amr"
+        "biotools_description": "camregbase"
     },
     {
         "tool_id": "semeta",
@@ -22877,7 +22877,7 @@
         "biotools_id": "hast",
         "EDAM_operations_full": "De-novo assembly, Genome assembly, Haplotype mapping, Scaffolding, k-mer counting",
         "EDAM_topics_full": "Genetic variation, Genotype and phenotype, Sequence assembly, Sequencing",
-        "biotools_description": "binning algorithm using parentally unique markers."
+        "biotools_description": "trio-binning algorithm using parentally unique markers."
     },
     {
         "tool_id": "metfrag-vis",
@@ -23345,7 +23345,7 @@
         "biotools_id": "FLEA",
         "EDAM_operations_full": "Ancestral reconstruction, Sequence trimming, Sequencing quality control",
         "EDAM_topics_full": "Phylogenetics, Sequencing, Virology",
-        "biotools_description": "amplicon"
+        "biotools_description": "amplicons"
     },
     {
         "tool_id": "bioconductor-metagenomefeatures",
@@ -23826,7 +23826,7 @@
         "biotools_id": "",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "",
-        "biocontainers_description": "profiler's java dependencies"
+        "biocontainers_description": "cellprofiler's java dependencies"
     },
     {
         "tool_id": "mikado",
@@ -24281,7 +24281,7 @@
         "biotools_id": "amplicondesign",
         "EDAM_operations_full": "Bisulfite mapping, Gene methylation analysis, PCR primer design, Sequence trimming, Whole genome methylation analysis",
         "EDAM_topics_full": "DNA, Epigenetics, Methylated DNA immunoprecipitation, Probes and primers, Sequencing",
-        "biotools_description": "amplicon"
+        "biotools_description": "amplicondesign"
     },
     {
         "tool_id": "allegro",
@@ -24554,7 +24554,7 @@
         "biotools_id": "denovoprofiling",
         "EDAM_operations_full": "Scaffolding, Small molecule design, Visualisation",
         "EDAM_topics_full": "Compound libraries and screening, Medicinal chemistry, Molecular interactions, pathways and networks, Small molecules",
-        "biotools_description": "profiling is a webserver for de novo generated molecule library profiling."
+        "biotools_description": "denovoprofiling is a webserver for de novo generated molecule library profiling."
     },
     {
         "tool_id": "openprot",
@@ -24619,7 +24619,7 @@
         "biotools_id": "bpbaac",
         "EDAM_operations_full": "Prediction and recognition, Protein sequence analysis",
         "EDAM_topics_full": "Protein folding, stability and design, Small molecules, Statistics and probability",
-        "biotools_description": "profile bayes model."
+        "biotools_description": "bi-profile bayes model."
     },
     {
         "tool_id": "samsa",
@@ -24957,7 +24957,7 @@
         "biotools_id": "easyxpress",
         "EDAM_operations_full": "Filtering, Image analysis, Visualisation",
         "EDAM_topics_full": "Imaging, Model organisms, Workflows, Zoology",
-        "biotools_description": "profiler. the package is rather specific to use in the andersen lab and, therefore, is not available from cran."
+        "biotools_description": "cellprofiler. the package is rather specific to use in the andersen lab and, therefore, is not available from cran."
     },
     {
         "tool_id": "impp",
@@ -26062,7 +26062,7 @@
         "biotools_id": "gani",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "Microbiology",
-        "biotools_description": "ITS"
+        "biotools_description": "16S"
     },
     {
         "tool_id": "animalassociatedmetagenomedb",
@@ -26140,7 +26140,7 @@
         "biotools_id": "pipprofiler",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "Small molecules",
-        "biotools_description": "profiler is a tool to easily generate and explore profiles of percent identical positions from a fasta file (nucloetide or peptide sequences)."
+        "biotools_description": "pipprofiler is a tool to easily generate and explore profiles of percent identical positions from a fasta file (nucloetide or peptide sequences)."
     },
     {
         "tool_id": "scgid",
@@ -26712,7 +26712,7 @@
         "biotools_id": "swarm",
         "EDAM_operations_full": "Sequence clustering",
         "EDAM_topics_full": "Biodiversity, Microbiology, Molecular biology, Sequence analysis",
-        "biocontainers_description": "amplicon"
+        "biocontainers_description": "amplicon-based"
     },
     {
         "tool_id": "microbiolink",
@@ -27401,7 +27401,7 @@
         "biotools_id": "ampliconnoise",
         "EDAM_operations_full": "Chimera detection",
         "EDAM_topics_full": "",
-        "biocontainers_description": "amplicon"
+        "biocontainers_description": "amplicons"
     },
     {
         "tool_id": "mapi",
@@ -27713,7 +27713,7 @@
         "biotools_id": "gcprofilemaker",
         "EDAM_operations_full": "Essential dynamics, Genotyping, Standardisation and normalisation",
         "EDAM_topics_full": "Genotype and phenotype, Machine learning, Metabolomics, Physiology, Small molecules",
-        "biotools_description": "profilemaker is an r package for automatic classification of constitutive and non-constitutive metabolites."
+        "biotools_description": "gcprofilemaker is an r package for automatic classification of constitutive and non-constitutive metabolites."
     },
     {
         "tool_id": "biomart_central",
@@ -27908,7 +27908,7 @@
         "biotools_id": "stitchprofiles.uio.no",
         "EDAM_operations_full": "Nucleic acid melting curve plotting, Nucleic acid melting profile plotting, Nucleic acid stitch profile plotting, Nucleic acid temperature profile plotting, Nucleic acid thermodynamic property calculation",
         "EDAM_topics_full": "DNA, Nucleic acid structure analysis, Statistics and probability, Structure prediction",
-        "biotools_description": "profiles.uio.no is a server that performs web-based computations on dna melting.  in addition to creating stitch profile diagrams representing the alternative conformations that partly melted dna can adopt, the server can also plot the classical melting curves, probability profiles, and temperature profiles."
+        "biotools_description": "stitchprofiles.uio.no is a server that performs web-based computations on dna melting.  in addition to creating stitch profile diagrams representing the alternative conformations that partly melted dna can adopt, the server can also plot the classical melting curves, probability profiles, and temperature profiles."
     },
     {
         "tool_id": "mr-based_glioblastoma_tumour_detection_and_segmentation",
@@ -28155,7 +28155,7 @@
         "biotools_id": "",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "",
-        "biocontainers_description": "profile of carbapenamase genes from the genome assemblies. "
+        "biocontainers_description": "profile of carbapenamase genes from the genome assemblies."
     },
     {
         "tool_id": "myrt",
@@ -28805,7 +28805,7 @@
         "biotools_id": "HAMR",
         "EDAM_operations_full": "Base-calling, Genotyping, SNP detection",
         "EDAM_topics_full": "Functional, regulatory and non-coding RNA, Gene transcripts, RNA-Seq",
-        "biotools_description": "amr"
+        "biotools_description": "hamr"
     },
     {
         "tool_id": "andersen-lab_ivar",
@@ -28818,7 +28818,7 @@
         "biotools_id": "andersen-lab_ivar",
         "EDAM_operations_full": "Primer removal",
         "EDAM_topics_full": "Virology",
-        "biotools_description": "amplicon"
+        "biotools_description": "amplicon-based"
     },
     {
         "tool_id": "deepeca",
@@ -29481,7 +29481,7 @@
         "biotools_id": "",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "",
-        "biocontainers_description": "profile"
+        "biocontainers_description": "phyloprofile"
     },
     {
         "tool_id": "bioconductor-hmp16sdata",
@@ -29572,7 +29572,7 @@
         "biotools_id": "AAI-profiler",
         "EDAM_operations_full": "Query and retrieval",
         "EDAM_topics_full": "Proteomics, Sequence analysis, Small molecules",
-        "biotools_description": "profiler [1] is a fast homology search tool that takes a query proteome (protein sequences in fasta format) as input and plots the aai (average amino-acid identity) values of species in the uniprot database. aai-profiler is powered by sans [2] and the processing time for a bacterial proteome is a few minutes."
+        "biotools_description": "aai-profiler [1] is a fast homology search tool that takes a query proteome (protein sequences in fasta format) as input and plots the aai (average amino-acid identity) values of species in the uniprot database. aai-profiler is powered by sans [2] and the processing time for a bacterial proteome is a few minutes."
     },
     {
         "tool_id": "batchbench",
@@ -30092,7 +30092,7 @@
         "biotools_id": "zdb",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "Comparative genomics",
-        "biotools_description": "amr"
+        "biotools_description": "amrs"
     },
     {
         "tool_id": "amplisolve",
@@ -30846,7 +30846,7 @@
         "biotools_id": "gprofile_r",
         "EDAM_operations_full": "Data retrieval, Gene functional annotation, Gene-set enrichment analysis, Pathway or network analysis",
         "EDAM_topics_full": "Function analysis, Genomics, Molecular interactions, pathways and networks, Ontology and terminology",
-        "biotools_description": "profiler performs functional enrichment analysis, gene identifier conversion and mapping homologous genes across related organisms via the 'g:profiler' toolkit. the tool performs statistical enrichment analysis to find over-representation of information like gene ontology terms, biological pathways, regulatory dna elements, human disease gene annotations, and protein-protein interaction networks. the basic input is a list of genes."
+        "biotools_description": "gprofiler performs functional enrichment analysis, gene identifier conversion and mapping homologous genes across related organisms via the 'g:profiler' toolkit. the tool performs statistical enrichment analysis to find over-representation of information like gene ontology terms, biological pathways, regulatory dna elements, human disease gene annotations, and protein-protein interaction networks. the basic input is a list of genes."
     },
     {
         "tool_id": "veba",
@@ -31301,7 +31301,7 @@
         "biotools_id": "amrfinderplus",
         "EDAM_operations_full": "Antimicrobial resistance prediction",
         "EDAM_topics_full": "Infectious disease, Microbiology, Public health and epidemiology",
-        "biotools_description": "amr"
+        "biotools_description": "amrfinderplus"
     },
     {
         "tool_id": "metaquery",
@@ -32536,7 +32536,7 @@
         "biotools_id": "",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "",
-        "biocontainers_description": "profiler"
+        "biocontainers_description": "sigprofiler"
     },
     {
         "tool_id": "shark.dive",
@@ -32952,7 +32952,7 @@
         "biotools_id": "studyStrap",
         "EDAM_operations_full": "Standardisation and normalisation",
         "EDAM_topics_full": "Human biology, Machine learning, Neurobiology",
-        "biotools_description": "profile similarity weighting and bagging studies with the study strap."
+        "biotools_description": "covariate-profile similarity weighting and bagging studies with the study strap."
     },
     {
         "tool_id": "metachrom",
@@ -33056,7 +33056,7 @@
         "biotools_id": "pyronoise",
         "EDAM_operations_full": "Sequencing quality control",
         "EDAM_topics_full": "Data quality management",
-        "biotools_description": "amplicon"
+        "biotools_description": "ampliconnoise"
     },
     {
         "tool_id": "krakenhll",
@@ -33459,7 +33459,7 @@
         "biotools_id": "ipyphe",
         "EDAM_operations_full": "Aggregation, Quantification, Standardisation and normalisation",
         "EDAM_topics_full": "Cytometry, Imaging, Infectious disease, Microbiology, Phenomics",
-        "biotools_description": "amr"
+        "biotools_description": "kamrad"
     },
     {
         "tool_id": "webgester_db",
@@ -35006,7 +35006,7 @@
         "biotools_id": "scnet-genes",
         "EDAM_operations_full": "Expression correlation analysis, Network analysis, Transcriptome assembly",
         "EDAM_topics_full": "Genotype and phenotype, Molecular interactions, pathways and networks, RNA-Seq, Transcription factors and regulatory sites, Transcriptomics",
-        "biotools_description": "amr"
+        "biotools_description": "benchamrk"
     },
     {
         "tool_id": "inspire-utility-deform3d-image",
@@ -35188,7 +35188,7 @@
         "biotools_id": "ismags",
         "EDAM_operations_full": "Database search, Sequence motif discovery, Sequence motif recognition",
         "EDAM_topics_full": "Protein structural motifs and surfaces, Sequence sites, features and motifs, Systems biology",
-        "biotools_description": "mags"
+        "biotools_description": "ismags"
     },
     {
         "tool_id": "hvrlocator",
@@ -35214,7 +35214,7 @@
         "biotools_id": "LOBSTER",
         "EDAM_operations_full": "Image analysis, Quantification",
         "EDAM_topics_full": "Bioinformatics, Imaging, Workflows",
-        "biotools_description": "profiler greatly simplified the quantitative analysis of microscopy images but their applicability is limited by the size, dimensionality and complexity of the images under study. in contrast, software optimized for the needs of specific research projects can overcome these limitations, but they may be harder to find, set up and customize to different needs. overall, the analysis of large, complex, microscopy images is hence still a critical bottleneck for many life scientists. we introduce lobster (little objects segmentation & tracking environment), an environment designed to help scientists design and customize image analysis workflows to accurately characterize biological objects from a broad range of fluorescence microscopy images, including large images exceeding workstation main memory."
+        "biotools_description": "cellprofiler greatly simplified the quantitative analysis of microscopy images but their applicability is limited by the size, dimensionality and complexity of the images under study. in contrast, software optimized for the needs of specific research projects can overcome these limitations, but they may be harder to find, set up and customize to different needs. overall, the analysis of large, complex, microscopy images is hence still a critical bottleneck for many life scientists. we introduce lobster (little objects segmentation & tracking environment), an environment designed to help scientists design and customize image analysis workflows to accurately characterize biological objects from a broad range of fluorescence microscopy images, including large images exceeding workstation main memory."
     },
     {
         "tool_id": "disco_dsr",
@@ -35656,7 +35656,7 @@
         "biotools_id": "phylotrac",
         "EDAM_operations_full": "Expression data visualisation",
         "EDAM_topics_full": "Microarray experiment, Phylogenetics",
-        "biotools_description": "ITS"
+        "biotools_description": "16S"
     },
     {
         "tool_id": "hlppred-fuse",
@@ -35747,7 +35747,7 @@
         "biotools_id": "metaworks",
         "EDAM_operations_full": "Filtering, Formatting, Sequence trimming",
         "EDAM_topics_full": "Biodiversity, Microbial ecology, Model organisms, Sequence sites, features and motifs, Workflows",
-        "biotools_description": "ITS"
+        "biotools_description": "16S"
     },
     {
         "tool_id": "bioconductor-snm",
@@ -36176,7 +36176,7 @@
         "biotools_id": "marvel",
         "EDAM_operations_full": "Alternative splicing prediction, Differential gene expression profiling, Essential dynamics, Sequence merging, Splice site prediction",
         "EDAM_topics_full": "Gene transcripts, Genotype and phenotype, RNA splicing, RNA-Seq, Transcriptomics",
-        "biocontainers_description": "metagenomic analyses and retrieval of viral elements "
+        "biocontainers_description": "metagenomic analyses and retrieval of viral elements"
     },
     {
         "tool_id": "bioconductor-copa",
@@ -36358,7 +36358,7 @@
         "biotools_id": "",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "",
-        "biocontainers_description": "amplicon"
+        "biocontainers_description": "ampliconduo"
     },
     {
         "tool_id": "calis-p",
@@ -36735,7 +36735,7 @@
         "biotools_id": "antiprofiles",
         "EDAM_operations_full": "Gene expression profiling",
         "EDAM_topics_full": "Gene expression, Genetics",
-        "biotools_description": "profiles."
+        "biotools_description": "anti-profiles."
     },
     {
         "tool_id": "poky",
@@ -36813,7 +36813,7 @@
         "biotools_id": "prmdb",
         "EDAM_operations_full": "Data retrieval, Deposition, Sequence trimming, Visualisation, tRNA gene prediction",
         "EDAM_topics_full": "Functional, regulatory and non-coding RNA, Gene expression, Gene transcripts, Plant biology, RNA-Seq",
-        "biotools_description": "amr"
+        "biotools_description": "hamr"
     },
     {
         "tool_id": "bioconductor-metaseqr",
@@ -36930,7 +36930,7 @@
         "biotools_id": "varvamp",
         "EDAM_operations_full": "PCR primer design",
         "EDAM_topics_full": "Probes and primers, Virology",
-        "biotools_description": "amplicon"
+        "biotools_description": "virusamplicons"
     },
     {
         "tool_id": "lifeexplorer",
@@ -37697,7 +37697,7 @@
         "biotools_id": "amplimethprofiler",
         "EDAM_operations_full": "Bisulfite mapping, Methylation analysis",
         "EDAM_topics_full": "Immunoprecipitation experiment, Methylated DNA immunoprecipitation, Sequence analysis",
-        "biotools_description": "amplicon"
+        "biotools_description": "amplicons"
     },
     {
         "tool_id": "qiimetomaaslin",
@@ -37879,7 +37879,7 @@
         "biotools_id": "",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "",
-        "biocontainers_description": "profiler v4"
+        "biocontainers_description": "cellprofiler v4"
     },
     {
         "tool_id": "rtg-tools",
@@ -38347,7 +38347,7 @@
         "biotools_id": "SEQualyzer",
         "EDAM_operations_full": "Expression analysis, Validation",
         "EDAM_topics_full": "Nucleic acid structure analysis, RNA, Transcriptomics",
-        "biotools_description": "profiling experiment quality analyzer ) - interactive tool for quality control and exploratory analysis of high-throughput rna structural profiling data."
+        "biotools_description": "structure-profiling experiment quality analyzer ) - interactive tool for quality control and exploratory analysis of high-throughput rna structural profiling data."
     },
     {
         "tool_id": "format_metaphlan2_output",
@@ -38984,7 +38984,7 @@
         "biotools_id": "likelihoodprofiler",
         "EDAM_operations_full": "Pathway analysis, Visualisation",
         "EDAM_topics_full": "Molecular interactions, pathways and networks, Oncology, Software engineering, Systems biology",
-        "biotools_description": "profiler is a julia language package for identifiability analysis and confidence intervals evaluation."
+        "biotools_description": "likelihoodprofiler is a julia language package for identifiability analysis and confidence intervals evaluation."
     },
     {
         "tool_id": "count",
@@ -39426,7 +39426,7 @@
         "biotools_id": "HistoneAnalysisWorkflow",
         "EDAM_operations_full": "PTM identification, Post-translation modification site prediction, Standardisation and normalisation",
         "EDAM_topics_full": "Epigenetics, Protein modifications, Proteomics, Proteomics experiment",
-        "biotools_description": "profile 2.0."
+        "biotools_description": "epiprofile 2.0."
     },
     {
         "tool_id": "pepfunk",
@@ -39556,7 +39556,7 @@
         "biotools_id": "",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "",
-        "biocontainers_description": "profiles using factor analysis methods. applications of peer have (i) detected batch effects and experimental confounders (ii) increased the number of expression qtl findings by threefold and (iii) allowed inference of intermediate cellular traits, such as transcription factor or pathway activations. this project offers an efficient and versatile c++ implementation of the underlying algorithms with user-friendly interfaces to r and python. "
+        "biocontainers_description": "profiles using factor analysis methods. applications of peer have (i) detected batch effects and experimental confounders (ii) increased the number of expression qtl findings by threefold and (iii) allowed inference of intermediate cellular traits, such as transcription factor or pathway activations. this project offers an efficient and versatile c++ implementation of the underlying algorithms with user-friendly interfaces to r and python."
     },
     {
         "tool_id": "bshmm",
@@ -40869,7 +40869,7 @@
         "biotools_id": "pyphe",
         "EDAM_operations_full": "Aggregation, Quantification, Standardisation and normalisation",
         "EDAM_topics_full": "Cytometry, Genotype and phenotype, Imaging, Model organisms",
-        "biotools_description": "amr"
+        "biotools_description": "kamrad"
     },
     {
         "tool_id": "valet",
@@ -41740,7 +41740,7 @@
         "biotools_id": "gc-profile",
         "EDAM_operations_full": "CpG island and isochore detection, Genetic variation analysis",
         "EDAM_topics_full": "DNA structural variation, Genomics, Sequencing, Transcription factors and regulatory sites, Whole genome sequencing",
-        "biotools_description": "profile is a web-based tool for visualizing and analyzing the variation of gc content in genomic sequences."
+        "biotools_description": "gc-profile is a web-based tool for visualizing and analyzing the variation of gc content in genomic sequences."
     },
     {
         "tool_id": "peppro-rna",
@@ -41961,7 +41961,7 @@
         "biotools_id": "HLA",
         "EDAM_operations_full": "Expression analysis, Protein quantification, RNA-Seq quantification",
         "EDAM_topics_full": "Gene transcripts, RNA-Seq, Transcriptomics",
-        "biotools_description": "profiler uses the k-mer content of next generation sequencing reads to call hla types in a sample. based on the k-mer content each each read pair is assigned to an hla gene and the aggregate k-mer profile for the gene is compared to reference k-mer profiles to determin the hla type. currently hlaprofiler only supports paired-end rna-seq data"
+        "biotools_description": "hlaprofiler uses the k-mer content of next generation sequencing reads to call hla types in a sample. based on the k-mer content each each read pair is assigned to an hla gene and the aggregate k-mer profile for the gene is compared to reference k-mer profiles to determin the hla type. currently hlaprofiler only supports paired-end rna-seq data"
     },
     {
         "tool_id": "jronn_ws_jabaws",
@@ -42234,7 +42234,7 @@
         "biotools_id": "",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "",
-        "biocontainers_description": "amr"
+        "biocontainers_description": "amrfinder"
     },
     {
         "tool_id": "meta4p",
@@ -43183,7 +43183,7 @@
         "biotools_id": "Cytokit",
         "EDAM_operations_full": "Deisotoping, Microscope image visualisation",
         "EDAM_topics_full": "Biomarkers, Imaging, Immunoproteins and antigens",
-        "biotools_description": "profiler analyst) | med google cloud platform kan du oprette, implementere og skalere apps, websites og tjenester på den samme infrastruktur som google | fortsæt til google cloud platform | skriv den tekst, du hører eller ser"
+        "biotools_description": "cellprofiler analyst) | med google cloud platform kan du oprette, implementere og skalere apps, websites og tjenester på den samme infrastruktur som google | fortsæt til google cloud platform | skriv den tekst, du hører eller ser"
     },
     {
         "tool_id": "bmtool",
@@ -43755,7 +43755,7 @@
         "biotools_id": "cojac",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "Genetic variation",
-        "biotools_description": "amplicon"
+        "biotools_description": "amplicons"
     },
     {
         "tool_id": "biopipe",
@@ -44223,7 +44223,7 @@
         "biotools_id": "BGSC",
         "EDAM_operations_full": "Differential gene expression analysis",
         "EDAM_topics_full": "Functional, regulatory and non-coding RNA, RNA splicing, RNAi experiment",
-        "biotools_description": "profile_sf767-1.txt.gz. the lists of genes predicted for all of the four classes can be found in the folder predectionresult"
+        "biotools_description": "controlprobeprofile_sf767-1.txt.gz. the lists of genes predicted for all of the four classes can be found in the folder predectionresult"
     },
     {
         "tool_id": "nanomethviz",
@@ -44457,7 +44457,7 @@
         "biotools_id": "populationprofiler",
         "EDAM_operations_full": "Image analysis",
         "EDAM_topics_full": "Cell biology, Light microscopy, Statistics and probability",
-        "biotools_description": "profiler is a software tool that reduces per-cell measurements to population statistics. the software imports measurements from a simple text file, visualizes population distributions in a compact and comprehensive way, and can create gates for subpopulation classes based on control samples."
+        "biotools_description": "populationprofiler is a software tool that reduces per-cell measurements to population statistics. the software imports measurements from a simple text file, visualizes population distributions in a compact and comprehensive way, and can create gates for subpopulation classes based on control samples."
     },
     {
         "tool_id": "proteinprofiles",
@@ -45471,7 +45471,7 @@
         "biotools_id": "cnvpanelizer",
         "EDAM_operations_full": "Copy number estimation",
         "EDAM_topics_full": "Sequencing",
-        "biotools_description": "amplicon"
+        "biotools_description": "amplicons"
     },
     {
         "tool_id": "ldweaver",
@@ -48006,7 +48006,7 @@
         "biotools_id": "nf-core-viralrecon",
         "EDAM_operations_full": "Genetic variation analysis, Genome assembly, Sample comparison, Sequence alignment, Sequence similarity search, Variant calling",
         "EDAM_topics_full": "Genetic variation, Genomics, Mapping, Population genomics, Sequencing, Virology, Workflows",
-        "biotools_description": "amplicon"
+        "biotools_description": "amplicon-based"
     },
     {
         "tool_id": "metaphage",
@@ -48149,7 +48149,7 @@
         "biotools_id": "SCSsim",
         "EDAM_operations_full": "Read mapping, Sequence profile generation",
         "EDAM_topics_full": "DNA polymorphism, Probes and primers, Sequencing",
-        "biotools_description": "profile” component is developed to infer sequencing platform dependent profiles from real data; 3) “genreads” utility is provided to mimic single-cell genome amplification and read generation procedures based on the results of “simuvars” and “learnprofile”."
+        "biotools_description": "learnprofile” component is developed to infer sequencing platform dependent profiles from real data; 3) “genreads” utility is provided to mimic single-cell genome amplification and read generation procedures based on the results of “simuvars” and “learnprofile”."
     },
     {
         "tool_id": "plm-arg",
@@ -48591,7 +48591,7 @@
         "biotools_id": "coreprofiler",
         "EDAM_operations_full": "Multilocus sequence typing",
         "EDAM_topics_full": "Bioinformatics, Microbiology, Phylogenetics",
-        "biotools_description": "profiler is a cgmlst (core genome multilocus sequence typing) software that identifies alleles in bacterial genome assemblies by comparing them to a reference allele scheme. it detects both exact matches to known alleles and potential novel alleles using a two-step blast-based approach, enabling robust and reproducible strain genotyping."
+        "biotools_description": "coreprofiler is a cgmlst (core genome multilocus sequence typing) software that identifies alleles in bacterial genome assemblies by comparing them to a reference allele scheme. it detects both exact matches to known alleles and potential novel alleles using a two-step blast-based approach, enabling robust and reproducible strain genotyping."
     },
     {
         "tool_id": "aniamppred",
@@ -48994,7 +48994,7 @@
         "biotools_id": "mutascope",
         "EDAM_operations_full": "Variant calling",
         "EDAM_topics_full": "Oncology, Workflows",
-        "biotools_description": "amplicon"
+        "biotools_description": "amplicons"
     },
     {
         "tool_id": "bioconductor-siamcat",
@@ -49384,7 +49384,7 @@
         "biotools_id": "miscmetabar",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "",
-        "biotools_description": "metabar aims to facilitate the description, transformation, exploration and reproducibility of metabarcoding analysis using r. the development of miscmetabar relies heavily on the r packages dada2 (callahan et al. 2016), phyloseq (mcmurdie and holmes 2013) and targets (landau 2021)."
+        "biotools_description": "miscmetabar aims to facilitate the description, transformation, exploration and reproducibility of metabarcoding analysis using r. the development of miscmetabar relies heavily on the r packages dada2 (callahan et al. 2016), phyloseq (mcmurdie and holmes 2013) and targets (landau 2021)."
     },
     {
         "tool_id": "plassembler",
@@ -49631,7 +49631,7 @@
         "biotools_id": "amrmap",
         "EDAM_operations_full": "Antimicrobial resistance prediction, Regression analysis, Visualisation",
         "EDAM_topics_full": "Infectious disease, Microbiology",
-        "biotools_description": "amr"
+        "biotools_description": "amrmap"
     },
     {
         "tool_id": "plant_regulomics",
