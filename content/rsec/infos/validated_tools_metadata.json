@@ -192,7 +192,7 @@
         "biotools_id": "graphbin",
         "EDAM_operations_full": "Read binning, Sample comparison, Sequence assembly",
         "EDAM_topics_full": "Mapping, Metagenomics, Microbial ecology, Sequence assembly, Sequencing",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "circcode",
@@ -673,7 +673,7 @@
         "biotools_id": "binning_refiner",
         "EDAM_operations_full": "Read binning, Sequence clustering",
         "EDAM_topics_full": "Metagenomics, Microbial ecology, Sequence assembly",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "bioconductor-sc3",
@@ -1323,7 +1323,7 @@
         "biotools_id": "binette",
         "EDAM_operations_full": "Read binning",
         "EDAM_topics_full": "Metagenomics",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "moomin",
@@ -2194,7 +2194,7 @@
         "biotools_id": "cheer",
         "EDAM_operations_full": "Read binning, Sequence assembly, Taxonomic classification",
         "EDAM_topics_full": "Machine learning, Metagenomics, RNA, Taxonomy",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "starr",
@@ -2870,7 +2870,7 @@
         "biotools_id": "metabcc-lr",
         "EDAM_operations_full": "Dimensionality reduction, Read binning, Sequence assembly, k-mer counting",
         "EDAM_topics_full": "Metagenomics, Microbial ecology, Sequence assembly, Sequencing",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "transgenescan",
@@ -3364,7 +3364,7 @@
         "biotools_id": "GRASE",
         "EDAM_operations_full": "Genome annotation, Read binning, Sequence assembly",
         "EDAM_topics_full": "Metagenomic sequencing, Metagenomics, Microbial ecology",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "bioconductor-peca",
@@ -4573,7 +4573,7 @@
         "biotools_id": "muffin",
         "EDAM_operations_full": "Genome annotation, Pathway analysis, Read binning, Sequence assembly, Taxonomic classification",
         "EDAM_topics_full": "Metagenomics, RNA-Seq, Sequence assembly, Transcriptomics, Workflows",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "translig",
@@ -5067,7 +5067,7 @@
         "biotools_id": "snakemags",
         "EDAM_operations_full": "Read binning, Sequence assembly, Sequence trimming",
         "EDAM_topics_full": "Bioinformatics, Metagenomics, Microbial ecology, Sequence assembly, Workflows",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "phagedive",
@@ -5561,7 +5561,7 @@
         "biotools_id": "miComplete",
         "EDAM_operations_full": "Read binning, Sequence assembly validation",
         "EDAM_topics_full": "Mapping, Metagenomics, Sequence assembly",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "metacachespark",
@@ -6510,7 +6510,7 @@
         "biotools_id": "nf-core-eager",
         "EDAM_operations_full": "Aggregation, Genome alignment, Genome indexing, Read binning, Read mapping, Sequence contamination filtering",
         "EDAM_topics_full": "DNA, Genomics, Metagenomics, Paleogenomics",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "pat_database",
@@ -7004,7 +7004,7 @@
         "biotools_id": "binarena",
         "EDAM_operations_full": "Essential dynamics, Principal component analysis, Read binning, Sequence assembly, Visualisation",
         "EDAM_topics_full": "Human biology, Metagenomics, Microbial ecology, Public health and epidemiology",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "csupb",
@@ -10228,7 +10228,7 @@
         "biotools_id": "fairy",
         "EDAM_operations_full": "Read binning, Sequence assembly validation",
         "EDAM_topics_full": "Metagenomics",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "bioconductor-cogena",
@@ -10592,7 +10592,7 @@
         "biotools_id": "coconet-viral",
         "EDAM_operations_full": "Read binning, Sequence assembly, k-mer counting",
         "EDAM_topics_full": "DNA, Machine learning, Metagenomics, Microbial ecology, Sequence assembly",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "metameta",
@@ -12919,7 +12919,7 @@
         "biotools_id": "HULK",
         "EDAM_operations_full": "Read binning, Standardisation and normalisation, k-mer counting",
         "EDAM_topics_full": "Metagenomic sequencing, Metagenomics, Microbial ecology",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "it3se-px",
@@ -13348,7 +13348,7 @@
         "biotools_id": "BinDash",
         "EDAM_operations_full": "Read binning",
         "EDAM_topics_full": "Genetic variation, Metagenomics, Sequence assembly",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "sconce",
@@ -17196,7 +17196,7 @@
         "biotools_id": "metawrap",
         "EDAM_operations_full": "Demultiplexing, Genome annotation, Read binning, Sequence assembly, Sequence trimming",
         "EDAM_topics_full": "Metagenomic sequencing, Metagenomics, Whole genome sequencing",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "ricexpro",
@@ -17833,7 +17833,7 @@
         "biotools_id": "spraynpray",
         "EDAM_operations_full": "Parsing, Read binning, Sequence assembly, Sequence trimming, Taxonomic classification",
         "EDAM_topics_full": "Gene expression, Metagenomic sequencing, Metagenomics, Sequence assembly, Taxonomy",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "fishmirna",
@@ -19861,7 +19861,7 @@
         "biotools_id": "datma",
         "EDAM_operations_full": "Genome annotation, Read binning, Sequence assembly, Sequence trimming, de Novo sequencing",
         "EDAM_topics_full": "Bioinformatics, Metagenomic sequencing, Metagenomics, Sequence assembly, Workflows",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "gutbalance",
@@ -20602,7 +20602,7 @@
         "biotools_id": "PEMA",
         "EDAM_operations_full": "Community profiling",
         "EDAM_topics_full": "Biodiversity",
-        "biotools_description": "16S"
+        "biotools_description": "ITS"
     },
     {
         "tool_id": "bioconductor-genefilter",
@@ -22136,7 +22136,7 @@
         "biotools_id": "binnacle",
         "EDAM_operations_full": "Backbone modelling, Expression analysis, Mapping assembly, Read binning, Scaffolding",
         "EDAM_topics_full": "Mapping, Metagenomic sequencing, Metagenomics, Microbiology, Sequence assembly",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "disbalance",
@@ -22981,7 +22981,7 @@
         "biotools_id": "mbbc",
         "EDAM_operations_full": "Read binning",
         "EDAM_topics_full": "Metagenomics, Molecular genetics, Sequence analysis",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "pimento",
@@ -23592,7 +23592,7 @@
         "biotools_id": "MetaTOR",
         "EDAM_operations_full": "Read binning, Sequence assembly, Sequence trimming",
         "EDAM_topics_full": "Metagenomics, Microbial ecology, Sequence assembly",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "hmmcopy",
@@ -24216,7 +24216,7 @@
         "biotools_id": "concoct",
         "EDAM_operations_full": "Read binning, Sequence clustering",
         "EDAM_topics_full": "Metagenomics",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "sinopedia",
@@ -25087,7 +25087,7 @@
         "biotools_id": "FeGenie",
         "EDAM_operations_full": "Read binning, Sequence assembly",
         "EDAM_topics_full": "Metagenomics, Sequence assembly, Sequence sites, features and motifs",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "bioconductor-cnvgsa",
@@ -25802,7 +25802,7 @@
         "biotools_id": "ch-bin",
         "EDAM_operations_full": "Clustering, Read binning, Sequence assembly",
         "EDAM_topics_full": "Metagenomics, Sequence assembly, Workflows",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "phylotol",
@@ -26062,7 +26062,7 @@
         "biotools_id": "gani",
         "EDAM_operations_full": "",
         "EDAM_topics_full": "Microbiology",
-        "biotools_description": "16S"
+        "biotools_description": "ITS"
     },
     {
         "tool_id": "animalassociatedmetagenomedb",
@@ -28220,7 +28220,7 @@
         "biotools_id": "Metagenomic_read_binning_using_sparse_coding",
         "EDAM_operations_full": "Read binning",
         "EDAM_topics_full": "Metagenomics",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "fair4health_data_curation_tool",
@@ -29650,7 +29650,7 @@
         "biotools_id": "MetaBAT_2",
         "EDAM_operations_full": "Genome annotation, Read binning, Sequence assembly",
         "EDAM_topics_full": "Metagenomic sequencing, Metagenomics, Sequence assembly",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "bioconductor-altcdfenvs",
@@ -31678,7 +31678,7 @@
         "biotools_id": "nf-core_mag",
         "EDAM_operations_full": "Genome annotation, Read binning, Sequence assembly, Taxonomic classification",
         "EDAM_topics_full": "Metagenomic sequencing, Metagenomics, Sequence assembly, Workflows",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "maxflow",
@@ -31925,7 +31925,7 @@
         "biotools_id": "mtsv",
         "EDAM_operations_full": "Genome indexing, Local alignment, Read binning, Read mapping, Taxonomic classification",
         "EDAM_topics_full": "DNA polymorphism, Metagenomic sequencing, Metagenomics, Sequence analysis, Taxonomy",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "ghostx",
@@ -31977,7 +31977,7 @@
         "biotools_id": "metamvgl",
         "EDAM_operations_full": "Read binning, Sequence assembly, de Novo sequencing",
         "EDAM_topics_full": "Metagenomic sequencing, Metagenomics, Sequence assembly",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "joda",
@@ -33927,7 +33927,7 @@
         "biotools_id": "abawaca",
         "EDAM_operations_full": "Read binning",
         "EDAM_topics_full": "Metagenomics",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "jorg",
@@ -33940,7 +33940,7 @@
         "biotools_id": "jorg",
         "EDAM_operations_full": "De-novo assembly, Genome assembly, Read binning, Scaffolding, Sequence trimming",
         "EDAM_topics_full": "Cell biology, Gene structure, Mapping, Metagenomics, Sequence assembly",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "bioconductor-rhtslib",
@@ -35656,7 +35656,7 @@
         "biotools_id": "phylotrac",
         "EDAM_operations_full": "Expression data visualisation",
         "EDAM_topics_full": "Microarray experiment, Phylogenetics",
-        "biotools_description": "16S"
+        "biotools_description": "ITS"
     },
     {
         "tool_id": "hlppred-fuse",
@@ -35721,7 +35721,7 @@
         "biotools_id": "metatrass",
         "EDAM_operations_full": "Genotyping, Read binning, Sample comparison, Sequence assembly, Taxonomic classification",
         "EDAM_topics_full": "Evolutionary biology, Metagenomics, Microbial ecology, Sequence assembly, Sequencing",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "corazon",
@@ -35747,7 +35747,7 @@
         "biotools_id": "metaworks",
         "EDAM_operations_full": "Filtering, Formatting, Sequence trimming",
         "EDAM_topics_full": "Biodiversity, Microbial ecology, Model organisms, Sequence sites, features and motifs, Workflows",
-        "biotools_description": "16S"
+        "biotools_description": "ITS"
     },
     {
         "tool_id": "bioconductor-snm",
@@ -36800,7 +36800,7 @@
         "biotools_id": "busybee",
         "EDAM_operations_full": "Read binning, Sequence assembly",
         "EDAM_topics_full": "Biotechnology, Metagenomics, Microbial ecology",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "prmdb",
@@ -37138,7 +37138,7 @@
         "biotools_id": "clmb",
         "EDAM_operations_full": "Clustering, Dimensionality reduction, Read binning, Sequence assembly",
         "EDAM_topics_full": "Machine learning, Metagenomics, Microbial ecology, Sequence assembly, Workflows",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "easymicroplot",
@@ -37281,7 +37281,7 @@
         "biotools_id": "atlas-genome",
         "EDAM_operations_full": "Genome annotation, Read binning, Sequence assembly",
         "EDAM_topics_full": "GWAS study, Metagenomics, Transcriptomics",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "arrayxpath",
@@ -37996,7 +37996,7 @@
         "biotools_id": "MAGO",
         "EDAM_operations_full": "Genome annotation, Read binning, Sequence assembly",
         "EDAM_topics_full": "Computer science, Metagenomics, Microbial ecology, Phylogeny, Sequence assembly",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "plato_small_molecules",
@@ -38152,7 +38152,7 @@
         "biotools_id": "semibin",
         "EDAM_operations_full": "Read binning, Sequence assembly",
         "EDAM_topics_full": "Machine learning, Metagenomics, Microbial ecology, Sequence assembly",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "barcode_of_life_cli",
@@ -38555,7 +38555,7 @@
         "biotools_id": "kmerPyramid",
         "EDAM_operations_full": "Principal component visualisation, Read binning",
         "EDAM_topics_full": "Metagenomics, Phylogenetics, Sequencing",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "ai4amp",
@@ -38594,7 +38594,7 @@
         "biotools_id": "hifine",
         "EDAM_operations_full": "Read binning, Sample comparison, Sequence assembly",
         "EDAM_topics_full": "Metagenomics, Sequence assembly, Workflows",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "cancerspp",
@@ -38685,7 +38685,7 @@
         "biotools_id": "vrhyme",
         "EDAM_operations_full": "Read binning, Read mapping, Scaffolding, Sequence trimming",
         "EDAM_topics_full": "Machine learning, Metagenomics, Microbial ecology, Model organisms, Sequence assembly",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "gcmap",
@@ -39933,7 +39933,7 @@
         "biotools_id": "CAMISIM",
         "EDAM_operations_full": "Read binning, Sequence assembly, Taxonomic classification",
         "EDAM_topics_full": "Metagenomic sequencing, Metagenomics, Microbial ecology",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "microwinebar",
@@ -40830,7 +40830,7 @@
         "biotools_id": "groopm",
         "EDAM_operations_full": "Parsing, Read binning, Sequence assembly",
         "EDAM_topics_full": "Metagenomics, Sequence assembly",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "microbiomeutil",
@@ -42364,7 +42364,7 @@
         "biotools_id": "bbmap",
         "EDAM_operations_full": "RNA-Seq analysis, Read binning, Read mapping, Sequence alignment, Sequence contamination filtering, Sequence trimming",
         "EDAM_topics_full": "Metagenomics, Phylogenetics, RNA splicing, RNA-Seq, Sequencing, Whole genome sequencing",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "maxbin2",
@@ -42676,7 +42676,7 @@
         "biotools_id": "metabinner",
         "EDAM_operations_full": "Essential dynamics, Read binning, Sequence assembly",
         "EDAM_topics_full": "Mapping, Metagenomics, Microbial ecology, Workflows",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "bioconductor-variantfiltering",
@@ -43339,7 +43339,7 @@
         "biotools_id": "dastool",
         "EDAM_operations_full": "Read binning",
         "EDAM_topics_full": "Metagenomics",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "big-mex",
@@ -44626,7 +44626,7 @@
         "biotools_id": "cami-amber",
         "EDAM_operations_full": "Read binning",
         "EDAM_topics_full": "Metagenomics",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "mg-rast",
@@ -44730,7 +44730,7 @@
         "biotools_id": "squeezemeta",
         "EDAM_operations_full": "Read binning, Sequence assembly, Sequence trimming",
         "EDAM_topics_full": "Metagenomics, Metatranscriptomics, Microbial ecology, RNA-Seq",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "mycc",
@@ -44964,7 +44964,7 @@
         "biotools_id": "hybrid-denovo",
         "EDAM_operations_full": "Phylogenetic tree generation, Sequence merging",
         "EDAM_topics_full": "Functional, regulatory and non-coding RNA, Phylogenetics, Sequencing",
-        "biotools_description": "16S"
+        "biotools_description": "OTU"
     },
     {
         "tool_id": "metaline",
@@ -48721,7 +48721,7 @@
         "biotools_id": "cdsnake",
         "EDAM_operations_full": "Data retrieval, Read binning, Sequence merging",
         "EDAM_topics_full": "Metagenomics, Microbial ecology, Workflows",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "imp_omic",
@@ -49852,7 +49852,7 @@
         "biotools_id": "lrbinner",
         "EDAM_operations_full": "Clustering, Read binning, Sequence assembly, k-mer counting",
         "EDAM_topics_full": "Machine learning, Metagenomic sequencing, Metagenomics, Sample collections, Sequence assembly",
-        "EDAM_operation": "Read binning"
+        "EDAM_topics": "Metagenomics"
     },
     {
         "tool_id": "unite_rdna",

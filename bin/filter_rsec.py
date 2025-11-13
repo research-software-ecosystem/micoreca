@@ -280,9 +280,14 @@ class Tool:
         self.validation_data['EDAM_topics_full'] = full_topics
 
     def check_criteria_1(self) -> bool:
-        """Check for EDAM operations or topics."""
+        """Check for EDAM topics then operations."""
         data = self.metadata.get('biotools')
         if not data: return False
+        if 'topic' in data and isinstance(data['topic'], list):
+            for topic in data['topic']:
+                if 'term' in topic and topic['term'] in TARGET_TOPICS:
+                    self.validation_data['EDAM_topics'] = topic['term']
+                    return True        
         if 'function' in data and isinstance(data['function'], list):
             for func in data['function']:
                 if 'operation' in func and isinstance(func['operation'], list):
@@ -290,11 +295,7 @@ class Tool:
                         if 'term' in operation and operation['term'] in TARGET_OPERATIONS:
                             self.validation_data['EDAM_operation'] = operation['term']
                             return True
-        if 'topic' in data and isinstance(data['topic'], list):
-            for topic in data['topic']:
-                if 'term' in topic and topic['term'] in TARGET_TOPICS:
-                    self.validation_data['EDAM_topics'] = topic['term']
-                    return True
+
         return False
 
     def check_criteria_2(self) -> bool:
@@ -327,6 +328,7 @@ class Tool:
 
     def check_criteria_3(self) -> bool:
         """
+        search in description fields for strict keywords/acronyms or regex fragments.
         Priority order: biocontainers > biotools > galaxy.
         """
         # Priority order for checking descriptions
