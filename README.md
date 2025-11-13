@@ -72,7 +72,7 @@ The extraction, filtering and curation are done following the workflow below and
     $ python bin/extract_rsec.py 
     ```
 
-- Filter tools based on keywords and EDAM terms in content/rsec
+- Filter RSEc tools based on keywords and EDAM terms, place them in content/rsec
 
     ```
     $ python bin/filter_rsec.py
