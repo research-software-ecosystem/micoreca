@@ -1,0 +1,205 @@
+{
+    "accessibility": "Open access",
+    "additionDate": "2021-01-18T11:04:22Z",
+    "biotoolsCURIE": "biotools:mfassignr",
+    "biotoolsID": "mfassignr",
+    "confidence_flag": "tool",
+    "cost": "Free of charge",
+    "description": "Molecular formula assignment software for ultrahigh resolution mass spectrometry analysis of environmental complex mixtures.\n\nUltrahigh resolution mass spectrometry is widely used for nontargeted analysis of complex environmental and biological mixtures, such as dissolved organic matter, due to its unparalleled ability to provide accurate mass measurements.",
+    "documentation": [
+        {
+            "type": [
+                "Training material"
+            ],
+            "url": "https://training.galaxyproject.org/training-material/topics/metabolomics/tutorials/mfassignr/tutorial.html"
+        }
+    ],
+    "download": [
+        {
+            "type": "Software package",
+            "url": "https://bioconda.github.io/recipes/r-mfassignr/README.html"
+        },
+        {
+            "type": "Tool wrapper (Galaxy)",
+            "url": "https://github.com/RECETOX/galaxytools/tree/master/tools/mfassignr"
+        }
+    ],
+    "editPermission": {
+        "authors": [
+            "recetox-specdatri"
+        ],
+        "type": "group"
+    },
+    "function": [
+        {
+            "input": [
+                {
+                    "data": {
+                        "term": "Mass spectrum",
+                        "uri": "http://edamontology.org/data_0943"
+                    },
+                    "format": [
+                        {
+                            "term": "DSV",
+                            "uri": "http://edamontology.org/format_3751"
+                        }
+                    ]
+                }
+            ],
+            "operation": [
+                {
+                    "term": "Annotation",
+                    "uri": "http://edamontology.org/operation_0226"
+                },
+                {
+                    "term": "Deisotoping",
+                    "uri": "http://edamontology.org/operation_3629"
+                }
+            ],
+            "output": [
+                {
+                    "data": {
+                        "term": "Mass spectrum",
+                        "uri": "http://edamontology.org/data_0943"
+                    },
+                    "format": [
+                        {
+                            "term": "DSV",
+                            "uri": "http://edamontology.org/format_3751"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "input": [
+                {
+                    "data": {
+                        "term": "Mass spectrum",
+                        "uri": "http://edamontology.org/data_0943"
+                    },
+                    "format": [
+                        {
+                            "term": "DSV",
+                            "uri": "http://edamontology.org/format_3751"
+                        }
+                    ]
+                }
+            ],
+            "operation": [
+                {
+                    "term": "Mass spectra calibration",
+                    "uri": "http://edamontology.org/operation_3627"
+                }
+            ],
+            "output": [
+                {
+                    "data": {
+                        "term": "Mass spectrum",
+                        "uri": "http://edamontology.org/data_0943"
+                    },
+                    "format": [
+                        {
+                            "term": "DSV",
+                            "uri": "http://edamontology.org/format_3751"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "input": [
+                {
+                    "data": {
+                        "term": "Mass spectrum",
+                        "uri": "http://edamontology.org/data_0943"
+                    },
+                    "format": [
+                        {
+                            "term": "DSV",
+                            "uri": "http://edamontology.org/format_3751"
+                        }
+                    ]
+                }
+            ],
+            "operation": [
+                {
+                    "term": "Visualisation",
+                    "uri": "http://edamontology.org/operation_0337"
+                }
+            ],
+            "output": [
+                {
+                    "data": {
+                        "term": "Plot",
+                        "uri": "http://edamontology.org/data_2884"
+                    },
+                    "format": [
+                        {
+                            "term": "PNG",
+                            "uri": "http://edamontology.org/format_3603"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "homepage": "https://github.com/skschum/MFAssignR",
+    "language": [
+        "R"
+    ],
+    "lastUpdate": "2025-11-04T10:19:55.271318Z",
+    "license": "GPL-2.0",
+    "link": [
+        {
+            "type": [
+                "Galaxy service"
+            ],
+            "url": "https://toolshed.g2.bx.psu.edu/view/recetox/suite_mfassignr/114e55a434da"
+        },
+        {
+            "type": [
+                "Mirror"
+            ],
+            "url": "https://github.com/RECETOX/MFAssignR"
+        },
+        {
+            "type": [
+                "Repository"
+            ],
+            "url": "https://github.com/skschum/MFAssignR"
+        }
+    ],
+    "maturity": "Emerging",
+    "name": "MFAssignR",
+    "owner": "Niclaskn",
+    "publication": [
+        {
+            "doi": "10.1016/J.ENVRES.2020.110114",
+            "metadata": {
+                "citationCount": 91,
+                "date": "2020-12-01T00:00:00Z",
+                "journal": "Environmental Research",
+                "title": "MFAssignR: Molecular formula assignment software for ultrahigh resolution mass spectrometry analysis of environmental complex mixtures"
+            },
+            "pmid": "32866496"
+        }
+    ],
+    "toolType": [
+        "Library"
+    ],
+    "topic": [
+        {
+            "term": "Metabolomics",
+            "uri": "http://edamontology.org/topic_3172"
+        },
+        {
+            "term": "Proteomics experiment",
+            "uri": "http://edamontology.org/topic_3520"
+        },
+        {
+            "term": "Workflows",
+            "uri": "http://edamontology.org/topic_0769"
+        }
+    ]
+}
