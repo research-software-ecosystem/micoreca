@@ -49,7 +49,8 @@ CRITERIA_KEYS = [
     "biocontainers_description",
     "galaxy_description"
 ]
-
+#Details on how the tool was filtered
+#in the final tsv file it will be written in the 'reason' column : "Metagenomics in EDAM ", or "microbiome in bio.tools description" etc.
 REASON_MAPPING = {
     "EDAM_topics": "{value} in EDAM Topics",
     "EDAM_operation": "{value} in EDAM Operations",
@@ -62,7 +63,7 @@ REASON_MAPPING = {
 # --- Shared Loading/Parsing Functions ---
 
 def load_keywords_from_yaml(filepath: Path) -> Dict[str, Any]:
-    """Loads filtering criteria from the YAML file."""
+    """Loads filtering criteria from the YAML keywords file."""
     if yaml is None:
         raise ImportError("PyYAML is required but not installed (pip install pyyaml).")
 
@@ -98,7 +99,6 @@ def load_keywords_from_yaml(filepath: Path) -> Dict[str, Any]:
     strict_keywords_list = list(set([k.strip().upper() for k in strict_keywords_list if k.strip()]))
     compiled_stricts = []
     for strict_ref in strict_keywords_list:
-        # Assurez-vous d'ajouter \b de chaque côté pour les recherches de mots entiers
         regex_pattern = re.compile(r'\b' + re.escape(strict_ref) + r'\b', re.IGNORECASE)
         compiled_stricts.append(regex_pattern)
 
@@ -185,7 +185,7 @@ def generate_tsv_summary(json_path: Path, tsv_path: Path):
         print(f"ERROR writing TSV file: {e}")
 
 # -------------------------------------------------------------
-# TOOL class
+#                   TOOL class
 # -------------------------------------------------------------
 
 class Tool:
@@ -327,15 +327,13 @@ class Tool:
 
     def check_criteria_3(self) -> bool:
         """
-        CORRECTION: Check for keywords in individual descriptions.
-        Reports the match against the correct source key (biocontainers_description, etc.).
         Priority order: biocontainers > biotools > galaxy.
         """
         # Priority order for checking descriptions
         description_sources = [
-            ('biocontainers_description', self.descriptions.get('biocontainers', '')),
             ('biotools_description', self.descriptions.get('biotools', '')),
-            ('galaxy_description', self.descriptions.get('galaxy', '')),
+            ('biocontainers_description', self.descriptions.get('biocontainers', '')),
+            ('galaxy_description', self.descriptions.get('galaxy', ''))
         ]
 
         for key_report, content in description_sources:
@@ -353,11 +351,12 @@ class Tool:
             for pattern in COMPILED_FRAGMENT_PATTERNS:
                 match = pattern.search(content_lower)
                 if match:
-                    matched = match.group(0)
-                    # Try to capture the whole token that contains the matched substring
-                    wrap = re.search(r'\b[\w-]*' + re.escape(matched) + r'[\w-]*\b', content_lower)
-                    token = wrap.group(0) if wrap else matched.strip()
-                    self.validation_data[key_report] = token
+                    phrase=match.group(0)
+                    phrase=phrase.split()
+                    mot=phrase[0]
+                    ponctuation = r'[.,;()?!]+$'   
+                    mot = re.sub(ponctuation, '', mot)
+                    self.validation_data[key_report] = mot
                     return True
 
         return False
@@ -379,7 +378,7 @@ class Tool:
         return False
 
 # -------------------------------------------------------------
-# Toolset class
+#               Toolset class
 # -------------------------------------------------------------
 
 class ToolSet:
@@ -420,7 +419,7 @@ class ToolSet:
         # --- Processing Loop (Utilisation de sys.stdout.write pour la progression) ---
         for i, item in enumerate(all_items):
             dossier_actuel = i + 1
-            message = f"Progression: Traitement du dossier {dossier_actuel} sur {total_items} ({item.name})"
+            message = f"Progression: Analysis of folder {dossier_actuel} on {total_items} ({item.name})"
             sys.stdout.write('\r' + message)
             sys.stdout.flush()
             self.report_counts["total_folders"] += 1
@@ -449,7 +448,7 @@ class ToolSet:
 
         self._finalize_operation(subfolders_to_delete)
         end_time = time.time()
-        print(f"\nTemps total d'exécution du filtrage : {end_time - start_time:.2f} secondes.")
+        print(f"\nFiltering execution time : {end_time - start_time:.2f} secondes.")
 
 
     def _write_metadata_once(self, data: List[Dict[str, Any]], metadata_file: Path):
@@ -510,7 +509,7 @@ class ToolSet:
 
 
 # -------------------------------------------------------------
-# MAIN EXECUTION
+#                    MAIN EXECUTION
 # -------------------------------------------------------------
 
 if __name__ == "__main__":
