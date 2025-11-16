@@ -1,5 +1,39 @@
 [
     {
+        "create_time": "2025-11-06",
+        "creators": [
+            "Bart Nijsse"
+        ],
+        "description": "Runs MetaPhlAn 4 and HUMAnN 3\r\n\r\n* Optional short read quality control workflow (https://workflowhub.eu/workflows/336)\r\n* Includes renormalizing and all regroupings to other functional categories (EC,KO.. etc)\r\n\r\nRequired inputs are paired end reads and databases\r\n",
+        "doi": null,
+        "edam_operation": [],
+        "edam_topic": [
+            "Sequence analysis"
+        ],
+        "filtered_on": "metap.* in description",
+        "id": "2013",
+        "keep": null,
+        "latest_version": 1,
+        "license": "",
+        "link": "https:/workflowhub.eu/workflows/2013?version=1",
+        "name": "HUMAnN 3 workflow",
+        "number_of_steps": 14,
+        "projects": [
+            "UNLOCK"
+        ],
+        "source": "WorkflowHub",
+        "tags": [
+            "bioinformatics"
+        ],
+        "tools": [
+            "humann",
+            "MetaPhlAn"
+        ],
+        "type": "Common Workflow Language",
+        "update_time": "2025-11-06",
+        "versions": 1
+    },
+    {
         "create_time": "2025-10-31",
         "creators": [
             "VGP",
@@ -24,15 +58,15 @@
         "tags": [],
         "tools": [
             "",
-            "compose_text_param",
-            "meryl_count_kmers",
-            "imagemagick_image_montage",
-            "genomescope",
-            "rdeval",
-            "meryl_groups_kmers",
             "meryl_histogram_kmers",
+            "rdeval",
+            "compose_text_param",
+            "param_value_from_file",
+            "meryl_count_kmers",
+            "genomescope",
+            "imagemagick_image_montage",
             "rdeval_report",
-            "param_value_from_file"
+            "meryl_groups_kmers"
         ],
         "type": "Galaxy",
         "update_time": "2025-10-31",
@@ -91,8 +125,8 @@
         ],
         "tools": [
             "rpbasicdesign",
-            "selenzy-wrapper",
-            "dnabot"
+            "dnabot",
+            "selenzy-wrapper"
         ],
         "type": "Galaxy",
         "update_time": "2025-10-30",
@@ -121,12 +155,12 @@
         "source": "WorkflowHub",
         "tags": [],
         "tools": [
-            "dnaweaver",
-            "LCRGenie",
             "PartsGenie",
+            "dnaweaver",
             "sbml2sbol",
-            "optdoe",
-            "selenzy-wrapper"
+            "LCRGenie",
+            "selenzy-wrapper",
+            "optdoe"
         ],
         "type": "Galaxy",
         "update_time": "2025-10-30",
@@ -304,14 +338,14 @@
             "geophyics"
         ],
         "tools": [
-            "Finite-source characterization using template matching (FinDer).",
-            "Generate ground motion and shaking intensity maps.",
-            "Automated peak motions from RRSM.",
-            "EMSC felt reports - planned but not implemented",
-            "ML-based algorithm to estimate peak motions at stations.",
+            "Collect event alerts.",
             "Integrate manual peak motions into the workflow.",
+            "Generate ground motion and shaking intensity maps.",
+            "Finite-source characterization using template matching (FinDer).",
             "Prepare evolutionary shake maps for output using finite fault characterization.",
-            "Collect event alerts."
+            "EMSC felt reports - planned but not implemented",
+            "Automated peak motions from RRSM.",
+            "ML-based algorithm to estimate peak motions at stations."
         ],
         "type": "Common Workflow Language",
         "update_time": "2025-10-14",
@@ -346,12 +380,12 @@
             "geophysics"
         ],
         "tools": [
+            "Seedlink streaming to processing infrastructure.",
             "Generate ground motion and shaking intensity maps.",
             "Finite-source characterization using template matching (FinDer).",
+            "Prepare evolutionary shake maps for output using finite fault characterization.",
             "ML-based algorithm to estimate peak motions at stations.",
-            "Seedlink streaming to processing infrastructure.",
-            "Receive continuous seismic waveform data.",
-            "Prepare evolutionary shake maps for output using finite fault characterization."
+            "Receive continuous seismic waveform data."
         ],
         "type": "Common Workflow Language",
         "update_time": "2025-10-14",
@@ -616,28 +650,28 @@
         "source": "WorkflowHub",
         "tags": [],
         "tools": [
-            "",
-            "Add_a_column1",
-            "tp_grep_tool",
             "Cut1",
-            "gfastats",
-            "join1",
-            "param_value_from_file",
-            "tp_cut_tool",
-            "pick_value",
+            "",
+            "tp_replace_in_line",
             "busco",
-            "tp_awk_tool",
-            "merqury",
-            "multiqc",
-            "tp_find_and_replace",
-            "__EXTRACT_DATASET__",
+            "gfastats",
+            "hifiasm",
             "cutadapt",
             "compose_text_param",
-            "tp_replace_in_line",
+            "tp_cut_tool",
+            "bandage_image",
+            "multiqc",
+            "__EXTRACT_DATASET__",
+            "tp_awk_tool",
+            "Add_a_column1",
             "compleasm",
             "Convert characters1",
-            "bandage_image",
-            "hifiasm"
+            "pick_value",
+            "tp_find_and_replace",
+            "tp_grep_tool",
+            "join1",
+            "param_value_from_file",
+            "merqury"
         ],
         "type": "Galaxy",
         "update_time": "2025-10-01",
@@ -667,28 +701,28 @@
         "source": "WorkflowHub",
         "tags": [],
         "tools": [
-            "",
-            "Add_a_column1",
-            "tp_grep_tool",
             "Cut1",
-            "gfastats",
-            "join1",
-            "param_value_from_file",
-            "tp_cut_tool",
-            "pick_value",
+            "",
+            "tp_replace_in_line",
             "busco",
-            "tp_awk_tool",
-            "merqury",
-            "multiqc",
-            "tp_find_and_replace",
-            "__EXTRACT_DATASET__",
+            "gfastats",
+            "hifiasm",
             "cutadapt",
             "compose_text_param",
-            "tp_replace_in_line",
+            "tp_cut_tool",
+            "bandage_image",
+            "multiqc",
+            "__EXTRACT_DATASET__",
+            "tp_awk_tool",
+            "Add_a_column1",
             "compleasm",
             "Convert characters1",
-            "bandage_image",
-            "hifiasm"
+            "pick_value",
+            "tp_find_and_replace",
+            "tp_grep_tool",
+            "join1",
+            "param_value_from_file",
+            "merqury"
         ],
         "type": "Galaxy",
         "update_time": "2025-10-01",
@@ -1295,7 +1329,7 @@
         "edam_topic": [],
         "filtered_on": "Amplicon in name",
         "id": "155",
-        "keep": null,
+        "keep": false,
         "latest_version": 6,
         "license": "MIT",
         "link": "https:/workflowhub.eu/workflows/155?version=6",
@@ -1309,21 +1343,21 @@
             "virology"
         ],
         "tools": [
-            "fastp",
-            "samtools_stats",
-            "samtools_view",
-            "snpeff_sars_cov_2",
-            "__FLATTEN__",
-            "qualimap_bamqc",
+            "pangolin",
             "tp_sed_tool",
             "ivar_trim",
-            "pangolin",
-            "ivar_consensus",
             "nextclade",
+            "samtools_stats",
+            "qualimap_bamqc",
             "ivar_variants",
-            "tp_cat",
+            "samtools_view",
+            "snpeff_sars_cov_2",
+            "multiqc",
             "bwa_mem",
-            "multiqc"
+            "tp_cat",
+            "ivar_consensus",
+            "fastp",
+            "__FLATTEN__"
         ],
         "type": "Galaxy",
         "update_time": "2025-08-19",
@@ -1341,7 +1375,7 @@
         "edam_topic": [],
         "filtered_on": "Amplicon in name",
         "id": "439",
-        "keep": null,
+        "keep": false,
         "latest_version": 4,
         "license": "MIT",
         "link": "https:/workflowhub.eu/workflows/439?version=4",
@@ -1356,74 +1390,35 @@
             "pox"
         ],
         "tools": [
-            "qualimap_bamqc",
-            "bwa_mem",
-            "split_file_to_collection",
             "fasta_compute_length",
-            "fastp",
+            "\n param_value_from_file",
+            "samtools_view",
+            "\n Cut1",
+            "\n __ZIP_COLLECTION__",
+            "tp_sed_tool",
+            "collection_element_identifiers",
+            "compose_text_param",
+            "datamash_ops",
+            "\n __SORTLIST__",
+            "\n __FLATTEN__",
+            "multiqc",
             "samtools_stats",
             "samtools_merge",
-            "datamash_ops",
-            "ivar_trim",
-            "\n __FILTER_FAILED_DATASETS__",
-            "multiqc",
-            "\n Cut1",
-            "tp_sed_tool",
-            "\n Grep1",
-            "collection_element_identifiers",
-            "ivar_consensus",
-            "tp_cat",
-            "\n __FLATTEN__",
-            "\n __ZIP_COLLECTION__",
-            "compose_text_param",
-            "samtools_view",
-            "\n __SORTLIST__",
+            "qualimap_bamqc",
+            "split_file_to_collection",
             "EMBOSS: maskseq51",
+            "tp_cat",
+            "\n __FILTER_FAILED_DATASETS__",
+            "\n Grep1",
+            "fastp",
+            "ivar_trim",
             "\n __APPLY_RULES__",
-            "\n param_value_from_file"
+            "bwa_mem",
+            "ivar_consensus"
         ],
         "type": "Galaxy",
         "update_time": "2025-10-11",
         "versions": 4
-    },
-    {
-        "create_time": "2025-08-18",
-        "creators": [],
-        "description": "This WF applies Flexynesis on BRCA data from Metabric for a classification task\n\n## Associated Tutorial\n\nThis workflows is part of the tutorial [Modeling Breast Cancer Subtypes with Flexynesis](https://training.galaxyproject.org/training-material/topics/statistics/tutorials/flexynesis_classification/tutorial.html), available in the [GTN](https://training.galaxyproject.org)\n\n## Features\n\n* Includes [Galaxy Workflow Tests](https://training.galaxyproject.org/training-material/faqs/gtn/workflow_run_test.html)\n* Includes a [Galaxy Workflow Report](https://training.galaxyproject.org/training-material/faqs/galaxy/workflows_report_view.html)\n* Uses [Galaxy Workflow Comments](https://training.galaxyproject.org/training-material/faqs/galaxy/workflows_comments.html)\n* Uses [subworkflows](https://training.galaxyproject.org/training-material/faqs/galaxy/workflows_subworkflows.html)\n\n## Thanks to...\n\n**Workflow Author(s)**: Amirhossein Naghsh Nilchi\n\n**Tutorial Author(s)**: [Amirhossein Naghsh Nilchi](https://training.galaxyproject.org/training-material/hall-of-fame/Nilchia/), [Bj\u00f6rn Gr\u00fcning](https://training.galaxyproject.org/training-material/hall-of-fame/bgruening/)\n\n[![gtn star logo followed by the word workflows](https://training.galaxyproject.org/training-material/assets/branding/gtn-workflows.png)](https://training.galaxyproject.org/training-material/)",
-        "doi": null,
-        "edam_operation": [],
-        "edam_topic": [],
-        "filtered_on": "metab.* in description",
-        "id": "1873",
-        "keep": false,
-        "latest_version": 1,
-        "license": "MIT",
-        "link": "https:/workflowhub.eu/workflows/1873?version=1",
-        "name": "Final - Modeling Breast Cancer Subtypes + TABPFN",
-        "number_of_steps": 19,
-        "projects": [
-            "Galaxy Training Network"
-        ],
-        "source": "WorkflowHub",
-        "tags": [
-            "flexynesis",
-            "gtn",
-            "galaxy",
-            "machine_learning",
-            "tabpfn"
-        ],
-        "tools": [
-            "",
-            "__EXTRACT_DATASET__",
-            "flexynesis",
-            "tabpfn",
-            "flexynesis_plot",
-            "pick_value",
-            "tp_sort_header_tool"
-        ],
-        "type": "Galaxy",
-        "update_time": "2025-08-18",
-        "versions": 1
     },
     {
         "create_time": "2025-08-13",
@@ -1569,12 +1564,12 @@
             "plasmids"
         ],
         "tools": [
-            "Determines relevant final outputs.",
-            "Merges plasmids when more than one are present.",
-            "Merges the plasmid(s) with the reference GenBank file.",
             "Downloads the associated GenBank file from the supplied accession number.",
+            "Merges the plasmid(s) with the reference GenBank file.",
+            "Determines relevant final outputs.",
+            "Extracts FASTA file from input reference file when no plasmids are provided.",
             "Extracts GFF3 annotation file from the (merged) reference.",
-            "Extracts FASTA file from input reference file when no plasmids are provided."
+            "Merges plasmids when more than one are present."
         ],
         "type": "Common Workflow Language",
         "update_time": "2025-08-12",
@@ -1592,7 +1587,7 @@
         ],
         "filtered_on": "profil.* in description",
         "id": "1865",
-        "keep": null,
+        "keep": false,
         "latest_version": 1,
         "license": "MIT",
         "link": "https:/workflowhub.eu/workflows/1865?version=1",
@@ -1625,7 +1620,7 @@
         ],
         "filtered_on": "profil.* in description",
         "id": "1864",
-        "keep": null,
+        "keep": false,
         "latest_version": 1,
         "license": "CC-BY-4.0",
         "link": "https:/workflowhub.eu/workflows/1864?version=1",
@@ -1657,7 +1652,7 @@
         ],
         "filtered_on": "profil.* in description",
         "id": "1862",
-        "keep": null,
+        "keep": false,
         "latest_version": 1,
         "license": "MIT",
         "link": "https:/workflowhub.eu/workflows/1862?version=1",
@@ -1705,15 +1700,15 @@
             "name:microgalaxy"
         ],
         "tools": [
-            "__FILTER_EMPTY_DATASETS__",
             "",
-            "tp_awk_tool",
+            "__FILTER_FROM_FILE__",
             "biom_convert",
-            "bedtools_maskfastabed",
+            "tp_awk_tool",
             "collection_element_identifiers",
             "taxonomy_krona_chart",
+            "__FILTER_EMPTY_DATASETS__",
             "mapseq",
-            "__FILTER_FROM_FILE__"
+            "bedtools_maskfastabed"
         ],
         "type": "Galaxy",
         "update_time": "2025-08-11",
@@ -1746,8 +1741,8 @@
         "tools": [
             "tp_awk_tool",
             "query_tabular",
-            "ampvis2_load",
             "collection_column_join",
+            "ampvis2_load",
             "collapse_dataset"
         ],
         "type": "Galaxy",
@@ -1782,16 +1777,16 @@
             "name:microgalaxy"
         ],
         "tools": [
-            "fastp",
-            "__UNZIP_COLLECTION__",
-            "fastq_filter",
+            "trimmomatic",
             "fastqc",
             "cshl_fasta_formatter",
-            "fastq_to_fasta_python",
+            "fastq_filter",
             "prinseq",
-            "tp_find_and_replace",
+            "__UNZIP_COLLECTION__",
             "mgnify_seqprep",
-            "trimmomatic",
+            "fastq_to_fasta_python",
+            "fastp",
+            "tp_find_and_replace",
             "multiqc"
         ],
         "type": "Galaxy",
@@ -1830,8 +1825,8 @@
             "tp_awk_tool",
             "CONVERTER_gz_to_uncompressed",
             "CONVERTER_uncompressed_to_gz",
-            "__MERGE_COLLECTION__",
-            "fastq_dl"
+            "fastq_dl",
+            "__MERGE_COLLECTION__"
         ],
         "type": "Galaxy",
         "update_time": "2025-08-11",
@@ -1866,10 +1861,10 @@
         ],
         "tools": [
             "tp_awk_tool",
-            "filter_tabular",
             "query_tabular",
             "collection_column_join",
-            "Grouping1"
+            "Grouping1",
+            "filter_tabular"
         ],
         "type": "Galaxy",
         "update_time": "2025-08-11",
@@ -1903,13 +1898,13 @@
             "name:microgalaxy"
         ],
         "tools": [
-            "fastq_filter",
+            "trimmomatic",
             "fastqc",
             "cshl_fasta_formatter",
-            "fastq_to_fasta_python",
+            "fastq_filter",
             "prinseq",
+            "fastq_to_fasta_python",
             "tp_find_and_replace",
-            "trimmomatic",
             "multiqc"
         ],
         "type": "Galaxy",
@@ -2015,20 +2010,20 @@
             "name:microgalaxy"
         ],
         "tools": [
-            "__FILTER_EMPTY_DATASETS__",
+            "infernal_cmsearch",
+            "cmsearch_deoverlap",
+            "__FILTER_FROM_FILE__",
             "",
-            "bedtools_getfastabed",
+            "biom_convert",
             "tp_awk_tool",
             "query_tabular",
-            "biom_convert",
-            "infernal_cmsearch",
             "cshl_fasta_formatter",
-            "gops_concat_1",
             "collection_element_identifiers",
             "taxonomy_krona_chart",
-            "cmsearch_deoverlap",
             "mapseq",
-            "__FILTER_FROM_FILE__"
+            "gops_concat_1",
+            "bedtools_getfastabed",
+            "__FILTER_EMPTY_DATASETS__"
         ],
         "type": "Galaxy",
         "update_time": "2025-08-11",
@@ -2129,8 +2124,8 @@
         "tools": [
             "interproscan",
             "regex1",
-            "sanntis_marine",
-            "prodigal"
+            "prodigal",
+            "sanntis_marine"
         ],
         "type": "Galaxy",
         "update_time": "2025-07-28",
@@ -2189,15 +2184,15 @@
             "metagenomics"
         ],
         "tools": [
-            "humann_renorm_table",
             "Cut1",
-            "humann_split_stratified_table",
-            "humann_unpack_pathways",
-            "tp_find_and_replace",
+            "humann_renorm_table",
             "humann_regroup_table",
-            "humann_rename_table",
             "Grep1",
-            "combine_metaphlan2_humann2"
+            "humann_rename_table",
+            "humann_unpack_pathways",
+            "combine_metaphlan2_humann2",
+            "humann_split_stratified_table",
+            "tp_find_and_replace"
         ],
         "type": "Galaxy",
         "update_time": "2025-07-14",
@@ -2248,12 +2243,12 @@
             "Tom Underwood"
         ],
         "description": "Galaxy workflow for the reproduction of the results published in: D. Decarolis, A. H. Clark, T. Pellegrinelli, M. Nachtegaal, E. W. Lynch, C. R. A. .Catlow, E. K. Gibson, A. Goguet, P. P. Wells (2021). Spatial Profiling of a Pd/Al2O3 Catalyst during Selective Ammonia Oxidation DOI: 10.1021/acscatal.0c05356.\r\n\r\nThis workflow is published as part of the research data submitted for the paper Facilitating Reproducibility in Catalysis Research with Managed Workflows and RO-Crates: A Galaxy Case Study, ChemCatChem, DOI: 10.1002/cctc.202401676.\r\n",
-        "doi": null,
+        "doi": "10.48546/workflowhub.workflow.1803.1",
         "edam_operation": [],
         "edam_topic": [],
         "filtered_on": "profil.* in description",
         "id": "1803",
-        "keep": null,
+        "keep": false,
         "latest_version": 1,
         "license": "CC-BY-4.0",
         "link": "https:/workflowhub.eu/workflows/1803?version=1",
@@ -2266,7 +2261,7 @@
         "tags": [],
         "tools": [],
         "type": "Galaxy",
-        "update_time": "2025-07-11",
+        "update_time": "2025-11-11",
         "versions": 1
     },
     {
@@ -2339,29 +2334,29 @@
             "name:collection"
         ],
         "tools": [
-            "bedtools_getfastabed",
-            "tp_split_on_column",
-            "tab2fasta",
             "Cut1",
-            "Grouping1",
-            "Remove beginning1",
-            "regex1",
             "fasttree",
-            "__FILTER_FAILED_DATASETS__",
-            "fasta2tab",
-            "regexColumn1",
-            "Count1",
+            "tp_split_on_column",
+            "Grouping1",
+            "ggplot2_heatmap",
             "clustalw",
+            "__FILTER_FAILED_DATASETS__",
+            "Count1",
+            "tp_sorted_uniq",
+            "barchart_gnuplot",
             "collection_column_join",
             "newick_display",
-            "fasta_merge_files_and_filter_unique_sequences",
-            "__FILTER_EMPTY_DATASETS__",
-            "tp_replace_in_column",
-            "barchart_gnuplot",
             "collapse_dataset",
+            "tab2fasta",
             "tp_multijoin_tool",
-            "ggplot2_heatmap",
-            "tp_sorted_uniq"
+            "regex1",
+            "__FILTER_EMPTY_DATASETS__",
+            "regexColumn1",
+            "fasta_merge_files_and_filter_unique_sequences",
+            "Remove beginning1",
+            "fasta2tab",
+            "tp_replace_in_column",
+            "bedtools_getfastabed"
         ],
         "type": "Galaxy",
         "update_time": "2025-07-07",
@@ -2396,23 +2391,23 @@
             "name:collection"
         ],
         "tools": [
-            "nanoplot",
-            "fastp",
-            "Add_a_column1",
-            "regexColumn1",
+            "Cut1",
             "krakentools_extract_kraken_reads",
             "fastqc",
-            "minimap2",
-            "porechop",
-            "Cut1",
             "collection_column_join",
-            "samtools_fastx",
-            "kraken2",
-            "collapse_dataset",
-            "__FILTER_FAILED_DATASETS__",
+            "minimap2",
             "bamtools_split_mapped",
             "Grep1",
-            "multiqc"
+            "Add_a_column1",
+            "samtools_fastx",
+            "collapse_dataset",
+            "__FILTER_FAILED_DATASETS__",
+            "kraken2",
+            "fastp",
+            "nanoplot",
+            "porechop",
+            "multiqc",
+            "regexColumn1"
         ],
         "type": "Galaxy",
         "update_time": "2025-07-07",
@@ -2443,24 +2438,24 @@
             "microbiome"
         ],
         "tools": [
-            "dada2_removeBimeraDenovo",
-            "__UNZIP_COLLECTION__",
-            "__SORTLIST__",
-            "tp_replace_in_line",
-            "Add_a_column1",
-            "dada2_plotQualityProfile",
-            "dada2_dada",
-            "cat1",
-            "phyloseq_from_dada2",
-            "dada2_seqCounts",
-            "tp_head_tool",
-            "tp_replace_in_column",
-            "dada2_mergePairs",
-            "collection_element_identifiers",
-            "dada2_filterAndTrim",
-            "dada2_assignTaxonomyAddspecies",
             "dada2_learnErrors",
-            "dada2_makeSequenceTable"
+            "tp_replace_in_line",
+            "dada2_removeBimeraDenovo",
+            "tp_head_tool",
+            "dada2_assignTaxonomyAddspecies",
+            "Add_a_column1",
+            "collection_element_identifiers",
+            "dada2_dada",
+            "dada2_mergePairs",
+            "tp_replace_in_column",
+            "dada2_plotQualityProfile",
+            "__UNZIP_COLLECTION__",
+            "cat1",
+            "dada2_filterAndTrim",
+            "dada2_seqCounts",
+            "__SORTLIST__",
+            "dada2_makeSequenceTable",
+            "phyloseq_from_dada2"
         ],
         "type": "Galaxy",
         "update_time": "2025-07-07",
@@ -2724,16 +2719,16 @@
             "profiling"
         ],
         "tools": [
+            "Cut1",
+            "meryl",
             "Add_a_column1",
             "tp_grep_tool",
-            "genomescope",
             "Convert characters1",
             "smudgeplot",
-            "Cut1",
-            "tp_cut_tool",
-            "tp_find_and_replace",
             "param_value_from_file",
-            "meryl"
+            "tp_cut_tool",
+            "genomescope",
+            "tp_find_and_replace"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-24",
@@ -2764,28 +2759,28 @@
             "microbiome"
         ],
         "tools": [
-            "metaphlan",
             "Cut1",
-            "humann_split_stratified_table",
-            "export2graphlan",
-            "Grouping1",
-            "humann_regroup_table",
-            "graphlan_annotate",
             "graphlan",
-            "taxonomy_krona_chart",
-            "tp_sort_header_tool",
-            "multiqc",
-            "combine_metaphlan_humann",
-            "fastqc",
-            "tp_find_and_replace",
-            "humann",
-            "bg_sortmerna",
             "humann_renorm_table",
-            "cutadapt",
-            "fastq_paired_end_interlacer",
-            "humann_unpack_pathways",
             "humann_rename_table",
-            "Grep1"
+            "tp_sort_header_tool",
+            "Grouping1",
+            "fastqc",
+            "cutadapt",
+            "humann_regroup_table",
+            "humann_unpack_pathways",
+            "metaphlan",
+            "export2graphlan",
+            "humann_split_stratified_table",
+            "multiqc",
+            "fastq_paired_end_interlacer",
+            "Grep1",
+            "graphlan_annotate",
+            "tp_find_and_replace",
+            "taxonomy_krona_chart",
+            "bg_sortmerna",
+            "humann",
+            "combine_metaphlan_humann"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-23",
@@ -2816,12 +2811,12 @@
             "microbiome"
         ],
         "tools": [
-            "metaphlan",
             "Cut1",
-            "export2graphlan",
-            "taxonomy_krona_chart",
+            "graphlan",
             "graphlan_annotate",
-            "graphlan"
+            "taxonomy_krona_chart",
+            "metaphlan",
+            "export2graphlan"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-23",
@@ -2852,11 +2847,11 @@
             "microbiome"
         ],
         "tools": [
-            "cutadapt",
             "fastqc",
+            "cutadapt",
             "fastq_paired_end_interlacer",
-            "multiqc",
-            "bg_sortmerna"
+            "bg_sortmerna",
+            "multiqc"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-23",
@@ -2888,14 +2883,14 @@
         ],
         "tools": [
             "humann_renorm_table",
-            "humann_split_stratified_table",
-            "humann_unpack_pathways",
-            "tp_find_and_replace",
-            "humann",
             "humann_regroup_table",
-            "humann_rename_table",
             "Grep1",
-            "tp_sort_header_tool"
+            "humann_rename_table",
+            "humann_unpack_pathways",
+            "humann",
+            "tp_sort_header_tool",
+            "humann_split_stratified_table",
+            "tp_find_and_replace"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-23",
@@ -3025,14 +3020,14 @@
         ],
         "tools": [
             "bandage_info",
-            "megahit",
-            "megahit_contig2fastg",
             "collection_column_join",
-            "bandage_image",
             "bowtie2",
+            "megahit",
+            "quast",
+            "megahit_contig2fastg",
             "metaspades",
-            "coverm_contig",
-            "quast"
+            "bandage_image",
+            "coverm_contig"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-16",
@@ -3151,7 +3146,7 @@
         "doi": "10.48546/workflowhub.workflow.156.1",
         "edam_operation": [],
         "edam_topic": [],
-        "filtered_on": "metab.* in tags",
+        "filtered_on": "metabar.* in tags",
         "id": "156",
         "keep": null,
         "latest_version": 1,
@@ -3182,7 +3177,7 @@
         "doi": null,
         "edam_operation": [],
         "edam_topic": [],
-        "filtered_on": "metab.* in description",
+        "filtered_on": "metabar.* in description",
         "id": "1702",
         "keep": null,
         "latest_version": 1,
@@ -3200,23 +3195,23 @@
             "galaxy"
         ],
         "tools": [
-            "obi_grep",
-            "obi_ngsfilter",
-            "obi_annotate",
-            "seq_filter_by_id",
-            "obi_illumina_pairend",
-            "obi_uniq",
-            "ncbi_blastn_wrapper",
-            "fastqc",
-            "Cut1",
-            "obi_tab",
-            "obi_stat",
             "fastq_groomer",
+            "obi_stat",
+            "ncbi_blastn_wrapper",
+            "obi_tab",
+            "fastqc",
+            "obi_uniq",
+            "Cut1",
             "join1",
             "Filter1",
             "obi_clean",
+            "obi_ngsfilter",
+            "obi_grep",
+            "obi_illumina_pairend",
+            "unzip",
             "wc_gnu",
-            "unzip"
+            "seq_filter_by_id",
+            "obi_annotate"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -3247,13 +3242,13 @@
         ],
         "tools": [
             "bandage_info",
-            "megahit",
-            "megahit_contig2fastg",
             "collection_column_join",
-            "bandage_image",
             "bowtie2",
+            "megahit",
+            "quast",
+            "megahit_contig2fastg",
             "metaspades",
-            "quast"
+            "bandage_image"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -3284,14 +3279,14 @@
             "variant-analysis"
         ],
         "tools": [
-            "fasta_compute_length",
-            "compose_text_param",
-            "Add_a_column1",
             "Cut1",
-            "datamash_ops",
+            "Grep1",
+            "Add_a_column1",
+            "fasta_compute_length",
             "EMBOSS: maskseq51",
+            "compose_text_param",
             "param_value_from_file",
-            "Grep1"
+            "datamash_ops"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -3321,267 +3316,17 @@
             "galaxy"
         ],
         "tools": [
-            "cutadapt",
             "random_lines1",
-            "bamtools",
-            "filter_tabular",
-            "ngsutils_bam_filter",
             "fastqc",
-            "megahit",
-            "bowtie2",
+            "ngsutils_bam_filter",
             "bg_uniq",
-            "seqtk_subseq",
-            "tp_cat"
-        ],
-        "type": "Galaxy",
-        "update_time": "2025-06-02",
-        "versions": 1
-    },
-    {
-        "create_time": "2025-06-02",
-        "creators": [],
-        "description": "This workflow predict in-silico mass spectra using semi-empirical quantum physics method.\n\n## Associated Tutorial\n\nThis workflows is part of the tutorial [Predicting EI+ mass spectra with QCxMS](https://training.galaxyproject.org/training-material/topics/metabolomics/tutorials/qcxms-predictions/tutorial.html), available in the [GTN](https://training.galaxyproject.org)\n\n## Features\n\n* Includes [Galaxy Workflow Tests](https://training.galaxyproject.org/training-material/faqs/gtn/workflow_run_test.html)\n* Includes a [Galaxy Workflow Report](https://training.galaxyproject.org/training-material/faqs/galaxy/workflows_report_view.html)\n* Uses [Galaxy Workflow Comments](https://training.galaxyproject.org/training-material/faqs/galaxy/workflows_comments.html)\n\n## Thanks to...\n\n**Workflow Author(s)**: RECETOX SpecDat\n\n**Tutorial Author(s)**: [Julia Jakiela](https://training.galaxyproject.org/training-material/hall-of-fame/wee-snufkin/), [Helge Hecht](https://training.galaxyproject.org/training-material/hall-of-fame/hechth/)\n\n**Tutorial Contributor(s)**: [Saskia Hiltemann](https://training.galaxyproject.org/training-material/hall-of-fame/shiltemann/), [Melanie F\u00f6ll](https://training.galaxyproject.org/training-material/hall-of-fame/foellmelanie/), [Julia Jakiela](https://training.galaxyproject.org/training-material/hall-of-fame/wee-snufkin/)\n\n[![gtn star logo followed by the word workflows](https://training.galaxyproject.org/training-material/assets/branding/gtn-workflows.png)](https://training.galaxyproject.org/training-material/)",
-        "doi": null,
-        "edam_operation": [],
-        "edam_topic": [],
-        "filtered_on": "metab.* in tags",
-        "id": "1597",
-        "keep": false,
-        "latest_version": 1,
-        "license": "MIT",
-        "link": "https:/workflowhub.eu/workflows/1597?version=1",
-        "name": "End-to-end EI+ mass spectra prediction workflow using QCxMS",
-        "number_of_steps": 14,
-        "projects": [
-            "Galaxy Training Network"
-        ],
-        "source": "WorkflowHub",
-        "tags": [
-            "exposomics",
-            "gc-ms",
-            "gtn",
-            "galaxy",
-            "metabolomics",
-            "qcxms"
-        ],
-        "tools": [
-            "openbabel_compound_convert",
-            "qcxms_production_run",
-            "Remove failed runs\n__FILTER_FAILED_DATASETS__",
-            "xtb_molecular_optimization",
-            "param_value_from_file",
-            "qcxms_getres",
-            "ctb_im_conformers",
-            "tp_cut_tool",
+            "cutadapt",
+            "bowtie2",
+            "bamtools",
             "tp_cat",
-            "split_file_to_collection",
-            "qcxms_neutral_run"
-        ],
-        "type": "Galaxy",
-        "update_time": "2025-06-02",
-        "versions": 1
-    },
-    {
-        "create_time": "2025-06-02",
-        "creators": [],
-        "description": "Mass spectrometry imaging: Examining the spatial distribution of analytes\n\n## Associated Tutorial\n\nThis workflows is part of the tutorial [Mass spectrometry imaging: Examining the spatial distribution of analytes](https://training.galaxyproject.org/training-material/topics/metabolomics/tutorials/msi-analyte-distribution/tutorial.html), available in the [GTN](https://training.galaxyproject.org)\n\n\n\n\n\n## Thanks to...\n\n**Tutorial Author(s)**: [Melanie F\u00f6ll](https://training.galaxyproject.org/training-material/hall-of-fame/foellmelanie/), [Maren Stillger](https://training.galaxyproject.org/training-material/hall-of-fame/MarenStillger/)\n\n**Tutorial Contributor(s)**: [Helena Rasche](https://training.galaxyproject.org/training-material/hall-of-fame/hexylena/), [Saskia Hiltemann](https://training.galaxyproject.org/training-material/hall-of-fame/shiltemann/), [Bj\u00f6rn Gr\u00fcning](https://training.galaxyproject.org/training-material/hall-of-fame/bgruening/), [B\u00e9r\u00e9nice Batut](https://training.galaxyproject.org/training-material/hall-of-fame/bebatut/), [Simon Bray](https://training.galaxyproject.org/training-material/hall-of-fame/simonbray/), [Melanie F\u00f6ll](https://training.galaxyproject.org/training-material/hall-of-fame/foellmelanie/)\n\n**Funder(s)**: [ELIXIR Europe](https://training.galaxyproject.org/training-material/hall-of-fame/elixir-europe/), [University of Freiburg](https://training.galaxyproject.org/training-material/hall-of-fame/uni-freiburg/)\n\n[![gtn star logo followed by the word workflows](https://training.galaxyproject.org/training-material/assets/branding/gtn-workflows.png)](https://training.galaxyproject.org/training-material/)",
-        "doi": null,
-        "edam_operation": [],
-        "edam_topic": [],
-        "filtered_on": "metab.* in tags",
-        "id": "1593",
-        "keep": null,
-        "latest_version": 1,
-        "license": "CC-BY-4.0",
-        "link": "https:/workflowhub.eu/workflows/1593?version=1",
-        "name": "MSI Workflow: spatial distribution",
-        "number_of_steps": 8,
-        "projects": [
-            "Galaxy Training Network"
-        ],
-        "source": "WorkflowHub",
-        "tags": [
-            "gtn",
-            "galaxy",
-            "metabolomics"
-        ],
-        "tools": [
-            "cardinal_data_exporter",
-            "cardinal_filtering",
-            "cardinal_spectra_plots",
-            "Filter1",
-            "cardinal_quality_report",
-            "cardinal_mz_images"
-        ],
-        "type": "Galaxy",
-        "update_time": "2025-06-02",
-        "versions": 1
-    },
-    {
-        "create_time": "2025-06-02",
-        "creators": [],
-        "description": "This workflow can be used to assign multi-element molecular formulas to ultrahigh resolution mass spectra.\n\n## Associated Tutorial\n\nThis workflows is part of the tutorial [Molecular formula assignment and mass recalibration with MFAssignR package](https://training.galaxyproject.org/training-material/topics/metabolomics/tutorials/mfassignr/tutorial.html), available in the [GTN](https://training.galaxyproject.org)\n\n## Features\n\n* Includes [Galaxy Workflow Tests](https://training.galaxyproject.org/training-material/faqs/gtn/workflow_run_test.html)\n* Includes a [Galaxy Workflow Report](https://training.galaxyproject.org/training-material/faqs/galaxy/workflows_report_view.html)\n* Uses [Galaxy Workflow Comments](https://training.galaxyproject.org/training-material/faqs/galaxy/workflows_comments.html)\n\n## Thanks to...\n\n**Workflow Author(s)**: RECETOX, MUNI, Kristina Gomoryova, Helge Hecht\n\n**Tutorial Author(s)**: [Kristina Gomoryova](https://training.galaxyproject.org/training-material/hall-of-fame/KristinaGomoryova/), [Helge Hecht](https://training.galaxyproject.org/training-material/hall-of-fame/hechth/), [Simeon Schum](https://training.galaxyproject.org/training-material/hall-of-fame/skschum/)\n\n**Tutorial Contributor(s)**: [Helge Hecht](https://training.galaxyproject.org/training-material/hall-of-fame/hechth/), [Kristina Gomoryova](https://training.galaxyproject.org/training-material/hall-of-fame/KristinaGomoryova/), [Saskia Hiltemann](https://training.galaxyproject.org/training-material/hall-of-fame/shiltemann/)\n\n[![gtn star logo followed by the word workflows](https://training.galaxyproject.org/training-material/assets/branding/gtn-workflows.png)](https://training.galaxyproject.org/training-material/)",
-        "doi": null,
-        "edam_operation": [],
-        "edam_topic": [],
-        "filtered_on": "metab.* in tags",
-        "id": "1591",
-        "keep": null,
-        "latest_version": 1,
-        "license": "MIT",
-        "link": "https:/workflowhub.eu/workflows/1591?version=1",
-        "name": "Molecular formula assignment and recalibration with MFAssignR package.",
-        "number_of_steps": 9,
-        "projects": [
-            "Galaxy Training Network"
-        ],
-        "source": "WorkflowHub",
-        "tags": [
-            "formulaassignment",
-            "gtn",
-            "galaxy",
-            "metabolomics",
-            "noiseestimation",
-            "recalibration"
-        ],
-        "tools": [
-            "mfassignr_histnoise",
-            "mfassignr_kmdnoise",
-            "mfassignr_recallist",
-            "mfassignr_mfassign",
-            "mfassignr_mfassignCHO",
-            "mfassignr_isofiltr",
-            "mfassignr_snplot",
-            "mfassignr_findRecalSeries",
-            "mfassignr_recal"
-        ],
-        "type": "Galaxy",
-        "update_time": "2025-06-02",
-        "versions": 1
-    },
-    {
-        "create_time": "2025-06-02",
-        "creators": [],
-        "description": "Mass spectrometry imaging: Finding differential analytes\n\n## Associated Tutorial\n\nThis workflows is part of the tutorial [Mass spectrometry imaging: Finding differential analytes](https://training.galaxyproject.org/training-material/topics/metabolomics/tutorials/msi-finding-nglycans/tutorial.html), available in the [GTN](https://training.galaxyproject.org)\n\n\n\n\n\n## Thanks to...\n\n**Tutorial Author(s)**: [Melanie F\u00f6ll](https://training.galaxyproject.org/training-material/hall-of-fame/foellmelanie/)\n\n[![gtn star logo followed by the word workflows](https://training.galaxyproject.org/training-material/assets/branding/gtn-workflows.png)](https://training.galaxyproject.org/training-material/)",
-        "doi": null,
-        "edam_operation": [],
-        "edam_topic": [],
-        "filtered_on": "metab.* in tags",
-        "id": "1587",
-        "keep": null,
-        "latest_version": 1,
-        "license": "CC-BY-4.0",
-        "link": "https:/workflowhub.eu/workflows/1587?version=1",
-        "name": "MSI Finding Diff Analytes",
-        "number_of_steps": 14,
-        "projects": [
-            "Galaxy Training Network"
-        ],
-        "source": "WorkflowHub",
-        "tags": [
-            "gtn",
-            "galaxy",
-            "metabolomics"
-        ],
-        "tools": [
-            "join_files_on_column_fuzzy",
-            "cardinal_combine",
-            "cardinal_preprocessing",
-            "maldi_quant_preprocessing",
-            "cardinal_classification",
-            "Filter1",
-            "cardinal_segmentations",
-            "cardinal_quality_report",
-            "Summary_Statistics1",
-            "cardinal_mz_images",
-            "Grep1",
-            "maldi_quant_peak_detection"
-        ],
-        "type": "Galaxy",
-        "update_time": "2025-06-02",
-        "versions": 1
-    },
-    {
-        "create_time": "2025-06-02",
-        "creators": [],
-        "description": "Mass spectrometry: LC-MS analysis\n\n## Associated Tutorial\n\nThis workflows is part of the tutorial [Mass spectrometry: LC-MS analysis](https://training.galaxyproject.org/training-material/topics/metabolomics/tutorials/lcms/tutorial.html), available in the [GTN](https://training.galaxyproject.org)\n\n\n\n\n\n## Thanks to...\n\n**Tutorial Author(s)**: [M\u00e9lanie Petera](https://training.galaxyproject.org/training-material/hall-of-fame/melpetera/), [Gildas Le Corguill\u00e9](https://training.galaxyproject.org/training-material/hall-of-fame/lecorguille/), [Jean-Fran\u00e7ois Martin](https://training.galaxyproject.org/training-material/hall-of-fame/jfrancoismartin/), [Yann Guitton](https://training.galaxyproject.org/training-material/hall-of-fame/yguitton/), [Workflow4Metabolomics core team](https://training.galaxyproject.org/training-material/hall-of-fame/workflow4metabolomics/)\n\n**Tutorial Contributor(s)**: [Helena Rasche](https://training.galaxyproject.org/training-material/hall-of-fame/hexylena/), [Saskia Hiltemann](https://training.galaxyproject.org/training-material/hall-of-fame/shiltemann/), [Gildas Le Corguill\u00e9](https://training.galaxyproject.org/training-material/hall-of-fame/lecorguille/), [Bj\u00f6rn Gr\u00fcning](https://training.galaxyproject.org/training-material/hall-of-fame/bgruening/)\n\n**Funder(s)**: [ELIXIR Europe](https://training.galaxyproject.org/training-material/hall-of-fame/elixir-europe/)\n\n[![gtn star logo followed by the word workflows](https://training.galaxyproject.org/training-material/assets/branding/gtn-workflows.png)](https://training.galaxyproject.org/training-material/)",
-        "doi": null,
-        "edam_operation": [],
-        "edam_topic": [],
-        "filtered_on": "metab.* in tags",
-        "id": "1584",
-        "keep": null,
-        "latest_version": 1,
-        "license": "CC-BY-4.0",
-        "link": "https:/workflowhub.eu/workflows/1584?version=1",
-        "name": "Workflow Constructed From History 'imported: testpourGCC'",
-        "number_of_steps": 17,
-        "projects": [
-            "Galaxy Training Network"
-        ],
-        "source": "WorkflowHub",
-        "tags": [
-            "gtn",
-            "galaxy",
-            "metabolomics"
-        ],
-        "tools": [
-            "msnbase_readmsdata",
-            "Univariate",
-            "generic_filter",
-            "abims_xcms_xcmsSet",
-            "abims_CAMERA_annotateDiffreport",
-            "quality_metrics",
-            "xcms_plot_chromatogram",
-            "abims_xcms_retcor",
-            "Batch_correction",
-            "abims_xcms_fillPeaks",
-            "wsdl_hmdb",
-            "xcms_merge",
-            "abims_xcms_group"
-        ],
-        "type": "Galaxy",
-        "update_time": "2025-06-02",
-        "versions": 1
-    },
-    {
-        "create_time": "2025-06-02",
-        "creators": [],
-        "description": "XCMS and RAMClustR based workflow for data processing and annotation using library matching via matchms.\n\n## Associated Tutorial\n\nThis workflows is part of the tutorial [Mass spectrometry: GC-MS data processing (with XCMS, RAMClustR, RIAssigner, and matchms)](https://training.galaxyproject.org/training-material/topics/metabolomics/tutorials/gc_ms_with_xcms/tutorial.html), available in the [GTN](https://training.galaxyproject.org)\n\n## Features\n\n* Includes [Galaxy Workflow Tests](https://training.galaxyproject.org/training-material/faqs/gtn/workflow_run_test.html)\n\n## Thanks to...\n\n**Workflow Author(s)**: RECETOX\n\n**Tutorial Author(s)**: [Matej Troj\u00e1k](https://training.galaxyproject.org/training-material/hall-of-fame/xtrojak/), [Helge Hecht](https://training.galaxyproject.org/training-material/hall-of-fame/hechth/), [Maxim Skoryk](https://training.galaxyproject.org/training-material/hall-of-fame/maximskorik/)\n\n**Tutorial Contributor(s)**: [Helena Rasche](https://training.galaxyproject.org/training-material/hall-of-fame/hexylena/), [Matej Troj\u00e1k](https://training.galaxyproject.org/training-material/hall-of-fame/xtrojak/), [M\u00e9lanie Petera](https://training.galaxyproject.org/training-material/hall-of-fame/melpetera/), [Saskia Hiltemann](https://training.galaxyproject.org/training-material/hall-of-fame/shiltemann/), [Bj\u00f6rn Gr\u00fcning](https://training.galaxyproject.org/training-material/hall-of-fame/bgruening/)\n\n[![gtn star logo followed by the word workflows](https://training.galaxyproject.org/training-material/assets/branding/gtn-workflows.png)](https://training.galaxyproject.org/training-material/)",
-        "doi": null,
-        "edam_operation": [],
-        "edam_topic": [],
-        "filtered_on": "metab.* in tags",
-        "id": "1582",
-        "keep": false,
-        "latest_version": 1,
-        "license": "MIT",
-        "link": "https:/workflowhub.eu/workflows/1582?version=1",
-        "name": "GC MS using XCMS",
-        "number_of_steps": 12,
-        "projects": [
-            "Galaxy Training Network"
-        ],
-        "source": "WorkflowHub",
-        "tags": [
-            "expospomics",
-            "gc-ms",
-            "gtn",
-            "galaxy",
-            "metabolomics"
-        ],
-        "tools": [
-            "msnbase_readmsdata",
-            "abims_xcms_xcmsSet",
-            "ramclustr",
-            "riassigner",
-            "abims_xcms_retcor",
-            "matchms_similarity",
-            "matchms_formatter",
-            "msconvert",
-            "abims_xcms_fillPeaks",
-            "xcms_merge",
-            "abims_xcms_group"
+            "filter_tabular",
+            "seqtk_subseq",
+            "megahit"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -3613,8 +3358,8 @@
         ],
         "tools": [
             "rpbasicdesign",
-            "selenzy-wrapper",
-            "dnabot"
+            "dnabot",
+            "selenzy-wrapper"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -3645,14 +3390,14 @@
             "evolution"
         ],
         "tools": [
-            "tp_replace_in_line",
-            "samtools_view",
-            "tp_grep_tool",
             "tp_sed_tool",
             "addName",
+            "tp_replace_in_line",
             "tb_profiler_profile",
-            "Merge single-end and paired-end BAMs in a single collection to be analyzed alltogether\n__MERGE_COLLECTION__",
-            "tp_cat"
+            "tp_grep_tool",
+            "samtools_view",
+            "tp_cat",
+            "Merge single-end and paired-end BAMs in a single collection to be analyzed alltogether\n__MERGE_COLLECTION__"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -3683,17 +3428,17 @@
             "sempi3"
         ],
         "tools": [
-            "tp_awk_tool",
-            "ncbi_acc_download",
-            "openbabel_remDuplicates",
-            "ctb_np-likeness-calculator",
             "interactive_tool_jupyter_notebook",
-            "ctb_chemfp_mol2fps",
+            "ctb_simsearch",
+            "tp_awk_tool",
             "Remove beginning1",
-            "collapse_dataset",
+            "ctb_chemfp_mol2fps",
+            "ctb_np-likeness-calculator",
+            "openbabel_remDuplicates",
             "antismash",
+            "ncbi_acc_download",
             "ctb_silicos_qed",
-            "ctb_simsearch"
+            "collapse_dataset"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -3725,18 +3470,18 @@
             "imaging"
         ],
         "tools": [
-            "cp_color_to_gray",
-            "cp_identify_primary_objects",
-            "cp_common",
-            "cp_measure_object_size_shape",
             "cp_tile",
-            "cp_overlay_outlines",
-            "cp_export_to_spreadsheet",
-            "cp_measure_object_intensity",
             "cp_save_images",
+            "cp_common",
+            "cp_identify_primary_objects",
+            "cp_measure_object_size_shape",
+            "cp_export_to_spreadsheet",
+            "cp_track_objects",
             "cp_cellprofiler",
+            "cp_overlay_outlines",
             "unzip",
-            "cp_track_objects"
+            "cp_color_to_gray",
+            "cp_measure_object_intensity"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -3770,18 +3515,18 @@
             "name:collection"
         ],
         "tools": [
-            "compose_text_param",
-            "medaka_consensus_pipeline",
             "tab2fasta",
-            "bandage_image",
-            "abricate",
             "collection_element_identifiers",
-            "tp_find_and_replace",
-            "flye",
+            "fasta2tab",
+            "split_file_to_collection",
+            "compose_text_param",
             "param_value_from_file",
             "__BUILD_LIST__",
-            "fasta2tab",
-            "split_file_to_collection"
+            "abricate",
+            "flye",
+            "bandage_image",
+            "tp_find_and_replace",
+            "medaka_consensus_pipeline"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -3813,12 +3558,12 @@
             "genome-annotation"
         ],
         "tools": [
-            "jbrowse",
             "bakta",
-            "tbl2gff3",
+            "jbrowse",
+            "staramr_search",
             "bowtie2",
             "Grep1",
-            "staramr_search"
+            "tbl2gff3"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -3852,9 +3597,9 @@
             "name:collection"
         ],
         "tools": [
-            "taxonomy_krona_chart",
+            "krakentools_kreport2krona",
             "kraken2",
-            "krakentools_kreport2krona"
+            "taxonomy_krona_chart"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -3885,9 +3630,9 @@
             "name:clinicalmp"
         ],
         "tools": [
+            "Grep1",
             "msstatstmt",
-            "unipept",
-            "Grep1"
+            "unipept"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -3917,17 +3662,17 @@
             "galaxy"
         ],
         "tools": [
-            "cutadapt",
             "random_lines1",
-            "bamtools",
-            "filter_tabular",
-            "ngsutils_bam_filter",
             "fastqc",
-            "megahit",
-            "bowtie2",
+            "ngsutils_bam_filter",
             "bg_uniq",
+            "cutadapt",
+            "bowtie2",
+            "bamtools",
+            "tp_cat",
+            "filter_tabular",
             "seqtk_subseq",
-            "tp_cat"
+            "megahit"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -3961,24 +3706,24 @@
             "name:collection"
         ],
         "tools": [
-            "snpSift_filter",
-            "regexColumn1",
-            "Count1",
-            "minimap2",
             "Cut1",
-            "CONVERTER_gz_to_uncompressed",
+            "Paste1",
             "tp_head_tool",
-            "bcftools_norm",
-            "samtools_depth",
             "samtools_coverage",
             "Remove beginning1",
-            "table_compute",
-            "collapse_dataset",
-            "Paste1",
-            "clair3",
-            "tp_cut_tool",
+            "minimap2",
             "bcftools_consensus",
-            "snpSift_extractFields"
+            "bcftools_norm",
+            "samtools_depth",
+            "CONVERTER_gz_to_uncompressed",
+            "collapse_dataset",
+            "snpSift_filter",
+            "Count1",
+            "table_compute",
+            "tp_cut_tool",
+            "clair3",
+            "snpSift_extractFields",
+            "regexColumn1"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -4009,15 +3754,15 @@
             "microbiome"
         ],
         "tools": [
-            "nanoplot",
-            "unicycler",
-            "racon",
-            "gfa_to_fa",
-            "minimap2",
-            "miniasm",
-            "bandage_image",
+            "staramr_search",
             "PlasFlow",
-            "staramr_search"
+            "minimap2",
+            "gfa_to_fa",
+            "racon",
+            "miniasm",
+            "unicycler",
+            "bandage_image",
+            "nanoplot"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -4048,21 +3793,21 @@
             "microbiome"
         ],
         "tools": [
-            "mothur_screen_seqs",
+            "mothur_unique_seqs",
+            "mothur_make_group",
+            "mothur_cluster_split",
             "mothur_filter_seqs",
+            "krona-text",
+            "mothur_make_biom",
+            "mothur_screen_seqs",
+            "mothur_summary_seqs",
+            "mothur_count_seqs",
+            "mothur_align_seqs",
             "mothur_make_shared",
             "mothur_classify_otu",
-            "mothur_make_biom",
-            "mothur_summary_seqs",
-            "mothur_cluster_split",
-            "krona-text",
-            "mothur_align_seqs",
-            "mothur_count_seqs",
-            "mothur_make_group",
-            "mothur_merge_files",
+            "mothur_classify_seqs",
             "mothur_pre_cluster",
-            "mothur_unique_seqs",
-            "mothur_classify_seqs"
+            "mothur_merge_files"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -4125,14 +3870,14 @@
             "microbiome"
         ],
         "tools": [
-            "fastp",
-            "tp_replace_in_line",
-            "datamash_reverse",
             "fastqc",
-            "porechop",
+            "tp_replace_in_line",
             "Remove beginning1",
+            "datamash_reverse",
             "taxonomy_krona_chart",
             "kraken2",
+            "fastp",
+            "porechop",
             "multiqc"
         ],
         "type": "Galaxy",
@@ -4164,12 +3909,12 @@
             "microbiome"
         ],
         "tools": [
-            "metaphlan2",
             "humann2_regroup_table",
             "taxonomy_krona_chart",
+            "metaphlan2",
             "humann2",
-            "metaphlan2krona",
-            "humann2_renorm_table"
+            "humann2_renorm_table",
+            "metaphlan2krona"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -4200,9 +3945,9 @@
             "proteomics"
         ],
         "tools": [
-            "msconvert",
             "encyclopedia_quantify",
-            "encyclopedia_searchtolib"
+            "encyclopedia_searchtolib",
+            "msconvert"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -4233,15 +3978,15 @@
             "microbiome"
         ],
         "tools": [
-            "__UNZIP_COLLECTION__",
+            "est_abundance",
+            "interactive_tool_pavian",
+            "taxonomy_krona_chart",
             "krakentools_kreport2krona",
             "metaphlan",
-            "interactive_tool_phinch",
-            "taxonomy_krona_chart",
             "kraken2",
-            "interactive_tool_pavian",
-            "kraken_biom",
-            "est_abundance"
+            "__UNZIP_COLLECTION__",
+            "interactive_tool_phinch",
+            "kraken_biom"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -4272,9 +4017,9 @@
             "name:clinicalmp"
         ],
         "tools": [
-            "maxquant",
-            "Grep1",
             "Cut1",
+            "Grep1",
+            "maxquant",
             "Grouping1"
         ],
         "type": "Galaxy",
@@ -4308,24 +4053,24 @@
             "name:microgalaxy"
         ],
         "tools": [
-            "CONVERTER_fasta_to_tabular",
-            "Add_a_column1",
-            "tab2fasta",
-            "minimap2",
             "Cut1",
+            "count_gff_features",
+            "minimap2",
+            "tab2fasta",
+            "Add_a_column1",
             "Filter1",
             "join1",
             "Grouping1",
-            "histogram_rpy",
-            "add_column_headers",
             "MQoutputfilter",
-            "count_gff_features",
+            "CONVERTER_fasta_to_tabular",
             "tp_replace_in_column",
             "tp_tail_tool",
-            "cat1",
+            "histogram_rpy",
+            "ggplot2_histogram",
             "sort1",
             "tp_sorted_uniq",
-            "ggplot2_histogram"
+            "cat1",
+            "add_column_headers"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -4356,39 +4101,39 @@
             "microbiome"
         ],
         "tools": [
-            "mothur_summary_single",
-            "mothur_filter_seqs",
-            "mothur_make_biom",
-            "mothur_seq_error",
-            "mothur_cluster",
-            "mothur_classify_otu",
-            "mothur_cluster_split",
-            "mothur_screen_seqs",
-            "mothur_chimera_vsearch",
-            "mothur_remove_lineage",
-            "mothur_rarefaction_single",
-            "mothur_venn",
-            "mothur_heatmap_sim",
-            "mothur_sub_sample",
-            "mothur_make_contigs",
-            "taxonomy_krona_chart",
-            "mothur_pre_cluster",
-            "mothur_taxonomy_to_krona",
             "mothur_unique_seqs",
-            "mothur_count_groups",
-            "mothur_align_seqs",
-            "mothur_dist_shared",
+            "mothur_cluster_split",
             "mothur_summary_seqs",
-            "newick_display",
-            "mothur_make_shared",
-            "mothur_classify_seqs",
-            "mothur_remove_seqs",
-            "mothur_dist_seqs",
-            "mothur_count_seqs",
+            "mothur_classify_otu",
             "mothur_tree_shared",
+            "mothur_classify_seqs",
             "mothur_remove_groups",
+            "mothur_make_contigs",
+            "mothur_make_biom",
+            "mothur_screen_seqs",
+            "newick_display",
+            "mothur_count_seqs",
+            "mothur_cluster",
+            "mothur_dist_seqs",
+            "mothur_remove_seqs",
             "mothur_get_groups",
-            "XY_Plot_1"
+            "mothur_sub_sample",
+            "mothur_heatmap_sim",
+            "mothur_rarefaction_single",
+            "mothur_chimera_vsearch",
+            "mothur_make_shared",
+            "mothur_venn",
+            "XY_Plot_1",
+            "mothur_count_groups",
+            "mothur_filter_seqs",
+            "mothur_seq_error",
+            "taxonomy_krona_chart",
+            "mothur_taxonomy_to_krona",
+            "mothur_align_seqs",
+            "mothur_remove_lineage",
+            "mothur_summary_single",
+            "mothur_dist_shared",
+            "mothur_pre_cluster"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -4419,16 +4164,16 @@
             "name:clinicalmp"
         ],
         "tools": [
-            "dbbuilder",
-            "uniprotxml_downloader",
-            "query_tabular",
             "Cut1",
-            "Filter1",
+            "dbbuilder",
+            "query_tabular",
             "Remove beginning1",
+            "Filter1",
             "Grouping1",
+            "uniprotxml_downloader",
             "collapse_dataset",
-            "pepquery2",
             "tp_cat",
+            "pepquery2",
             "fasta_merge_files_and_filter_unique_sequences"
         ],
         "type": "Galaxy",
@@ -4528,8 +4273,8 @@
         "tools": [
             "search_gui",
             "query_tabular",
-            "unipept",
             "peptide_shaker",
+            "unipept",
             "sqlite_to_tabular"
         ],
         "type": "Galaxy",
@@ -4561,13 +4306,13 @@
             "microbiome"
         ],
         "tools": [
-            "fastp",
-            "krakentools_kreport2krona",
             "fastqc",
-            "porechop",
             "Filter1",
             "taxonomy_krona_chart",
-            "kraken2"
+            "krakentools_kreport2krona",
+            "kraken2",
+            "fastp",
+            "porechop"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -4598,23 +4343,23 @@
             "name:clinicalmp"
         ],
         "tools": [
-            "fasta_merge_files_and_filter_unique_sequences",
-            "filter_tabular",
+            "Cut1",
+            "dbbuilder",
             "search_gui",
+            "fasta_cli",
+            "ident_params",
             "query_tabular",
+            "Remove beginning1",
             "Grep1",
             "maxquant",
-            "Cut1",
-            "peptide_shaker",
             "Filter1",
-            "Remove beginning1",
+            "fasta2tab",
             "Grouping1",
+            "peptide_shaker",
             "msconvert",
             "tp_cat",
-            "ident_params",
-            "fasta_cli",
-            "fasta2tab",
-            "dbbuilder"
+            "filter_tabular",
+            "fasta_merge_files_and_filter_unique_sequences"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -4645,9 +4390,9 @@
             "name:clinicalmp"
         ],
         "tools": [
+            "Grep1",
             "msstatstmt",
-            "unipept",
-            "Grep1"
+            "unipept"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -4710,9 +4455,9 @@
             "microbiome"
         ],
         "tools": [
+            "mothur_classify_seqs",
             "mothur_summary_seqs",
-            "mothur_remove_lineage",
-            "mothur_classify_seqs"
+            "mothur_remove_lineage"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -4743,16 +4488,16 @@
             "name:clinicalmp"
         ],
         "tools": [
-            "dbbuilder",
-            "uniprotxml_downloader",
-            "query_tabular",
             "Cut1",
-            "Filter1",
+            "dbbuilder",
+            "query_tabular",
             "Remove beginning1",
+            "Filter1",
             "Grouping1",
+            "uniprotxml_downloader",
             "collapse_dataset",
-            "pepquery2",
             "tp_cat",
+            "pepquery2",
             "fasta_merge_files_and_filter_unique_sequences"
         ],
         "type": "Galaxy",
@@ -4784,10 +4529,10 @@
             "microbiome"
         ],
         "tools": [
-            "mothur_summary_seqs",
             "mothur_screen_seqs",
-            "mothur_count_seqs",
-            "mothur_unique_seqs"
+            "mothur_summary_seqs",
+            "mothur_unique_seqs",
+            "mothur_count_seqs"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -4818,9 +4563,9 @@
             "name:clinicalmp"
         ],
         "tools": [
-            "maxquant",
-            "Grep1",
             "Cut1",
+            "Grep1",
+            "maxquant",
             "Grouping1"
         ],
         "type": "Galaxy",
@@ -4853,11 +4598,11 @@
         ],
         "tools": [
             "mothur_venn",
-            "mothur_heatmap_sim",
-            "mothur_dist_shared",
+            "newick_display",
             "collapse_dataset",
             "mothur_tree_shared",
-            "newick_display"
+            "mothur_heatmap_sim",
+            "mothur_dist_shared"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -4888,9 +4633,9 @@
             "microbiome"
         ],
         "tools": [
-            "mothur_summary_single",
+            "XY_Plot_1",
             "mothur_rarefaction_single",
-            "XY_Plot_1"
+            "mothur_summary_single"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -4921,9 +4666,9 @@
             "microbiome"
         ],
         "tools": [
+            "mothur_make_shared",
             "mothur_dist_seqs",
             "mothur_rarefaction_single",
-            "mothur_make_shared",
             "mothur_cluster"
         ],
         "type": "Galaxy",
@@ -4955,11 +4700,11 @@
             "microbiome"
         ],
         "tools": [
-            "mothur_sub_sample",
             "mothur_count_groups",
-            "mothur_remove_groups",
-            "mothur_classify_otu",
             "mothur_cluster_split",
+            "mothur_sub_sample",
+            "mothur_classify_otu",
+            "mothur_remove_groups",
             "mothur_make_shared"
         ],
         "type": "Galaxy",
@@ -4991,13 +4736,13 @@
             "microbiome"
         ],
         "tools": [
-            "mothur_screen_seqs",
+            "mothur_unique_seqs",
             "mothur_filter_seqs",
-            "mothur_chimera_vsearch",
             "mothur_remove_seqs",
+            "mothur_screen_seqs",
             "mothur_summary_seqs",
-            "mothur_pre_cluster",
-            "mothur_unique_seqs"
+            "mothur_chimera_vsearch",
+            "mothur_pre_cluster"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -5028,23 +4773,23 @@
             "name:clinicalmp"
         ],
         "tools": [
-            "fasta_merge_files_and_filter_unique_sequences",
-            "filter_tabular",
+            "Cut1",
+            "dbbuilder",
             "search_gui",
+            "fasta_cli",
+            "ident_params",
             "query_tabular",
+            "Remove beginning1",
             "Grep1",
             "maxquant",
-            "Cut1",
-            "peptide_shaker",
             "Filter1",
-            "Remove beginning1",
+            "fasta2tab",
             "Grouping1",
+            "peptide_shaker",
             "msconvert",
             "tp_cat",
-            "ident_params",
-            "fasta_cli",
-            "fasta2tab",
-            "dbbuilder"
+            "filter_tabular",
+            "fasta_merge_files_and_filter_unique_sequences"
         ],
         "type": "Galaxy",
         "update_time": "2025-06-02",
@@ -5077,44 +4822,6 @@
         "type": "Nextflow",
         "update_time": "2025-05-29",
         "versions": 3
-    },
-    {
-        "create_time": "2025-05-29",
-        "creators": [
-            "workflow4metabolomics"
-        ],
-        "description": "This workflow is composed with the XCMS tool R package (Smith, C.A. 2006) able to extract, filter, align and fill gapand the possibility to annotate isotopes, adducts and fragments using the CAMERA R package (Kuhl, C 2012).\n\n\nhttps://training.galaxyproject.org/training-material/topics/metabolomics/tutorials/lcms-preprocessing/tutorial.html ",
-        "doi": null,
-        "edam_operation": [],
-        "edam_topic": [],
-        "filtered_on": "metab.* in description",
-        "id": "677",
-        "keep": false,
-        "latest_version": 2,
-        "license": "MIT",
-        "link": "https:/workflowhub.eu/workflows/677?version=2",
-        "name": "lcms-preprocessing/main",
-        "number_of_steps": 12,
-        "projects": [
-            "Intergalactic Workflow Commission (IWC)"
-        ],
-        "source": "WorkflowHub",
-        "tags": [],
-        "tools": [
-            "msnbase_readmsdata",
-            "abims_xcms_xcmsSet",
-            "xcms_plot_chromatogram",
-            "abims_xcms_retcor",
-            "intens_check",
-            "abims_CAMERA_annotateDiffreport",
-            "checkFormat",
-            "abims_xcms_fillPeaks",
-            "xcms_merge",
-            "abims_xcms_group"
-        ],
-        "type": "Galaxy",
-        "update_time": "2025-08-18",
-        "versions": 2
     },
     {
         "create_time": "2025-04-17",
@@ -5285,41 +4992,6 @@
         "versions": 4
     },
     {
-        "create_time": "2025-05-20",
-        "creators": [
-            "workflow4metabolomics"
-        ],
-        "description": "This workflow is composed with the XCMS tool R package (Smith, C.A. 2006) able to extract and the metaMS R package (Wehrens, R 2014) for the field of untargeted metabolomics. \n\nhttps://training.galaxyproject.org/training-material/topics/metabolomics/tutorials/gcms/tutorial.html",
-        "doi": null,
-        "edam_operation": [],
-        "edam_topic": [],
-        "filtered_on": "metab.* in description",
-        "id": "680",
-        "keep": false,
-        "latest_version": 2,
-        "license": "MIT",
-        "link": "https:/workflowhub.eu/workflows/680?version=2",
-        "name": "gcms-metams/main",
-        "number_of_steps": 7,
-        "projects": [
-            "Intergalactic Workflow Commission (IWC)"
-        ],
-        "source": "WorkflowHub",
-        "tags": [],
-        "tools": [
-            "msnbase_readmsdata",
-            "abims_xcms_xcmsSet",
-            "xcms_plot_chromatogram",
-            "metams_runGC",
-            "checkFormat",
-            "Multivariate",
-            "xcms_merge"
-        ],
-        "type": "Galaxy",
-        "update_time": "2025-08-18",
-        "versions": 2
-    },
-    {
         "create_time": "2025-05-10",
         "creators": [
             "Yongyi Luo",
@@ -5444,45 +5116,16 @@
         "source": "WorkflowHub",
         "tags": [],
         "tools": [
-            "meryl_count_kmers",
-            "genomescope",
-            "meryl_groups_kmers",
             "meryl_histogram_kmers",
+            "meryl",
+            "genomescope",
+            "meryl_count_kmers",
             "pick_value",
-            "meryl"
+            "meryl_groups_kmers"
         ],
         "type": "Galaxy",
         "update_time": "2025-08-18",
         "versions": 6
-    },
-    {
-        "create_time": "2025-05-09",
-        "creators": [],
-        "description": "# CausalCoxMGM\r\nImplementation of CausalCoxMGM algorithm and scripts for analysis of simulated and real-world biomedical datasets.\r\n\r\n## Installation\r\n\r\nTo install CoxMGM and CausalCoxMGM, run the following command in the terminal:\r\n\r\n```\r\nR CMD INSTALL rCausalMGM\r\n```\r\n\r\nor alternatively:\r\n\r\n```\r\nR CMD INSTALL rCausalMGM/rCausalMGM_1.0.tar.gz\r\n```\r\n\r\n## Demonstration of CausalCoxMGM with the WHAS500 dataset\r\n\r\n\r\nFirst, we begin by loading the necessray R packages for this analysis.\r\n\r\n\r\n``` r\r\nlibrary(rCausalMGM)\r\nlibrary(survival)\r\nlibrary(dplyr)\r\nlibrary(survminer)\r\nlibrary(ggplot2)\r\n```\r\n\r\nNext, we load the WHAS500 dataset and format the data appropriately for analysis by CausalCoxMGM. First, we create our censored variables, Survival and LengthOfStay, using the `Surv` function from the `survival` R package. Then, we exclude features that are not clinical measurements or patient outcomes, and convert discrete variables into factors.\r\n\r\n\r\n``` r\r\ndata <- read.csv('cvd/whas500.csv', row.names=1)\r\n\r\ndata$LengthOfStay <- Surv(data$los, 1-data$dstat)\r\n\r\ndata$Survival <- Surv(data$lenfol, data$fstat)\r\n\r\ndata <- data %>% select(-c(\"admitdate\", \"disdate\", \"fdate\", \"dstat\", \"lenfol\", \"fstat\", \"year\", \"los\"))\r\n\r\ndata <- data %>% mutate_at(c(\"cvd\", \"afb\", \"sho\", \"chf\", \"av3\", \"gender\", \"miord\", \"mitype\"), factor)\r\n\r\nhead(data)\r\n```\r\n\r\n```\r\n##   age gender hr sysbp diasbp      bmi cvd afb sho chf av3 miord mitype\r\n## 1  83      0 89   152     78 25.54051   1   1   0   0   0     1      0\r\n## 2  49      0 84   120     60 24.02398   1   0   0   0   0     0      1\r\n## 3  70      1 83   147     88 22.14290   0   0   0   0   0     0      1\r\n## 4  70      0 65   123     76 26.63187   1   0   0   1   0     0      1\r\n## 5  70      0 63   135     85 24.41255   1   0   0   0   0     0      1\r\n## 6  70      0 76    83     54 23.24236   1   0   0   0   1     0      0\r\n##   LengthOfStay Survival\r\n## 1            5    2178+\r\n## 2            5    2172+\r\n## 3            5    2190+\r\n## 4           10      297\r\n## 5            6    2131+\r\n## 6           1+        1\r\n```\r\n\r\nNext, we perform stratified 5-fold cross-validation to select model hyperparameters. Cross-validation folds are stratified to have approximately the same number of all-cause mortality and hospital discharge events. We measure model performance based on the total deviance of the censored outcomes. Rather than performing a grid search over the hyperparameters, we perform a random search.\r\n\r\n\r\n``` r\r\nset.seed(43)\r\n\r\nidx00 <- which(data$Survival[,2]==0 & data$LengthOfStay[,2]==0)\r\nidx10 <- which(data$Survival[,2]==1 & data$LengthOfStay[,2]==0)\r\nidx01 <- which(data$Survival[,2]==0 & data$LengthOfStay[,2]==1)\r\nidx11 <- which(data$Survival[,2]==1 & data$LengthOfStay[,2]==1)\r\n\r\nfoldid <- rep(0, 500)\r\nfoldid[idx00] <- sample(((1:length(idx00))-1) %% 5 + 1)\r\nfoldid[idx10] <- sample(((1:length(idx10))-1) %% 5 + 1)\r\nfoldid[idx01] <- sample(((1:length(idx01))-1) %% 5 + 1)\r\nfoldid[idx11] <- sample(((1:length(idx11))-1) %% 5 + 1)\r\n\r\ntable(foldid, data$Survival[,2])\r\n```\r\n\r\n```\r\n##       \r\n## foldid  0  1\r\n##      1 57 44\r\n##      2 57 43\r\n##      3 57 43\r\n##      4 57 43\r\n##      5 57 42\r\n```\r\n\r\n``` r\r\ntable(foldid, data$LengthOfStay[,2])\r\n```\r\n\r\n```\r\n##       \r\n## foldid  0  1\r\n##      1  8 93\r\n##      2  8 92\r\n##      3  8 92\r\n##      4  8 92\r\n##      5  7 92\r\n```\r\n\r\n``` r\r\nlambdas <- runif(100, 0.05, 0.5)\r\n\r\nalphas <- runif(100, 0.01, 0.25)\r\n\r\nloglik <- matrix(0, 100, 5)\r\nsize <- matrix(0, 100, 5)\r\nfor (k in 1:5) {\r\n    ig.path <- coxmgmPath(data[foldid!=k,], lambdas=lambdas, rank=F)\r\n    idx <- 0\r\n    for (ig in ig.path$graphs) {\r\n        idx <- idx + 1\r\n        g <- fciStable(data[foldid!=k,], initialGraph=ig,\r\n                       alpha=alphas[idx], orientRule=\"maxp\", rank=F)\r\n        mb <- g$markov.blankets$Survival\r\n        size[idx,k] <- length(mb)\r\n        if (length(mb)==1) {\r\n            mb <- c(1)\r\n        }\r\n        f <- as.formula(paste(\"Survival ~\", paste(mb, collapse=\" + \")))\r\n        res <- coxph(f, data[foldid!=k,])\r\n        test.risk <- predict(res, newdata=data[foldid==k,])\r\n        res.test <- coxph(Survival ~ offset(test.risk), data[foldid==k,])\r\n        loglik[idx,k] <- -as.numeric(logLik(res.test))\r\n\r\n        mb <- g$markov.blankets$LengthOfStay\r\n        size[idx,k] <- size[idx,k] + length(mb)\r\n        if (length(mb)==1) {\r\n            mb <- c(1)\r\n        }\r\n        f <- as.formula(paste(\"LengthOfStay ~\", paste(mb, collapse=\" + \")))\r\n        res <- coxph(f, data[foldid!=k,])\r\n        test.risk <- predict(res, newdata=data[foldid==k,])\r\n        res.test <- coxph(LengthOfStay ~ offset(test.risk), data[foldid==k,])\r\n        loglik[idx,k] <- loglik[idx,k] + -as.numeric(logLik(res.test))\r\n    }\r\n}\r\n\r\nsizeMean <- rowMeans(size)\r\nloglikMean <- rowMeans(loglik)\r\nloglikSd <- apply(loglik, 1, sd)\r\n\r\nplot(sizeMean, loglikMean, pch=19, col='red')\r\n```\r\n\r\n![plot of chunk modelselectcv](figure/modelselectcv-1.png)\r\n\r\n``` r\r\nminIdx <- which.min(loglikMean)\r\n```\r\n\r\nNow that we have selected the best set of hyperparameters, we learn the final causal graphical model of all-cause mortality and hospital discharge after hospitilazation with acute myocardial infarction. This is done in two stages: first, we learn the undirected CoxMGM that serves as an initial estimate of the adjacencies in the causal graph. Second, we use FCI-Max to prune adjacencies and orient edges.\r\n\r\n\r\n``` r\r\nig.path <- coxmgmPath(data, lambda=lambdas)\r\n\r\ng <- fciStable(data, initialGraph=ig.path$graphs[[minIdx]],\r\n               alpha=alphas[minIdx], verbose=T, orientRule=\"maxp\")\r\n```\r\n\r\n```\r\n## Starting FCI-Stable algorithm...\r\n##   Starting FAS Stable...\r\n##     Searching at depth 0...\r\n##     Searching at depth 1...\r\n##     Searching at depth 2...\r\n##     Searching at depth 3...\r\n##     Searching at depth 4...\r\n##   FAS Stable Elapsed Time =  0.029 s\r\n##   RFCI adjacency pruning...\r\n##   Starting Posssible DSep search\r\n##     Starting Conservative Orientations...\r\n##       Filling Triple Map...\r\n##     Orienting colliders...\r\n##     Checking Possible-Dsep sets...\r\n##   Starting Final Orientations...\r\n##     Filling Triple Map...\r\n##   Orienting colliders...\r\n##   Orienting implied edges...\r\n##   FCI-Stable Elapsed Time =  0.25 s\r\n```\r\n\r\n``` r\r\ng\r\n```\r\n\r\n```\r\n## Algorithm:  CoxMGM-FCI-Max \r\n## Nodes:  15 \r\n## Edges:  17 \r\n##   Unoriented:  4 \r\n##   Partially Oriented:  6 \r\n##   Directed:  6 \r\n##   Bidirected:  1 \r\n## lambda = {0.3173977, 0.3173977, 0.3173977, 0.3173977, 0.3173977}\r\n## alpha =  0.02566852\r\n```\r\n\r\nFinally, we can generate a simple plot of the causal graphical model in R.\r\n\r\n\r\n``` r\r\nplot(g, nodeAttr=list(fontsize=36))\r\n```\r\n\r\n![plot of chunk finalmodelplot](figure/finalmodelplot-1.png)\r\n\r\n## License\r\n\r\nThe following data files are under the CC0 public domain:\r\n\r\n```\r\nwhas500.csv\r\nmetabric.rna.full.csv\r\nmetabric.rna.erp.full.csv\r\nmetabric.rna.ern.full.csv\r\nmeta_cohort_common_genes.rds\r\n```\r\n\r\nWhile all other files composing CausalCoxMGM are under the GPL-3.0 license.",
-        "doi": null,
-        "edam_operation": [],
-        "edam_topic": [
-            "Computational biology",
-            "Machine learning",
-            "Statistics and probability"
-        ],
-        "filtered_on": "metab.* in description",
-        "id": "1359",
-        "keep": false,
-        "latest_version": 1,
-        "license": "GPL-3.0",
-        "link": "https:/workflowhub.eu/workflows/1359?version=1",
-        "name": "CausalCoxMGM",
-        "number_of_steps": 0,
-        "projects": [
-            "CausalCoxMGM Team"
-        ],
-        "source": "WorkflowHub",
-        "tags": [],
-        "tools": [],
-        "type": "R markdown",
-        "update_time": "2025-05-09",
-        "versions": 1
     },
     {
         "create_time": "2025-05-09",
@@ -5546,86 +5189,39 @@
         "source": "WorkflowHub",
         "tags": [],
         "tools": [
-            "__UNZIP_COLLECTION__",
-            "binette",
-            "megahit",
-            "samtools_sort",
-            "metabat2",
-            "__BUILD_LIST__",
+            "drep_dereplicate",
+            "coverm_genome",
             "concoct_cut_up_fasta",
-            "pick_value",
-            "tp_awk_tool",
-            "metabat2_jgi_summarize_bam_contig_depths",
-            "__FLATTEN__",
-            "bakta",
-            "checkm_lineage_wf",
-            "gtdbtk_classify_wf",
-            "metaspades",
-            "Fasta_to_Contig2Bin",
-            "semibin",
+            "map_param_value",
             "quast",
-            "multiqc",
-            "concoct",
+            "metaspades",
             "concoct_merge_cut_up_clustering",
+            "samtools_sort",
+            "__FLATTEN__",
+            "metabat2",
             "concoct_extract_fasta_bins",
+            "binette",
             "collection_column_join",
             "bowtie2",
+            "Fasta_to_Contig2Bin",
+            "checkm_lineage_wf",
+            "multiqc",
+            "metabat2_jgi_summarize_bam_contig_depths",
             "checkm2",
-            "coverm_genome",
+            "tp_awk_tool",
             "concoct_coverage_table",
+            "__BUILD_LIST__",
             "maxbin2",
-            "drep_dereplicate",
-            "map_param_value"
+            "pick_value",
+            "gtdbtk_classify_wf",
+            "bakta",
+            "semibin",
+            "__UNZIP_COLLECTION__",
+            "megahit",
+            "concoct"
         ],
         "type": "Galaxy",
         "update_time": "2025-08-18",
-        "versions": 3
-    },
-    {
-        "create_time": "2025-04-28",
-        "creators": [
-            "Zargham Ahmad",
-            "Helge Hecht",
-            "Wudmir Rojas"
-        ],
-        "description": "High-Performance Computing (HPC) environments are integral to quantum chemistry and computationally intense research, yet their complexity poses challenges for non-HPC experts. Navigating these environments proves challenging for researchers lacking extensive computational knowledge, hindering efficient use of domain specific research software. The prediction of mass spectra for in silico annotation is therefore inaccessible for many wet lab scientists. Our main goal is to facilitate non-experts in HPC navigate this complexity and make semi-empirical Quantum Chemistry (QC)-based predictions available without needing advanced computational skills. To address this challenge, a comprehensive approach is proposed. We chose specific file formats for storing molecular structures, ensuring compatibility across diverse tools and platforms. The xTB quantum chemistry package for molecular geometry optimization is leveraged for its capability to balance between accuracy and computational cost, making it well-suited for non-HPC focused applications. Integrating QC-based Mass Spectrometry (QCxMS) into Galaxy enables the prediction of mass spectra and offers insights into molecular composition and properties. Our workflow demonstrates the utility of computing spectra using QCxMS along with complementary tools. We also present details of runtime performance metrics for four distinct molecules. This work highlights how non-HPC users can execute these predictions with ease, without requiring advanced computational skills. Additionally, a Docker image is created to encapsulate necessary tools, accompanied by user-friendly wrappers, simplifying the entire process for non-expert users. Within this context, potential improvements are considered, focusing on improving the Conda package for better performance by incorporating Fortran and Intel compiler optimizations. These considerations play a crucial role in refining the proposed methodology, enhancing user experience, and expanding the reach of semi-empirical predictions in quantum chemistry for mass spectra predictions.\r\n",
-        "doi": "10.48546/workflowhub.workflow.897.3",
-        "edam_operation": [
-            "Modelling and simulation"
-        ],
-        "edam_topic": [
-            "Computational chemistry"
-        ],
-        "filtered_on": "metab.* in tags",
-        "id": "897",
-        "keep": false,
-        "latest_version": 3,
-        "license": "MIT",
-        "link": "https:/workflowhub.eu/workflows/897?version=3",
-        "name": "End-to-end EI+ mass spectra prediction workflow using QCxMS",
-        "number_of_steps": 8,
-        "projects": [
-            "RECETOX SpecDatRI",
-            "ELIXIR Metabolomics"
-        ],
-        "source": "WorkflowHub",
-        "tags": [
-            "exposomics",
-            "gc-ms",
-            "metabolomics",
-            "qcxms"
-        ],
-        "tools": [
-            "openbabel_compound_convert",
-            "Remove failed runs\n__FILTER_FAILED_DATASETS__",
-            "xtb_molecular_optimization",
-            "qcxms_getres",
-            "qcxms_production_run",
-            "ctb_im_conformers",
-            "qcxms_neutral_run"
-        ],
-        "type": "Galaxy",
-        "update_time": "2025-04-28",
         "versions": 3
     },
     {
@@ -5906,24 +5502,24 @@
         "source": "WorkflowHub",
         "tags": [],
         "tools": [
-            "snpSift_filter",
-            "regexColumn1",
-            "Count1",
-            "minimap2",
             "Cut1",
-            "CONVERTER_gz_to_uncompressed",
+            "Paste1",
             "tp_head_tool",
-            "bcftools_norm",
-            "samtools_depth",
             "samtools_coverage",
             "Remove beginning1",
-            "table_compute",
-            "collapse_dataset",
-            "Paste1",
-            "clair3",
-            "tp_cut_tool",
+            "minimap2",
             "bcftools_consensus",
-            "snpSift_extractFields"
+            "bcftools_norm",
+            "samtools_depth",
+            "CONVERTER_gz_to_uncompressed",
+            "collapse_dataset",
+            "snpSift_filter",
+            "Count1",
+            "table_compute",
+            "tp_cut_tool",
+            "clair3",
+            "snpSift_extractFields",
+            "regexColumn1"
         ],
         "type": "Galaxy",
         "update_time": "2025-08-18",
@@ -5955,23 +5551,23 @@
             "vgp"
         ],
         "tools": [
+            "Cut1",
             "",
-            "cutadapt",
+            "Paste1",
+            "tp_sed_tool",
             "tp_replace_in_line",
             "tp_awk_tool",
+            "cutadapt",
+            "busco",
             "Add_a_column1",
             "tp_grep_tool",
-            "Convert characters1",
-            "Cut1",
             "gfastats",
-            "tp_sed_tool",
-            "bandage_image",
-            "merqury",
-            "Paste1",
+            "Convert characters1",
             "param_value_from_file",
+            "merqury",
+            "bandage_image",
             "hifiasm",
-            "multiqc",
-            "busco"
+            "multiqc"
         ],
         "type": "Galaxy",
         "update_time": "2025-10-08",
@@ -6238,7 +5834,7 @@
         "edam_topic": [],
         "filtered_on": "OTU in description",
         "id": "1296",
-        "keep": null,
+        "keep": true,
         "latest_version": 2,
         "license": "MIT",
         "link": "https:/workflowhub.eu/workflows/1296?version=2",
@@ -6251,10 +5847,10 @@
         "tags": [],
         "tools": [
             "tp_awk_tool",
-            "filter_tabular",
             "collection_column_join",
+            "map_param_value",
             "Grouping1",
-            "map_param_value"
+            "filter_tabular"
         ],
         "type": "Galaxy",
         "update_time": "2025-08-18",
@@ -6349,8 +5945,8 @@
         "tools": [
             "tp_awk_tool",
             "query_tabular",
-            "ampvis2_load",
             "collection_column_join",
+            "ampvis2_load",
             "collapse_dataset"
         ],
         "type": "Galaxy",
@@ -6369,7 +5965,7 @@
         "edam_topic": [],
         "filtered_on": "Amplicon in name",
         "id": "1274",
-        "keep": null,
+        "keep": true,
         "latest_version": 2,
         "license": "Apache-2.0",
         "link": "https:/workflowhub.eu/workflows/1274?version=2",
@@ -6385,8 +5981,8 @@
             "tp_awk_tool",
             "CONVERTER_gz_to_uncompressed",
             "CONVERTER_uncompressed_to_gz",
-            "__MERGE_COLLECTION__",
-            "fastq_dl"
+            "fastq_dl",
+            "__MERGE_COLLECTION__"
         ],
         "type": "Galaxy",
         "update_time": "2025-08-18",
@@ -6404,7 +6000,7 @@
         "edam_topic": [],
         "filtered_on": "Amplicon in name",
         "id": "1273",
-        "keep": null,
+        "keep": true,
         "latest_version": 2,
         "license": "Apache-2.0",
         "link": "https:/workflowhub.eu/workflows/1273?version=2",
@@ -6416,15 +6012,15 @@
         "source": "WorkflowHub",
         "tags": [],
         "tools": [
-            "__FILTER_EMPTY_DATASETS__",
             "",
-            "tp_awk_tool",
+            "__FILTER_FROM_FILE__",
             "biom_convert",
-            "bedtools_maskfastabed",
+            "tp_awk_tool",
             "collection_element_identifiers",
             "taxonomy_krona_chart",
+            "__FILTER_EMPTY_DATASETS__",
             "mapseq",
-            "__FILTER_FROM_FILE__"
+            "bedtools_maskfastabed"
         ],
         "type": "Galaxy",
         "update_time": "2025-08-18",
@@ -6442,7 +6038,7 @@
         "edam_topic": [],
         "filtered_on": "Amplicon in name",
         "id": "1272",
-        "keep": null,
+        "keep": true,
         "latest_version": 2,
         "license": "Apache-2.0",
         "link": "https:/workflowhub.eu/workflows/1272?version=2",
@@ -6454,16 +6050,16 @@
         "source": "WorkflowHub",
         "tags": [],
         "tools": [
-            "__UNZIP_COLLECTION__",
-            "fastp",
-            "fastq_filter",
+            "trimmomatic",
             "fastqc",
             "cshl_fasta_formatter",
-            "fastq_to_fasta_python",
+            "fastq_filter",
             "prinseq",
-            "tp_find_and_replace",
+            "__UNZIP_COLLECTION__",
             "mgnify_seqprep",
-            "trimmomatic",
+            "fastq_to_fasta_python",
+            "fastp",
+            "tp_find_and_replace",
             "multiqc"
         ],
         "type": "Galaxy",
@@ -6482,7 +6078,7 @@
         "edam_topic": [],
         "filtered_on": "Amplicon in name",
         "id": "1271",
-        "keep": null,
+        "keep": true,
         "latest_version": 3,
         "license": "Apache-2.0",
         "link": "https:/workflowhub.eu/workflows/1271?version=3",
@@ -6494,13 +6090,13 @@
         "source": "WorkflowHub",
         "tags": [],
         "tools": [
-            "fastq_filter",
+            "trimmomatic",
             "fastqc",
             "cshl_fasta_formatter",
-            "fastq_to_fasta_python",
+            "fastq_filter",
             "prinseq",
+            "fastq_to_fasta_python",
             "tp_find_and_replace",
-            "trimmomatic",
             "multiqc"
         ],
         "type": "Galaxy",
@@ -6519,7 +6115,7 @@
         "edam_topic": [],
         "filtered_on": "Amplicon in name",
         "id": "1270",
-        "keep": null,
+        "keep": true,
         "latest_version": 2,
         "license": "Apache-2.0",
         "link": "https:/workflowhub.eu/workflows/1270?version=2",
@@ -6531,20 +6127,20 @@
         "source": "WorkflowHub",
         "tags": [],
         "tools": [
-            "__FILTER_EMPTY_DATASETS__",
+            "infernal_cmsearch",
+            "cmsearch_deoverlap",
+            "__FILTER_FROM_FILE__",
             "",
-            "bedtools_getfastabed",
+            "biom_convert",
             "tp_awk_tool",
             "query_tabular",
-            "biom_convert",
-            "infernal_cmsearch",
             "cshl_fasta_formatter",
-            "gops_concat_1",
             "collection_element_identifiers",
             "taxonomy_krona_chart",
-            "cmsearch_deoverlap",
             "mapseq",
-            "__FILTER_FROM_FILE__"
+            "gops_concat_1",
+            "bedtools_getfastabed",
+            "__FILTER_EMPTY_DATASETS__"
         ],
         "type": "Galaxy",
         "update_time": "2025-08-18",
@@ -6561,7 +6157,7 @@
         "edam_topic": [],
         "filtered_on": "Amplicon in name",
         "id": "1269",
-        "keep": null,
+        "keep": true,
         "latest_version": 2,
         "license": "MIT",
         "link": "https:/workflowhub.eu/workflows/1269?version=2",
@@ -6574,10 +6170,10 @@
         "tags": [],
         "tools": [
             "tp_awk_tool",
-            "filter_tabular",
             "query_tabular",
             "collection_column_join",
-            "Grouping1"
+            "Grouping1",
+            "filter_tabular"
         ],
         "type": "Galaxy",
         "update_time": "2025-08-18",
@@ -6682,116 +6278,6 @@
         "versions": 1
     },
     {
-        "create_time": "2025-02-25",
-        "creators": [
-            "Playbook Partnership NIH CFDE"
-        ],
-        "description": "A file was first uploaded. The file was parsed as a gene count matrix. Significantly over-expressed genes when compared to tissue expression in GTEx[1] were identified. RNA-seq-like LINCS L1000 Signatures[3] which mimick or reverse the the expression of IMP3 were visualized. Drugs which down-regulate the expression of IMP3 were identified from the RNA-seq-like LINCS L1000 Chemical Perturbagens[3]. Genes which down-regulate the expression of IMP3 were identified from the RNA-seq-like LINCS L1000 CRISPR Knockouts[3]. Genes were filtered by IDG Understudied Proteins[8]. The gene was searched with the MetGENE tool providing pathways, reactions, metabolites, and studies from the Metabolomics Workbench[9]. IMP3 was then searched in the Metabolomics Workbench[11] to identify associated metabolites. IMP3 was then searched in the Metabolomics Workbench[11] to identify relevant reactions. A list of regulatory elements in the vicinity of the gene were retrieved from the CFDE Linked Data Hub[14]. The GlyGen database[18] was searched to identify a relevant set of protein products that originate from IMP3. \r\n1. Lonsdale, J. et al. The Genotype-Tissue Expression (GTEx) project. Nature Genetics vol. 45 580\u2013585 (2013). doi:10.1038/ng.2653\r\n3. Evangelista, J. E. et al. SigCom LINCS: data and metadata search engine for a million gene expression signatures. Nucleic Acids Research vol. 50 W697\u2013W709 (2022). doi:10.1093/nar/gkac328\r\n8. IDG Protein List, https://druggablegenome.net/IDGProteinList\r\n9. MetGENE, https://sc-cfdewebdev.sdsc.edu/MetGENE/metGene.php\r\n11. The Metabolomics Workbench, https://www.metabolomicsworkbench.org/\r\n14. CFDE Linked Data Hub, https://ldh.genome.network/cfde/ldh/\r\n18. York, W. S. et al. GlyGen: Computational and Informatics Resources for Glycoscience. Glycobiology vol. 30 72\u201373 (2019). doi:10.1093/glycob/cwz080",
-        "doi": "10.48546/workflowhub.workflow.1246.2",
-        "edam_operation": [],
-        "edam_topic": [],
-        "filtered_on": "metab.* in description",
-        "id": "1246",
-        "keep": null,
-        "latest_version": 2,
-        "license": "CC-BY-4.0",
-        "link": "https:/workflowhub.eu/workflows/1246?version=2",
-        "name": "Use Case 13: Novel Cell Surface Targets for Individual Cancer Patients Analyzed with Common Fund Datasets",
-        "number_of_steps": 13,
-        "projects": [
-            "NIH CFDE Playbook Workflow Partnership"
-        ],
-        "source": "WorkflowHub",
-        "tags": [],
-        "tools": [
-            "Ensure a file contains a gene count matrix, load it into a standard format",
-            "Select one Gene",
-            "Identify RNA-seq-like LINCS L1000 Signatures which reverse the expression of the gene.",
-            "Extract Metabolomics reactions for the gene from MetGENE",
-            "Identify RNA-seq-like LINCS L1000 Chemical Perturbagen Signatures which reverse the expression of the gene.",
-            "Identify gene-centric information from Metabolomics.",
-            "Find protein product records in GlyGen for the gene",
-            "Identify RNA-seq-like LINCS L1000 CRISPR KO Signatures which reverse the expression of the gene.",
-            "Upload a Data File",
-            "Identify significantly overexpressed genes when compared to normal tissue in GTEx",
-            "Regulatory elements in 10kbps region upstream or downstream of gene body.",
-            "Extract Metabolomics metabolites for the gene from MetGENE",
-            "Based on IDG proteins list"
-        ],
-        "type": "Playbook Workflow Builder Workflow",
-        "update_time": "2025-02-25",
-        "versions": 2
-    },
-    {
-        "create_time": "2025-02-25",
-        "creators": [
-            "Playbook Partnership NIH CFDE"
-        ],
-        "description": "The workflow starts with selecting RPE as the search term. For the given gene ID (SYMBOL), StringDB PPI was extracted using their API[1]. For the Given StringDB PPI, the list of nodes (Gene Set) is generated. For the Given StringDB PPI, the list of nodes (GeneSet) is generated. Reversers and mimickers from over 1 million signatures were identified using SigCom LINCS[2]. The gene set was submitted to Enrichr[4]. The gene set was then searched in the Metabolomics Workbench[5] to identify relevant reactions. The gene set was then searched in the Metabolomics Workbench [Metabolomics Workbench, [7] to identify associated metabolites. The gene set was then searched in the Metabolomics Workbench[5] to identify relevant studies related to the genes. \r\n1. Szklarczyk, D. et al. The STRING database in 2023: protein\u2013protein association networks and functional enrichment analyses for any sequenced genome of interest. Nucleic Acids Research vol. 51 D638\u2013D646 (2022). doi:10.1093/nar/gkac1000\r\n2. Evangelista, J. E. et al. SigCom LINCS: data and metadata search engine for a million gene expression signatures. Nucleic Acids Research vol. 50 W697\u2013W709 (2022). doi:10.1093/nar/gkac328\r\n4. Xie, Z. et al. Gene Set Knowledge Discovery with Enrichr. Current Protocols vol. 1 (2021). doi:10.1002/cpz1.90\r\n5. The Metabolomics Workbench, https://www.metabolomicsworkbench.org/\r\n7. https://www.metabolomicsworkbench.org/",
-        "doi": "10.48546/workflowhub.workflow.1245.2",
-        "edam_operation": [],
-        "edam_topic": [],
-        "filtered_on": "metab.* in name",
-        "id": "1245",
-        "keep": null,
-        "latest_version": 2,
-        "license": "CC-BY-4.0",
-        "link": "https:/workflowhub.eu/workflows/1245?version=2",
-        "name": "Use Case 11: Related Proteins/Metabolites across DCCs",
-        "number_of_steps": 9,
-        "projects": [
-            "NIH CFDE Playbook Workflow Partnership"
-        ],
-        "source": "WorkflowHub",
-        "tags": [],
-        "tools": [
-            "Compute the MetGENE metabolites for a Gene Set",
-            "Given StringDB PPI, reformat for plotting",
-            "Start with a Gene",
-            "Query LINCS L1000 Signatures",
-            "Compute the MetGENE studies function for a gene set",
-            "Perform Enrichment Analysis",
-            "Given a gene or gene set (SYMBOL), extract PPI using StringDB APIs",
-            "Compute the MetGENE Reactions for a Gene Set",
-            "Given StringDB PPI, generate the list of nodes (GeneSet)"
-        ],
-        "type": "Playbook Workflow Builder Workflow",
-        "update_time": "2025-02-25",
-        "versions": 2
-    },
-    {
-        "create_time": "2025-02-25",
-        "creators": [
-            "Playbook Partnership NIH CFDE"
-        ],
-        "description": "The workflow starts with a gene set created from Example gene set. CTD is applied which diffuses through all nodes in STRING[1] to identify nodes that are \"guilty by association\" and highly connected to the initial gene set of interest[2][3]. A list of Highly Connected Genes was obtained from the CTD output. A list of Guilty By Association Genes was obtained from the CTD output. \r\n1. Szklarczyk, D. et al. STRING v10: protein\u2013protein interaction networks, integrated over the tree of life. Nucleic Acids Research vol. 43 D447\u2013D452 (2014). doi:10.1093/nar/gku1003\r\n2. Thistlethwaite, L. R. et al. Correction: CTD: An information-theoretic algorithm to interpret sets of metabolomic and transcriptomic perturbations in the context of graphical models. PLOS Computational Biology vol. 17 e1009551 (2021). doi:10.1371/journal.pcbi.1009551\r\n3. Petrosyan, V. et al. Identifying biomarkers of differential chemotherapy response in TNBC patient-derived xenografts with a CTD/WGCNA approach. iScience vol. 26 105799 (2023). doi:10.1016/j.isci.2022.105799",
-        "doi": "10.48546/workflowhub.workflow.1244.2",
-        "edam_operation": [],
-        "edam_topic": [],
-        "filtered_on": "metab.* in description",
-        "id": "1244",
-        "keep": null,
-        "latest_version": 2,
-        "license": "CC-BY-4.0",
-        "link": "https:/workflowhub.eu/workflows/1244?version=2",
-        "name": "Use Case 10: Guilt by Association",
-        "number_of_steps": 4,
-        "projects": [
-            "NIH CFDE Playbook Workflow Partnership"
-        ],
-        "source": "WorkflowHub",
-        "tags": [],
-        "tools": [
-            "Extract nodes that are \"guilty by association\" and connect your initial genes of interest within the graph.",
-            "Start with a set of Genes",
-            "Extract nodes that are determined to be highly connected by CTD in your initial node set and display them in a table.",
-            "Use CTD to \"Connect the Dots\" and identify highly connected set of proteins in the STRING protein interaction graph. *Please note 10-150 genes of interest are required to run CTD"
-        ],
-        "type": "Playbook Workflow Builder Workflow",
-        "update_time": "2025-02-25",
-        "versions": 2
-    },
-    {
         "create_time": "2024-12-18",
         "creators": [
             "Marie-Emilie  Gauthier",
@@ -6889,23 +6375,23 @@
         "source": "WorkflowHub",
         "tags": [],
         "tools": [
-            "fasta_merge_files_and_filter_unique_sequences",
-            "filter_tabular",
+            "Cut1",
+            "dbbuilder",
             "search_gui",
+            "fasta_cli",
+            "ident_params",
             "query_tabular",
+            "Remove beginning1",
             "Grep1",
             "maxquant",
-            "Cut1",
-            "peptide_shaker",
             "Filter1",
-            "Remove beginning1",
+            "fasta2tab",
             "Grouping1",
+            "peptide_shaker",
             "msconvert",
             "tp_cat",
-            "ident_params",
-            "fasta_cli",
-            "fasta2tab",
-            "dbbuilder"
+            "filter_tabular",
+            "fasta_merge_files_and_filter_unique_sequences"
         ],
         "type": "Galaxy",
         "update_time": "2025-08-18",
@@ -6943,24 +6429,24 @@
             "shotgun"
         ],
         "tools": [
-            "Prepare alpha diversity summary file (paste sample identifiers and Simpson results)\nPaste1",
-            "__RELABEL_FROM_FILE__",
-            "krakentools_kreport2krona",
-            "add_line_to_file",
-            "Prepare alpha diversity summary file\nPaste1",
             "Fisher results contains a header line we want to exclude \"Fisher's alpha...loading\"\nShow tail1",
-            "Prepare alpha diversity summary file (paste Simpson and Fisher results)\nPaste1",
-            "cat_multiple",
+            "est_abundance",
+            "krakentools_alpha_diversity",
+            "__RELABEL_FROM_FILE__",
             "collection_column_join",
-            "Extract column name and fraction_total_reads from Bracken report\nCut1",
-            "krakentools_combine_kreports",
+            "add_line_to_file",
             "collection_element_identifiers",
+            "Prepare alpha diversity summary file (paste Simpson and Fisher results)\nPaste1",
             "taxonomy_krona_chart",
+            "krakentools_kreport2krona",
             "krakentools_beta_diversity",
+            "Extract column name and fraction_total_reads from Bracken report\nCut1",
             "regex1",
             "kraken2",
-            "est_abundance",
-            "krakentools_alpha_diversity"
+            "Prepare alpha diversity summary file\nPaste1",
+            "krakentools_combine_kreports",
+            "cat_multiple",
+            "Prepare alpha diversity summary file (paste sample identifiers and Simpson results)\nPaste1"
         ],
         "type": "Galaxy",
         "update_time": "2024-12-10",
@@ -6998,39 +6484,39 @@
             "qc"
         ],
         "tools": [
-            "blobtoolkit",
-            "CONVERTER_fasta_to_fai",
-            "cooler_cload_tabix",
-            "pairtools_sort",
             "Cut1",
-            "gfastats",
-            "sambamba_merge",
-            "bg_diamond",
-            "bedtools_makewindowsbed",
-            "pick_value",
-            "meryl",
-            "lftp",
-            "busco",
-            "fastp",
-            "tp_text_file_with_recurring_lines",
-            "hicexplorer_hicplotmatrix",
-            "__FLATTEN__",
-            "merqury",
             "cooler_csort_tabix",
-            "bwa_mem2",
             "sambamba_flagstat",
-            "hicexplorer_hicmergematrixbins",
-            "datasets_download_genome",
+            "busco",
+            "gfastats",
+            "blobtoolkit",
             "pairtools_parse",
-            "fasterq_dump",
-            "pairtools_split",
-            "__EXTRACT_DATASET__",
-            "genomescope",
-            "smudgeplot",
+            "bedtools_makewindowsbed",
+            "__FLATTEN__",
+            "datasets_download_genome",
             "pairtools_dedup",
             "collapse_dataset",
+            "sambamba_merge",
+            "pairtools_sort",
+            "__EXTRACT_DATASET__",
+            "bg_diamond",
+            "tp_text_file_with_recurring_lines",
+            "meryl",
+            "smudgeplot",
+            "pick_value",
+            "fastp",
+            "bwa_mem2",
+            "cooler_cload_tabix",
+            "rseqc_bam_stat",
+            "hicexplorer_hicmergematrixbins",
+            "CONVERTER_fasta_to_fai",
             "sam_merge2",
-            "rseqc_bam_stat"
+            "pairtools_split",
+            "merqury",
+            "lftp",
+            "genomescope",
+            "fasterq_dump",
+            "hicexplorer_hicplotmatrix"
         ],
         "type": "Galaxy",
         "update_time": "2024-12-05",
@@ -7067,41 +6553,41 @@
             "qc"
         ],
         "tools": [
-            "blobtoolkit",
-            "CONVERTER_fasta_to_fai",
-            "cooler_cload_tabix",
-            "pairtools_sort",
             "Cut1",
-            "gfastats",
-            "sambamba_merge",
-            "bedtools_makewindowsbed",
-            "pick_value",
-            "meryl",
-            "lftp",
-            "busco",
-            "fastp",
-            "tp_text_file_with_recurring_lines",
-            "hicexplorer_hicplotmatrix",
-            "__FLATTEN__",
-            "merqury",
             "cooler_csort_tabix",
-            "bwa_mem2",
-            "rseqc_bam_stat",
-            "sambamba_flagstat",
-            "hicexplorer_hicmergematrixbins",
-            "datasets_download_genome",
             "minimap2",
+            "busco",
+            "sambamba_flagstat",
+            "gfastats",
+            "blobtoolkit",
             "pairtools_parse",
-            "fasterq_dump",
-            "pairtools_split",
-            "__EXTRACT_DATASET__",
+            "bedtools_makewindowsbed",
+            "__FLATTEN__",
+            "datasets_download_genome",
             "cutadapt",
-            "genomescope",
-            "smudgeplot",
             "pairtools_dedup",
             "collapse_dataset",
+            "sambamba_merge",
+            "pairtools_sort",
+            "__EXTRACT_DATASET__",
+            "bg_diamond",
+            "tp_text_file_with_recurring_lines",
+            "meryl",
+            "smudgeplot",
+            "pick_value",
+            "fastp",
+            "bwa_mem2",
+            "cooler_cload_tabix",
+            "rseqc_bam_stat",
+            "hicexplorer_hicmergematrixbins",
+            "CONVERTER_fasta_to_fai",
             "sam_merge2",
-            "bg_diamond"
+            "pairtools_split",
+            "merqury",
+            "lftp",
+            "genomescope",
+            "fasterq_dump",
+            "hicexplorer_hicplotmatrix"
         ],
         "type": "Galaxy",
         "update_time": "2024-12-05",
@@ -7163,16 +6649,16 @@
         "source": "WorkflowHub",
         "tags": [],
         "tools": [
-            "dbbuilder",
-            "uniprotxml_downloader",
-            "query_tabular",
             "Cut1",
-            "Filter1",
+            "dbbuilder",
+            "query_tabular",
             "Remove beginning1",
+            "Filter1",
             "Grouping1",
+            "uniprotxml_downloader",
             "collapse_dataset",
-            "pepquery2",
             "tp_cat",
+            "pepquery2",
             "fasta_merge_files_and_filter_unique_sequences"
         ],
         "type": "Galaxy",
@@ -7240,24 +6726,24 @@
         ],
         "tools": [
             "",
-            "tp_split_on_column",
             "Cut1",
-            "tp_text_file_with_recurring_lines",
-            "datamash_ops",
-            "cat1",
-            "staramr_search",
-            "addValue",
-            "tp_find_and_replace",
-            "hamronize_summarize",
+            "tp_split_on_column",
             "cast",
-            "__MERGE_COLLECTION__",
-            "cat_multi_datasets",
-            "hamronize_tool",
-            "shovill",
-            "__APPLY_RULES__",
             "abricate",
+            "datamash_ops",
             "collapse_dataset",
-            "Grep1"
+            "tp_text_file_with_recurring_lines",
+            "shovill",
+            "hamronize_tool",
+            "Grep1",
+            "cat1",
+            "cat_multi_datasets",
+            "tp_find_and_replace",
+            "addValue",
+            "staramr_search",
+            "hamronize_summarize",
+            "__APPLY_RULES__",
+            "__MERGE_COLLECTION__"
         ],
         "type": "Galaxy",
         "update_time": "2024-12-24",
@@ -7370,14 +6856,14 @@
             "microbial"
         ],
         "tools": [
-            "KofamScan",
-            "eggNOG-mapper",
-            "Move all Bakta files to a folder",
-            "Bacterial genome annotation tool",
-            "Compress files when compression is true",
             "Compress Bakta",
+            "KofamScan",
+            "Move all Bakta files to a folder",
             "Gather files when compression is false",
-            "InterProScan 5"
+            "InterProScan 5",
+            "eggNOG-mapper",
+            "Compress files when compression is true",
+            "Bacterial genome annotation tool"
         ],
         "type": "Common Workflow Language",
         "update_time": "2025-10-03",
@@ -7406,13 +6892,13 @@
         "source": "WorkflowHub",
         "tags": [],
         "tools": [
-            "extract peptides\nCut1",
+            "Quantified-Peptides\nGrouping1",
+            "extract proteins\nCut1",
             "maxquant",
-            "extracting microbial Peptides\nGrep1",
             "extracting microbial Proteins\nGrep1",
             "Quantified-Proteins\nGrouping1",
-            "extract proteins\nCut1",
-            "Quantified-Peptides\nGrouping1"
+            "extracting microbial Peptides\nGrep1",
+            "extract peptides\nCut1"
         ],
         "type": "Galaxy",
         "update_time": "2025-08-18",
@@ -7429,7 +6915,7 @@
         "edam_topic": [],
         "filtered_on": "Amplicon in description",
         "id": "110",
-        "keep": null,
+        "keep": false,
         "latest_version": 11,
         "license": "MIT",
         "link": "https:/workflowhub.eu/workflows/110?version=11",
@@ -7446,26 +6932,26 @@
             "covid19.galaxyproject.org"
         ],
         "tools": [
+            "tp_replace_in_line",
+            "ivar_removereads",
+            "samtools_view",
             "snpSift_filter",
+            "compose_text_param",
+            "\n __FLATTEN__",
             "vcfvcfintersect",
-            "qualimap_bamqc",
-            "lofreq_viterbi",
-            "bwa_mem",
-            "fastp",
-            "samtools_stats",
-            "ivar_trim",
-            "\n __FILTER_FAILED_DATASETS__",
-            "lofreq_indelqual",
             "multiqc",
             "lofreq_filter",
-            "\n __FLATTEN__",
-            "compose_text_param",
-            "bcftools_annotate",
-            "samtools_view",
-            "tp_replace_in_line",
-            "snpeff_sars_cov_2",
+            "samtools_stats",
+            "qualimap_bamqc",
             "lofreq_call",
-            "ivar_removereads"
+            "snpeff_sars_cov_2",
+            "\n __FILTER_FAILED_DATASETS__",
+            "fastp",
+            "bcftools_annotate",
+            "lofreq_indelqual",
+            "ivar_trim",
+            "lofreq_viterbi",
+            "bwa_mem"
         ],
         "type": "Galaxy",
         "update_time": "2025-08-18",
@@ -7495,17 +6981,17 @@
             "antimicrobial resistance"
         ],
         "tools": [
-            "__UNZIP_COLLECTION__",
-            "kma_map",
-            "srst2",
+            "bbtools_bbduk",
+            "mob_recon",
             "hamronize_tool",
-            "sistr_cmd",
-            "bbtools_tadpole",
             "shovill",
             "hamronize_summarize",
-            "mob_recon",
             "seqsero2",
-            "bbtools_bbduk"
+            "bbtools_tadpole",
+            "__UNZIP_COLLECTION__",
+            "sistr_cmd",
+            "kma_map",
+            "srst2"
         ],
         "type": "Galaxy",
         "update_time": "2024-09-09",
@@ -7538,13 +7024,13 @@
             "antimicrobial resistance"
         ],
         "tools": [
+            "staramr_search",
             "hamronize_tool",
             "shovill",
-            "abricate",
-            "tp_find_and_replace",
             "hamronize_summarize",
+            "abricate",
             "collapse_dataset",
-            "staramr_search"
+            "tp_find_and_replace"
         ],
         "type": "Galaxy",
         "update_time": "2024-09-09",
@@ -7631,10 +7117,10 @@
             "ocean"
         ],
         "tools": [
-            "Create the protein fasta file",
-            "Create TSV file for Sanntis",
             "Use of Sanntis",
-            "Remove useless * in the protein fasta file"
+            "Remove useless * in the protein fasta file",
+            "Create the protein fasta file",
+            "Create TSV file for Sanntis"
         ],
         "type": "Galaxy",
         "update_time": "2024-08-21",
@@ -7651,7 +7137,7 @@
         "edam_topic": [],
         "filtered_on": "16S in name",
         "id": "1102",
-        "keep": null,
+        "keep": true,
         "latest_version": 1,
         "license": "MIT",
         "link": "https:/workflowhub.eu/workflows/1102?version=1",
@@ -7680,7 +7166,7 @@
         "edam_topic": [],
         "filtered_on": "microbiom.* in description",
         "id": "1061",
-        "keep": null,
+        "keep": true,
         "latest_version": 1,
         "license": "MIT",
         "link": "https:/workflowhub.eu/workflows/1061?version=1",
@@ -7692,23 +7178,23 @@
         "source": "WorkflowHub",
         "tags": [],
         "tools": [
-            "nanoplot",
-            "fastp",
-            "Add_a_column1",
-            "regexColumn1",
+            "Cut1",
             "krakentools_extract_kraken_reads",
             "fastqc",
-            "minimap2",
-            "porechop",
-            "Cut1",
             "collection_column_join",
-            "samtools_fastx",
-            "kraken2",
-            "collapse_dataset",
-            "__FILTER_FAILED_DATASETS__",
+            "minimap2",
             "bamtools_split_mapped",
             "Grep1",
-            "multiqc"
+            "Add_a_column1",
+            "samtools_fastx",
+            "collapse_dataset",
+            "__FILTER_FAILED_DATASETS__",
+            "kraken2",
+            "fastp",
+            "nanoplot",
+            "porechop",
+            "multiqc",
+            "regexColumn1"
         ],
         "type": "Galaxy",
         "update_time": "2025-08-18",
@@ -7727,7 +7213,7 @@
         "edam_topic": [],
         "filtered_on": "profil.* in name",
         "id": "1059",
-        "keep": null,
+        "keep": true,
         "latest_version": 1,
         "license": "MIT",
         "link": "https:/workflowhub.eu/workflows/1059?version=1",
@@ -7739,9 +7225,9 @@
         "source": "WorkflowHub",
         "tags": [],
         "tools": [
-            "taxonomy_krona_chart",
+            "krakentools_kreport2krona",
             "kraken2",
-            "krakentools_kreport2krona"
+            "taxonomy_krona_chart"
         ],
         "type": "Galaxy",
         "update_time": "2025-08-18",
@@ -7875,12 +7361,12 @@
             "genome-annotation"
         ],
         "tools": [
-            "tooldistillator",
-            "isescan",
             "bakta",
-            "integron_finder",
+            "tooldistillator_summarize",
             "plasmidfinder",
-            "tooldistillator_summarize"
+            "integron_finder",
+            "tooldistillator",
+            "isescan"
         ],
         "type": "Galaxy",
         "update_time": "2025-08-18",
@@ -7921,72 +7407,15 @@
             "fasta"
         ],
         "tools": [
-            "tooldistillator",
-            "abricate",
-            "amrfinderplus",
             "tooldistillator_summarize",
-            "staramr_search"
+            "staramr_search",
+            "abricate",
+            "tooldistillator",
+            "amrfinderplus"
         ],
         "type": "Galaxy",
         "update_time": "2025-09-18",
         "versions": 8
-    },
-    {
-        "create_time": "2024-06-06",
-        "creators": [
-            "Zargham Ahmad",
-            "Helge Hecht",
-            "Elliott J. Price"
-        ],
-        "description": "# Galaxy Workflow Documentation: MS Finder Pipeline\r\n\r\nThis document outlines a MSFinder Galaxy workflow designed for peak annotation. The workflow consists of several steps aimed at preprocessing MS data, filtering, enhancing, and running MSFinder.\r\n\r\n## Step 1: Data Collection and Preprocessing\r\nCollect if the inchi and smiles are missing from the dataset, and subsequently filter out the spectra which are missing inchi and smiles.\r\n\r\n### 1.1 MSMetaEnhancer: Collect InChi, Isomeric_smiles, and Nominal_mass\r\n- Utilizes MSMetaEnhancer to collect InChi and Isomeric_smiles using PubChem and IDSM databases.\r\n- Utilizes MSMetaEnhancer to collect MW using RDkit (For GOLM).\r\n\r\n### 1.2 replace key\r\n- replace isomeric_smiles key to smiles using replace text tool\r\n- replace MW key to parent_mass using replace text tool (For GOLM)\r\n\r\n### 1.3 Matchms Filtering\r\n- Filters out invalid SMILES and InChi from the dataset using Matchms filtering.\r\n\r\n## Step 2: Complex Removal and Subsetting Dataset\r\nRemoves coordination complexes from the dataset.\r\n\r\n### 2.1 Remove Complexes and Subset Data\r\n- Removes complexes from the dataset.\r\n- Exports metadata using Matchms metadata export, cuts the SMILES column, removes complexes using Rem_Complex tool, and updates the dataset using Matchms subsetting.\r\n\r\n## Step 3: Data Key Manipulation\r\nAdd missing metadata required by the MSFinder for annotation.\r\n\r\n### 3.1 Matchms Remove Key\r\n- Removes existing keys such as adduct, charge, and ionmode from the dataset.\r\n\r\n### 3.2 Matchms Add Key\r\n- Adds necessary keys like charge, ionmode, and adduct to the dataset.\r\n\r\n### 3.3 Matchms Filtering\r\n- Derives precursor m/z using parent mass and adduct information using matchms filtering.\r\n\r\n### 3.4 Matchms Convert\r\n- Converts the dataset to Riken format for compatibility with MSFinder using matchms convert.\r\n\r\n## Step 4: Peak Annotation\r\n### 4.1 Recetox-MSFinder\r\n- Executes MSFinder with a 0.5 Da tolerance for both MS1 and MS2, including all element checks and an extended range for peak annotation.\r\n\r\n## Step 5: Error Handling and Refinement\r\nCheck the MSFinder output to see if the output is the results or the log file. If the output is log file remove the smile from the dataset using matchms subsetting tool and rerun MSFinder.\r\n\r\n### 5.1 Error Handling\r\n- Handles errors in peak annotation by removing SMILES that are not accepted by MSFinder.\r\n- Reruns MSFinder after error correction or with different parameter (if applicable).\r\n\r\n## Step 6: High-res Annotation\r\n### 6.1 High-Res Peak Overwriting\r\n- Utilizes the Use_Theoretical_mz_Annotations tool to Overwrite experimentally measured mz values for peaks with theoretical values from peak comments.\r\n",
-        "doi": "10.48546/workflowhub.workflow.888.2",
-        "edam_operation": [
-            "Annotation",
-            "Data filtering",
-            "Information retrieval"
-        ],
-        "edam_topic": [
-            "Compound libraries and screening",
-            "Computational chemistry",
-            "Data mining",
-            "Small molecules"
-        ],
-        "filtered_on": "metab.* in tags",
-        "id": "888",
-        "keep": null,
-        "latest_version": 2,
-        "license": "CC-BY-4.0",
-        "link": "https:/workflowhub.eu/workflows/888?version=2",
-        "name": "Theoretical fragment substructure generation and in silico mass spectral library high-resolution upcycling workflow",
-        "number_of_steps": 22,
-        "projects": [
-            "RECETOX SpecDatRI"
-        ],
-        "source": "WorkflowHub",
-        "tags": [
-            "bioinformatics",
-            "cheminformatics",
-            "metabolomics"
-        ],
-        "tools": [
-            "csv_to_tabular",
-            "column_remove_by_header",
-            "matchms_convert",
-            "rem_complex",
-            "matchms_remove_key",
-            "matchms_add_key",
-            "matchms_filtering",
-            "tabular_to_csv",
-            "matchms_subsetting",
-            "recetox_msfinder",
-            "tp_find_and_replace",
-            "matchms_metadata_export",
-            "use_theoretical_mz_annotations",
-            "msmetaenhancer"
-        ],
-        "type": "Galaxy",
-        "update_time": "2024-06-19",
-        "versions": 2
     },
     {
         "create_time": "2024-06-11",
@@ -8072,40 +7501,6 @@
         "versions": 30
     },
     {
-        "create_time": "2024-06-11",
-        "creators": [
-            "Payam Emami"
-        ],
-        "description": "Pre-processing of mass spectrometry-based metabolomics data",
-        "doi": null,
-        "edam_operation": [],
-        "edam_topic": [],
-        "filtered_on": "metab.* in tags",
-        "id": "57",
-        "keep": null,
-        "latest_version": 4,
-        "license": "MIT",
-        "link": "https:/workflowhub.eu/workflows/57?version=4",
-        "name": "nf-core/metaboigniter",
-        "number_of_steps": 0,
-        "projects": [
-            "nf-core"
-        ],
-        "source": "WorkflowHub",
-        "tags": [
-            "metabolomics",
-            "identification",
-            "mass-spectrometry",
-            "ms1",
-            "ms2",
-            "quantification"
-        ],
-        "tools": [],
-        "type": "Nextflow",
-        "update_time": "2024-06-11",
-        "versions": 4
-    },
-    {
         "create_time": "2024-11-27",
         "creators": [
             "Debjyoti Ghosh"
@@ -8116,7 +7511,7 @@
         "edam_topic": [],
         "filtered_on": "Amplicon in description",
         "id": "892",
-        "keep": null,
+        "keep": true,
         "latest_version": 3,
         "license": "MIT",
         "link": "https:/workflowhub.eu/workflows/892?version=3",
@@ -8129,8 +7524,8 @@
         "tags": [],
         "tools": [
             "qiime2__feature_table__summarize",
-            "qiime2__feature_table__tabulate_seqs",
             "qiime2__metadata__tabulate",
+            "qiime2__feature_table__tabulate_seqs",
             "qiime2__dada2__denoise_single"
         ],
         "type": "Galaxy",
@@ -8162,33 +7557,6 @@
         "tools": [],
         "type": "Snakemake",
         "update_time": "2024-05-13",
-        "versions": 1
-    },
-    {
-        "create_time": "2024-05-03",
-        "creators": [],
-        "description": "Complete workflow for TANGO as reported in Lecomte et al (2024),\r\n\"Revealing the dynamics and mechanisms of bacterial interactions in\r\ncheese production with metabolic modelling\", Metabolic Eng. 83:24-38\r\nhttps://doi.org/10.1016/j.ymben.2024.02.014\r\n\r\n1. Parameters for individual models are obtained by optimization\r\n2. Individual dynamics and community dynamics are simulated\r\n3. Figures for the manuscript are assembled from the results.",
-        "doi": null,
-        "edam_operation": [],
-        "edam_topic": [
-            "Microbial ecology"
-        ],
-        "filtered_on": "metab.* in description",
-        "id": "873",
-        "keep": null,
-        "latest_version": 1,
-        "license": "GPL-3.0",
-        "link": "https:/workflowhub.eu/workflows/873?version=1",
-        "name": "Tango: Numerical reconciliation of bacterial fermentation in cheese production",
-        "number_of_steps": 6,
-        "projects": [
-            "MISTIC"
-        ],
-        "source": "WorkflowHub",
-        "tags": [],
-        "tools": [],
-        "type": "Common Workflow Language",
-        "update_time": "2024-05-03",
         "versions": 1
     },
     {
@@ -8227,45 +7595,6 @@
         "tools": [],
         "type": "Nextflow",
         "update_time": "2024-04-26",
-        "versions": 1
-    },
-    {
-        "create_time": "2024-04-16",
-        "creators": [],
-        "description": "The input to this workflow is a data matrix of gene expression that was collected from a pediatric patient tumor patient from the KidsFirst Common Fund program [1]. The RNA-seq samples are the columns of the matrix, and the rows are the raw expression gene count for all human coding genes (Table 1). This data matrix is fed into TargetRanger [2] to screen for targets which are highly expressed in the tumor but lowly expressed across most healthy human tissues based on gene expression data collected from postmortem patients with RNA-seq by the GTEx Common Fund program [3]. Based on this analysis the gene IMP U3 small nucleolar ribonucleoprotein 3 (IMP3) was selected because it was the top candidate returned from the TargetRanger analysis (Tables 2-3). IMP3 is also commonly called insulin-like growth factor 2 mRNA-binding protein 3 (IGF2BP3). Next, we leverage unique knowledge from various other Common Fund programs to examine various functions and knowledge related to IMP3. First, we queried the LINCS L1000 data [4] from the LINCS program [5] converted into RNA-seq-like LINCS L1000 Signatures [6] using the SigCom LINCS API [7] to identify mimicker or reverser small molecules that maximally impact the expression of IMP3 in human cell lines (Fig. 1, Table 4). In addition, we also queried the LINCS L1000 data to identify single gene CRISPR knockouts that down-regulate the expression of IMP3 (Fig. 1, Table 5). These potential drug targets were filtered using the Common Fund IDG program's list of understudied proteins [8] to produce a set of additional targets (Table 6). Next, IMP3 was searched for knowledge provided by the with the Metabolomics Workbench MetGENE tool [9]. MetGENE aggregates knowledge about pathways, reactions, metabolites, and studies from the Metabolomics Workbench Common Fund supported resource [10]. The Metabolomics Workbench was searched to find associated metabolites linked to IMP3 [10]. Furthermore, we leveraged the Linked Data Hub API [11] to list knowledge about regulatory elements associated with IMP3 (Table 6). Finally, the GlyGen database [12] was queried to identify relevant sets of proteins that are the product of the IMP3 genes, as well as known post-translational modifications discovered on IMP3.\r\n\r\n1. Lonsdale, J. et al. The Genotype-Tissue Expression (GTEx) project. Nature Genetics vol. 45 580\u2013585 (2013). doi:10.1038/ng.2653\r\n2. Evangelista, J. E. et al. SigCom LINCS: data and metadata search engine for a million gene expression signatures. Nucleic Acids Research vol. 50 W697\u2013W709 (2022). doi:10.1093/nar/gkac328\r\n3. IDG Understudied Proteins, https://druggablegenome.net/AboutIDGProteinList\r\n4. MetGENE, https://sc-cfdewebdev.sdsc.edu/MetGENE/metGene.php\r\n5. The Metabolomics Workbench, https://www.metabolomicsworkbench.org/\r\n6. Linked Data Hub, https://ldh.genome.network/cfde/ldh/\r\n7. York, W. S. et al. GlyGen: Computational and Informatics Resources for Glycoscience. Glycobiology vol. 30 72\u201373 (2019). doi:10.1093/glycob/cwz080",
-        "doi": null,
-        "edam_operation": [],
-        "edam_topic": [],
-        "filtered_on": "metab.* in description",
-        "id": "814",
-        "keep": null,
-        "latest_version": 1,
-        "license": "CC-BY-NC-SA-4.0",
-        "link": "https:/workflowhub.eu/workflows/814?version=1",
-        "name": "Use Case 13: Novel Cell Surface Targets for Individual Cancer Patients Analyzed with Common Fund Datasets",
-        "number_of_steps": 13,
-        "projects": [
-            "NIH CFDE Playbook Workflow Partnership"
-        ],
-        "source": "WorkflowHub",
-        "tags": [],
-        "tools": [
-            "Ensure a file contains a gene count matrix, load it into a standard format",
-            "Select one Gene",
-            "Based on IDG understudied proteins list",
-            "Identify RNA-seq-like LINCS L1000 Signatures which reverse the expression of the gene.",
-            "Extract Metabolomics reactions for the gene from MetGENE",
-            "Identify RNA-seq-like LINCS L1000 Chemical Perturbagen Signatures which reverse the expression of the gene.",
-            "Identify gene-centric information from Metabolomics.",
-            "Find protein product records in GlyGen for the gene",
-            "Identify RNA-seq-like LINCS L1000 CRISPR KO Signatures which reverse the expression of the gene.",
-            "Upload a Data File",
-            "Identify significantly overexpressed genes when compared to normal tissue in GTEx",
-            "Resolve regulatory elements from gene with Linked Data Hub",
-            "Extract Metabolomics metabolites for the gene from MetGENE"
-        ],
-        "type": "Common Workflow Language",
-        "update_time": "2024-04-23",
         "versions": 1
     },
     {
@@ -8345,16 +7674,16 @@
             "name:amplicon"
         ],
         "tools": [
-            "dada2_removeBimeraDenovo",
-            "__UNZIP_COLLECTION__",
-            "dada2_plotQualityProfile",
-            "dada2_dada",
-            "dada2_seqCounts",
-            "__APPLY_RULES__",
-            "dada2_mergePairs",
-            "dada2_filterAndTrim",
-            "dada2_assignTaxonomyAddspecies",
             "dada2_learnErrors",
+            "dada2_removeBimeraDenovo",
+            "dada2_assignTaxonomyAddspecies",
+            "__APPLY_RULES__",
+            "dada2_dada",
+            "dada2_mergePairs",
+            "dada2_plotQualityProfile",
+            "__UNZIP_COLLECTION__",
+            "dada2_filterAndTrim",
+            "dada2_seqCounts",
             "dada2_makeSequenceTable"
         ],
         "type": "Galaxy",
@@ -8474,16 +7803,16 @@
             "name:profiling"
         ],
         "tools": [
+            "Cut1",
+            "meryl",
             "Add_a_column1",
             "tp_grep_tool",
-            "genomescope",
             "Convert characters1",
             "smudgeplot",
-            "Cut1",
-            "tp_cut_tool",
-            "tp_find_and_replace",
             "param_value_from_file",
-            "meryl"
+            "tp_cut_tool",
+            "genomescope",
+            "tp_find_and_replace"
         ],
         "type": "Galaxy",
         "update_time": "2024-01-08",
@@ -8498,7 +7827,7 @@
         "edam_topic": [],
         "filtered_on": "plasmid.* in description",
         "id": "695",
-        "keep": null,
+        "keep": false,
         "latest_version": 2,
         "license": "GPL-3.0",
         "link": "https:/workflowhub.eu/workflows/695?version=2",
@@ -8523,7 +7852,7 @@
         "edam_topic": [],
         "filtered_on": "plasmid.* in description",
         "id": "693",
-        "keep": null,
+        "keep": false,
         "latest_version": 1,
         "license": "GPL-3.0",
         "link": "https:/workflowhub.eu/workflows/693?version=1",
@@ -8632,15 +7961,15 @@
             "shotgun"
         ],
         "tools": [
-            "",
-            "metaphlan2",
-            "humann2_regroup_table",
             "Cut1",
-            "merge_metaphlan_tables",
-            "taxonomy_krona_chart",
+            "",
             "humann2",
-            "metaphlan2krona",
-            "humann2_renorm_table"
+            "humann2_regroup_table",
+            "taxonomy_krona_chart",
+            "merge_metaphlan_tables",
+            "metaphlan2",
+            "humann2_renorm_table",
+            "metaphlan2krona"
         ],
         "type": "Galaxy",
         "update_time": "2024-04-05",
@@ -8866,7 +8195,7 @@
             "Genetics",
             "Phylogenetics"
         ],
-        "filtered_on": "metab.* in name",
+        "filtered_on": "metabar.* in name",
         "id": "655",
         "keep": null,
         "latest_version": 1,
@@ -8883,23 +8212,23 @@
             "ecology"
         ],
         "tools": [
-            "obi_grep",
-            "obi_ngsfilter",
-            "obi_annotate",
-            "seq_filter_by_id",
-            "obi_illumina_pairend",
-            "obi_uniq",
-            "ncbi_blastn_wrapper",
-            "fastqc",
-            "Cut1",
-            "obi_tab",
-            "obi_stat",
             "fastq_groomer",
+            "obi_stat",
+            "ncbi_blastn_wrapper",
+            "obi_tab",
+            "fastqc",
+            "obi_uniq",
+            "Cut1",
             "join1",
             "Filter1",
             "obi_clean",
+            "obi_ngsfilter",
+            "obi_grep",
+            "obi_illumina_pairend",
+            "unzip",
             "wc_gnu",
-            "unzip"
+            "seq_filter_by_id",
+            "obi_annotate"
         ],
         "type": "Galaxy",
         "update_time": "2024-12-09",
@@ -8933,10 +8262,10 @@
             "metagenomics"
         ],
         "tools": [
-            "mothur_tree_shared",
             "mothur_dist_shared",
-            "newick_display",
-            "mothur_heatmap_sim"
+            "mothur_tree_shared",
+            "mothur_heatmap_sim",
+            "newick_display"
         ],
         "type": "Galaxy",
         "update_time": "2023-11-09",
@@ -8970,9 +8299,9 @@
             "metagenomics"
         ],
         "tools": [
-            "mothur_summary_single",
+            "XY_Plot_1",
             "mothur_rarefaction_single",
-            "XY_Plot_1"
+            "mothur_summary_single"
         ],
         "type": "Galaxy",
         "update_time": "2023-11-09",
@@ -9006,10 +8335,10 @@
             "metagenomics"
         ],
         "tools": [
-            "mothur_sub_sample",
             "mothur_count_groups",
-            "mothur_classify_otu",
             "mothur_cluster_split",
+            "mothur_sub_sample",
+            "mothur_classify_otu",
             "mothur_make_shared"
         ],
         "type": "Galaxy",
@@ -9044,8 +8373,8 @@
             "metagenomics"
         ],
         "tools": [
-            "mothur_remove_lineage",
-            "mothur_classify_seqs"
+            "mothur_classify_seqs",
+            "mothur_remove_lineage"
         ],
         "type": "Galaxy",
         "update_time": "2023-11-09",
@@ -9079,10 +8408,10 @@
             "metagenomics"
         ],
         "tools": [
-            "mothur_summary_seqs",
             "mothur_screen_seqs",
-            "mothur_count_seqs",
-            "mothur_unique_seqs"
+            "mothur_summary_seqs",
+            "mothur_unique_seqs",
+            "mothur_count_seqs"
         ],
         "type": "Galaxy",
         "update_time": "2023-11-09",
@@ -9116,13 +8445,13 @@
             "metagenomics"
         ],
         "tools": [
-            "mothur_screen_seqs",
+            "mothur_unique_seqs",
             "mothur_filter_seqs",
-            "mothur_chimera_vsearch",
             "mothur_remove_seqs",
+            "mothur_screen_seqs",
             "mothur_summary_seqs",
-            "mothur_pre_cluster",
-            "mothur_unique_seqs"
+            "mothur_chimera_vsearch",
+            "mothur_pre_cluster"
         ],
         "type": "Galaxy",
         "update_time": "2023-11-09",
@@ -9169,48 +8498,6 @@
         "versions": 1
     },
     {
-        "create_time": "2023-10-21",
-        "creators": [
-            "Yasmmin Martins"
-        ],
-        "description": "## Summary\r\nPredPrIn is a scientific workflow to predict Protein-Protein Interactions (PPIs) using machine learning to combine multiple PPI detection methods of proteins according to three categories: structural,  based on primary aminoacid sequence and functional annotations.<br>\r\n\r\nPredPrIn contains three main steps: (i) acquirement and treatment of protein information, (ii) feature generation, and (iii) classification and analysis.\r\n\r\n(i) The first step builds a knowledge base with the available annotations of proteins and reuses this base for other prediction experiments, saving time and becoming more efficient. \r\n\r\n(ii) The feature generation step involves several evidence from different classes, such as: Gene Ontology (GO) information, domain interaction, metabolic pathway participation and sequence-based interaction. For the GO branches, we made a study to evaluate the best method to calculate semantic similarity to enhance the workflow performance. This step can be easily modified by adding new metrics, making PredPrIn flexible for future improvements. \r\n\r\nFinally, (iii) in the third step, the adaboost classifier is responsible for predicting the final scores from the numerical features dataset, exporting results of performance evaluation metrics.\r\n\r\n## Requirements:\r\n* Python packages needed:\r\n    - pip3 install luigi\r\n\t- pip3 install sqlalchemy\r\n\t- pip3 install rdflib\r\n\t- pip3 install sklearn\r\n\t- pip3 install matplotlib\r\n\t- pip3 install numpy\r\n\r\n* Other instalation:\r\n\t- sqlite (to be able to see the documentation generated by luigi about the tasks after execution)\r\n\r\n## Usage Instructions\r\nThe steps below consider the creation of a sqlite database file with all he tasks events which can be used after to retrieve the execution time taken by the tasks. It is possible run locally too (see luigi's documentation to change the running command). <br ><br>\r\n* Preparation:\r\n\t1. ````git clone https://github.com/YasCoMa/predprin.git````\r\n\t2. ````cd PredPrIn````\r\n\t3. `pip3 install -r requirements.txt`\r\n\t4. Download annotation_data.zip (https://drive.google.com/file/d/1bWPSyULaooj7GTrDf6QBY3ZyeyH5MRpm/view?usp=share_link)\r\n\t5. Download rdf_data.zip (https://drive.google.com/file/d/1Cp511ioXiw2PiOHdkxa4XsZnxOeM3Pan/view?usp=share_link)\r\n\t6. Download sequence_data.zip (https://drive.google.com/file/d/1uEKh5EF9X_6fgZ9cTTp0jW3XaL48stxA/view?usp=share_link)\r\n\t7. Unzip annotation_data.zip\r\n\t8. Unzip rdf_data.zip\r\n\t9. Unzip sequence_data.zip\r\n\t10. Download SPRINT pre-computed similarities in https://www.csd.uwo.ca/~ilie/SPRINT/precomputed_similarities.zip and unzip it inside core/sprint/HSP/\r\n\t11. Certify that there is a file named client.cfg (to configure the history log and feed the sqlite database). It must have the following data:\r\n\t````\r\n\t[core]\r\n\tdefault-scheduler-host=localhost\r\n\tdefault-scheduler-port=8082\r\n\trpc-connect-timeout=60.0 \r\n\trpc-retry-attempts=10    \r\n\trpc-retry-wait=60        \r\n\r\n\t[scheduler]\r\n\trecord_task_history = True\r\n\r\n\t[task_history]\r\n\tdb_connection = sqlite:///luigi-task-hist.db\r\n\t````\r\n* Parameters:\r\n\t1. parameters-file -> json file with all the information to process the prediction experiment (example: params.json)\r\n\t2. mode -> it can have two values: train (executes cross validation and save the model as a .joblib file) or test (uses a model obtained in train mode to test in some dataset listed in the parameters file)\r\n\t3. model -> it is the model file full path saved in train mode as .joblib\r\n\t\r\n* Running:\r\n\t1. ````mkdir luigi_log```` (or other name for the log folder of your choice)\r\n\t2. ````luigid --background --logdir luigi_log```` (start luigi server)\r\n\t3. ````nohup python3.5 -m luigi --module main RunPPIExperiment --parameters-file params.json --mode 'train' --model none.joblib --workers 3 &```` <br >\r\n\t   ````nohup python3.5 -m luigi --module main RunPPIExperiment --parameters-file params.json --mode 'test' --model model.jolib --workers 3 &```` <br >\r\n\t\t- Replace python3.5 by the command python of your environment <br>\r\n\t\t- Replace the data given as example in params.json using your own data <br > \r\n\t\t- Adapt the number of workers to use as you need and the capacity of your computational resource available\r\n\r\n\tYou can monitor the prediction experiment execution in localhost:8082\r\n\r\n## Reference\r\nMartins YC, Ziviani A, Nicol\u00e1s MF, de Vasconcelos AT. Large-Scale Protein Interactions Prediction by Multiple Evidence Analysis Associated With an In-Silico Curation Strategy. Frontiers in Bioinformatics. 2021:38.\r\nhttps://www.frontiersin.org/articles/10.3389/fbinf.2021.731345/full\r\n\r\n## Bug Report\r\nPlease, use the [Issues](https://github.com/YasCoMa/PredPrIn/issues) tab to report any bug.",
-        "doi": null,
-        "edam_operation": [
-            "Protein interaction network prediction",
-            "Protein-protein interaction analysis"
-        ],
-        "edam_topic": [
-            "Bioinformatics",
-            "Protein interactions",
-            "Workflows"
-        ],
-        "filtered_on": "metab.* in description",
-        "id": "616",
-        "keep": null,
-        "latest_version": 1,
-        "license": "MIT",
-        "link": "https:/workflowhub.eu/workflows/616?version=1",
-        "name": "PredPrIn - Scientific workflow to predict protein-protein interactions based in a combined analysis of multiple protein characteristics.",
-        "number_of_steps": 0,
-        "projects": [
-            "yPublish - Bioinfo tools"
-        ],
-        "source": "WorkflowHub",
-        "tags": [
-            "bioinformatics",
-            "domain-domain interaction",
-            "gene ontology term sets similarity",
-            "luigi & rufus workflow",
-            "pathway co-occurrence"
-        ],
-        "tools": [
-            "PredPrIn"
-        ],
-        "type": "Python",
-        "update_time": "2023-10-21",
-        "versions": 1
-    },
-    {
         "create_time": "2024-06-22",
         "creators": [
             "Matthias Bernt"
@@ -9221,7 +8508,7 @@
         "edam_topic": [],
         "filtered_on": "metap.* in name",
         "id": "613",
-        "keep": null,
+        "keep": true,
         "latest_version": 2,
         "license": "MIT",
         "link": "https:/workflowhub.eu/workflows/613?version=2",
@@ -9233,14 +8520,14 @@
         "source": "WorkflowHub",
         "tags": [],
         "tools": [
-            "PeptideIndexer",
             "DecoyDatabase",
-            "FeatureFinderMultiplex",
-            "IDMapper",
+            "PeptideIndexer",
             "FalseDiscoveryRate",
-            "MetaProSIP",
+            "FeatureFinderMultiplex",
+            "MSGFPlusAdapter",
+            "IDMapper",
             "__SORTLIST__",
-            "MSGFPlusAdapter"
+            "MetaProSIP"
         ],
         "type": "Galaxy",
         "update_time": "2025-08-18",
@@ -9289,7 +8576,7 @@
             "Epigenomics",
             "Metabolomics"
         ],
-        "filtered_on": "metab.* in tags",
+        "filtered_on": "profil.* in description",
         "id": "402",
         "keep": null,
         "latest_version": 8,
@@ -9352,52 +8639,6 @@
         "versions": 1
     },
     {
-        "create_time": "2023-08-01",
-        "creators": [
-            "Mahnoor Zulfiqar",
-            "Michael R. Crusoe",
-            "Luiz Gadelha",
-            "Christoph  Steinbeck",
-            "Maria Sorokina",
-            "Kristian Peters"
-        ],
-        "description": "\r\nThis repository hosts Metabolome Annotation Workflow (MAW). The workflow takes MS2 .mzML format data files as an input in R. It performs spectral database dereplication using R Package Spectra and compound database dereplication using SIRIUS OR MetFrag . Final candidate selection is done in Python using RDKit and PubChemPy.",
-        "doi": "10.48546/workflowhub.workflow.510.2",
-        "edam_operation": [],
-        "edam_topic": [],
-        "filtered_on": "metab.* in tags",
-        "id": "510",
-        "keep": false,
-        "latest_version": 2,
-        "license": "MIT",
-        "link": "https:/workflowhub.eu/workflows/510?version=2",
-        "name": "Metabolome Annotation Workflow (MAW)",
-        "number_of_steps": 1,
-        "projects": [
-            "Metabolomics-Reproducibility"
-        ],
-        "source": "WorkflowHub",
-        "tags": [
-            "annotation",
-            "bioinformatics",
-            "cheminformatics",
-            "fair workflows",
-            "metabolomics",
-            "gnps",
-            "hmdb",
-            "identification",
-            "mass-spectrometry",
-            "massbank",
-            "rdkit",
-            "spectra",
-            "workflow"
-        ],
-        "tools": [],
-        "type": "Common Workflow Language",
-        "update_time": "2023-08-01",
-        "versions": 2
-    },
-    {
         "create_time": "2023-07-09",
         "creators": [
             "Stevie Pederson"
@@ -9412,7 +8653,7 @@
         ],
         "filtered_on": "profil.* in description",
         "id": "528",
-        "keep": null,
+        "keep": false,
         "latest_version": 1,
         "license": "CC-BY-4.0",
         "link": "https:/workflowhub.eu/workflows/528?version=1",
@@ -9523,24 +8764,24 @@
             "covid-19"
         ],
         "tools": [
-            "fastp",
-            "compose_text_param",
-            "samtools_stats",
-            "samtools_view",
-            "ivar_variants",
-            "snpeff_sars_cov_2",
             "read_it_and_keep",
-            "tp_awk_tool",
-            "__FLATTEN__",
-            "qualimap_bamqc",
             "tp_sed_tool",
-            "collapse_dataset",
-            "samtools_ampliconclip",
-            "ivar_consensus",
+            "tp_awk_tool",
+            "deeptools_bam_coverage",
+            "samtools_stats",
+            "qualimap_bamqc",
+            "ivar_variants",
             "bbtools_bbmap",
-            "tp_cat",
+            "samtools_view",
             "multiqc",
-            "deeptools_bam_coverage"
+            "compose_text_param",
+            "samtools_ampliconclip",
+            "snpeff_sars_cov_2",
+            "collapse_dataset",
+            "tp_cat",
+            "ivar_consensus",
+            "fastp",
+            "__FLATTEN__"
         ],
         "type": "Galaxy",
         "update_time": "2023-06-30",
@@ -9571,10 +8812,10 @@
             "nanopore"
         ],
         "tools": [
-            "nanoplot",
+            "read_it_and_keep",
             "artic_guppyplex",
-            "artic_minion",
-            "read_it_and_keep"
+            "nanoplot",
+            "artic_minion"
         ],
         "type": "Galaxy",
         "update_time": "2023-06-29",
@@ -9790,14 +9031,14 @@
             "nanopore"
         ],
         "tools": [
+            "Visualization of Kraken2 classification with Krona",
             "Converts the file array to a single file object",
-            "Removal of contaminated reads using minimap2 mapping",
-            "Preparation of fastp output files to a specific output folder",
             "Quality assessment and report of reads before filter",
+            "Taxonomic classification of FASTQ reads",
             "Merge fastq files",
             "Prepare BBMap references to a single fasta file and unique headers",
-            "Visualization of Kraken2 classification with Krona",
-            "Taxonomic classification of FASTQ reads"
+            "Preparation of fastp output files to a specific output folder",
+            "Removal of contaminated reads using minimap2 mapping"
         ],
         "type": "Common Workflow Language",
         "update_time": "2023-04-07",
@@ -9944,27 +9185,27 @@
             "nanopore"
         ],
         "tools": [
-            "Quality and filtering workflow for illumina reads",
-            "evaluation of polished assembly with metaQUAST",
-            "Preparation of Flye output files to a specific output folder",
-            "Illumina reads assembly polishing with Pilon",
             "Binning workflow to create bins",
+            "Quality and filtering workflow for illumina reads",
+            "Preparation of quast output files to a specific output folder",
+            "Preparation of Kraken2 output files to a specific output folder",
+            "Illumina reads assembly polishing with Pilon",
+            "Quality and filtering workflow for nanopore reads",
+            "Compress large kraken2 report file",
+            "Medaka for polishing of assembled genome",
+            "evaluation of polished assembly with metaQUAST",
+            "Preparation of QUAST output files to a specific output folder",
             "Preparation of pilon output files to a specific output folder",
-            "Preparation of Medaka output files to a specific output folder",
+            "Visualization of kraken2 with Krona",
+            "Illumina evaluation of pilon polished assembly with metaQUAST",
             "Sam file conversion to a sorted bam file",
             "Illumina read mapping on pilon assembly for binning",
-            "Preparation of Kraken2 output files to a specific output folder",
-            "Medaka for polishing of assembled genome",
-            "Preparation of metaQUAST output files to a specific output folder",
+            "Preparation of Flye output files to a specific output folder",
             "Taxonomic classification of Nanopore reads",
-            "Preparation of quast output files to a specific output folder",
-            "Preparation of QUAST output files to a specific output folder",
-            "De novo assembly of single-molecule reads with Flye",
             "Taxonomic classification of FASTQ reads",
-            "Illumina evaluation of pilon polished assembly with metaQUAST",
-            "Compress large kraken2 report file",
-            "Visualization of kraken2 with Krona",
-            "Quality and filtering workflow for nanopore reads"
+            "Preparation of metaQUAST output files to a specific output folder",
+            "Preparation of Medaka output files to a specific output folder",
+            "De novo assembly of single-molecule reads with Flye"
         ],
         "type": "Common Workflow Language",
         "update_time": "2023-02-02",
@@ -10037,33 +9278,6 @@
         "versions": 1
     },
     {
-        "create_time": "2023-01-13",
-        "creators": [
-            "Luc  Cornet"
-        ],
-        "description": "\r\n# Github: https://github.com/Lcornet/GENERA\r\n\r\n# BCCM GEN-ERA tools repository\r\n\r\nPlease visit the wiki for tutorials and access to the tools:\r\nhttps://github.com/Lcornet/GENERA/wiki  \r\n\r\n# NEWS\r\nMantis is now installed in a singularity container for the Metabolic workflow (install is no longer necessary).  \r\n\r\n# Information about the GEN-ERA project\r\nPlease visit  \r\nhttps://bccm.belspo.be/content/bccm-collections-genomic-era  \r\n\r\n# Publications\r\n1. ToRQuEMaDA: tool for retrieving queried Eubacteria, metadata and dereplicating assemblies.  \r\n   L\u00e9onard, R. R., Leleu, M., Vlierberghe, M. V., Cornet, L., Kerff, F., and Baurain, D. (2021).  \r\n   PeerJ 9, e11348. doi:10.7717/peerj.11348.  \r\n   https://peerj.com/articles/11348/  \r\n2. The taxonomy of the Trichophyton rubrum complex: a phylogenomic approach.  \r\n   Cornet, L., D\u2019hooge, E., Magain, N., Stubbe, D., Packeu, A., Baurain, D., and Becker P. (2021).  \r\n   Microbial Genomics 7, 000707. doi:10.1099/mgen.0.000707.  \r\n   https://www.microbiologyresearch.org/content/journal/mgen/10.1099/mgen.0.000707  \r\n3. ORPER: A Workflow for Constrained SSU rRNA Phylogenies.  \r\n   Cornet, L., Ahn, A.-C., Wilmotte, A., and Baurain, D. (2021).  \r\n   Genes 12, 1741. doi:10.3390/genes12111741.  \r\n   https://www.mdpi.com/2073-4425/12/11/1741/html  \r\n4. AMAW: automated gene annotation for non-model eukaryotic genomes.  \r\n   Meunier, L., Baurain, D., Cornet, L. (2021)  \r\n   https://www.biorxiv.org/content/10.1101/2021.12.07.471566v1  \r\n5. Phylogenomic analyses of Snodgrassella isolates from honeybees and bumblebees reveals taxonomic and functional diversity.  \r\n   Cornet, L.,  Cleenwerck, I., Praet, J., Leonard, R., Vereecken, N.J., Michez, D., Smagghe, G., Baurain, D., Vandamme, P. (2021)  \r\n   https://www.biorxiv.org/content/10.1101/2021.12.10.472130v1  \r\n6. Contamination detection in genomic data: more is not enough.   \r\n   Cornet, L & Baurain, D (2022)   \r\n   Genome Biology. 2022;23:60.  \r\n   https://genomebiology.biomedcentral.com/articles/10.1186/s13059-022-02619-9  \r\n7. The GEN-ERA toolbox: unified and reproducible workflows for research in microbial genomics  \r\n   Cornet, L., Durieu, B., Baert, F., D\u2019hooge, E., Colignon, D., Meunier, L., Lupo, V., Cleenwerck I.,\r\n   Daniel, HM., Rigouts, L., Sirjacobs, D., Declerck, D., Vandamme, P., Wilmotte, A., Baurain, D., Becker P (2022).  \r\n   https://www.biorxiv.org/content/10.1101/2022.10.20.513017v1  \r\n8. CRitical Assessment of genomic COntamination detection at several Taxonomic ranks (CRACOT)    \r\n   Cornet, L., Lupo, V., Declerck, S., Baurain, D. (2022).   \r\n   https://www.biorxiv.org/content/10.1101/2022.11.14.516442v1  \r\n\r\n# Copyright and License\r\n\r\nThis softwares is copyright (c) 2017-2021 by University of Liege / Sciensano / BCCM collection by Luc CORNET\r\nThis is free softwares; you can redistribute it and/or modify.\r\n\r\n![BCCM](https://github.com/Lcornet/GENERA/blob/main/images/GENERA-logo.png)  \r\n",
-        "doi": "10.48546/workflowhub.workflow.416.1",
-        "edam_operation": [],
-        "edam_topic": [],
-        "filtered_on": "metab.* in description",
-        "id": "416",
-        "keep": false,
-        "latest_version": 1,
-        "license": "LGPL-3.0",
-        "link": "https:/workflowhub.eu/workflows/416?version=1",
-        "name": "GEN-ERA toolbox",
-        "number_of_steps": 0,
-        "projects": [
-            "BCCM_ULC"
-        ],
-        "source": "WorkflowHub",
-        "tags": [],
-        "tools": [],
-        "type": "Nextflow",
-        "update_time": "2023-03-14",
-        "versions": 1
-    },
-    {
         "create_time": "2022-11-24",
         "creators": [
             "Saskia Hiltemann",
@@ -10093,15 +9307,15 @@
             "metagenomics"
         ],
         "tools": [
-            "nanoplot",
-            "unicycler",
-            "racon",
-            "gfa_to_fa",
-            "minimap2",
-            "miniasm",
-            "bandage_image",
+            "staramr_search",
             "PlasFlow",
-            "staramr_search"
+            "minimap2",
+            "gfa_to_fa",
+            "racon",
+            "miniasm",
+            "unicycler",
+            "bandage_image",
+            "nanoplot"
         ],
         "type": "Galaxy",
         "update_time": "2023-02-13",
@@ -10167,15 +9381,15 @@
             "memote"
         ],
         "tools": [
-            "Take a snapshot of a model's state and generate a report.",
-            "Preparation of workflow output files to a specific output folder",
             "Compress CarveMe GEM",
-            "Species METabolic interaction ANAlysis",
-            "Compress prodigal protein files",
+            "MEMOTE run analsis",
             "Genome-scale metabolic models reconstruction with CarveMe",
-            "prodigal gene/protein prediction",
+            "Compress prodigal protein files",
+            "Preparation of workflow output files to a specific output folder",
             "CarveMe GEM statistics",
-            "MEMOTE run analsis"
+            "prodigal gene/protein prediction",
+            "Species METabolic interaction ANAlysis",
+            "Take a snapshot of a model's state and generate a report."
         ],
         "type": "Common Workflow Language",
         "update_time": "2023-01-16",
@@ -10594,28 +9808,28 @@
             "metadegalaxy"
         ],
         "tools": [
-            "\n addValue",
-            "vsearch_chimera_detection",
-            "uclust2otutable",
-            "phyloseq_abundance",
-            "samtools_fastx",
-            "vsearch_search",
-            "bwa_mem",
-            "vsearch_clustering",
-            "phyloseq_taxonomy",
-            "biom_add_metadata",
-            "symmetricPlot",
             "phyloseq_net",
+            "vsearch_chimera_detection",
             "\n Cut1",
-            "vsearch_dereplication",
-            "fastqc",
             "phyloseq_DESeq2",
+            "vsearch_clustering",
+            "trimmomatic",
+            "fastqc",
+            "symmetricPlot",
             "picard_FilterSamReads",
-            "phyloseq_richness",
+            "\n addValue",
+            "phyloseq_taxonomy",
+            "vsearch_dereplication",
+            "samtools_fastx",
             "cat_multi_datasets",
+            "uclust2otutable",
             "\n cat1",
             "biom_convert",
-            "trimmomatic"
+            "phyloseq_richness",
+            "phyloseq_abundance",
+            "bwa_mem",
+            "biom_add_metadata",
+            "vsearch_search"
         ],
         "type": "Galaxy",
         "update_time": "2024-04-17",
@@ -10648,29 +9862,29 @@
             "metadegalaxy"
         ],
         "tools": [
-            "\n addValue",
-            "vsearch_chimera_detection",
-            "uclust2otutable",
-            "phyloseq_abundance",
-            "samtools_fastx",
-            "vsearch_search",
-            "bwa_mem",
-            "vsearch_clustering",
-            "phyloseq_taxonomy",
-            "picard_MergeSamFiles",
-            "biom_add_metadata",
-            "symmetricPlot",
             "phyloseq_net",
+            "vsearch_chimera_detection",
             "\n Cut1",
-            "iuc_pear",
-            "vsearch_dereplication",
-            "fastqc",
+            "picard_MergeSamFiles",
             "phyloseq_DESeq2",
+            "vsearch_clustering",
+            "trimmomatic",
+            "fastqc",
+            "symmetricPlot",
             "picard_FilterSamReads",
-            "phyloseq_richness",
+            "\n addValue",
+            "phyloseq_taxonomy",
+            "vsearch_dereplication",
+            "samtools_fastx",
+            "uclust2otutable",
+            "iuc_pear",
             "\n cat1",
             "biom_convert",
-            "trimmomatic"
+            "phyloseq_richness",
+            "phyloseq_abundance",
+            "bwa_mem",
+            "biom_add_metadata",
+            "vsearch_search"
         ],
         "type": "Galaxy",
         "update_time": "2024-04-17",
@@ -10706,10 +9920,10 @@
             "large-genome-assembly"
         ],
         "tools": [
-            "medaka_consensus_pipeline",
-            "\n d5a2cb013d9747c0",
             "\n 01041e6e0464607c",
-            "fasta-stats"
+            "\n d5a2cb013d9747c0",
+            "fasta-stats",
+            "medaka_consensus_pipeline"
         ],
         "type": "Galaxy",
         "update_time": "2023-01-30",
@@ -10745,13 +9959,13 @@
         ],
         "tools": [
             "biom_convert",
-            "phyloseq_DESeq2",
-            "phyloseq_abundance",
-            "phyloseq_taxonomy",
-            "biom_add_metadata",
             "symmetricPlot",
+            "phyloseq_net",
+            "phyloseq_taxonomy",
             "phyloseq_richness",
-            "phyloseq_net"
+            "phyloseq_abundance",
+            "biom_add_metadata",
+            "phyloseq_DESeq2"
         ],
         "type": "Galaxy",
         "update_time": "2024-04-17",
@@ -10781,9 +9995,9 @@
             "kraken"
         ],
         "tools": [
-            "taxonomy_krona_chart",
+            "Kraken2Tax",
             "kraken2",
-            "Kraken2Tax"
+            "taxonomy_krona_chart"
         ],
         "type": "Galaxy",
         "update_time": "2023-02-13",
@@ -10813,9 +10027,9 @@
             "kraken"
         ],
         "tools": [
-            "taxonomy_krona_chart",
+            "Kraken2Tax",
             "kraken2",
-            "Kraken2Tax"
+            "taxonomy_krona_chart"
         ],
         "type": "Galaxy",
         "update_time": "2023-02-13",
@@ -10883,18 +10097,18 @@
             "imaging"
         ],
         "tools": [
-            "cp_color_to_gray",
-            "cp_identify_primary_objects",
-            "cp_common",
-            "cp_measure_object_size_shape",
             "cp_tile",
-            "cp_overlay_outlines",
-            "cp_export_to_spreadsheet",
-            "cp_measure_object_intensity",
             "cp_save_images",
+            "cp_common",
+            "cp_identify_primary_objects",
+            "cp_measure_object_size_shape",
+            "cp_export_to_spreadsheet",
+            "cp_track_objects",
             "cp_cellprofiler",
+            "cp_overlay_outlines",
             "unzip",
-            "cp_track_objects"
+            "cp_color_to_gray",
+            "cp_measure_object_intensity"
         ],
         "type": "Galaxy",
         "update_time": "2023-07-03",
@@ -10955,21 +10169,21 @@
             "covid-19"
         ],
         "tools": [
-            "krona plots",
-            "ViPhOG annotations",
             "Default lenght 1kb https://github.com/EBI-Metagenomics/emg-virify-scripts/issues/6",
-            "hmmscan",
-            "MashMap",
-            "PPR-Meta",
-            "Restore fasta names",
-            "Blast in a database of viral sequences including metagenomes",
-            "Prodigal",
             "VirFinder",
+            "Restore fasta names",
             "Filter contigs",
+            "krona plots",
             "Combine",
             "ratio evalue ViPhOG",
+            "PPR-Meta",
+            "Taxonomic assign",
+            "MashMap",
+            "hmmscan",
+            "ViPhOG annotations",
             "VirSorter",
-            "Taxonomic assign"
+            "Prodigal",
+            "Blast in a database of viral sequences including metagenomes"
         ],
         "type": "Common Workflow Language",
         "update_time": "2023-01-16",
@@ -10996,10 +10210,10 @@
         "source": "WorkflowHub",
         "tags": [],
         "tools": [
-            "samtool_filter2",
             "trim_galore",
-            "bwa_mem",
-            "samtools_fastx"
+            "samtools_fastx",
+            "samtool_filter2",
+            "bwa_mem"
         ],
         "type": "Galaxy",
         "update_time": "2023-02-13",
@@ -11028,10 +10242,10 @@
             "covid-19"
         ],
         "tools": [
-            "bowtie2",
-            "unicycler",
             "spades",
-            "fastp"
+            "bowtie2",
+            "fastp",
+            "unicycler"
         ],
         "type": "Galaxy",
         "update_time": "2023-02-13",
@@ -11062,10 +10276,10 @@
             "ont"
         ],
         "tools": [
-            "taxonomy_krona_chart",
             "tp_replace_in_line",
+            "datamash_reverse",
             "kraken2",
-            "datamash_reverse"
+            "taxonomy_krona_chart"
         ],
         "type": "Galaxy",
         "update_time": "2023-02-13",
@@ -11134,93 +10348,6 @@
         "creators": [
             "Melchior du Lac"
         ],
-        "description": "The workflow runs the RetroSynthesis algorithm to generate a collection of heterologous pathways in a host organism of choice, converts them to SBML files, performs analysis on the pathways to then rank the theoretical best performing ones.",
-        "doi": null,
-        "edam_operation": [],
-        "edam_topic": [],
-        "filtered_on": "metab.* in tags",
-        "id": "25",
-        "keep": null,
-        "latest_version": 1,
-        "license": "MIT",
-        "link": "https:/workflowhub.eu/workflows/25?version=1",
-        "name": "Pathway Ranker",
-        "number_of_steps": 12,
-        "projects": [
-            "IBISBA Workflows"
-        ],
-        "source": "WorkflowHub",
-        "tags": [
-            "retrosynthesis",
-            "synthetic biology",
-            "metabolic engineering",
-            "pathway design",
-            "pathway prediction"
-        ],
-        "tools": [
-            "\n makeSource",
-            "\n rpReader",
-            "\n rpExtractSink",
-            "\n retropath2",
-            "\n retrorules",
-            "\n rpGlobalScore",
-            "\n rp2paths",
-            "\n rpReport",
-            "\n rpThermo",
-            "\n rpCofactors",
-            "\n rpFBA",
-            "\n rpVisualiser"
-        ],
-        "type": "Galaxy",
-        "update_time": "2023-01-16",
-        "versions": 1
-    },
-    {
-        "create_time": "2020-05-29",
-        "creators": [
-            "Melchior du Lac"
-        ],
-        "description": "Generate possible metabolic routes for the production of a target molecule in an organism of choice",
-        "doi": null,
-        "edam_operation": [],
-        "edam_topic": [],
-        "filtered_on": "metab.* in tags",
-        "id": "24",
-        "keep": null,
-        "latest_version": 1,
-        "license": "MIT",
-        "link": "https:/workflowhub.eu/workflows/24?version=1",
-        "name": "RetroSynthesis",
-        "number_of_steps": 7,
-        "projects": [
-            "IBISBA Workflows"
-        ],
-        "source": "WorkflowHub",
-        "tags": [
-            "retrosynthesis",
-            "synthetic biology",
-            "metabolic engineering",
-            "pathway design",
-            "pathway prediction"
-        ],
-        "tools": [
-            "\n makeSource",
-            "\n rpReader",
-            "\n rpExtractSink",
-            "\n retropath2",
-            "\n retrorules",
-            "\n rp2paths",
-            "\n rpCofactors"
-        ],
-        "type": "Galaxy",
-        "update_time": "2023-01-16",
-        "versions": 1
-    },
-    {
-        "create_time": "2020-05-29",
-        "creators": [
-            "Melchior du Lac"
-        ],
         "description": "This workflow converts the top-ranking predicted pathways from the \"RetroSynthesis\" and \"Pathway Analysis\" workflows to plasmids intended to be expressed in the specified organism",
         "doi": null,
         "edam_operation": [],
@@ -11243,13 +10370,13 @@
             "pathway prediction"
         ],
         "tools": [
-            "\n PartsGenie",
             "\n LCRGenie",
-            "\n rpOptBioDes",
+            "\n rpSelenzyme",
             "\n DNAWeaver",
             "\n extractTaxonomy",
-            "\n rpSelenzyme",
-            "\n rpSBMLtoSBOL"
+            "\n rpOptBioDes",
+            "\n rpSBMLtoSBOL",
+            "\n PartsGenie"
         ],
         "type": "Galaxy",
         "update_time": "2023-01-16",
