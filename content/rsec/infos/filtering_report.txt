@@ -2,15 +2,15 @@
  SUBFOLDER FILTERING REPORT
 ========================================
 
-Total folders analyzed : 40913
-Total folders kept : 3894
-Total folders DELETED : 37019
+Total folders analyzed : 40916
+Total folders kept : 3263
+Total folders DELETED : 37653
 
 -------------------------
 Folders kept by criterion (Stop at first match):
 -------------------------
  1. Validated by Filter 1 (Op/Topic JSON) : 1054
  2. Validated by Filter 2 (YAML Keywords) : 746
- 3. Validated by Filter 3 (Description Match) : 2094
+ 3. Validated by Filter 3 (Description Match) : 1463
 
-Folders that failed ANY filter : 37019
+Folders that failed ANY filter : 37653

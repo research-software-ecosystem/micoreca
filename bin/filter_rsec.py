@@ -99,7 +99,7 @@ def load_keywords_from_yaml(filepath: Path) -> Dict[str, Any]:
     strict_keywords_list = list(set([k.strip().upper() for k in strict_keywords_list if k.strip()]))
     compiled_stricts = []
     for strict_ref in strict_keywords_list:
-        regex_pattern = re.compile(r'\b' + re.escape(strict_ref) + r'\b', re.IGNORECASE)
+        regex_pattern = re.compile(r'\b' + re.escape(strict_ref) + r'\b')
         compiled_stricts.append(regex_pattern)
 
     return {
