@@ -12,6 +12,7 @@ from typing import (
 import pandas as pd
 import utils
 
+
 class Workflow:
     """
     Class for workflow
@@ -35,7 +36,7 @@ class Workflow:
         self.license = ""
         self.doi = ""
         self.projects: List[str] = []
-        self.keep = None
+        self.keep = False
         self.type = ""
         self.description = ""
 
@@ -110,7 +111,7 @@ class Workflow:
         tools = set()
         # Use steps description when no tools are provided or for Galaxy workflows
         if len(wf["data"]["attributes"]["tools"]) == 0 or self.type == "Galaxy":
-            internals = wf["data"]["attributes"].get("internals", {})        
+            internals = wf["data"]["attributes"].get("internals", {})
             steps = internals.get("steps")
             if steps is not None:
                 for tool in steps:
@@ -152,8 +153,8 @@ class Workflow:
         """
         Test if workflow topics or operations are in keywords
         """
-        matches_topic = set(self.edam_topic) & set(keywords['topics'])
-        matches_operation = set(self.edam_operation) & set(keywords['operations'])
+        matches_topic = set(self.edam_topic) & set(keywords["topics"])
+        matches_operation = set(self.edam_operation) & set(keywords["operations"])
 
         if len(matches_topic) != 0 or len(matches_operation) != 0:
             self.filtered_on = "edam"
@@ -169,7 +170,7 @@ class Workflow:
             self.filtered_on = filtered_on
             return True
         return False
-    
+
     def test_description(self, tags: dict) -> bool:
         """
         Test if there are overlap between workflow description and target tags
@@ -184,8 +185,7 @@ class Workflow:
         """
         Update status from status table
         """
-        if isinstance(wf_status["To keep"], bool):
-            self.keep = wf_status["To keep"]
+        self.keep = wf_status["To keep"]
 
     def get_import_link(self) -> str:
         """
@@ -260,7 +260,7 @@ class Workflows:
                 wf.init_from_search(wf=wfhub_wf, source=f"{ prefix }WorkflowHub")
                 self.workflows.append(wf)
 
-            if len(self.workflows)/10 %1 == 0:
+            if len(self.workflows) / 10 % 1 == 0:
                 print(f"Workflows saved: {len(self.workflows)}")
         print(len(self.workflows))
 
@@ -328,7 +328,7 @@ class Workflows:
             "doi": "DOI",
             "projects": "Projects",
             "filtered_on": "Filtered on",
-            "keep": "To keep"
+            "keep": "To keep",
         }
 
         df = pd.DataFrame(self.export_workflows_to_dict())
@@ -337,10 +337,7 @@ class Workflows:
             df[col] = utils.format_list_column(df[col])
 
         df = (
-            df.sort_values(by=["projects"])
-            .rename(columns=renaming)
-            .fillna("")
-            .reindex(columns=list(renaming.values()))
+            df.sort_values(by=["projects"]).rename(columns=renaming).fillna("").reindex(columns=list(renaming.values()))
         )
 
         if to_keep_columns is not None:
@@ -348,18 +345,14 @@ class Workflows:
 
         df.to_csv(output_fp, sep="\t", index=False)
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Extract Workflows from WorkflowHub")
     subparser = parser.add_subparsers(dest="command")
 
     # Extract Workflows
     extract = subparser.add_parser("extract", help="Extract all workflows")
-    extract.add_argument(
-        "--all", 
-        "-o", 
-        required=True, 
-        help="Filepath to JSON with all extracted workflows"
-    )
+    extract.add_argument("--all", "-o", required=True, help="Filepath to JSON with all extracted workflows")
     extract.add_argument(
         "--test",
         action="store_true",
@@ -429,13 +422,13 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-# Extract all workflows from WorkflowHub
+    # Extract all workflows from WorkflowHub
     if args.command == "extract":
         wfs = Workflows(test=args.test)
         wfs.init_by_searching()
         utils.export_to_json(wfs.export_workflows_to_dict(), args.all)
 
-# Filter the workflows 
+    # Filter the workflows
     elif args.command == "filter":
         wfs = Workflows()
         wfs.init_by_importing(wfs=utils.load_json(args.all))
@@ -444,8 +437,7 @@ if __name__ == "__main__":
         if args.status:
             try:
                 status = pd.read_csv(args.status, sep="\t", index_col="Link").to_dict("index")
-            except Exception as ex:
-                print(f"Failed to load {args.status} file or no 'Link' column with:\n{ex}")
+            except Exception:
                 status = {}
         else:
             status = {}
@@ -467,7 +459,7 @@ if __name__ == "__main__":
             ],
         )
 
-# Cure workflows list based on status column
+    # Curate workflows list based on status column
     elif args.command == "curate":
         wfs = Workflows()
         wfs.init_by_importing(wfs=utils.load_json(args.filtered))
@@ -481,5 +473,5 @@ if __name__ == "__main__":
         try:
             utils.export_to_json(wfs.export_workflows_to_dict(), args.curated)
             wfs.export_workflows_to_tsv(args.tsv_curated)
-        except Exception as ex:
-            print("No workflow extracted after curation.")
+        except Exception:
+            print("No workflow extracted after curation.\n")
