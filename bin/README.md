@@ -36,3 +36,12 @@
     ```
 
     This keeps only workflows in the scope of microbiome analysis. 
+
+- Extract tools used in curated workflows as JSON
+
+    ```
+    $ python bin/extract_workflowhub.py \
+        extract_tools \
+        --workflows content/workflowhub/workflows_curated.json \
+        --tools content/workflowhub/tools_from_workflows.json
+    ```

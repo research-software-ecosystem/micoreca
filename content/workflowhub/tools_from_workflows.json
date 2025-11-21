@@ -1,0 +1,1001 @@
+{
+    "AdapterRemoval": [
+        "metaBIOMx: Metagenomics pipeline for Microbial shot-gun sequencing data"
+    ],
+    "Add_a_column1": [
+        "Building an amplicon sequence variant (ASV) table from 16S data using DADA2",
+        "nanopore-pre-processing/main"
+    ],
+    "BBTools": [
+        "metaBIOMx: Metagenomics pipeline for Microbial shot-gun sequencing data"
+    ],
+    "BCFtools": [
+        "metaBIOMx: Metagenomics pipeline for Microbial shot-gun sequencing data"
+    ],
+    "BLASTN rRNA annotation process": [
+        "Gene Expression Analysis Workflow in Complex Microbiomes"
+    ],
+    "BUSCO": [
+        "metaBIOMx: Metagenomics pipeline for Microbial shot-gun sequencing data",
+        "(Hybrid) Metagenomics workflow"
+    ],
+    "Bakta": [
+        "Long Read WGS pipeline"
+    ],
+    "Binette": [
+        "(Hybrid) Metagenomics workflow"
+    ],
+    "Bowtie 2": [
+        "metaBIOMx: Metagenomics pipeline for Microbial shot-gun sequencing data"
+    ],
+    "CAT and BAT": [
+        "metaBIOMx: Metagenomics pipeline for Microbial shot-gun sequencing data"
+    ],
+    "CONVERTER_gz_to_uncompressed": [
+        "Allele-based Pathogen Identification",
+        "allele-based-pathogen-identification/main",
+        "mgnify-amplicon-pipeline-v5-complete/main"
+    ],
+    "CONVERTER_uncompressed_to_gz": [
+        "mgnify-amplicon-pipeline-v5-complete/main"
+    ],
+    "CheckM": [
+        "(Hybrid) Metagenomics workflow"
+    ],
+    "Clair3": [
+        "Long Read WGS pipeline"
+    ],
+    "Converts the file array to a single file object": [
+        "LongRead Quality Control and Filtering"
+    ],
+    "Count1": [
+        "Allele-based Pathogen Identification",
+        "allele-based-pathogen-identification/main"
+    ],
+    "Create TSV file for Sanntis": [
+        "Marine Omics identifying biosynthetic gene clusters"
+    ],
+    "Create the protein fasta file": [
+        "Marine Omics identifying biosynthetic gene clusters"
+    ],
+    "Cut1": [
+        "Allele-based Pathogen Identification",
+        "allele-based-pathogen-identification/main",
+        "clinicalmp-discovery/main",
+        "clinicalmp-verification/main",
+        "AMR-Pathfinder",
+        "nanopore-pre-processing/main",
+        "Analyses of shotgun metagenomics data with MetaPhlAn2",
+        "16S_biodiversity_for_nonoverlap_paired_end",
+        "16S_biodiversity_for_overlap_paired_end"
+    ],
+    "DecoyDatabase": [
+        "openms-metaprosip/main"
+    ],
+    "FalseDiscoveryRate": [
+        "openms-metaprosip/main"
+    ],
+    "FastQC": [
+        "metaBIOMx: Metagenomics pipeline for Microbial shot-gun sequencing data"
+    ],
+    "Fasta_to_Contig2Bin": [
+        "mags-building/main"
+    ],
+    "FeatureFinderMultiplex": [
+        "openms-metaprosip/main"
+    ],
+    "Filter1": [
+        "Identification of the micro-organisms in a beer using Nanopore sequencing",
+        "clinicalmp-discovery/main",
+        "clinicalmp-verification/main"
+    ],
+    "Filtlong": [
+        "Long Read WGS pipeline"
+    ],
+    "Flye": [
+        "(Hybrid) Metagenomics workflow",
+        "Long Read WGS pipeline"
+    ],
+    "FreeBayes": [
+        "Long Read WGS pipeline"
+    ],
+    "Grep1": [
+        "clinicalmp-discovery/main",
+        "AMR-Pathfinder",
+        "nanopore-pre-processing/main"
+    ],
+    "Grouping1": [
+        "taxonomic-rank-abundance-summary-table/main",
+        "mgnify-amplicon-taxonomic-summary-tables/main",
+        "clinicalmp-discovery/main",
+        "clinicalmp-verification/main"
+    ],
+    "Hostile": [
+        "(Hybrid) Metagenomics workflow"
+    ],
+    "IDMapper": [
+        "openms-metaprosip/main"
+    ],
+    "InterProScan (EBI)": [
+        "(Hybrid) Metagenomics workflow"
+    ],
+    "KofamKOALA": [
+        "(Hybrid) Metagenomics workflow"
+    ],
+    "Kraken2Tax": [
+        "1: Plant virus detection with kraken2 (SE)",
+        "1: Plant virus detection with kraken2 (PE)"
+    ],
+    "Liftoff": [
+        "Long Read WGS pipeline"
+    ],
+    "MSGFPlusAdapter": [
+        "openms-metaprosip/main"
+    ],
+    "MaxBin": [
+        "(Hybrid) Metagenomics workflow"
+    ],
+    "Merge fastq files": [
+        "LongRead Quality Control and Filtering"
+    ],
+    "Merge single-end and paired-end BAMs in a single collection to be analyzed alltogether\n__MERGE_COLLECTION__": [
+        "From BAMs to drug resistance prediction with TB-profiler"
+    ],
+    "MetaBAT 2": [
+        "(Hybrid) Metagenomics workflow"
+    ],
+    "MetaPhlAn": [
+        "metaBIOMx: Metagenomics pipeline for Microbial shot-gun sequencing data"
+    ],
+    "MetaProSIP": [
+        "openms-metaprosip/main"
+    ],
+    "Minimap2": [
+        "(Hybrid) Metagenomics workflow",
+        "Long Read WGS pipeline"
+    ],
+    "MultiQC": [
+        "metaBIOMx: Metagenomics pipeline for Microbial shot-gun sequencing data"
+    ],
+    "NanoPlot": [
+        "Longread 16S classification workflow",
+        "(Hybrid) Metagenomics workflow"
+    ],
+    "OmicFlow": [
+        "metaBIOMx: Metagenomics pipeline for Microbial shot-gun sequencing data"
+    ],
+    "Paste1": [
+        "Allele-based Pathogen Identification",
+        "allele-based-pathogen-identification/main"
+    ],
+    "PeptideIndexer": [
+        "openms-metaprosip/main"
+    ],
+    "PlasFlow": [
+        "Copy Of GTN Training - Antibiotic Resistance Detection",
+        "GTN Training - Antibiotic Resistance Detection"
+    ],
+    "Preparation of fastp output files to a specific output folder": [
+        "LongRead Quality Control and Filtering"
+    ],
+    "Prepare BBMap references to a single fasta file and unique headers": [
+        "LongRead Quality Control and Filtering"
+    ],
+    "QUAST": [
+        "(Hybrid) Metagenomics workflow"
+    ],
+    "Quality assessment and report of reads before filter": [
+        "LongRead Quality Control and Filtering"
+    ],
+    "Quantified-Peptides\nGrouping1": [
+        "clinicalmp-quantitation/main"
+    ],
+    "Quantified-Proteins\nGrouping1": [
+        "clinicalmp-quantitation/main"
+    ],
+    "Removal of contaminated reads using minimap2 mapping": [
+        "LongRead Quality Control and Filtering"
+    ],
+    "Remove beginning1": [
+        "Gene Cluster Product Similarity Search",
+        "Allele-based Pathogen Identification",
+        "allele-based-pathogen-identification/main",
+        "clinicalmp-discovery/main",
+        "clinicalmp-verification/main"
+    ],
+    "Remove useless * in the protein fasta file": [
+        "Marine Omics identifying biosynthetic gene clusters"
+    ],
+    "SPAdes": [
+        "metaBIOMx: Metagenomics pipeline for Microbial shot-gun sequencing data",
+        "(Hybrid) Metagenomics workflow"
+    ],
+    "SemiBin": [
+        "(Hybrid) Metagenomics workflow"
+    ],
+    "Sequali": [
+        "(Hybrid) Metagenomics workflow"
+    ],
+    "Taxonomic classification of FASTQ reads": [
+        "LongRead Quality Control and Filtering"
+    ],
+    "Trimmomatic": [
+        "metaBIOMx: Metagenomics pipeline for Microbial shot-gun sequencing data"
+    ],
+    "Use of Sanntis": [
+        "Marine Omics identifying biosynthetic gene clusters"
+    ],
+    "Visualization of Kraken2 classification with Krona": [
+        "LongRead Quality Control and Filtering"
+    ],
+    "__APPLY_RULES__": [
+        "AMR-Pathfinder",
+        "dada2/main"
+    ],
+    "__BUILD_LIST__": [
+        "Gene-based Pathogen Identification",
+        "mags-building/main"
+    ],
+    "__FILTER_EMPTY_DATASETS__": [
+        "mgnify-amplicon-pipeline-v5-its/main",
+        "mgnify-amplicon-pipeline-v5-rrna-prediction/main"
+    ],
+    "__FILTER_FAILED_DATASETS__": [
+        "nanopore-pre-processing/main"
+    ],
+    "__FILTER_FROM_FILE__": [
+        "mgnify-amplicon-pipeline-v5-its/main",
+        "mgnify-amplicon-pipeline-v5-rrna-prediction/main"
+    ],
+    "__FLATTEN__": [
+        "mags-building/main"
+    ],
+    "__MERGE_COLLECTION__": [
+        "mgnify-amplicon-pipeline-v5-complete/main",
+        "AMR-Pathfinder"
+    ],
+    "__SORTLIST__": [
+        "Building an amplicon sequence variant (ASV) table from 16S data using DADA2",
+        "openms-metaprosip/main"
+    ],
+    "__UNZIP_COLLECTION__": [
+        "Building an amplicon sequence variant (ASV) table from 16S data using DADA2",
+        "mags-building/main",
+        "mgnify-amplicon-pipeline-v5-quality-control-paired-end/main",
+        "dada2/main"
+    ],
+    "abricate": [
+        "Gene-based Pathogen Identification",
+        "AMR-Pathfinder",
+        "amr_gene_detection/main"
+    ],
+    "addName": [
+        "From BAMs to drug resistance prediction with TB-profiler"
+    ],
+    "addValue": [
+        "AMR-Pathfinder",
+        "16S_biodiversity_for_nonoverlap_paired_end",
+        "16S_biodiversity_for_overlap_paired_end"
+    ],
+    "ampvis2_load": [
+        "MAPseq to ampvis2",
+        "mapseq-to-ampvis2/main"
+    ],
+    "amrfinderplus": [
+        "amr_gene_detection/main"
+    ],
+    "antismash": [
+        "Gene Cluster Product Similarity Search"
+    ],
+    "bakta": [
+        "mags-building/main",
+        "bacterial_genome_annotation/main"
+    ],
+    "bamtools_split_mapped": [
+        "nanopore-pre-processing/main"
+    ],
+    "bandage_image": [
+        "Assembly of metagenomic sequencing data",
+        "Gene-based Pathogen Identification",
+        "Copy Of GTN Training - Antibiotic Resistance Detection",
+        "GTN Training - Antibiotic Resistance Detection"
+    ],
+    "bandage_info": [
+        "Assembly of metagenomic sequencing data"
+    ],
+    "bcftools_consensus": [
+        "Allele-based Pathogen Identification",
+        "allele-based-pathogen-identification/main"
+    ],
+    "bcftools_norm": [
+        "Allele-based Pathogen Identification",
+        "allele-based-pathogen-identification/main"
+    ],
+    "bedtools_getfastabed": [
+        "mgnify-amplicon-pipeline-v5-rrna-prediction/main"
+    ],
+    "bedtools_maskfastabed": [
+        "mgnify-amplicon-pipeline-v5-its/main"
+    ],
+    "binette": [
+        "mags-building/main"
+    ],
+    "biom_add_metadata": [
+        "16S_biodiversity_for_nonoverlap_paired_end",
+        "16S_biodiversity_for_overlap_paired_end",
+        "16S_biodiversity_BIOM"
+    ],
+    "biom_convert": [
+        "mgnify-amplicon-pipeline-v5-its/main",
+        "mgnify-amplicon-pipeline-v5-rrna-prediction/main",
+        "16S_biodiversity_for_nonoverlap_paired_end",
+        "16S_biodiversity_for_overlap_paired_end",
+        "16S_biodiversity_BIOM"
+    ],
+    "bowtie2": [
+        "Assembly of metagenomic sequencing data",
+        "mags-building/main"
+    ],
+    "bwa_mem": [
+        "16S_biodiversity_for_nonoverlap_paired_end",
+        "16S_biodiversity_for_overlap_paired_end"
+    ],
+    "cast": [
+        "AMR-Pathfinder"
+    ],
+    "cat1": [
+        "Building an amplicon sequence variant (ASV) table from 16S data using DADA2",
+        "AMR-Pathfinder",
+        "16S_biodiversity_for_nonoverlap_paired_end",
+        "16S_biodiversity_for_overlap_paired_end"
+    ],
+    "cat_multi_datasets": [
+        "AMR-Pathfinder",
+        "16S_biodiversity_for_nonoverlap_paired_end"
+    ],
+    "checkm2": [
+        "mags-building/main"
+    ],
+    "checkm_lineage_wf": [
+        "mags-building/main"
+    ],
+    "clair3": [
+        "Allele-based Pathogen Identification",
+        "allele-based-pathogen-identification/main"
+    ],
+    "cmsearch_deoverlap": [
+        "mgnify-amplicon-pipeline-v5-rrna-prediction/main"
+    ],
+    "collapse_dataset": [
+        "MAPseq to ampvis2",
+        "Gene Cluster Product Similarity Search",
+        "Allele-based Pathogen Identification",
+        "allele-based-pathogen-identification/main",
+        "mapseq-to-ampvis2/main",
+        "clinicalmp-verification/main",
+        "AMR-Pathfinder",
+        "nanopore-pre-processing/main"
+    ],
+    "collection_column_join": [
+        "MAPseq to ampvis2",
+        "Assembly of metagenomic sequencing data",
+        "mags-building/main",
+        "taxonomic-rank-abundance-summary-table/main",
+        "mapseq-to-ampvis2/main",
+        "mgnify-amplicon-taxonomic-summary-tables/main",
+        "nanopore-pre-processing/main"
+    ],
+    "collection_element_identifiers": [
+        "Building an amplicon sequence variant (ASV) table from 16S data using DADA2",
+        "Gene-based Pathogen Identification",
+        "mgnify-amplicon-pipeline-v5-its/main",
+        "mgnify-amplicon-pipeline-v5-rrna-prediction/main"
+    ],
+    "compose_text_param": [
+        "Gene-based Pathogen Identification"
+    ],
+    "concoct": [
+        "mags-building/main"
+    ],
+    "concoct_coverage_table": [
+        "mags-building/main"
+    ],
+    "concoct_cut_up_fasta": [
+        "mags-building/main"
+    ],
+    "concoct_extract_fasta_bins": [
+        "mags-building/main"
+    ],
+    "concoct_merge_cut_up_clustering": [
+        "mags-building/main"
+    ],
+    "coverm_contig": [
+        "Assembly of metagenomic sequencing data"
+    ],
+    "coverm_genome": [
+        "mags-building/main"
+    ],
+    "cshl_fasta_formatter": [
+        "mgnify-amplicon-pipeline-v5-quality-control-paired-end/main",
+        "mgnify-amplicon-pipeline-v5-quality-control-single-end/main",
+        "mgnify-amplicon-pipeline-v5-rrna-prediction/main"
+    ],
+    "ctb_chemfp_mol2fps": [
+        "Gene Cluster Product Similarity Search"
+    ],
+    "ctb_np-likeness-calculator": [
+        "Gene Cluster Product Similarity Search"
+    ],
+    "ctb_silicos_qed": [
+        "Gene Cluster Product Similarity Search"
+    ],
+    "ctb_simsearch": [
+        "Gene Cluster Product Similarity Search"
+    ],
+    "dada2_assignTaxonomyAddspecies": [
+        "Building an amplicon sequence variant (ASV) table from 16S data using DADA2",
+        "dada2/main"
+    ],
+    "dada2_dada": [
+        "Building an amplicon sequence variant (ASV) table from 16S data using DADA2",
+        "dada2/main"
+    ],
+    "dada2_filterAndTrim": [
+        "Building an amplicon sequence variant (ASV) table from 16S data using DADA2",
+        "dada2/main"
+    ],
+    "dada2_learnErrors": [
+        "Building an amplicon sequence variant (ASV) table from 16S data using DADA2",
+        "dada2/main"
+    ],
+    "dada2_makeSequenceTable": [
+        "Building an amplicon sequence variant (ASV) table from 16S data using DADA2",
+        "dada2/main"
+    ],
+    "dada2_mergePairs": [
+        "Building an amplicon sequence variant (ASV) table from 16S data using DADA2",
+        "dada2/main"
+    ],
+    "dada2_plotQualityProfile": [
+        "Building an amplicon sequence variant (ASV) table from 16S data using DADA2",
+        "dada2/main"
+    ],
+    "dada2_removeBimeraDenovo": [
+        "Building an amplicon sequence variant (ASV) table from 16S data using DADA2",
+        "dada2/main"
+    ],
+    "dada2_seqCounts": [
+        "Building an amplicon sequence variant (ASV) table from 16S data using DADA2",
+        "dada2/main"
+    ],
+    "datamash_ops": [
+        "AMR-Pathfinder"
+    ],
+    "dbbuilder": [
+        "clinicalmp-discovery/main",
+        "clinicalmp-verification/main"
+    ],
+    "drep_dereplicate": [
+        "mags-building/main"
+    ],
+    "eggNOG": [
+        "(Hybrid) Metagenomics workflow"
+    ],
+    "extract peptides\nCut1": [
+        "clinicalmp-quantitation/main"
+    ],
+    "extract proteins\nCut1": [
+        "clinicalmp-quantitation/main"
+    ],
+    "extracting microbial Peptides\nGrep1": [
+        "clinicalmp-quantitation/main"
+    ],
+    "extracting microbial Proteins\nGrep1": [
+        "clinicalmp-quantitation/main"
+    ],
+    "fasta2tab": [
+        "Gene-based Pathogen Identification",
+        "clinicalmp-discovery/main"
+    ],
+    "fasta_cli": [
+        "clinicalmp-discovery/main"
+    ],
+    "fasta_merge_files_and_filter_unique_sequences": [
+        "clinicalmp-discovery/main",
+        "clinicalmp-verification/main"
+    ],
+    "fastp": [
+        "Identification of the micro-organisms in a beer using Nanopore sequencing",
+        "mgnify-amplicon-pipeline-v5-quality-control-paired-end/main",
+        "nanopore-pre-processing/main"
+    ],
+    "fastplong": [
+        "Longread 16S classification workflow"
+    ],
+    "fastq_dl": [
+        "mgnify-amplicon-pipeline-v5-complete/main"
+    ],
+    "fastq_filter": [
+        "mgnify-amplicon-pipeline-v5-quality-control-paired-end/main",
+        "mgnify-amplicon-pipeline-v5-quality-control-single-end/main"
+    ],
+    "fastq_to_fasta_python": [
+        "mgnify-amplicon-pipeline-v5-quality-control-paired-end/main",
+        "mgnify-amplicon-pipeline-v5-quality-control-single-end/main"
+    ],
+    "fastqc": [
+        "Identification of the micro-organisms in a beer using Nanopore sequencing",
+        "mgnify-amplicon-pipeline-v5-quality-control-paired-end/main",
+        "mgnify-amplicon-pipeline-v5-quality-control-single-end/main",
+        "nanopore-pre-processing/main",
+        "16S_biodiversity_for_nonoverlap_paired_end",
+        "16S_biodiversity_for_overlap_paired_end"
+    ],
+    "filter_tabular": [
+        "taxonomic-rank-abundance-summary-table/main",
+        "mgnify-amplicon-taxonomic-summary-tables/main",
+        "clinicalmp-discovery/main"
+    ],
+    "flye": [
+        "Gene-based Pathogen Identification"
+    ],
+    "gfa_to_fa": [
+        "Copy Of GTN Training - Antibiotic Resistance Detection",
+        "GTN Training - Antibiotic Resistance Detection"
+    ],
+    "gops_concat_1": [
+        "mgnify-amplicon-pipeline-v5-rrna-prediction/main"
+    ],
+    "gtdbtk_classify_wf": [
+        "mags-building/main"
+    ],
+    "hamronize_summarize": [
+        "AMR-Pathfinder"
+    ],
+    "hamronize_tool": [
+        "AMR-Pathfinder"
+    ],
+    "humann": [
+        "metaBIOMx: Metagenomics pipeline for Microbial shot-gun sequencing data"
+    ],
+    "humann2": [
+        "Analyses of shotgun metagenomics data with MetaPhlAn2"
+    ],
+    "humann2_regroup_table": [
+        "Analyses of shotgun metagenomics data with MetaPhlAn2"
+    ],
+    "humann2_renorm_table": [
+        "Analyses of shotgun metagenomics data with MetaPhlAn2"
+    ],
+    "ident_params": [
+        "clinicalmp-discovery/main"
+    ],
+    "infernal_cmsearch": [
+        "mgnify-amplicon-pipeline-v5-rrna-prediction/main"
+    ],
+    "integron_finder": [
+        "bacterial_genome_annotation/main"
+    ],
+    "interactive_tool_jupyter_notebook": [
+        "Gene Cluster Product Similarity Search"
+    ],
+    "interproscan": [
+        "Marine Omics identifying biosynthetic gene clusters"
+    ],
+    "isescan": [
+        "bacterial_genome_annotation/main"
+    ],
+    "iuc_pear": [
+        "16S_biodiversity_for_overlap_paired_end"
+    ],
+    "kofamscan": [
+        "(Hybrid) Metagenomics workflow"
+    ],
+    "kraken2": [
+        "(Hybrid) Metagenomics workflow",
+        "Identification of the micro-organisms in a beer using Nanopore sequencing",
+        "nanopore-pre-processing/main",
+        "taxonomy-profiling-and-visualization-with-krona/main",
+        "1: Plant virus detection with kraken2 (SE)",
+        "1: Plant virus detection with kraken2 (PE)"
+    ],
+    "krakentools_alpha_diversity": [
+        "Calculating diversity from microbiome taxonomic data"
+    ],
+    "krakentools_beta_diversity": [
+        "Calculating diversity from microbiome taxonomic data"
+    ],
+    "krakentools_extract_kraken_reads": [
+        "nanopore-pre-processing/main"
+    ],
+    "krakentools_kreport2krona": [
+        "Identification of the micro-organisms in a beer using Nanopore sequencing",
+        "taxonomy-profiling-and-visualization-with-krona/main"
+    ],
+    "krona-text": [
+        "Amplicon Tutorial"
+    ],
+    "map_param_value": [
+        "mags-building/main",
+        "taxonomic-rank-abundance-summary-table/main"
+    ],
+    "mapseq": [
+        "mgnify-amplicon-pipeline-v5-its/main",
+        "mgnify-amplicon-pipeline-v5-rrna-prediction/main"
+    ],
+    "maxbin2": [
+        "mags-building/main"
+    ],
+    "maxquant": [
+        "clinicalmp-discovery/main",
+        "clinicalmp-quantitation/main"
+    ],
+    "medaka_consensus_pipeline": [
+        "Gene-based Pathogen Identification"
+    ],
+    "megahit": [
+        "Assembly of metagenomic sequencing data",
+        "mags-building/main"
+    ],
+    "megahit_contig2fastg": [
+        "Assembly of metagenomic sequencing data"
+    ],
+    "merge_metaphlan_tables": [
+        "Analyses of shotgun metagenomics data with MetaPhlAn2"
+    ],
+    "metabat2": [
+        "mags-building/main"
+    ],
+    "metabat2_jgi_summarize_bam_contig_depths": [
+        "mags-building/main"
+    ],
+    "metaphlan2": [
+        "Analyses of shotgun metagenomics data with MetaPhlAn2"
+    ],
+    "metaphlan2krona": [
+        "Analyses of shotgun metagenomics data with MetaPhlAn2"
+    ],
+    "metaspades": [
+        "Assembly of metagenomic sequencing data",
+        "mags-building/main"
+    ],
+    "mgnify_seqprep": [
+        "mgnify-amplicon-pipeline-v5-quality-control-paired-end/main"
+    ],
+    "miniasm": [
+        "Copy Of GTN Training - Antibiotic Resistance Detection",
+        "GTN Training - Antibiotic Resistance Detection"
+    ],
+    "minimap2": [
+        "Allele-based Pathogen Identification",
+        "Copy Of GTN Training - Antibiotic Resistance Detection",
+        "allele-based-pathogen-identification/main",
+        "nanopore-pre-processing/main",
+        "GTN Training - Antibiotic Resistance Detection"
+    ],
+    "mothur_align_seqs": [
+        "Amplicon Tutorial"
+    ],
+    "mothur_classify_otu": [
+        "Amplicon Tutorial"
+    ],
+    "mothur_classify_seqs": [
+        "Amplicon Tutorial"
+    ],
+    "mothur_cluster_split": [
+        "Amplicon Tutorial"
+    ],
+    "mothur_count_seqs": [
+        "Amplicon Tutorial"
+    ],
+    "mothur_filter_seqs": [
+        "Amplicon Tutorial"
+    ],
+    "mothur_make_biom": [
+        "Amplicon Tutorial"
+    ],
+    "mothur_make_group": [
+        "Amplicon Tutorial"
+    ],
+    "mothur_make_shared": [
+        "Amplicon Tutorial"
+    ],
+    "mothur_merge_files": [
+        "Amplicon Tutorial"
+    ],
+    "mothur_pre_cluster": [
+        "Amplicon Tutorial"
+    ],
+    "mothur_screen_seqs": [
+        "Amplicon Tutorial"
+    ],
+    "mothur_summary_seqs": [
+        "Amplicon Tutorial"
+    ],
+    "mothur_unique_seqs": [
+        "Amplicon Tutorial"
+    ],
+    "msconvert": [
+        "clinicalmp-discovery/main"
+    ],
+    "multiqc": [
+        "mags-building/main",
+        "mgnify-amplicon-pipeline-v5-quality-control-paired-end/main",
+        "mgnify-amplicon-pipeline-v5-quality-control-single-end/main",
+        "nanopore-pre-processing/main"
+    ],
+    "nanoplot": [
+        "Copy Of GTN Training - Antibiotic Resistance Detection",
+        "nanopore-pre-processing/main",
+        "GTN Training - Antibiotic Resistance Detection"
+    ],
+    "ncbi_acc_download": [
+        "Gene Cluster Product Similarity Search"
+    ],
+    "openbabel_remDuplicates": [
+        "Gene Cluster Product Similarity Search"
+    ],
+    "param_value_from_file": [
+        "Gene-based Pathogen Identification"
+    ],
+    "pepquery2": [
+        "clinicalmp-verification/main"
+    ],
+    "peptide_shaker": [
+        "clinicalmp-discovery/main"
+    ],
+    "phyloseq_DESeq2": [
+        "16S_biodiversity_for_nonoverlap_paired_end",
+        "16S_biodiversity_for_overlap_paired_end",
+        "16S_biodiversity_BIOM"
+    ],
+    "phyloseq_abundance": [
+        "16S_biodiversity_for_nonoverlap_paired_end",
+        "16S_biodiversity_for_overlap_paired_end",
+        "16S_biodiversity_BIOM"
+    ],
+    "phyloseq_from_dada2": [
+        "Building an amplicon sequence variant (ASV) table from 16S data using DADA2"
+    ],
+    "phyloseq_net": [
+        "16S_biodiversity_for_nonoverlap_paired_end",
+        "16S_biodiversity_for_overlap_paired_end",
+        "16S_biodiversity_BIOM"
+    ],
+    "phyloseq_richness": [
+        "16S_biodiversity_for_nonoverlap_paired_end",
+        "16S_biodiversity_for_overlap_paired_end",
+        "16S_biodiversity_BIOM"
+    ],
+    "phyloseq_taxonomy": [
+        "16S_biodiversity_for_nonoverlap_paired_end",
+        "16S_biodiversity_for_overlap_paired_end",
+        "16S_biodiversity_BIOM"
+    ],
+    "picard_FilterSamReads": [
+        "16S_biodiversity_for_nonoverlap_paired_end",
+        "16S_biodiversity_for_overlap_paired_end"
+    ],
+    "picard_MergeSamFiles": [
+        "16S_biodiversity_for_overlap_paired_end"
+    ],
+    "pick_value": [
+        "mags-building/main"
+    ],
+    "plasmidfinder": [
+        "bacterial_genome_annotation/main"
+    ],
+    "porechop": [
+        "Identification of the micro-organisms in a beer using Nanopore sequencing",
+        "nanopore-pre-processing/main"
+    ],
+    "prinseq": [
+        "mgnify-amplicon-pipeline-v5-quality-control-paired-end/main",
+        "mgnify-amplicon-pipeline-v5-quality-control-single-end/main"
+    ],
+    "prodigal": [
+        "Marine Omics identifying biosynthetic gene clusters"
+    ],
+    "qiime2__dada2__denoise_single": [
+        "qiime2-II-denoising/IIa-denoising-se"
+    ],
+    "qiime2__feature_table__summarize": [
+        "qiime2-II-denoising/IIa-denoising-se"
+    ],
+    "qiime2__feature_table__tabulate_seqs": [
+        "qiime2-II-denoising/IIa-denoising-se"
+    ],
+    "qiime2__metadata__tabulate": [
+        "qiime2-II-denoising/IIa-denoising-se"
+    ],
+    "quast": [
+        "Assembly of metagenomic sequencing data",
+        "mags-building/main"
+    ],
+    "query_tabular": [
+        "MAPseq to ampvis2",
+        "mapseq-to-ampvis2/main",
+        "mgnify-amplicon-pipeline-v5-rrna-prediction/main",
+        "mgnify-amplicon-taxonomic-summary-tables/main",
+        "clinicalmp-discovery/main",
+        "clinicalmp-verification/main"
+    ],
+    "racon": [
+        "Copy Of GTN Training - Antibiotic Resistance Detection",
+        "GTN Training - Antibiotic Resistance Detection"
+    ],
+    "regex1": [
+        "Marine Omics identifying biosynthetic gene clusters"
+    ],
+    "regexColumn1": [
+        "Allele-based Pathogen Identification",
+        "allele-based-pathogen-identification/main",
+        "nanopore-pre-processing/main"
+    ],
+    "samtools_coverage": [
+        "Allele-based Pathogen Identification",
+        "allele-based-pathogen-identification/main"
+    ],
+    "samtools_depth": [
+        "Allele-based Pathogen Identification",
+        "allele-based-pathogen-identification/main"
+    ],
+    "samtools_fastx": [
+        "nanopore-pre-processing/main",
+        "16S_biodiversity_for_nonoverlap_paired_end",
+        "16S_biodiversity_for_overlap_paired_end"
+    ],
+    "samtools_sort": [
+        "mags-building/main"
+    ],
+    "samtools_view": [
+        "From BAMs to drug resistance prediction with TB-profiler"
+    ],
+    "sanntis_marine": [
+        "Marine Omics identifying biosynthetic gene clusters"
+    ],
+    "search_gui": [
+        "clinicalmp-discovery/main"
+    ],
+    "semibin": [
+        "mags-building/main"
+    ],
+    "shovill": [
+        "AMR-Pathfinder"
+    ],
+    "snpEff": [
+        "Long Read WGS pipeline"
+    ],
+    "snpSift_extractFields": [
+        "Allele-based Pathogen Identification",
+        "allele-based-pathogen-identification/main"
+    ],
+    "snpSift_filter": [
+        "Allele-based Pathogen Identification",
+        "allele-based-pathogen-identification/main"
+    ],
+    "split_file_to_collection": [
+        "Gene-based Pathogen Identification"
+    ],
+    "staramr_search": [
+        "Copy Of GTN Training - Antibiotic Resistance Detection",
+        "AMR-Pathfinder",
+        "amr_gene_detection/main",
+        "GTN Training - Antibiotic Resistance Detection"
+    ],
+    "symmetricPlot": [
+        "16S_biodiversity_for_nonoverlap_paired_end",
+        "16S_biodiversity_for_overlap_paired_end",
+        "16S_biodiversity_BIOM"
+    ],
+    "tab2fasta": [
+        "Gene-based Pathogen Identification"
+    ],
+    "table_compute": [
+        "Allele-based Pathogen Identification",
+        "allele-based-pathogen-identification/main"
+    ],
+    "taxonomy_krona_chart": [
+        "Identification of the micro-organisms in a beer using Nanopore sequencing",
+        "mgnify-amplicon-pipeline-v5-its/main",
+        "mgnify-amplicon-pipeline-v5-rrna-prediction/main",
+        "taxonomy-profiling-and-visualization-with-krona/main",
+        "Analyses of shotgun metagenomics data with MetaPhlAn2",
+        "1: Plant virus detection with kraken2 (SE)",
+        "1: Plant virus detection with kraken2 (PE)"
+    ],
+    "tb_profiler_profile": [
+        "From BAMs to drug resistance prediction with TB-profiler"
+    ],
+    "tooldistillator": [
+        "bacterial_genome_annotation/main",
+        "amr_gene_detection/main"
+    ],
+    "tooldistillator_summarize": [
+        "bacterial_genome_annotation/main",
+        "amr_gene_detection/main"
+    ],
+    "tp_awk_tool": [
+        "MAPseq to ampvis2",
+        "Gene Cluster Product Similarity Search",
+        "mags-building/main",
+        "taxonomic-rank-abundance-summary-table/main",
+        "mapseq-to-ampvis2/main",
+        "mgnify-amplicon-pipeline-v5-complete/main",
+        "mgnify-amplicon-pipeline-v5-its/main",
+        "mgnify-amplicon-pipeline-v5-rrna-prediction/main",
+        "mgnify-amplicon-taxonomic-summary-tables/main"
+    ],
+    "tp_cat": [
+        "From BAMs to drug resistance prediction with TB-profiler",
+        "clinicalmp-discovery/main",
+        "clinicalmp-verification/main"
+    ],
+    "tp_cut_tool": [
+        "Allele-based Pathogen Identification",
+        "allele-based-pathogen-identification/main"
+    ],
+    "tp_find_and_replace": [
+        "Gene-based Pathogen Identification",
+        "mgnify-amplicon-pipeline-v5-quality-control-paired-end/main",
+        "mgnify-amplicon-pipeline-v5-quality-control-single-end/main",
+        "AMR-Pathfinder"
+    ],
+    "tp_grep_tool": [
+        "From BAMs to drug resistance prediction with TB-profiler"
+    ],
+    "tp_head_tool": [
+        "Building an amplicon sequence variant (ASV) table from 16S data using DADA2",
+        "Allele-based Pathogen Identification",
+        "allele-based-pathogen-identification/main"
+    ],
+    "tp_replace_in_column": [
+        "Building an amplicon sequence variant (ASV) table from 16S data using DADA2"
+    ],
+    "tp_replace_in_line": [
+        "Building an amplicon sequence variant (ASV) table from 16S data using DADA2",
+        "From BAMs to drug resistance prediction with TB-profiler"
+    ],
+    "tp_sed_tool": [
+        "From BAMs to drug resistance prediction with TB-profiler"
+    ],
+    "tp_split_on_column": [
+        "AMR-Pathfinder"
+    ],
+    "tp_text_file_with_recurring_lines": [
+        "AMR-Pathfinder"
+    ],
+    "trimmomatic": [
+        "mgnify-amplicon-pipeline-v5-quality-control-paired-end/main",
+        "mgnify-amplicon-pipeline-v5-quality-control-single-end/main",
+        "16S_biodiversity_for_nonoverlap_paired_end",
+        "16S_biodiversity_for_overlap_paired_end"
+    ],
+    "uclust2otutable": [
+        "16S_biodiversity_for_nonoverlap_paired_end",
+        "16S_biodiversity_for_overlap_paired_end"
+    ],
+    "unicycler": [
+        "Copy Of GTN Training - Antibiotic Resistance Detection",
+        "GTN Training - Antibiotic Resistance Detection"
+    ],
+    "uniprotxml_downloader": [
+        "clinicalmp-verification/main"
+    ],
+    "vsearch_chimera_detection": [
+        "16S_biodiversity_for_nonoverlap_paired_end",
+        "16S_biodiversity_for_overlap_paired_end"
+    ],
+    "vsearch_clustering": [
+        "16S_biodiversity_for_nonoverlap_paired_end",
+        "16S_biodiversity_for_overlap_paired_end"
+    ],
+    "vsearch_dereplication": [
+        "16S_biodiversity_for_nonoverlap_paired_end",
+        "16S_biodiversity_for_overlap_paired_end"
+    ],
+    "vsearch_search": [
+        "16S_biodiversity_for_nonoverlap_paired_end",
+        "16S_biodiversity_for_overlap_paired_end"
+    ]
+}
