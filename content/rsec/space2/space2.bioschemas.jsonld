@@ -46,10 +46,10 @@
       "sc:additionalType": "Library",
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_3297"
+          "@id": "edam:topic_2830"
         },
         {
-          "@id": "edam:topic_2830"
+          "@id": "edam:topic_3297"
         },
         {
           "@id": "edam:topic_3474"
@@ -78,9 +78,9 @@
       "sc:license": "BSD-3-Clause",
       "sc:name": "SPACE2",
       "sc:operatingSystem": [
+        "Windows",
         "Linux",
-        "Mac",
-        "Windows"
+        "Mac"
       ],
       "sc:url": "https://github.com/oxpig/SPACE2"
     }

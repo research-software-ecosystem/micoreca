@@ -45,14 +45,14 @@
       "biotools:primaryContact": "Gustavo Arango-Argoty",
       "bsc:input": [
         {
-          "@id": "_:Nbc0658b8b59e4acb8a812933fb3ec307"
+          "@id": "_:N8737896ca7ff430bace602f17ee871c9"
         },
         {
-          "@id": "_:N2061ad17fc74490589837620df9319eb"
+          "@id": "_:N74253c92d18f4e5fa951b3cb6f20c9d1"
         }
       ],
       "bsc:output": {
-        "@id": "_:N2c1f6283ebfd47918da1270d5ea5469b"
+        "@id": "_:N165acc3a736a4502a45f77f0c40bc082"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Command-line tool",
@@ -63,8 +63,8 @@
         {
           "@id": "https://doi.org/10.1186/s40168-018-0401-z"
         },
-        "pmcid:PMC5796597",
-        "pubmed:29391044"
+        "pubmed:29391044",
+        "pmcid:PMC5796597"
       ],
       "sc:description": "A deep learning based approach to predict Antibiotic Resistance Genes (ARGs) from metagenomes.",
       "sc:featureList": {
@@ -75,8 +75,8 @@
       "sc:name": "DeepARG",
       "sc:operatingSystem": [
         "Mac",
-        "Linux",
-        "Windows"
+        "Windows",
+        "Linux"
       ],
       "sc:softwareHelp": {
         "@id": "https://github.com/gaarangoa/deeparg?tab=readme-ov-file"
@@ -85,7 +85,7 @@
       "sc:url": "https://github.com/gaarangoa/deeparg"
     },
     {
-      "@id": "_:N2c1f6283ebfd47918da1270d5ea5469b",
+      "@id": "_:N165acc3a736a4502a45f77f0c40bc082",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3002"
@@ -96,7 +96,7 @@
       "sc:name": "Annotation track"
     },
     {
-      "@id": "_:Nbc0658b8b59e4acb8a812933fb3ec307",
+      "@id": "_:N8737896ca7ff430bace602f17ee871c9",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3494"
@@ -107,17 +107,17 @@
       "sc:name": "DNA sequence"
     },
     {
-      "@id": "_:N2061ad17fc74490589837620df9319eb",
+      "@id": "_:N74253c92d18f4e5fa951b3cb6f20c9d1",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3494"
       },
       "sc:encodingFormat": [
         {
-          "@id": "edam:format_3989"
+          "@id": "edam:format_1930"
         },
         {
-          "@id": "edam:format_1930"
+          "@id": "edam:format_3989"
         }
       ],
       "sc:name": "DNA sequence"

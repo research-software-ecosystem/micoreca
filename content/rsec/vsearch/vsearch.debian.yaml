@@ -21,10 +21,10 @@ bib:
 - key: doi
   value: 10.7717/peerj.2584
 popcon:
-- insts: 196
-  olde: 157
-  recent: 34
-  vote: 5
+- insts: 128
+  olde: 77
+  recent: 48
+  vote: 3
 descr:
 - package: vsearch
   description: strumento per elaborare sequenze metagenomiche

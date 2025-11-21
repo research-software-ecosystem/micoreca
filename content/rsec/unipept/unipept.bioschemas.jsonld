@@ -43,14 +43,14 @@
       "@id": "https://bio.tools/unipept",
       "@type": "sc:SoftwareApplication",
       "bsc:input": {
-        "@id": "_:Nb9fbb55892854ce384bcf400d66859c3"
+        "@id": "_:N1e431bafdfe143c6850a8cdf33f66faa"
       },
       "bsc:output": [
         {
-          "@id": "_:Ne41d825bf19244abb3e13724f97591b7"
+          "@id": "_:Nd783bed8501d41f0b1d9f90f238e778d"
         },
         {
-          "@id": "_:Na7de207365fd4541a8b8034e3090f9c7"
+          "@id": "_:N716119c4e39b4208b1dfbaf4556e0161"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
@@ -60,10 +60,10 @@
           "@id": "edam:topic_3050"
         },
         {
-          "@id": "edam:topic_0121"
+          "@id": "edam:topic_3922"
         },
         {
-          "@id": "edam:topic_3922"
+          "@id": "edam:topic_0121"
         },
         {
           "@id": "edam:topic_0769"
@@ -91,9 +91,9 @@
       "sc:license": "MIT",
       "sc:name": "Unipept",
       "sc:operatingSystem": [
+        "Mac",
         "Windows",
-        "Linux",
-        "Mac"
+        "Linux"
       ],
       "sc:provider": "ugent.be",
       "sc:softwareHelp": {
@@ -103,7 +103,7 @@
       "sc:url": "http://unipept.ugent.be/"
     },
     {
-      "@id": "_:Nb9fbb55892854ce384bcf400d66859c3",
+      "@id": "_:N1e431bafdfe143c6850a8cdf33f66faa",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2976"
@@ -111,7 +111,7 @@
       "sc:name": "Protein sequence"
     },
     {
-      "@id": "_:Ne41d825bf19244abb3e13724f97591b7",
+      "@id": "_:Nd783bed8501d41f0b1d9f90f238e778d",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0872"
@@ -119,7 +119,7 @@
       "sc:name": "Phylogenetic tree"
     },
     {
-      "@id": "_:Na7de207365fd4541a8b8034e3090f9c7",
+      "@id": "_:N716119c4e39b4208b1dfbaf4556e0161",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0850"

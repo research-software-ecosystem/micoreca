@@ -42,13 +42,13 @@
       "sc:additionalType": "Desktop application",
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_3673"
+          "@id": "edam:topic_0621"
         },
         {
           "@id": "edam:topic_3837"
         },
         {
-          "@id": "edam:topic_0621"
+          "@id": "edam:topic_3673"
         },
         {
           "@id": "edam:topic_3174"
@@ -82,8 +82,8 @@
       ],
       "sc:name": "CRAFT",
       "sc:operatingSystem": [
-        "Linux",
-        "Windows"
+        "Windows",
+        "Linux"
       ],
       "sc:url": "https://github.com/jiaxingbai/CRAFT"
     },

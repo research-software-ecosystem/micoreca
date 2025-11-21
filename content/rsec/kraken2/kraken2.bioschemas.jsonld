@@ -36,28 +36,32 @@
   },
   "@graph": [
     {
+      "@id": "https://doi.org/10.1101/762302",
+      "@type": "sc:CreativeWork"
+    },
+    {
       "@id": "https://bio.tools/kraken2",
       "@type": "sc:SoftwareApplication",
       "bsc:input": {
-        "@id": "_:N10972527367e4a31a415c8f2874f7c0a"
+        "@id": "_:Nad4deb6d712f4df59d71fdcd6bd7d810"
       },
       "bsc:output": {
-        "@id": "_:Nfb30a77720d14ca281df9150ddafe3f4"
+        "@id": "_:N1c73ab06de474ad881085a4838f877fd"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Command-line tool",
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_3174"
-        },
-        {
           "@id": "edam:topic_3697"
         },
         {
-          "@id": "edam:topic_0637"
+          "@id": "edam:topic_3301"
         },
         {
-          "@id": "edam:topic_3301"
+          "@id": "edam:topic_3174"
+        },
+        {
+          "@id": "edam:topic_0637"
         }
       ],
       "sc:citation": {
@@ -82,23 +86,7 @@
       "sc:url": "https://ccb.jhu.edu/software/kraken2/"
     },
     {
-      "@id": "_:N10972527367e4a31a415c8f2874f7c0a",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3494"
-      },
-      "sc:encodingFormat": [
-        {
-          "@id": "edam:format_1930"
-        },
-        {
-          "@id": "edam:format_1929"
-        }
-      ],
-      "sc:name": "DNA sequence"
-    },
-    {
-      "@id": "_:Nfb30a77720d14ca281df9150ddafe3f4",
+      "@id": "_:N1c73ab06de474ad881085a4838f877fd",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3028"
@@ -109,8 +97,20 @@
       "sc:name": "Taxonomy"
     },
     {
-      "@id": "https://doi.org/10.1101/762302",
-      "@type": "sc:CreativeWork"
+      "@id": "_:Nad4deb6d712f4df59d71fdcd6bd7d810",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3494"
+      },
+      "sc:encodingFormat": [
+        {
+          "@id": "edam:format_1929"
+        },
+        {
+          "@id": "edam:format_1930"
+        }
+      ],
+      "sc:name": "DNA sequence"
     }
   ]
 }
