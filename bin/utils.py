@@ -1,19 +1,22 @@
-from datetime import datetime
 import json
-from pathlib import Path
-import requests
-import pandas as pd
-import yaml
-import time
 import re
+import time
+from datetime import datetime
+from pathlib import Path
 from typing import (
+    Any,
     Dict,
     List,
-    Any
 )
+
+import pandas as pd
+import requests
+import yaml
+
 
 def format_date(date: str) -> str:
     return datetime.fromisoformat(date).strftime("%Y-%m-%d")
+
 
 def format_list_column(col: pd.Series) -> pd.Series:
     """
@@ -21,11 +24,13 @@ def format_list_column(col: pd.Series) -> pd.Series:
     """
     return col.apply(lambda x: ", ".join(str(i) for i in x))
 
+
 def format_regex(pattern: str) -> str:
     """
     Format regex to allow various separators before and after the pattern
     """
     return rf"(?<![A-Za-z]){pattern}(?![A-Za-z])"
+
 
 def load_yaml(input_df: str) -> Dict:
     """
@@ -35,6 +40,7 @@ def load_yaml(input_df: str) -> Dict:
         content = yaml.safe_load(t)
     return content
 
+
 def load_json(input_df: str) -> Any:
     """
     Read a JSON file
@@ -43,18 +49,20 @@ def load_json(input_df: str) -> Any:
         content = json.load(t)
     return content
 
+
 def has_keyword(tags: dict, target: str, target_name: str) -> str:
     for tag in tags["keywords"]:
         regexk = re.compile(format_regex(tag), re.IGNORECASE)
         if regexk.search(target):
             return f"{tag} in {target_name}"
-    
+
     for acron in tags["acronyms"]:
         regexa = re.compile(format_regex(acron))
         if regexa.search(target):
             return f"{acron} in {target_name}"
-            
+
     return ""
+
 
 def export_to_json(data: List[Dict], output_fp: str) -> None:
     """
@@ -63,10 +71,11 @@ def export_to_json(data: List[Dict], output_fp: str) -> None:
     with Path(output_fp).open("w") as f:
         json.dump(data, f, indent=4, sort_keys=True)
 
+
 def get_edam_operation_from_tools(selected_tools: list, all_tools: dict) -> List:
     """
-    NOT RUN 
-    
+    NOT RUN
+
     Get list of EDAM operations of the tools
 
     :param selected_tools: list of tool suite ids
@@ -80,6 +89,7 @@ def get_edam_operation_from_tools(selected_tools: list, all_tools: dict) -> List
             print(f"{t} not found in all tools")
     return list(edam_operation)
 
+
 def shorten_tool_id(tool: str) -> str:
     """
     Shorten tool id
@@ -88,7 +98,8 @@ def shorten_tool_id(tool: str) -> str:
         return tool.split("/")[-2]
     else:
         return tool
-    
+
+
 def get_request_json(url: str, headers: dict, retries: int = 3, delay: float = 2.0) -> dict:
     """
     Perform a GET request to retrieve JSON output from a specified URL, with retry on ConnectionError.
