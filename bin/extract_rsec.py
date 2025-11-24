@@ -1,4 +1,3 @@
-import os
 import shutil
 import subprocess
 from pathlib import Path
@@ -36,9 +35,8 @@ TEMP_CLONE_DIR = BASE_DIR / "temp_rsec_clone"
 def run_command(command: list[str], cwd: Path | None = None) -> bool:
     """Executes a shell command and handles errors."""
     try:
-        print(
-            f"Executing: {' '.join(command)} (in directory: {cwd.name if cwd else 'CWD'})"
-        )
+        cwd_display = cwd.name if cwd else "CWD"
+        print(f"Executing: {' '.join(command)} (in directory: {cwd_display})")
         # Use capture_output and text=True for better log management
         result = subprocess.run(
             command,
@@ -48,13 +46,14 @@ def run_command(command: list[str], cwd: Path | None = None) -> bool:
             text=True,
             encoding="utf-8",
         )
+        if result.stdout and result.stdout.strip():
+            print(result.stdout.strip())
+        if result.stderr and result.stderr.strip():
+            print(result.stderr.strip())
         print("... Success.")
-        # print(result.stdout) # Uncomment for detailed logs
         return True
     except subprocess.CalledProcessError as e:
-        print(
-            f"\n[ERROR] Command failed (Return Code {e.returncode}): {' '.join(command)}"
-        )
+        print(f"\n[ERROR] Command failed (Return Code {e.returncode}): {' '.join(command)}")
         print(f"STDOUT:\n{e.stdout}")
         print(f"STDERR:\n{e.stderr}")
         return False
@@ -137,9 +136,7 @@ def clone_rsec_data():
         # Move the 'data' folder to 'content/rsec'
         # RSEC_DIR is micoreca/content/rsec
         shutil.move(source_dir, RSEC_DIR)
-        print(
-            f" Move complete: {source_dir.name}/ -> {RSEC_DIR.relative_to(BASE_DIR)}/"
-        )
+        print(f" Move complete: {source_dir.name}/ -> {RSEC_DIR.relative_to(BASE_DIR)}/")
 
         # Final cleanup of the temporary directory
         shutil.rmtree(TEMP_CLONE_DIR)
@@ -147,9 +144,7 @@ def clone_rsec_data():
 
         return True
     else:
-        print(
-            f"[CRITICAL] Target subdirectory '{TARGET_SUBDIR_IN_REPO}' not found after cloning."
-        )
+        print(f"[CRITICAL] Target subdirectory '{TARGET_SUBDIR_IN_REPO}' not found after cloning.")
         return False
 
 
@@ -159,9 +154,7 @@ if __name__ == "__main__":
 
     # Check for the existence of the parent directory
     if not CONTENT_DIR.is_dir():
-        print(
-            f"WARNING: Parent directory '{CONTENT_DIR.name}/' does not exist. Creating it now."
-        )
+        print(f"WARNING: Parent directory '{CONTENT_DIR.name}/' does not exist. Creating it now.")
         CONTENT_DIR.mkdir(parents=True, exist_ok=True)
 
     # Start the cloning operation
@@ -169,10 +162,8 @@ if __name__ == "__main__":
 
     if success:
         print("\n" + "#" * 60)
-        print(f"CLONING AND PREPARATION COMPLETED SUCCESSFULLY!")
-        print(
-            f"The directory {RSEC_DIR.relative_to(BASE_DIR)}/ is ready for filtering."
-        )
+        print("CLONING AND PREPARATION COMPLETED SUCCESSFULLY!")
+        print(f"The directory {RSEC_DIR.relative_to(BASE_DIR)}/ is ready for filtering.")
         print("#" * 60)
 
     else:

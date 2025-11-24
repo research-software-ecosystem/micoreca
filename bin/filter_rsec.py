@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import os
 import json
 import shutil
 import re
@@ -72,7 +71,7 @@ def load_keywords_from_yaml(filepath: Path) -> Dict[str, Any]:
         raise FileNotFoundError(f"Keywords file not found at: {filepath}")
 
     try:
-        with open(filepath, "r", encoding="utf-8") as f:
+        with open(filepath, encoding="utf-8") as f:
             data = yaml.safe_load(f)
     except Exception as e:
         raise ValueError(f"Error loading YAML file: {e}")
@@ -115,7 +114,7 @@ def load_keywords_from_yaml(filepath: Path) -> Dict[str, Any]:
 def generate_tsv_summary(json_path: Path, tsv_path: Path):
     """Loads validated metadata and writes the summary to a TSV file."""
     try:
-        with open(json_path, "r", encoding="utf-8") as f:
+        with open(json_path, encoding="utf-8") as f:
             data: List[Dict[str, Any]] = json.load(f)
     except Exception as e:
         print(f"ERROR loading/parsing JSON for TSV: {e}")
@@ -177,10 +176,10 @@ def generate_tsv_summary(json_path: Path, tsv_path: Path):
             writer.writeheader()
             writer.writerows(summary_data)
 
-        print(f"\nSummary successfully created.")
+        print("\nSummary successfully created.")
         print(f"TSV file created: {tsv_path.name}")
 
-    except IOError as e:
+    except OSError as e:
         print(f"ERROR writing TSV file: {e}")
 
 
@@ -203,7 +202,7 @@ class Tool:
     def _safe_load(self, filepath: Path) -> Optional[Dict[str, Any]]:
         """Helper to safely load JSON or YAML content (silent failure)."""
         try:
-            with open(filepath, "r", encoding="utf-8") as fh:
+            with open(filepath, encoding="utf-8") as fh:
                 if filepath.suffix in [".json"]:
                     return json.load(fh)
                 elif filepath.suffix in [".yaml"] and yaml:
@@ -426,7 +425,7 @@ class ToolSet:
         failed_metadata_list = []
 
         print(f"Starting filtering in : {self.root_dir}")
-        print(f"WARNING : Non-kept folders will be PERMANENTLY DELETED.")
+        print("WARNING : Non-kept folders will be PERMANENTLY DELETED.")
         all_items = [item for item in self.root_dir.iterdir() if item.is_dir() and item.name != OUTPUT_DIR.name]
         total_items = len(all_items)
         # --- Processing Loop (Utilisation de sys.stdout.write pour la progression) ---
@@ -480,7 +479,7 @@ class ToolSet:
             with open(metadata_file, "w", encoding="utf-8") as f:
                 json.dump(data, f, indent=4, ensure_ascii=False)
             print(f"Metadata file written: {metadata_file.name}")
-        except IOError as e:
+        except OSError as e:
             print(f" [META ERROR] Could not write metadata file ({metadata_file.name}): {e}")
 
     def _finalize_operation(self, subfolders_to_delete: List[Path]):
@@ -526,8 +525,8 @@ class ToolSet:
                 )
                 f.write(f"Folders that failed ANY filter : {self.report_counts['did_not_pass_any']}\n")
             print(f"\n[REPORTING] Report written to : {report_file.name}")
-        except IOError as e:
-            print(f"\n[CRITICAL WRITE FAILURE] Could not write report to '{report_file.parent.name}/'.")
+        except OSError as e:
+            print(f"\n[CRITICAL WRITE FAILURE] Could not write report to '{report_file.parent.name}/'. Error: {e}")
 
 
 # -------------------------------------------------------------
