@@ -39,7 +39,7 @@ The extraction, filtering and curation are done following the workflow below and
     $ python3 -m pip install -r requirements.txt
     ```
 
-# WorkflowHub
+# Extract workflows from WorkflowHub
 
 - Extract all workflows metadata from WorkflowHub as a JSON file
 
@@ -60,10 +60,6 @@ The extraction, filtering and curation are done following the workflow below and
         --tags keywords.yml \
         --status content/workflowhub/workflows_status.tsv
     ```
-
-    As explained in the decision tree above, workflows are filtered first on EDAM terms (topics and operations), then on tags, workflow name and finally description based on the keywords provided in `keywords.yml` file.
-
-
 # RSEc
 
 - Extract all metadata from RSEc/content/data 
@@ -77,3 +73,27 @@ The extraction, filtering and curation are done following the workflow below and
     ```
     $ python bin/filter_rsec.py
     ```
+    As explained in the decision tree above, workflows are filtered first on EDAM terms (topics and operations), then on tags, workflow name and finally description based on the keywords provided in `keywords.yml` file.
+
+
+# Run the unit tests locally
+
+```
+PYTHONPATH=bin python -m unittest discover -s bin/tests
+```
+
+# Contributing
+
+To contribute to the MiCoReCa Source code:
+1. Fork the repository,
+2. Create a branch and add your changes
+3. Add a unit test for your changes (see [unittests](sources/bin/tests) for examples).  
+    **Warning:** new functions now require a unit test to be merged!
+4. Make a pull request.
+
+The `unittest` framework will run on your PR. Please fix the tests if required.
+
+Upon review the maintainer will merge your pull request. 
+Automatic tests will run on the dev branch. 
+
+
