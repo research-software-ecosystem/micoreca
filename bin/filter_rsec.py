@@ -88,28 +88,16 @@ def load_keywords_from_yaml(filepath: Path) -> Dict[str, Any]:
             try:
                 compiled_fragments.append(re.compile(pattern_raw, re.IGNORECASE))
             except re.error as e:
-                print(
-                    f" [WARNING] Could not compile regex pattern '{pattern_raw}': {e}"
-                )  # Silent error in production
+                print(f" [WARNING] Could not compile regex pattern '{pattern_raw}': {e}")  # Silent error in production
                 pass
 
-    strict_keywords_list = [
-        str(k).strip()
-        for k in data.get("acronyms", [])
-        if isinstance(k, str) and k.strip()
-    ]
+    strict_keywords_list = [str(k).strip() for k in data.get("acronyms", []) if isinstance(k, str) and k.strip()]
     for kw in fragment_patterns_raw:
-        if (
-            isinstance(kw, str)
-            and kw.strip()
-            and not any(c in kw for c in [".", "*", "+", "?"])
-        ):
+        if isinstance(kw, str) and kw.strip() and not any(c in kw for c in [".", "*", "+", "?"]):
             if kw.upper() == kw:
                 strict_keywords_list.append(kw.strip())
 
-    strict_keywords_list = list(
-        set([k.strip().upper() for k in strict_keywords_list if k.strip()])
-    )
+    strict_keywords_list = list(set([k.strip().upper() for k in strict_keywords_list if k.strip()]))
     compiled_stricts = []
     for strict_ref in strict_keywords_list:
         regex_pattern = re.compile(r"\b" + re.escape(strict_ref) + r"\b")
@@ -177,9 +165,7 @@ def generate_tsv_summary(json_path: Path, tsv_path: Path):
             match_value = item.get(key)
             if match_value:
                 entry["filtered_on"] = key
-                reason_template = REASON_MAPPING.get(
-                    key, "Match found on key: {key} (value: {value})"
-                )
+                reason_template = REASON_MAPPING.get(key, "Match found on key: {key} (value: {value})")
                 formatted_value = str(match_value)
                 entry["reason"] = reason_template.format(value=formatted_value)
                 break
@@ -187,9 +173,7 @@ def generate_tsv_summary(json_path: Path, tsv_path: Path):
 
     try:
         with open(tsv_path, "w", encoding="utf-8", newline="") as f:
-            writer = csv.DictWriter(
-                f, fieldnames=fieldnames, delimiter="\t", extrasaction="ignore"
-            )
+            writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter="\t", extrasaction="ignore")
             writer.writeheader()
             writer.writerows(summary_data)
 
@@ -269,11 +253,7 @@ class Tool:
     def _extract_edam_terms(self, data: Dict[str, Any], key: str) -> str:
         """Extracts and concatenates EDAM terms."""
         terms = set()
-        if (
-            key == "function"
-            and "function" in data
-            and isinstance(data["function"], list)
-        ):
+        if key == "function" and "function" in data and isinstance(data["function"], list):
             for func in data["function"]:
                 if "operation" in func and isinstance(func["operation"], list):
                     for op in func["operation"]:
@@ -314,10 +294,7 @@ class Tool:
             for func in data["function"]:
                 if "operation" in func and isinstance(func["operation"], list):
                     for operation in func["operation"]:
-                        if (
-                            "term" in operation
-                            and operation["term"] in TARGET_OPERATIONS
-                        ):
+                        if "term" in operation and operation["term"] in TARGET_OPERATIONS:
                             self.validation_data["EDAM_operation"] = operation["term"]
                             return True
 
@@ -334,15 +311,9 @@ class Tool:
             return False
         candidates_with_case = []
         if isinstance(file_keywords, list):
-            candidates_with_case = [
-                str(x).strip() for x in file_keywords if x is not None
-            ]
+            candidates_with_case = [str(x).strip() for x in file_keywords if x is not None]
         elif isinstance(file_keywords, str):
-            candidates_with_case = [
-                x.strip()
-                for x in file_keywords.replace(";", ",").split(",")
-                if x.strip()
-            ]
+            candidates_with_case = [x.strip() for x in file_keywords.replace(";", ",").split(",") if x.strip()]
 
         strict_keywords_set = set(STRICT_KEYWORDS)
         for kw_case in candidates_with_case:
@@ -362,7 +333,7 @@ class Tool:
     def check_criteria_3(self) -> bool:
         """
         search in description fields for strict keywords/acronyms or regex fragments.
-        Priority order: biocontainers > biotools > galaxy.
+        Priority order: biotools > biocontainers > galaxy.
         """
         # Priority order for checking descriptions
         description_sources = [
@@ -377,9 +348,7 @@ class Tool:
                 continue
 
             # 1. Strict acronym checks (Word boundary search)
-            for strict_ref_upper, pattern in zip(
-                STRICT_KEYWORDS, COMPILED_STRICT_PATTERNS
-            ):
+            for strict_ref_upper, pattern in zip(STRICT_KEYWORDS, COMPILED_STRICT_PATTERNS):
                 if pattern.search(content_lower):
                     self.validation_data[key_report] = strict_ref_upper
                     return True
@@ -438,9 +407,7 @@ class ToolSet:
             output_dir.mkdir(parents=True, exist_ok=True)
             print(f"Output directory {output_dir.name}/ is ready.")
         except Exception as e:
-            print(
-                f"\n[CRITICAL ERROR] Failed to create output directory {output_dir.name}/. Error: {e}"
-            )
+            print(f"\n[CRITICAL ERROR] Failed to create output directory {output_dir.name}/. Error: {e}")
             sys.exit(1)  # Stop if output dir cannot be created
         for meta_file in [
             VALIDATED_METADATA_FILE,
@@ -460,11 +427,7 @@ class ToolSet:
 
         print(f"Starting filtering in : {self.root_dir}")
         print(f"WARNING : Non-kept folders will be PERMANENTLY DELETED.")
-        all_items = [
-            item
-            for item in self.root_dir.iterdir()
-            if item.is_dir() and item.name != OUTPUT_DIR.name
-        ]
+        all_items = [item for item in self.root_dir.iterdir() if item.is_dir() and item.name != OUTPUT_DIR.name]
         total_items = len(all_items)
         # --- Processing Loop (Utilisation de sys.stdout.write pour la progression) ---
         for i, item in enumerate(all_items):
@@ -478,10 +441,7 @@ class ToolSet:
             self.tools.append(tool)
             if tool.keep:
                 validated_metadata_list.append(tool.validation_data)
-                if (
-                    "EDAM_operation" in tool.validation_data
-                    or "EDAM_topics" in tool.validation_data
-                ):
+                if "EDAM_operation" in tool.validation_data or "EDAM_topics" in tool.validation_data:
                     self.report_counts["validated_filter_1"] += 1
                 elif "biocontainers_keywords" in tool.validation_data:
                     self.report_counts["validated_filter_2"] += 1
@@ -521,16 +481,13 @@ class ToolSet:
                 json.dump(data, f, indent=4, ensure_ascii=False)
             print(f"Metadata file written: {metadata_file.name}")
         except IOError as e:
-            print(
-                f" [META ERROR] Could not write metadata file ({metadata_file.name}): {e}"
-            )
+            print(f" [META ERROR] Could not write metadata file ({metadata_file.name}): {e}")
 
     def _finalize_operation(self, subfolders_to_delete: List[Path]):
         """Prints final stats and performs folder deletion."""
         total_deleted = len(subfolders_to_delete)
         total_kept = sum(
-            self.report_counts[k]
-            for k in ["validated_filter_1", "validated_filter_2", "validated_filter_3"]
+            self.report_counts[k] for k in ["validated_filter_1", "validated_filter_2", "validated_filter_3"]
         )
 
         print("\n" + "=" * 50)
@@ -555,32 +512,22 @@ class ToolSet:
                 f.write("=" * 40 + "\n")
                 f.write(" SUBFOLDER FILTERING REPORT\n")
                 f.write("=" * 40 + "\n\n")
-                f.write(
-                    f"Total folders analyzed : {self.report_counts['total_folders']}\n"
-                )
+                f.write(f"Total folders analyzed : {self.report_counts['total_folders']}\n")
                 f.write(f"Total folders kept : {total_kept}\n")
                 f.write(f"Total folders DELETED : {total_deleted}\n\n")
 
                 f.write("-" * 25 + "\n")
                 f.write("Folders kept by criterion (Stop at first match):\n")
                 f.write("-" * 25 + "\n")
-                f.write(
-                    f" 1. Validated by Filter 1 (Op/Topic JSON) : {self.report_counts['validated_filter_1']}\n"
-                )
-                f.write(
-                    f" 2. Validated by Filter 2 (YAML Keywords) : {self.report_counts['validated_filter_2']}\n"
-                )
+                f.write(f" 1. Validated by Filter 1 (Op/Topic JSON) : {self.report_counts['validated_filter_1']}\n")
+                f.write(f" 2. Validated by Filter 2 (YAML Keywords) : {self.report_counts['validated_filter_2']}\n")
                 f.write(
                     f" 3. Validated by Filter 3 (Description Match) : {self.report_counts['validated_filter_3']}\n\n"
                 )
-                f.write(
-                    f"Folders that failed ANY filter : {self.report_counts['did_not_pass_any']}\n"
-                )
+                f.write(f"Folders that failed ANY filter : {self.report_counts['did_not_pass_any']}\n")
             print(f"\n[REPORTING] Report written to : {report_file.name}")
         except IOError as e:
-            print(
-                f"\n[CRITICAL WRITE FAILURE] Could not write report to '{report_file.parent.name}/'."
-            )
+            print(f"\n[CRITICAL WRITE FAILURE] Could not write report to '{report_file.parent.name}/'.")
 
 
 # -------------------------------------------------------------
@@ -589,9 +536,7 @@ class ToolSet:
 
 if __name__ == "__main__":
     if not RSEC_DIR.is_dir():
-        print(
-            f"ERROR: The directory to process 'content/rsec' was not found at the default location: '{RSEC_DIR}'"
-        )
+        print(f"ERROR: The directory to process 'content/rsec' was not found at the default location: '{RSEC_DIR}'")
         sys.exit(1)
     if not KEYWORDS_FILEPATH.is_file():
         print(
