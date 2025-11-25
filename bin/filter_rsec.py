@@ -12,7 +12,6 @@ from typing import (
     List,
     Optional,
 )
-
 import yaml
 
 # --- Configuration paths  ---
@@ -112,7 +111,7 @@ def load_keywords_from_yaml(filepath: Path) -> Dict[str, Any]:
     }
 
 
-def generate_tsv_summary(json_path: Path, tsv_path: Path):
+def generate_tsv_summary(json_path: Path, tsv_path: Path) -> None:
     """Loads validated metadata and writes the summary to a TSV file."""
     try:
         with open(json_path, encoding="utf-8") as f:
@@ -212,7 +211,7 @@ class Tool:
             pass
         return None
 
-    def _load_all_metadata_optimized(self):
+    def _load_all_metadata_optimized(self) -> None:
         """Loads all required metadata files."""
         self.validation_data["has_biocontainers_infos"] = False
         self.validation_data["has_biotools_infos"] = False
@@ -265,7 +264,7 @@ class Tool:
                     terms.add(topic["term"])
         return ", ".join(sorted(list(terms)))
 
-    def _store_full_report_metadata(self):
+    def _store_full_report_metadata(self) -> None:
         """Extracts all EDAM operations, topics, and biotools ID for the TSV."""
         data = self.metadata.get("biotools")
         biotools_id = data.get("biotoolsID", "") if data else ""
@@ -358,8 +357,8 @@ class Tool:
                 match = pattern.search(content_lower)
                 if match:
                     phrase = match.group(0)
-                    phrase = phrase.split()
-                    mot = phrase[0]
+                    liste_phrase = phrase.split()
+                    mot = liste_phrase[0]
                     ponctuation = r"[.,;()?!]+$"
                     mot = re.sub(ponctuation, "", mot)
                     self.validation_data[key_report] = mot
@@ -401,7 +400,7 @@ class ToolSet:
             "did_not_pass_any": 0,
         }
 
-    def _prepare_output_dir(self, output_dir: Path):
+    def _prepare_output_dir(self, output_dir: Path) -> None:
         """Creates the output directory and cleans up previous metadata files."""
         try:
             output_dir.mkdir(parents=True, exist_ok=True)
@@ -418,7 +417,7 @@ class ToolSet:
             if meta_file.exists():
                 meta_file.unlink()
 
-    def run_filtering(self):
+    def run_filtering(self) -> None:
         start_time = time.time()
         self._prepare_output_dir(OUTPUT_DIR)
         subfolders_to_delete = []
@@ -469,7 +468,7 @@ class ToolSet:
         end_time = time.time()
         print(f"\nFiltering execution time : {end_time - start_time:.2f} secondes.")
 
-    def _write_metadata_once(self, data: List[Dict[str, Any]], metadata_file: Path):
+    def _write_metadata_once(self, data: List[Dict[str, Any]], metadata_file: Path) -> None:
         """Writes the entire list of data to a single JSON file."""
         if not data:
             with open(metadata_file, "w", encoding="utf-8") as f:
@@ -483,7 +482,7 @@ class ToolSet:
         except OSError as e:
             print(f" [META ERROR] Could not write metadata file ({metadata_file.name}): {e}")
 
-    def _finalize_operation(self, subfolders_to_delete: List[Path]):
+    def _finalize_operation(self, subfolders_to_delete: List[Path]) -> None:
         """Prints final stats and performs folder deletion."""
         total_deleted = len(subfolders_to_delete)
         total_kept = sum(
@@ -505,7 +504,7 @@ class ToolSet:
         self._write_report(REPORTING_FILE, total_deleted, total_kept)
         print("\nFiltering operation completed.")
 
-    def _write_report(self, report_file: Path, total_deleted: int, total_kept: int):
+    def _write_report(self, report_file: Path, total_deleted: int, total_kept: int) -> None:
         """Writes the summary report to a text file."""
         try:
             with open(report_file, "w", encoding="utf-8") as f:

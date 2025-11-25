@@ -62,12 +62,10 @@ def run_command(command: list[str], cwd: Path | None = None) -> bool:
         return False
 
 
-def clone_rsec_data():
+def clone_rsec_data() -> bool:
     """Deletes the old folder and clones the TARGET_SUBDIR_IN_REPO subdirectory into RSEC_DIR."""
-
     # NOTE: Executing git commands requires the CWD to be correct for relative paths.
     # We use BASE_DIR as CWD for the git clone command.
-
     print("=" * 60)
     print(f"Preparing to re-clone RSEC/data to {RSEC_DIR.relative_to(BASE_DIR)}/")
     print(f"Project Root (BASE_DIR) set to: {BASE_DIR.name}/")
