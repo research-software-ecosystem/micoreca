@@ -36,22 +36,26 @@
   },
   "@graph": [
     {
+      "@id": "https://doi.org/10.1038/nmeth.2066",
+      "@type": "sc:CreativeWork"
+    },
+    {
       "@id": "https://bio.tools/metaphlan",
       "@type": "sc:SoftwareApplication",
       "bsc:input": [
         {
-          "@id": "_:N7cbbeb6a8baf4fdbb7bef83be1699002"
+          "@id": "_:N07cdda463bbf45f4afeaf7682a686a35"
         },
         {
-          "@id": "_:Nb0bbee25f0e249b282627ae0f6dbc7ee"
+          "@id": "_:Na17bdb7cdef5428db27e7feb2c119026"
         }
       ],
       "bsc:output": [
         {
-          "@id": "_:N9036579ec11e47948a83ac00bd05a6a6"
+          "@id": "_:N8c78a3961946456cb1edd4e87e74fda7"
         },
         {
-          "@id": "_:N02d25523c852424aae5b4142eeda9ac6"
+          "@id": "_:N3137ec2fd1314faa9f36079f32416340"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
@@ -65,11 +69,11 @@
         }
       ],
       "sc:citation": [
+        "pubmed:22688413",
         {
           "@id": "https://doi.org/10.1038/nmeth.2066"
         },
-        "pmcid:PMC3443552",
-        "pubmed:22688413"
+        "pmcid:PMC3443552"
       ],
       "sc:description": "Computational tool for profiling the composition of microbial communities from metagenomic shotgun sequencing data.",
       "sc:featureList": {
@@ -78,9 +82,9 @@
       "sc:license": "MIT",
       "sc:name": "MetaPhlAn",
       "sc:operatingSystem": [
+        "Mac",
         "Windows",
-        "Linux",
-        "Mac"
+        "Linux"
       ],
       "sc:softwareHelp": {
         "@id": "https://github.com/biobakery/MetaPhlAn"
@@ -88,7 +92,40 @@
       "sc:url": "http://segatalab.cibio.unitn.it/tools/metaphlan/index.html"
     },
     {
-      "@id": "_:N7cbbeb6a8baf4fdbb7bef83be1699002",
+      "@id": "_:N8c78a3961946456cb1edd4e87e74fda7",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3028"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_3751"
+      },
+      "sc:name": "Taxonomy"
+    },
+    {
+      "@id": "_:N3137ec2fd1314faa9f36079f32416340",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3028"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_3751"
+      },
+      "sc:name": "Taxonomy"
+    },
+    {
+      "@id": "_:N07cdda463bbf45f4afeaf7682a686a35",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3028"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_3751"
+      },
+      "sc:name": "Taxonomy"
+    },
+    {
+      "@id": "_:Na17bdb7cdef5428db27e7feb2c119026",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3494"
@@ -98,50 +135,13 @@
           "@id": "edam:format_2573"
         },
         {
-          "@id": "edam:format_1930"
+          "@id": "edam:format_1929"
         },
         {
-          "@id": "edam:format_1929"
+          "@id": "edam:format_1930"
         }
       ],
       "sc:name": "DNA sequence"
-    },
-    {
-      "@id": "_:Nb0bbee25f0e249b282627ae0f6dbc7ee",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3028"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_3751"
-      },
-      "sc:name": "Taxonomy"
-    },
-    {
-      "@id": "_:N9036579ec11e47948a83ac00bd05a6a6",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3028"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_3751"
-      },
-      "sc:name": "Taxonomy"
-    },
-    {
-      "@id": "_:N02d25523c852424aae5b4142eeda9ac6",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3028"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_3751"
-      },
-      "sc:name": "Taxonomy"
-    },
-    {
-      "@id": "https://doi.org/10.1038/nmeth.2066",
-      "@type": "sc:CreativeWork"
     }
   ]
 }

@@ -36,17 +36,13 @@
   },
   "@graph": [
     {
-      "@id": "https://doi.org/10.3389/fmicb.2016.00822",
-      "@type": "sc:CreativeWork"
-    },
-    {
       "@id": "https://bio.tools/holovir",
       "@type": "sc:SoftwareApplication",
       "bsc:input": {
-        "@id": "_:Ndee4dae5c1764817ad2a8ea4e798f232"
+        "@id": "_:Nca6e27004e2b47438f04c32cb6b019eb"
       },
       "bsc:output": {
-        "@id": "_:N29e1179bbc254e40a7d7524fc82a4473"
+        "@id": "_:Nf0e0baea4d4143bf96718eb095a0f6d9"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Command-line tool",
@@ -54,11 +50,11 @@
         "@id": "edam:topic_2259"
       },
       "sc:citation": [
-        "pmcid:PMC4899465",
         "pubmed:27375564",
         {
           "@id": "https://doi.org/10.3389/fmicb.2016.00822"
-        }
+        },
+        "pmcid:PMC4899465"
       ],
       "sc:description": "A robust and flexible data analysis pipeline that provides an optimised and validated workflow for taxonomic and functional characterisation of viral metagenomes.",
       "sc:featureList": {
@@ -73,7 +69,15 @@
       "sc:url": "https://github.com/plaffy/HoloVir"
     },
     {
-      "@id": "_:N29e1179bbc254e40a7d7524fc82a4473",
+      "@id": "_:Nca6e27004e2b47438f04c32cb6b019eb",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_2044"
+      },
+      "sc:name": "Sequence"
+    },
+    {
+      "@id": "_:Nf0e0baea4d4143bf96718eb095a0f6d9",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2048"
@@ -81,12 +85,8 @@
       "sc:name": "Report"
     },
     {
-      "@id": "_:Ndee4dae5c1764817ad2a8ea4e798f232",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_2044"
-      },
-      "sc:name": "Sequence"
+      "@id": "https://doi.org/10.3389/fmicb.2016.00822",
+      "@type": "sc:CreativeWork"
     }
   ]
 }

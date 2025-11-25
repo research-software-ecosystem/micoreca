@@ -41,7 +41,7 @@
   "sc:additionalType": "Web application",
   "sc:applicationSubCategory": [
     {
-      "@id": "edam:topic_3293"
+      "@id": "edam:topic_0203"
     },
     {
       "@id": "edam:topic_3125"
@@ -50,7 +50,7 @@
       "@id": "edam:topic_3511"
     },
     {
-      "@id": "edam:topic_0203"
+      "@id": "edam:topic_3293"
     },
     {
       "@id": "edam:topic_0749"
@@ -63,10 +63,10 @@
   "sc:description": "Detect transcription factor binding sites in genomic sequences using phylogenetic footprinting and experimentally-confirmed binding profiles.",
   "sc:featureList": [
     {
-      "@id": "edam:operation_0445"
+      "@id": "edam:operation_2575"
     },
     {
-      "@id": "edam:operation_2575"
+      "@id": "edam:operation_0445"
     },
     {
       "@id": "edam:operation_3222"
@@ -77,9 +77,9 @@
   ],
   "sc:name": "Consite",
   "sc:operatingSystem": [
+    "Mac",
     "Windows",
-    "Linux",
-    "Mac"
+    "Linux"
   ],
   "sc:url": "http://consite.genereg.net/"
 }

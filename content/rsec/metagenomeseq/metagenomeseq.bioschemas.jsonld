@@ -36,23 +36,27 @@
   },
   "@graph": [
     {
+      "@id": "https://doi.org/10.1038/nmeth.2658",
+      "@type": "sc:CreativeWork"
+    },
+    {
       "@id": "https://bio.tools/metagenomeseq",
       "@type": "sc:SoftwareApplication",
       "biotools:primaryContact": "Joseph N. Paulson",
       "bsc:input": [
         {
-          "@id": "_:Nc2e271564b0a497fb76bec19593bc241"
+          "@id": "_:Ne8c44b84c43d47ff88b67682cf473a78"
         },
         {
-          "@id": "_:N0739199407d34f549182c2cb21739bd1"
+          "@id": "_:N0850dd4599714aa59c2e8505458c5a53"
         }
       ],
       "bsc:output": [
         {
-          "@id": "_:Ncbe0f633d10e4c648b2747c6a040e31e"
+          "@id": "_:N376feaa1ec794de5999e2189b08a3514"
         },
         {
-          "@id": "_:N32defa304f3b4472a44874b507b35bc1"
+          "@id": "_:N7d82f3b09f464fbd898cc3a07e9b3efc"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
@@ -87,9 +91,9 @@
       "sc:license": "Artistic-2.0",
       "sc:name": "metagenomeSeq",
       "sc:operatingSystem": [
-        "Windows",
         "Linux",
-        "Mac"
+        "Mac",
+        "Windows"
       ],
       "sc:softwareHelp": {
         "@id": "http://bioconductor.org/packages/release/bioc/html/metagenomeSeq.html"
@@ -98,23 +102,7 @@
       "sc:url": "http://bioconductor.org/packages/release/bioc/html/metagenomeSeq.html"
     },
     {
-      "@id": "_:Ncbe0f633d10e4c648b2747c6a040e31e",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_1669"
-      },
-      "sc:encodingFormat": [
-        {
-          "@id": "edam:format_3547"
-        },
-        {
-          "@id": "edam:format_2330"
-        }
-      ],
-      "sc:name": "P-value"
-    },
-    {
-      "@id": "_:N32defa304f3b4472a44874b507b35bc1",
+      "@id": "_:N376feaa1ec794de5999e2189b08a3514",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2884"
@@ -130,23 +118,23 @@
       "sc:name": "Plot"
     },
     {
-      "@id": "_:Nc2e271564b0a497fb76bec19593bc241",
+      "@id": "_:N7d82f3b09f464fbd898cc3a07e9b3efc",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
-        "@id": "edam:data_3028"
+        "@id": "edam:data_1669"
       },
       "sc:encodingFormat": [
         {
-          "@id": "edam:format_3746"
+          "@id": "edam:format_3547"
         },
         {
-          "@id": "edam:format_3752"
+          "@id": "edam:format_2330"
         }
       ],
-      "sc:name": "Taxonomy"
+      "sc:name": "P-value"
     },
     {
-      "@id": "_:N0739199407d34f549182c2cb21739bd1",
+      "@id": "_:Ne8c44b84c43d47ff88b67682cf473a78",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2048"
@@ -162,8 +150,20 @@
       "sc:name": "Report"
     },
     {
-      "@id": "https://doi.org/10.1038/nmeth.2658",
-      "@type": "sc:CreativeWork"
+      "@id": "_:N0850dd4599714aa59c2e8505458c5a53",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3028"
+      },
+      "sc:encodingFormat": [
+        {
+          "@id": "edam:format_3752"
+        },
+        {
+          "@id": "edam:format_3746"
+        }
+      ],
+      "sc:name": "Taxonomy"
     }
   ]
 }

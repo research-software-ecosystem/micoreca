@@ -44,26 +44,26 @@
       "@type": "sc:SoftwareApplication",
       "bsc:input": [
         {
-          "@id": "_:N4871fc9e70a24ae4bfb81fb2b51aee0d"
+          "@id": "_:N8fb22bf55f0440ae9d3c9bc5feb32856"
         },
         {
-          "@id": "_:N4b028e4431fb411b93a086df62e9c0b8"
+          "@id": "_:N3288ec74a8434c78adfe5f16b8a55cb3"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Database portal",
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_3518"
-        },
-        {
-          "@id": "edam:topic_2229"
-        },
-        {
           "@id": "edam:topic_0121"
         },
         {
+          "@id": "edam:topic_3518"
+        },
+        {
           "@id": "edam:topic_3170"
+        },
+        {
+          "@id": "edam:topic_2229"
         },
         {
           "@id": "edam:topic_3308"
@@ -79,13 +79,13 @@
       "sc:description": "A comprehensive organoid database for the multi-perspective exploration of bulk and single-cell transcriptomic profiles of organoids.",
       "sc:featureList": [
         {
+          "@id": "edam:operation_3463"
+        },
+        {
           "@id": "edam:operation_2436"
         },
         {
           "@id": "edam:operation_3223"
-        },
-        {
-          "@id": "edam:operation_3463"
         }
       ],
       "sc:isAccessibleForFree": true,
@@ -98,20 +98,20 @@
       "sc:url": "http://www.inbirg.com/organoid_db/"
     },
     {
-      "@id": "_:N4871fc9e70a24ae4bfb81fb2b51aee0d",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_2299"
-      },
-      "sc:name": "Gene name"
-    },
-    {
-      "@id": "_:N4b028e4431fb411b93a086df62e9c0b8",
+      "@id": "_:N8fb22bf55f0440ae9d3c9bc5feb32856",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_1904"
       },
       "sc:name": "Locus ID (EntrezGene)"
+    },
+    {
+      "@id": "_:N3288ec74a8434c78adfe5f16b8a55cb3",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_2299"
+      },
+      "sc:name": "Gene name"
     }
   ]
 }
