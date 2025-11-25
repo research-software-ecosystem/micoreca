@@ -1,9 +1,10 @@
 import shutil
 import subprocess
-from pathlib import Path
 import sys
+from pathlib import Path
 
-# --- Configuration paths (ROBUST PATHS) ---
+
+# --- Configuration paths ---
 
 # 1. Define the script path (independent of the execution directory)
 SCRIPT_PATH = Path(__file__).resolve()

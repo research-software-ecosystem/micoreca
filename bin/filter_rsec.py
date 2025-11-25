@@ -1,12 +1,12 @@
 #!/usr/bin/env python
+import csv
 import json
-import shutil
 import re
+import shutil
 import sys
+import time
 from pathlib import Path
 from typing import Dict, List, Any, Optional
-import csv
-import time
 
 # Attempt to import YAML. If it fails, sets yaml to None.
 try:
