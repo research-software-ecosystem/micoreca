@@ -5,14 +5,9 @@ import re
 import shutil
 import sys
 import time
+import yaml
 from pathlib import Path
 from typing import Dict, List, Any, Optional
-
-# Attempt to import YAML. If it fails, sets yaml to None.
-try:
-    import yaml
-except ImportError:
-    yaml = None
 
 # --- Configuration paths  ---
 SCRIPT_PATH = Path(__file__).resolve()
