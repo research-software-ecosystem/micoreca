@@ -3,7 +3,6 @@ import subprocess
 import sys
 from pathlib import Path
 
-
 # --- Configuration paths ---
 
 # 1. Define the script path (independent of the execution directory)
