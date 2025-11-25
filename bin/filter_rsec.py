@@ -5,9 +5,15 @@ import re
 import shutil
 import sys
 import time
-import yaml
 from pathlib import Path
-from typing import Dict, List, Any, Optional
+from typing import (
+    Any,
+    Dict,
+    List,
+    Optional,
+)
+
+import yaml
 
 # --- Configuration paths  ---
 SCRIPT_PATH = Path(__file__).resolve()
