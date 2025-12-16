@@ -36,6 +36,10 @@
   },
   "@graph": [
     {
+      "@id": "https://doi.org/10.1093/bioinformatics/bty692",
+      "@type": "sc:CreativeWork"
+    },
+    {
       "@id": "https://bio.tools/StructureProfiler",
       "@type": "sc:SoftwareApplication",
       "biotools:primaryContact": "Matthias Rarey",
@@ -46,17 +50,17 @@
           "@id": "edam:topic_0196"
         },
         {
-          "@id": "edam:topic_0082"
+          "@id": "edam:topic_0166"
         },
         {
-          "@id": "edam:topic_0166"
+          "@id": "edam:topic_0082"
         }
       ],
       "sc:citation": [
+        "pubmed:30124779",
         {
           "@id": "https://doi.org/10.1093/bioinformatics/bty692"
-        },
-        "pubmed:30124779"
+        }
       ],
       "sc:description": "Tool for 3D protein structure profiling.",
       "sc:featureList": [
@@ -74,15 +78,11 @@
       "sc:license": "Other",
       "sc:name": "StructureProfiler",
       "sc:operatingSystem": [
-        "Linux",
         "Windows",
+        "Linux",
         "Mac"
       ],
       "sc:url": "https://www.zbh.uni-hamburg.de/forschung/amd/software/structureprofiler.html"
-    },
-    {
-      "@id": "https://doi.org/10.1093/bioinformatics/bty692",
-      "@type": "sc:CreativeWork"
     }
   ]
 }

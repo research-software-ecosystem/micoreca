@@ -39,10 +39,10 @@
       "@id": "https://bio.tools/prophecy",
       "@type": "sc:SoftwareApplication",
       "bsc:input": {
-        "@id": "_:Na55440cd17ca4fa585e8333111f53f20"
+        "@id": "_:N8dcccebdb15248ca8e951cb58324ff14"
       },
       "bsc:output": {
-        "@id": "_:Ned7c2317a38d4a859e7d748375c4d7f5"
+        "@id": "_:Ncb4ac904db2d4c738dd53b4c577e9106"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Database portal",
@@ -51,10 +51,10 @@
       },
       "sc:citation": [
         "pubmed:17148481",
+        "pmcid:PMC1761427",
         {
           "@id": "https://doi.org/10.1093/nar/gkl1029"
-        },
-        "pmcid:PMC1761427"
+        }
       ],
       "sc:description": "Profiling of phenotypic characteristics in yeast.",
       "sc:featureList": {
@@ -62,9 +62,9 @@
       },
       "sc:name": "PROPHECY",
       "sc:operatingSystem": [
+        "Windows",
         "Linux",
-        "Mac",
-        "Windows"
+        "Mac"
       ],
       "sc:provider": "bils.se",
       "sc:softwareHelp": {
@@ -73,7 +73,7 @@
       "sc:url": "http://prophecy.lundberg.gu.se/"
     },
     {
-      "@id": "_:Na55440cd17ca4fa585e8333111f53f20",
+      "@id": "_:N8dcccebdb15248ca8e951cb58324ff14",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0968"
@@ -81,7 +81,7 @@
       "sc:name": "Keyword"
     },
     {
-      "@id": "_:Ned7c2317a38d4a859e7d748375c4d7f5",
+      "@id": "_:Ncb4ac904db2d4c738dd53b4c577e9106",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2337"

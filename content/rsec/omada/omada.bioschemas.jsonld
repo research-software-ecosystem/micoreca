@@ -46,7 +46,7 @@
         "@id": "https://orcid.org/0000-0001-9993-6017"
       },
       "bsc:input": {
-        "@id": "_:Nf293aa969c13427aa70015284a84c529"
+        "@id": "_:N4125c699d3374a578ebed1bad7bf192a"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Script",
@@ -69,7 +69,7 @@
       "sc:url": "https://bioconductor.org/packages/release/bioc/html/omada.html"
     },
     {
-      "@id": "_:Nf293aa969c13427aa70015284a84c529",
+      "@id": "_:N4125c699d3374a578ebed1bad7bf192a",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2603"

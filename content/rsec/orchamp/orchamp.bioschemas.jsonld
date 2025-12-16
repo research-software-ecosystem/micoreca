@@ -36,25 +36,21 @@
   },
   "@graph": [
     {
-      "@id": "https://orcid.org/0000-0001-5991-4657",
-      "@type": "sc:Person"
-    },
-    {
       "@id": "https://bio.tools/orchamp",
       "@type": "sc:SoftwareApplication",
       "biotools:primaryContact": [
         {
-          "@id": "https://orcid.org/0000-0002-7777-8211"
+          "@id": "https://orcid.org/0000-0002-5388-5274"
         },
         {
-          "@id": "https://orcid.org/0000-0002-5388-5274"
+          "@id": "https://orcid.org/0000-0002-7777-8211"
         }
       ],
       "bsc:input": {
-        "@id": "_:N257cee760d11438f839393e695280945"
+        "@id": "_:N7a9a4cf1f5fc428c9c27df1056451177"
       },
       "bsc:output": {
-        "@id": "_:Nfa85849dc6c94f47a143c3aa6b32b912"
+        "@id": "_:N4269de2dd12145ccb844d45b387fc9f6"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Web API",
@@ -63,10 +59,10 @@
           "@id": "edam:topic_4038"
         },
         {
-          "@id": "edam:topic_0610"
+          "@id": "edam:topic_0780"
         },
         {
-          "@id": "edam:topic_0780"
+          "@id": "edam:topic_0610"
         }
       ],
       "sc:author": {
@@ -85,7 +81,7 @@
       "sc:url": "https://orchamp.osug.fr/"
     },
     {
-      "@id": "_:N257cee760d11438f839393e695280945",
+      "@id": "_:N7a9a4cf1f5fc428c9c27df1056451177",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3707"
@@ -93,7 +89,7 @@
       "sc:name": "Biodiversity data"
     },
     {
-      "@id": "_:Nfa85849dc6c94f47a143c3aa6b32b912",
+      "@id": "_:N4269de2dd12145ccb844d45b387fc9f6",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3707"
@@ -104,16 +100,20 @@
       "sc:name": "Biodiversity data"
     },
     {
+      "@id": "https://doi.org/10.5802/crbiol.165",
+      "@type": "sc:CreativeWork"
+    },
+    {
       "@id": "https://orcid.org/0000-0002-7777-8211",
+      "@type": "sc:Person"
+    },
+    {
+      "@id": "https://orcid.org/0000-0001-5991-4657",
       "@type": "sc:Person"
     },
     {
       "@id": "https://orcid.org/0000-0002-5388-5274",
       "@type": "sc:Person"
-    },
-    {
-      "@id": "https://doi.org/10.5802/crbiol.165",
-      "@type": "sc:CreativeWork"
     }
   ]
 }

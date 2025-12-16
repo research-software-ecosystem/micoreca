@@ -40,18 +40,18 @@
       "@type": "sc:SoftwareApplication",
       "bsc:input": [
         {
-          "@id": "_:Naac14f7bd0454fe883e81b44cd57c1f7"
+          "@id": "_:N52f776e260324f798f4e40d42ac74083"
         },
         {
-          "@id": "_:Na4cf53ae65524a3992b529449feaa789"
+          "@id": "_:Nf427127e11e14938a16810f51021e285"
         }
       ],
       "bsc:output": [
         {
-          "@id": "_:Nd718d79f5dc241c1b25f3af0073095df"
+          "@id": "_:N2290d6d56d7e443bb85024b76e9b8720"
         },
         {
-          "@id": "_:Nf4a7544a85d34a0b8f7d7d76aa9dc43e"
+          "@id": "_:Nadab8bc432b145d4bb507155a80d922a"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
@@ -83,33 +83,14 @@
         "@id": "https://github.com/smdabdoub/kraken-biom/blob/master/README.rst"
       },
       "sc:softwareVersion": [
-        "1.0.0",
+        "1.2.0",
         "1.0.1",
-        "1.2.0"
+        "1.0.0"
       ],
       "sc:url": "https://github.com/smdabdoub/kraken-biom"
     },
     {
-      "@id": "_:Nd718d79f5dc241c1b25f3af0073095df",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3707"
-      },
-      "sc:encodingFormat": [
-        {
-          "@id": "edam:format_3590"
-        },
-        {
-          "@id": "edam:format_3464"
-        },
-        {
-          "@id": "edam:format_3746"
-        }
-      ],
-      "sc:name": "Biodiversity data"
-    },
-    {
-      "@id": "_:Nf4a7544a85d34a0b8f7d7d76aa9dc43e",
+      "@id": "_:N52f776e260324f798f4e40d42ac74083",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3028"
@@ -119,57 +100,76 @@
           "@id": "edam:format_3590"
         },
         {
-          "@id": "edam:format_3464"
-        },
-        {
-          "@id": "edam:format_3746"
-        }
-      ],
-      "sc:name": "Taxonomy"
-    },
-    {
-      "@id": "_:Naac14f7bd0454fe883e81b44cd57c1f7",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3028"
-      },
-      "sc:encodingFormat": [
-        {
-          "@id": "edam:format_3590"
-        },
-        {
-          "@id": "edam:format_3464"
-        },
-        {
           "@id": "edam:format_3475"
         },
         {
           "@id": "edam:format_3752"
+        },
+        {
+          "@id": "edam:format_3464"
         }
       ],
       "sc:name": "Taxonomy"
     },
     {
-      "@id": "_:Na4cf53ae65524a3992b529449feaa789",
+      "@id": "_:Nf427127e11e14938a16810f51021e285",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3707"
       },
       "sc:encodingFormat": [
         {
-          "@id": "edam:format_3590"
+          "@id": "edam:format_3475"
+        },
+        {
+          "@id": "edam:format_3752"
         },
         {
           "@id": "edam:format_3464"
         },
         {
-          "@id": "edam:format_3475"
-        },
-        {
-          "@id": "edam:format_3752"
+          "@id": "edam:format_3590"
         }
       ],
       "sc:name": "Biodiversity data"
+    },
+    {
+      "@id": "_:N2290d6d56d7e443bb85024b76e9b8720",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3707"
+      },
+      "sc:encodingFormat": [
+        {
+          "@id": "edam:format_3464"
+        },
+        {
+          "@id": "edam:format_3746"
+        },
+        {
+          "@id": "edam:format_3590"
+        }
+      ],
+      "sc:name": "Biodiversity data"
+    },
+    {
+      "@id": "_:Nadab8bc432b145d4bb507155a80d922a",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3028"
+      },
+      "sc:encodingFormat": [
+        {
+          "@id": "edam:format_3746"
+        },
+        {
+          "@id": "edam:format_3590"
+        },
+        {
+          "@id": "edam:format_3464"
+        }
+      ],
+      "sc:name": "Taxonomy"
     }
   ]
 }

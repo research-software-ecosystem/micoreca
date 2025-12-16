@@ -47,24 +47,24 @@
       },
       "bsc:input": [
         {
-          "@id": "_:Nebd3279bba704314acc52bfea167475a"
+          "@id": "_:N4f8540237a7e4f1489218d7a46a95845"
         },
         {
-          "@id": "_:Na9364a73b8334e258cc3aa4eb1ab43a2"
+          "@id": "_:N748c73b7a60042b6b5b216b07e66e972"
         },
         {
-          "@id": "_:N7c0da6f1b43d486cb16f7ef446f3cfc3"
+          "@id": "_:N7d3d13bf1aff48c1a515eb2dcddc2fee"
         }
       ],
       "bsc:output": [
         {
-          "@id": "_:N04875d42aaf64037b00874db961d6656"
+          "@id": "_:Nd8f442d6a4844f6e950bb906f72a0744"
         },
         {
-          "@id": "_:Nabb4701bdb93447faa1de26ba76312bb"
+          "@id": "_:N3381b2a6835343698ee7c0e81898cf09"
         },
         {
-          "@id": "_:N5662926c9df14c50b14e6f4e9070a87d"
+          "@id": "_:N5b7f7850c9124c6b975525efcedeb3e7"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
@@ -78,10 +78,10 @@
           "@id": "edam:operation_0524"
         },
         {
-          "@id": "edam:operation_3672"
+          "@id": "edam:operation_3460"
         },
         {
-          "@id": "edam:operation_3460"
+          "@id": "edam:operation_3672"
         }
       ],
       "sc:isAccessibleForFree": true,
@@ -96,40 +96,7 @@
       "sc:url": "https://forgemia.inra.fr/genotoul-bioinfo/metagwgs"
     },
     {
-      "@id": "_:Nebd3279bba704314acc52bfea167475a",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3494"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_1930"
-      },
-      "sc:name": "DNA sequence"
-    },
-    {
-      "@id": "_:Na9364a73b8334e258cc3aa4eb1ab43a2",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3494"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_1929"
-      },
-      "sc:name": "DNA sequence"
-    },
-    {
-      "@id": "_:N7c0da6f1b43d486cb16f7ef446f3cfc3",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3494"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_1930"
-      },
-      "sc:name": "DNA sequence"
-    },
-    {
-      "@id": "_:N04875d42aaf64037b00874db961d6656",
+      "@id": "_:Nd8f442d6a4844f6e950bb906f72a0744",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3917"
@@ -140,7 +107,18 @@
       "sc:name": "Count matrix"
     },
     {
-      "@id": "_:Nabb4701bdb93447faa1de26ba76312bb",
+      "@id": "_:N3381b2a6835343698ee7c0e81898cf09",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3494"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_1929"
+      },
+      "sc:name": "DNA sequence"
+    },
+    {
+      "@id": "_:N5b7f7850c9124c6b975525efcedeb3e7",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3028"
@@ -151,13 +129,35 @@
       "sc:name": "Taxonomy"
     },
     {
-      "@id": "_:N5662926c9df14c50b14e6f4e9070a87d",
+      "@id": "_:N4f8540237a7e4f1489218d7a46a95845",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3494"
       },
       "sc:encodingFormat": {
         "@id": "edam:format_1929"
+      },
+      "sc:name": "DNA sequence"
+    },
+    {
+      "@id": "_:N748c73b7a60042b6b5b216b07e66e972",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3494"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_1930"
+      },
+      "sc:name": "DNA sequence"
+    },
+    {
+      "@id": "_:N7d3d13bf1aff48c1a515eb2dcddc2fee",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3494"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_1930"
       },
       "sc:name": "DNA sequence"
     }

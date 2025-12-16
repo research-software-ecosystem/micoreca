@@ -36,22 +36,18 @@
   },
   "@graph": [
     {
-      "@id": "https://doi.org/10.1371/journal.pone.0047656",
-      "@type": "sc:CreativeWork"
-    },
-    {
       "@id": "https://bio.tools/mocat",
       "@type": "sc:SoftwareApplication",
       "biotools:primaryContact": "Georg Zeller",
       "bsc:input": {
-        "@id": "_:N0e17729e9454461aaa8b66ce51d6f622"
+        "@id": "_:Nf73e4a2053d44cfba47d8745fe93d793"
       },
       "bsc:output": [
         {
-          "@id": "_:Nd2d8f7ae909140689c39e57539e8ae91"
+          "@id": "_:N78cc8ff281a14895b66e52154e922b74"
         },
         {
-          "@id": "_:N196c486c1e6f43588d12d10736834f54"
+          "@id": "_:N0a7c78c8c0b04beb8d7c36a2a35b487f"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
@@ -60,19 +56,25 @@
         "@id": "edam:topic_3174"
       },
       "sc:citation": [
+        "pubmed:23082188",
+        {
+          "@id": "https://doi.org/10.1371/journal.pone.0047656"
+        },
         "pubmed:27153620",
-        "pmcid:PMC4978931",
         {
           "@id": "https://doi.org/10.1093/bioinformatics/btw183"
         },
         "pmcid:PMC3474746",
-        "pubmed:23082188",
-        {
-          "@id": "https://doi.org/10.1371/journal.pone.0047656"
-        }
+        "pmcid:PMC4978931"
       ],
       "sc:description": "MOCAT is a modular and scalable software pipeline for analyzing shotgun metagenomics datasets generated with Illumina technology. Starting from raw fastQ files, it can quality-filter and remove contaminants from them, assemble metagenomic reads into contigs, predict prokaryotic genes on these, identify phylogenetic marker genes and generate taxonomic abundance profiles by mapping reads to these marker genes.",
       "sc:featureList": [
+        {
+          "@id": "edam:operation_3672"
+        },
+        {
+          "@id": "edam:operation_3200"
+        },
         {
           "@id": "edam:operation_0310"
         },
@@ -80,13 +82,7 @@
           "@id": "edam:operation_2454"
         },
         {
-          "@id": "edam:operation_3672"
-        },
-        {
           "@id": "edam:operation_3187"
-        },
-        {
-          "@id": "edam:operation_3200"
         }
       ],
       "sc:isAccessibleForFree": true,
@@ -97,8 +93,8 @@
         "Mac"
       ],
       "sc:provider": [
-        "European Molecular Biology Laboratory (EMBL)",
-        "HD-HuB"
+        "HD-HuB",
+        "European Molecular Biology Laboratory (EMBL)"
       ],
       "sc:softwareHelp": {
         "@id": "http://vm-lux.embl.de/~kultima/share/MOCAT/v2.0/MOCATv2.0.manual.pdf"
@@ -107,18 +103,7 @@
       "sc:url": "http://vm-lux.embl.de/~kultima/MOCAT/"
     },
     {
-      "@id": "_:Nd2d8f7ae909140689c39e57539e8ae91",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_0925"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_1929"
-      },
-      "sc:name": "Sequence assembly"
-    },
-    {
-      "@id": "_:N196c486c1e6f43588d12d10736834f54",
+      "@id": "_:N78cc8ff281a14895b66e52154e922b74",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2082"
@@ -129,7 +114,18 @@
       "sc:name": "Matrix"
     },
     {
-      "@id": "_:N0e17729e9454461aaa8b66ce51d6f622",
+      "@id": "_:N0a7c78c8c0b04beb8d7c36a2a35b487f",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_0925"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_1929"
+      },
+      "sc:name": "Sequence assembly"
+    },
+    {
+      "@id": "_:Nf73e4a2053d44cfba47d8745fe93d793",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2975"
@@ -146,6 +142,10 @@
     },
     {
       "@id": "https://doi.org/10.1093/bioinformatics/btw183",
+      "@type": "sc:CreativeWork"
+    },
+    {
+      "@id": "https://doi.org/10.1371/journal.pone.0047656",
       "@type": "sc:CreativeWork"
     }
   ]

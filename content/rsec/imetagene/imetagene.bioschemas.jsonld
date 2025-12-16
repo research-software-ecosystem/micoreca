@@ -36,38 +36,34 @@
   },
   "@graph": [
     {
-      "@id": "https://doi.org/10.1371/journal.pcbi.1004751",
-      "@type": "sc:CreativeWork"
-    },
-    {
       "@id": "https://bio.tools/imetagene",
       "@type": "sc:SoftwareApplication",
       "biotools:primaryContact": "Audrey Lemacon",
       "bsc:input": {
-        "@id": "_:N1cd145a2a5e64284977cfafffafe1a99"
+        "@id": "_:N97073263fbcf4c128c391da4c6d48860"
       },
       "bsc:output": [
         {
-          "@id": "_:Naefb745c4d3e408f95018c4a7125fd10"
+          "@id": "_:N3d47351655714720beac8288bca0d5c8"
         },
         {
-          "@id": "_:Ndf5936006c2d4d72b6b7e76424490bca"
+          "@id": "_:Nb069bba862f54f2e9cdc98a5961f646d"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": [
-        "Command-line tool",
-        "Library"
+        "Library",
+        "Command-line tool"
       ],
       "sc:applicationSubCategory": [
         {
           "@id": "edam:topic_3053"
         },
         {
-          "@id": "edam:topic_3678"
+          "@id": "edam:topic_3168"
         },
         {
-          "@id": "edam:topic_3168"
+          "@id": "edam:topic_3678"
         }
       ],
       "sc:citation": {
@@ -76,18 +72,18 @@
       "sc:description": "This package provide a graphical user interface to the metagene package. This will allow people with minimal R experience to easily complete metagene analysis.",
       "sc:featureList": [
         {
-          "@id": "edam:operation_2430"
+          "@id": "edam:operation_2945"
         },
         {
-          "@id": "edam:operation_2945"
+          "@id": "edam:operation_2430"
         }
       ],
       "sc:license": "Artistic-2.0",
       "sc:name": "Imetagene",
       "sc:operatingSystem": [
+        "Mac",
         "Windows",
-        "Linux",
-        "Mac"
+        "Linux"
       ],
       "sc:softwareHelp": {
         "@id": "http://bioconductor.org/packages/release/bioc/html/Imetagene.html"
@@ -96,23 +92,7 @@
       "sc:url": "http://bioconductor.org/packages/release/bioc/html/Imetagene.html"
     },
     {
-      "@id": "_:Naefb745c4d3e408f95018c4a7125fd10",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_2082"
-      },
-      "sc:encodingFormat": [
-        {
-          "@id": "edam:format_3603"
-        },
-        {
-          "@id": "edam:format_3508"
-        }
-      ],
-      "sc:name": "Matrix"
-    },
-    {
-      "@id": "_:Ndf5936006c2d4d72b6b7e76424490bca",
+      "@id": "_:N3d47351655714720beac8288bca0d5c8",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2884"
@@ -128,7 +108,23 @@
       "sc:name": "Plot"
     },
     {
-      "@id": "_:N1cd145a2a5e64284977cfafffafe1a99",
+      "@id": "_:Nb069bba862f54f2e9cdc98a5961f646d",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_2082"
+      },
+      "sc:encodingFormat": [
+        {
+          "@id": "edam:format_3603"
+        },
+        {
+          "@id": "edam:format_3508"
+        }
+      ],
+      "sc:name": "Matrix"
+    },
+    {
+      "@id": "_:N97073263fbcf4c128c391da4c6d48860",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0863"
@@ -142,6 +138,10 @@
         }
       ],
       "sc:name": "Sequence alignment"
+    },
+    {
+      "@id": "https://doi.org/10.1371/journal.pcbi.1004751",
+      "@type": "sc:CreativeWork"
     }
   ]
 }

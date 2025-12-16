@@ -36,39 +36,35 @@
   },
   "@graph": [
     {
-      "@id": "https://doi.org/10.1093/bioinformatics/btl326",
-      "@type": "sc:CreativeWork"
-    },
-    {
       "@id": "https://bio.tools/cpm",
       "@type": "sc:SoftwareApplication",
       "bsc:input": [
         {
-          "@id": "_:Ncd8f37593ef84d53a49128806796aadb"
+          "@id": "_:Nc0938b8410dd4609b8033e7ce8c93b43"
         },
         {
-          "@id": "_:N45a8fcc9c769401584fbe113b33c5aa9"
+          "@id": "_:N35b6542f69934a01a3caebc1190057b8"
         }
       ],
       "bsc:output": [
         {
-          "@id": "_:Naadcf06c836b4df8bd11e5a9f76841dc"
+          "@id": "_:Ne29bd8e157134d6e859a7ab94cb9e16f"
         },
         {
-          "@id": "_:N827877f1f8ce4efb8b927e56ce21f6b4"
+          "@id": "_:N0f53318d23c74a72b8a7fee30a50f86d"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Command-line tool",
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_0091"
-        },
-        {
           "@id": "edam:topic_3071"
         },
         {
           "@id": "edam:topic_3520"
+        },
+        {
+          "@id": "edam:topic_0091"
         },
         {
           "@id": "edam:topic_3307"
@@ -92,18 +88,7 @@
       "sc:url": "http://www.cs.toronto.edu/%7ejenn/CPM/"
     },
     {
-      "@id": "_:Ncd8f37593ef84d53a49128806796aadb",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_0944"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_2330"
-      },
-      "sc:name": "Peptide mass fingerprint"
-    },
-    {
-      "@id": "_:N45a8fcc9c769401584fbe113b33c5aa9",
+      "@id": "_:Ne29bd8e157134d6e859a7ab94cb9e16f",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2536"
@@ -114,7 +99,29 @@
       "sc:name": "Mass spectrometry data"
     },
     {
-      "@id": "_:Naadcf06c836b4df8bd11e5a9f76841dc",
+      "@id": "_:N0f53318d23c74a72b8a7fee30a50f86d",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_0944"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_2330"
+      },
+      "sc:name": "Peptide mass fingerprint"
+    },
+    {
+      "@id": "_:Nc0938b8410dd4609b8033e7ce8c93b43",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_0944"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_2330"
+      },
+      "sc:name": "Peptide mass fingerprint"
+    },
+    {
+      "@id": "_:N35b6542f69934a01a3caebc1190057b8",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2536"
@@ -125,15 +132,8 @@
       "sc:name": "Mass spectrometry data"
     },
     {
-      "@id": "_:N827877f1f8ce4efb8b927e56ce21f6b4",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_0944"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_2330"
-      },
-      "sc:name": "Peptide mass fingerprint"
+      "@id": "https://doi.org/10.1093/bioinformatics/btl326",
+      "@type": "sc:CreativeWork"
     }
   ]
 }

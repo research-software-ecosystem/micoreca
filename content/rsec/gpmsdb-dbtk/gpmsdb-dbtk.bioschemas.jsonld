@@ -36,13 +36,17 @@
   },
   "@graph": [
     {
+      "@id": "https://doi.org/10.1186/s13059-023-03096-4",
+      "@type": "sc:CreativeWork"
+    },
+    {
       "@id": "https://bio.tools/gpmsdb-dbtk",
       "@type": "sc:SoftwareApplication",
       "bsc:input": {
-        "@id": "_:N79e17b0620a14f23b13116ef2d715a9e"
+        "@id": "_:N529aa8bf43bb4b989310646709c896cb"
       },
       "bsc:output": {
-        "@id": "_:N927c284ddaa4449696c15f285125a58b"
+        "@id": "_:N70ba8778b47c45efb55a6712ee46a696"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Command-line tool",
@@ -61,8 +65,8 @@
         {
           "@id": "https://doi.org/10.1186/s13059-023-03096-4"
         },
-        "pmcid:PMC10696839",
-        "pubmed:38049850"
+        "pubmed:38049850",
+        "pmcid:PMC10696839"
       ],
       "sc:description": "Toolkit for GPMsDB-tk to modify its database with user-provided bacterial and archaeal genomes/metagenome-assembled genomes (MAGs)",
       "sc:featureList": {
@@ -75,7 +79,7 @@
       "sc:url": "https://github.com/ysekig/GPMsDB-dbtk"
     },
     {
-      "@id": "_:N927c284ddaa4449696c15f285125a58b",
+      "@id": "_:N70ba8778b47c45efb55a6712ee46a696",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0897"
@@ -86,7 +90,7 @@
       "sc:name": "Protein property"
     },
     {
-      "@id": "_:N79e17b0620a14f23b13116ef2d715a9e",
+      "@id": "_:N529aa8bf43bb4b989310646709c896cb",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_1234"
@@ -95,10 +99,6 @@
         "@id": "edam:format_2200"
       },
       "sc:name": "Sequence set (nucleic acid)"
-    },
-    {
-      "@id": "https://doi.org/10.1186/s13059-023-03096-4",
-      "@type": "sc:CreativeWork"
     }
   ]
 }
