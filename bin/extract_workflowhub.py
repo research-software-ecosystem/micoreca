@@ -212,8 +212,8 @@ class Workflow:
         """
         return (
             "{{ galaxy_base_url }}"
-            + f"/workflows/trs_import?trs_server={ self.source.lower() \
-                                                  }.eu&run_form=true&trs_id={ self.id }"
+            + f"/workflows/trs_import?trs_server={ self.source.lower() }\
+            .eu&run_form=true&trs_id={ self.id }"
         )
 
     def get_description(self) -> str:
