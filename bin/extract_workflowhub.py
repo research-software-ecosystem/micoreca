@@ -38,7 +38,7 @@ class Workflow:
         self.license = ""
         self.doi = ""
         self.projects: List[str] = []
-        self.keep = False
+        self.keep = "To Cure"
         self.type = ""
         self.description = ""
         self.filtered_on = ""
@@ -69,6 +69,8 @@ class Workflow:
         self.projects = wf["projects"]
         self.type = wf["type"]
         self.description = wf["description"]
+        if "filtered_on" in wf:
+            self.filtered_on = wf["filtered_on"]
         if "keep" in wf:
             self.keep = wf["keep"]
 
@@ -299,8 +301,8 @@ class Workflows:
         for w in self.workflows:
             if w.link in wf_status:
                 w.update_status(wf_status[w.link])
-            # If workflow status is True, skip test and keep it
-            if w.keep:
+            # If workflow status is set to "Keep", skip test and keep it
+            if w.keep == "Keep":
                 to_keep_wf.append(w)
                 w.filtered_on = wf_status[w.link]["Filtered on"]
             elif w.test_edam_terms(keywords["edam"]):
@@ -321,7 +323,7 @@ class Workflows:
         for w in self.workflows:
             if w.link in wf_status:
                 w.update_status(wf_status[w.link])
-            if w.keep:
+            if w.keep == "Keep":
                 curated_wfs.append(w)
         self.workflows = curated_wfs
 
