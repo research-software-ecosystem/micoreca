@@ -1,4 +1,5 @@
 """Script for WorkflowHub extraction"""
+
 #!/usr/bin/env python
 
 import argparse
@@ -45,7 +46,7 @@ class Workflow:
     def init_by_importing(self, wf: dict) -> None:
         """
         Init Workflow instance by importing
-        
+
         :param wf: workflow metadata
         :type wf: dict
         """
@@ -74,34 +75,34 @@ class Workflow:
     def init_from_search(self, wf: dict, source: str) -> None:
         """
         Init Workflow instance from search
-        
+
         :param wf: workflow metadata
         :type wf: dict
         :param source: extraction source
         :type source: str
         """
+        wf_attributes = wf["data"]["attributes"]
         self.source = source
         self.id = wf["data"]["id"]
         self.link = f"https:/{ source.lower() }.eu{ wf['data']['links']['self'] }"
-        self.name = wf["data"]["attributes"]["title"]
-        self.tags = [w.lower() for w in wf["data"]["attributes"]["tags"]]
-        self.create_time = utils.format_date(wf["data"]["attributes"]["created_at"])
-        self.update_time = utils.format_date(wf["data"]["attributes"]["updated_at"])
-        self.latest_version = wf["data"]["attributes"]["latest_version"]
-        self.versions = len(wf["data"]["attributes"]["versions"])
-        internals = wf["data"]["attributes"].get("internals", {})
+        self.name = wf_attributes["title"]
+        self.tags = [w.lower() for w in wf_attributes["tags"]]
+        self.create_time = utils.format_date(wf_attributes["created_at"])
+        self.update_time = utils.format_date(wf_attributes["updated_at"])
+        self.latest_version = wf_attributes["latest_version"]
+        self.versions = len(wf_attributes["versions"])
+        internals = wf_attributes.get("internals", {})
         steps = internals.get("steps")
         if steps is not None:
             self.number_of_steps = len(steps)
         else:
             self.number_of_steps = 0
-        self.license = wf["data"]["attributes"]["license"]
-        self.doi = wf["data"]["attributes"]["doi"]
-        self.edam_topic = [t["label"] for t in wf["data"]["attributes"]["topic_annotations"]]
-        self.edam_operation = [
-            t["label"] for t in wf["data"]["attributes"]["operation_annotations"]]
-        self.type = wf["data"]["attributes"]["workflow_class"]["title"]
-        self.description = wf["data"]["attributes"]["description"]
+        self.license = wf_attributes["license"]
+        self.doi = wf_attributes["doi"]
+        self.edam_topic = [t["label"] for t in wf_attributes["topic_annotations"]]
+        self.edam_operation = [t["label"] for t in wf_attributes["operation_annotations"]]
+        self.type = wf_attributes["workflow_class"]["title"]
+        self.description = wf_attributes["description"]
 
         self.add_creators(wf)
         self.add_tools(wf)
@@ -248,8 +249,7 @@ class Workflows:
 
     def init_by_importing(self, wfs_to_import: dict) -> None:
         """
-        Loads the workflows from a dict following the structure 
-        in communities/all/resources/test_workflows.json
+        Loads the workflows from a dict following the structure in communities/all/resources/test_workflows.json
         (the json created by init_by_searching)
         """
         for iwf in wfs_to_import:
@@ -325,8 +325,7 @@ class Workflows:
                 curated_wfs.append(w)
         self.workflows = curated_wfs
 
-    def export_workflows_to_tsv(self, output_fp: str,
-                                to_keep_columns: Optional[List[str]] = None) -> None:
+    def export_workflows_to_tsv(self, output_fp: str, to_keep_columns: Optional[List[str]] = None) -> None:
         """
         Export workflows to a TSV file
         """
@@ -359,8 +358,7 @@ class Workflows:
             df[col] = utils.format_list_column(df[col])
 
         df = (
-            df.sort_values(by=["projects"]).rename(columns=renaming)
-            .fillna("").reindex(columns=list(renaming.values()))
+            df.sort_values(by=["projects"]).rename(columns=renaming).fillna("").reindex(columns=list(renaming.values()))
         )
 
         if to_keep_columns is not None:
@@ -368,14 +366,14 @@ class Workflows:
 
         df.to_csv(output_fp, sep="\t", index=False)
 
-    def extract_tools(self, output_tools: str):
+    def extract_tools(self, output_tools: str) -> None:
         """
         Extract tools information for workflows
-        
+
         :param output_tools: Path to JSON to save tools
         :type output_tools: str
         """
-        tools_dict = {}
+        tools_dict: dict[str, list[str]] = {}
         for wf in self.workflows:
             tools_list = wf.tools
             for tool in tools_list:
@@ -386,7 +384,8 @@ class Workflows:
                     else:
                         tools_dict[clean_tool_name] = [wf.name]
 
-        utils.export_to_json(tools_dict, output_tools)
+        utils.export_to_json([tools_dict], output_tools)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Extract Workflows from WorkflowHub")
@@ -394,8 +393,7 @@ if __name__ == "__main__":
 
     # Extract Workflows
     extract = subparser.add_parser("extract", help="Extract all workflows")
-    extract.add_argument("--all", "-o", required=True,
-                         help="Filepath to JSON with all extracted workflows")
+    extract.add_argument("--all", "-o", required=True, help="Filepath to JSON with all extracted workflows")
     extract.add_argument(
         "--test",
         action="store_true",
@@ -465,18 +463,8 @@ if __name__ == "__main__":
 
     # Extract tools from workflows
     extractools = subparser.add_parser("extract_tools", help="Extract tools ")
-    extractools.add_argument(
-        "--workflows",
-        "-w",
-        required=True,
-        help="Filepath to JSON with curated workflows"
-    )
-    extractools.add_argument(
-        "--tools",
-        "-t",
-        required=True,
-        help="Filepath to a JSON file to save tools"
-    )
+    extractools.add_argument("--workflows", "-w", required=True, help="Filepath to JSON with curated workflows")
+    extractools.add_argument("--tools", "-t", required=True, help="Filepath to a JSON file to save tools")
 
     args = parser.parse_args()
 
