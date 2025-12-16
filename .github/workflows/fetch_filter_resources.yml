@@ -13,6 +13,46 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  fetch-recipes:
+    runs-on: ubuntu-latest
+    name: Fetch Bioconda recipes
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - name: Install requirement
+        run: |
+          python -m pip install -r requirements.txt
+          sudo apt-get install jq
+      - name: Extract all conda recipes from Bioconda
+        run: | 
+          python bin/bioconda_manager.py \
+            extract \
+            --all content/bioconda/recipes_all.json
+      - name: Filter recipes based on keywords
+        run: | 
+          python bin/bioconda_manager.py \
+            filter \
+            --all content/bioconda/recipes_all.json \
+            --json-filtered content/bioconda/recipes_filtered.json \
+            --tsv-filtered content/bioconda/recipes_filtered.tsv \
+            --status content/bioconda/recipes_status.tsv \
+            --keywords keywords.yml
+      - name: Curate recipes based on status
+        run: | 
+          python bin/bioconda_manager.py \
+            curate \
+            --filtered content/bioconda/recipes_filtered.json \
+            --status content/bioconda/recipes_status.tsv \
+            --json-curated content/bioconda/recipes_curated.json \
+            --tsv-curated content/bioconda/recipes_curated.tsv
+      - name: Archive workflows artifacts
+        uses: actions/upload-artifact@v5
+        with:
+          name: workflows
+          path: content/bioconda/recipes*
   #fetch-rsec:
   #  runs-on: ubuntu-latest
   #  name: Fetch RSEc resources
