@@ -88,7 +88,7 @@ class Workflow:
         wf_attributes = wf["data"]["attributes"]
         self.source = source
         self.id = wf["data"]["id"]
-        self.link = f"https:/{ source.lower() }.eu{ wf['data']['links']['self'] }"
+        self.link = f"https://{ source.lower() }.eu{ wf['data']['links']['self'] }"
         self.name = wf_attributes["title"]
         self.tags = [w.lower() for w in wf_attributes["tags"]]
         self.create_time = utils.format_date(wf_attributes["created_at"])

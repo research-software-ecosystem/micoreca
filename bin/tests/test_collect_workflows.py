@@ -272,11 +272,11 @@ class TestWorkflow(unittest.TestCase):
         result = self.workflow.test_name(keywords)
 
         self.assertTrue(result)
-        self.assertEqual(self.workflow.filtered_on, "metag.* in name")
+        self.assertEqual(self.workflow.filtered_on, "metage.* in name")
 
     def test_test_name_no_match(self) -> None:
         """Test test_name without matching keywords"""
-        keywords = {"keywords": ["metage.*"]}
+        keywords = {"keywords": ["metage.*"], "acronyms": ["ITS"]}
         self.workflow.name = "Proteomics Analysis Pipeline"
 
         result = self.workflow.test_name(keywords)
@@ -295,7 +295,7 @@ class TestWorkflow(unittest.TestCase):
 
     def test_test_description_no_match(self) -> None:
         """Test test_description without matching keywords"""
-        keywords = {"keywords": ["metage.*"]}
+        keywords = {"keywords": ["metage.*"], "acronyms": ["ITS"]}
         self.workflow.description = "This workflow analyzes RNA-seq data"
 
         result = self.workflow.test_description(keywords)
@@ -330,7 +330,6 @@ class TestWorkflows(unittest.TestCase):
         workflows = Workflows(test=True)
         self.assertTrue(workflows.test)
 
-    @patch("extract_workflowhub.Workflows.add_workflows_from_workflowhub")
     def test_init_by_searching(self) -> None:
         """Test init_by_searching method"""
         self.workflows.test = True
