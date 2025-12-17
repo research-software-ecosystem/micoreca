@@ -354,7 +354,7 @@ class Workflows:
             "projects": "Projects",
             "filtered_on": "Filtered on",
             "keep": "To keep",
-            "curation_date": "Curation date"
+            "curation_date": "Curation date",
         }
 
         df = pd.DataFrame(self.export_workflows_to_dict())
@@ -507,7 +507,7 @@ if __name__ == "__main__":
                 "Update time",
                 "Filtered on",
                 "To keep",
-                "Curation date"
+                "Curation date",
             ],
         )
 
