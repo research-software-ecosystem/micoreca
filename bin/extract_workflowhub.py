@@ -38,6 +38,7 @@ class Workflow:
         self.doi = ""
         self.projects: List[str] = []
         self.keep = False
+        self.curation_date = "0000-00-00"
         self.type = ""
         self.description = ""
         self.filtered_on = ""
@@ -68,6 +69,10 @@ class Workflow:
         self.projects = wf["projects"]
         self.type = wf["type"]
         self.description = wf["description"]
+        if "curation_date" in wf:
+            self.curation_date = wf["curation_date"]
+        if "filtered_on" in wf:
+            self.filtered_on = wf["filtered_on"]
         if "keep" in wf:
             self.keep = wf["keep"]
 
@@ -204,6 +209,7 @@ class Workflow:
         Update status from status table
         """
         self.keep = wf_status["To keep"]
+        self.curation_date = wf_status["Curation date"]
 
     def get_import_link(self) -> str:
         """
@@ -348,6 +354,7 @@ class Workflows:
             "projects": "Projects",
             "filtered_on": "Filtered on",
             "keep": "To keep",
+            "curation_date": "Curation date"
         }
 
         df = pd.DataFrame(self.export_workflows_to_dict())
@@ -500,6 +507,7 @@ if __name__ == "__main__":
                 "Update time",
                 "Filtered on",
                 "To keep",
+                "Curation date"
             ],
         )
 
