@@ -49,8 +49,20 @@ def load_json(input_df: str) -> Any:
         content = json.load(t)
     return content
 
+def tags_has_keyword(keywords_list: dict, target_tags: List[str]) -> str:
+    """
+    Search for keywords and acronyms in tags with IGNORECASE
+    """
+    for tag in keywords_list:
+        regex = re.compile(format_regex(tag), re.IGNORECASE)
+        if any(regex.search(wtag) for wtag in target_tags):
+            return f"{tag} in tags"
+    return ""
 
 def has_keyword(tags: dict, target: str, target_name: str) -> str:
+    """
+    Search for keywords and acronyms in target
+    """
     for tag in tags["keywords"]:
         regexk = re.compile(format_regex(tag), re.IGNORECASE)
         if regexk.search(target):

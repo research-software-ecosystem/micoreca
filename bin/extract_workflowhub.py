@@ -3,7 +3,6 @@
 #!/usr/bin/env python
 
 import argparse
-import re
 from typing import (
     Any,
     Dict,
@@ -162,11 +161,10 @@ class Workflow:
         """
         # Put keywords and acronyms together since tags are saved in lowercase
         keywords_list = keywords_to_search["keywords"] + keywords_to_search["acronyms"]
-        for tag in keywords_list:
-            regex = re.compile(utils.format_regex(tag), re.IGNORECASE)
-            if any(regex.search(wtag) for wtag in self.tags):
-                self.filtered_on = f"{tag} in tags"
-                return True
+        filtered_on = utils.tags_has_keyword(keywords_list, self.tags)
+        if filtered_on != "":
+            self.filtered_on = filtered_on
+            return True
         return False
 
     def test_edam_terms(self, edam_keywords: dict) -> bool:
