@@ -38,7 +38,7 @@ class Workflow:
         self.license = ""
         self.doi = ""
         self.projects: List[str] = []
-        self.keep = "To Curate"
+        self.keep = "To Cure"
         self.type = ""
         self.description = ""
         self.filtered_on = ""
