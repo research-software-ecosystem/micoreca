@@ -1,5 +1,5 @@
 ---
-title: 'BioHackEU25 report project 16: MiCoReCa (Microbiome Community Resource Catalogue) - Towards Centralized Curation and Integration of Microbiome Bioinformatics Resourc'
+title: 'BioHackEU25 report project 16: MiCoReCa (Microbiome Community Resource Catalogue) - Towards Centralized Curation and Integration of Microbiome Bioinformatics Resources'
 title_short: 'BioHackEU25 #16: MiCoReCa'
 tags:
   - microbiome
@@ -9,67 +9,64 @@ tags:
 authors:
   - name: Vivek Ashokan
     orcid: 0009-0006-1470-3999
-    affiliation: 9
+    affiliation: 1
     role: Colead, Conceptualization, Development, Data curation
   - name: Clara Emery
     orcid: 0009-0003-9572-6671
-    affiliation: 4,6,7
+    affiliation: 2, 3
     role: Writing – original draft, Development, Data curation
   - name: Agnès Barnabé
     orcid: 0000-0002-8420-7556
-    affiliation: 2, 3
+    affiliation: 4, 5
     role: Development, Manual curation
   - name: Valentin Loux
     orcid: 0000-0002-8268-915X
-    affiliation: 2
+    affiliation: 4
     role: Manual curation
   - name: Christina Pavloudi
     orcid: 0000-0001-5106-6067
-    affiliation: 10
+    affiliation: 8
     role: Manual curation
   - name: Paul Zierep
     orcid: 0000-0000-0000-0000
-    affiliation: 11
+    affiliation: 9
     role: Development
   - name: Nikolaos Strepis
     orcid: 0000-0000-0000-0000
-    affiliation: 8
+    affiliation: 10
     role: Colead, Conceptualization, Manual curationWriting – review & editing
   - name: Bérénice Batut
-    affiliation: 1, 6
+    affiliation: 2, 11
     role: Colead, Conceptualization, Development, Manual curation, Writing – review & editing
     orcid: 0000-0001-9852-1987
 affiliations:
-  - name: Plateforme AuBi, Mésocentre Clermont-Auvergne, Université Clermont Auvergne, Aubière, France
-    ror: 01a8ajp46
-    index: 1
-  - name: Migale bioinformatics facility, MaIAGE, BioInfomics, INRAE, 78350 Jouy-en-Josas, France
-    ror: 05qdnns64
-    index: 2
-  - name: Ferments du Futur (US INRAE 1503), 91400 Orsay, France
-    index: 3
-  - name: ELIXIR Europe
-    ror: 044rwnt51
-    index: 4
-  - name: IFB-core, Institut Français de Bioinformatique (IFB), CNRS, INSERM, INRAE, CEA, 94800 Villejuif, France
-    ror: 045f7pv37
-    index: 6
-  - name: ABiMS - Analysis and Bioinformatics for Marine Science Roscoff Marine Station 
-    ror: 03s0pzj56
-    index: 7
-  - name: Department of Pathology and Clinical Bioinformatics, Erasmus MC Cancer Institute, Erasmus MC, Rotterdam, Netherlands
-    ror: 03r4m3349
-    index: 8
   - name: LABGeM (Laboratory of Bioinformatics Analyses for Genomics and Metabolism), Genoscope, IBFJ, DFR, CEA, 91000 Evry-Courcouronnes, France
     ror: 028pnqf58
-    index: 9 
+    index: 1 
+  - name: IFB-core, Institut Français de Bioinformatique (IFB), CNRS, INSERM, INRAE, CEA, 94800 Villejuif, France
+    ror: 045f7pv37
+    index: 2
+  - name: ABiMS - Analysis and Bioinformatics for Marine Science Roscoff Marine Station 
+    ror: 03s0pzj56
+    index: 3
+  - name: Migale bioinformatics facility, MaIAGE, BioInfomics, INRAE, 78350 Jouy-en-Josas, France
+    ror: 05qdnns64
+    index: 4
+  - name: Ferments du Futur (US INRAE 1503), 91400 Orsay, France
+    index: 7
   - name: European Marine Biological Resource Centre (EMBRC-ERIC), Paris, France
     ror: 0038zss60
-    index: 10
+    index: 8
   - name: Bioinformatics Group, Department of Computer Science, University of Freiburg, Georges-Koehler-Allee 106, D-79110 Freiburg, Germany
     ror: 0245cg223
+    index: 9
+  - name: Department of Pathology and Clinical Bioinformatics, Erasmus MC Cancer Institute, Erasmus MC, Rotterdam, Netherlands
+    ror: 03r4m3349
+    index: 10
+  - name: Plateforme AuBi, Mésocentre Clermont-Auvergne, Université Clermont Auvergne, Aubière, France
+    ror: 01a8ajp46
     index: 11
-date: 6 November 2025
+date: 17 December 2025
 cito-bibliography: paper.bib
 event: BH25EU
 biohackathon_name: "BioHackathon Europe 2025"
@@ -77,10 +74,10 @@ biohackathon_url: "https://biohackathon-europe.org/"
 biohackathon_location: "Berlin, Germany, 2025"
 group: Project 16
 # URL to project git repo --- should contain the actual paper.md:
-git_url: https://github.com/research-software-ecosystem/micoreca/tree/add_biohackathon_bioharxiv/paper/
+git_url: https://github.com/research-software-ecosystem/micoreca/
 # This is the short authors description that is used at the
 # bottom of the generated paper (typically the first two authors):
-authors_short: First Author \emph{et al.}
+authors_short: Vivek Ashokan, Clara Emery, \emph{et al.}
 ---
 
 # Introduction
@@ -154,7 +151,7 @@ To ensure the pipeline remains **up-to-date and reproducible**, we implemented *
 
 ollowing the automated scraping and keyword-based filtering of resources from **bio.tools**, **WorkflowHub**, **Bioconda**, and **TeSS**, a rigorous **manual curation process** was conducted to ensure the inclusion of only the most relevant and high-quality resources for the microbiome research community. The primary objective of this curation was to refine the dataset by excluding resources that, despite passing the initial keyword filters, were not directly applicable to microbiome analysis. For instance, resources focused on **single-genome analysis**, **whole-genome sequencing**, **single-end ChIP-Seq data**, or other non-microbiome-specific applications were systematically removed.
 
-To maintain a **focused and scientifically robust catalog**, resources were retained only if they aligned with one or more of the **key steps in microbiome data analysis**, including: (i) **Quality Control (QC) and Filtering**, (ii) **Denoising or Clustering**, (iii) **Taxonomic Assignment and Phylogenetic Tree Construction**, (iv) **Functional Annotation**, (v) **Data Normalization**, (vi) **Diversity Analysis**, (vii) **Comparative Statistics**, (viii) **Association and Predictive Modeling**. The **detailed curation protocol** is fully documented in the project's **[GitHub repository](https://github.com/research-software-ecosystem/micoreca/blob/main/doc/documentation_process.md)**, ensuring transparency and reproducibility for future contributions.
+To maintain a **focused and scientifically robust catalog**, resources were retained only if they aligned with one or more of the **key steps in microbiome data analysis**, including: (i) Quality Control (QC) and Filtering, (ii) Denoising or Clustering, (iii) Taxonomic Assignment and Phylogenetic Tree Construction, (iv) Functional Annotation, (v) Data Normalization, (vi) Diversity Analysis, (vii) Comparative Statistics, (viii) Association and Predictive Modeling. The **detailed curation protocol** is fully documented in the project's **[GitHub repository](https://github.com/research-software-ecosystem/micoreca/blob/main/doc/documentation_process.md)**, ensuring transparency and reproducibility for future contributions.
 
 ### Bioconda Tool Recipe Curation
 
