@@ -211,29 +211,6 @@ class Workflow:
         self.keep = wf_status["To keep"]
         self.curation_date = wf_status["Curation date"]
 
-    def get_import_link(self) -> str:
-        """
-        Get import link
-        """
-        return (
-            "{{ galaxy_base_url }}"
-            + f"/workflows/trs_import?trs_server={ self.source.lower() }\
-            .eu&run_form=true&trs_id={ self.id }"
-        )
-
-    def get_description(self) -> str:
-        """
-        Get description with EDAM operations and EDAM topics
-        """
-        description = ""
-        prefix = "Workflow covering"
-        if len(self.edam_operation) > 0:
-            description += f"{ prefix } operations related to { ','.join(self.edam_operation) }"
-            prefix = "on"
-        if len(self.edam_topic) > 0:
-            description += f"{ prefix } topics related to { ','.join(self.edam_topic) }"
-        return description
-
 
 class Workflows:
     """
@@ -251,7 +228,7 @@ class Workflows:
         """
         self.add_workflows_from_workflowhub()
 
-    def init_by_importing(self, wfs_to_import: dict) -> None:
+    def init_by_importing(self, wfs_to_import: List[dict]) -> None:
         """
         Loads the workflows from a dict following the structure in communities/all/resources/test_workflows.json
         (the json created by init_by_searching)
