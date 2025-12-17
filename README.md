@@ -90,6 +90,27 @@ The extraction, filtering and curation are done following the workflow below and
     rm -r ./tmp
     ```
 
+- Curate workflows based on community curation
+    
+    ```
+    $ python bin/extract_workflowhub.py \
+        curate \
+        --filtered content/workflowhub/workflows_filtered.json \
+        --curated content/workflowhub/workflows_curated.json \
+        --tsv-curated content/workflowhub/workflows_curated.tsv \
+        --status content/workflowhub/workflows_status.tsv
+    ```
+
+    This keeps only workflows in the scope of microbiome analysis. 
+
+- Extract tools used in curated workflows as JSON
+
+    ```
+    $ python bin/extract_workflowhub.py \
+        extract_tools \
+        --workflows content/workflowhub/workflows_curated.json \
+        --tools content/workflowhub/tools_from_workflows.json
+    ```
 
 # Run the unit tests locally
 
