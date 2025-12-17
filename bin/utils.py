@@ -1,4 +1,5 @@
 import json
+import logging
 import re
 import time
 from datetime import datetime
@@ -12,6 +13,8 @@ from typing import (
 import pandas as pd
 import requests
 import yaml
+
+logger = logging.getLogger()
 
 
 def format_date(date: str) -> str:
@@ -32,22 +35,30 @@ def format_regex(pattern: str) -> str:
     return rf"(?<![A-Za-z]){pattern}(?![A-Za-z])"
 
 
-def load_yaml(input_df: str) -> Dict:
+def load_yaml(input_fp: str) -> Dict:
     """
     Read a YAML file
     """
-    with Path(input_df).open("r") as t:
+    with Path(input_fp).open("r") as t:
         content = yaml.safe_load(t)
     return content
 
 
-def load_json(input_df: str) -> Any:
+def load_json(input_fp: str) -> Any:
     """
     Read a JSON file
     """
-    with Path(input_df).open("r") as t:
+    with Path(input_fp).open("r") as t:
         content = json.load(t)
     return content
+
+
+def export_to_json(data: List[Dict], output_fp: str) -> None:
+    """
+    Export to a JSON file
+    """
+    with Path(output_fp).open("w") as f:
+        json.dump(data, f, indent=4, sort_keys=True, default=str)
 
 
 def tags_has_keyword(keywords_list: dict, target_tags: List[str]) -> str:
@@ -77,14 +88,6 @@ def has_keyword(tags: dict, target: str, target_name: str) -> str:
             return f"{acron} in {target_name}"
 
     return ""
-
-
-def export_to_json(data: List[Dict], output_fp: str) -> None:
-    """
-    Export to a JSON file
-    """
-    with Path(output_fp).open("w") as f:
-        json.dump(data, f, indent=4, sort_keys=True)
 
 
 def get_edam_operation_from_tools(selected_tools: list, all_tools: dict) -> List:
@@ -151,3 +154,22 @@ def get_request_json(url: str, headers: dict, retries: int = 3, delay: float = 2
 
     # Return None if all retries are exhausted and no response is received
     return {}
+
+
+def setup_logger(verbosity: int) -> None:
+    """
+    Configure the logger based on verbosity level.
+
+    :param verbosity: verbosity level
+    """
+    log_levels = {
+        0: logging.CRITICAL,
+        1: logging.ERROR,
+        2: logging.WARN,
+        3: logging.INFO,
+        4: logging.DEBUG,
+    }
+    logging.basicConfig(
+        format="%(asctime)s - %(levelname)s - %(message)s",
+        level=log_levels.get(verbosity, logging.INFO),
+    )

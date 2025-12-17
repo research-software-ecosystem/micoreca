@@ -62,6 +62,33 @@ The extraction, filtering and curation are done following the workflow below and
     ```
 
     As explained in the decision tree above, workflows are filtered first on EDAM terms (topics and operations), then on tags, workflow name and finally description based on the keywords provided in `keywords.yml` file. 
+    Workflows are filtered first on EDAM terms (topics and operations), then on tags, workflow name and finally description based on the keywords provided in "keywords.yml". 
+
+# Bioconda
+
+- Extract all bioconda metadata as a JSON file
+
+    ```
+    mkdir -p ./tmp
+
+    # download ZIP file *into tmp/*
+    wget -O ./tmp/bioconda-recipes.zip https://codeload.github.com/bioconda/bioconda-recipes/zip/master
+
+    # unzip from tmp into tmp/
+    unzip ./tmp/bioconda-recipes.zip -d ./tmp/
+
+    # remove the ZIP after extraction
+    rm ./tmp/bioconda-recipes.zip
+
+    # run your Python script
+    python bin/collect_bioconda_recipes.py \
+        --bioconda-path ./tmp/bioconda-recipes-master/recipes \
+        --keywords-file ./keywords.yml \
+        --output-file ./content/bioconda_filtered.json
+
+    # cleanup
+    rm -r ./tmp
+    ```
 
 - Curate workflows based on community curation
     
