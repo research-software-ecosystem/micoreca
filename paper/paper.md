@@ -28,11 +28,11 @@ authors:
     affiliation: 8
     role: Manual curation
   - name: Paul Zierep
-    orcid: 0000-0000-0000-0000
+    orcid: 0000-0003-2982-388X
     affiliation: 9
     role: Development
   - name: Nikolaos Strepis
-    orcid: 0000-0000-0000-0000
+    orcid: 0000-0002-0997-8430
     affiliation: 10
     role: Colead, Conceptualization, Manual curationWriting – review & editing
   - name: Bérénice Batut
@@ -82,13 +82,13 @@ authors_short: Vivek Ashokan, Clara Emery, \emph{et al.}
 
 # Introduction
 
-The rapid expansion of microbiome research has led to the development of countless bioinformatics tools, workflows, and databases. However, information about these resources remains scattered across disparate, often outdated catalogs, impeding their discovery and effective use (citation). To address this critical gap, the [ELIXIR Microbiome Community](https://elixir-europe.org/communities/microbiome) [@citesForInformation:finn2025establishing] —a specialized group within [ELIXIR](https://elixir-europe.org/), Europe's leading infrastructure for biological data —proposed the creation of **MiCoReCa (Microbiome Community Resource Catalogue)**. This open-access, dynamic catalog aims to centralize and streamline access to microbiome-related bioinformatics resources, including tools, workflows, training materials, and more.
+The rapid expansion of microbiome research has led to the development of countless bioinformatics tools, workflows, and databases. However, information about these resources remains scattered across disparate, often outdated catalogs, impeding their discovery and effective use (citation). To address this critical gap, the [ELIXIR Microbiome Community](https://elixir-europe.org/communities/microbiome) [@citesForInformation:finn2025establishing] — a specialized group within [ELIXIR](https://elixir-europe.org/), Europe's leading infrastructure for biological data —proposed the creation of **MiCoReCa (Microbiome Community Resource Catalogue)**. This open-access, dynamic catalog aims to centralize and streamline access to microbiome-related bioinformatics resources, including tools, workflows, training materials, and more.
 
 MiCoReCa integrates resources from established platforms such as [Bioconda](https://bioconda.github.io/) (a package manager for bioinformatics software) [@citesAsAuthority:gruning2018bioconda], [bio.tools](https://bio.tools/) (the registry of bioinformatics tools and services developed by ELIXIR) [@citesAsAuthority:ison2016tools; @citesAsAuthority:ison2019bio] via the [Research Software Ecosystem (RSEc) Atlas](https://research-software-ecosystem.github.io/RSEc-Atlas/), [WorkflowHub](https://workflowhub.eu/) (a repository for scientific workflows, maintained by ELIXIR) [@citesAsAuthority:gustafsson2025workflowhub], and [TeSS](https://tess.elixir-europe.org/) (the ELIXIR training materials database) [@citesAsAuthority:beard2020tess]. By aggregating resources from these sources, MiCoReCa ensures comprehensive coverage of the microbiome bioinformatics landscape.
 
-This report presents the **work accomplished during the [ELIXIR BioHackathon 2025](https://biohackathon-europe.org/)**—an intensive collaborative event where researchers, developers, and bioinformatics experts come together to tackle scientific challenges. During this event, the MiCoReCa team initiated the development of the catalog, focusing on automating resource extraction (e.g., via weekly GitHub Actions scripts), filtering resources using community-defined keywords, and establishing a framework for collaborative curation, inspired by the [Galaxy Codex](https://github.com/galaxyproject/galaxy_codexn) [@citesAsAuthority:zierep_how_2024].
+This report presents the **work accomplished during the [ELIXIR BioHackathon 2025](https://biohackathon-europe.org/)**—an intensive collaborative event where researchers, developers, and bioinformatics experts come together to tackle scientific challenges. During this event, the MiCoReCa team initiated the development of the catalog, focusing on automating resource extraction (e.g., via weekly GitHub Actions scripts), filtering resources using community-defined keywords, and establishing a framework for collaborative curation, inspired by the [Galaxy Codex](https://github.com/galaxyproject/galaxy_codex) [@citesAsAuthority:zierep_how_2024].
 
-To maximize interoperability, MiCoReCa leverages **standardized ontologies** like [EDAM](https://edamontology.org/page) [@citesAsAuthority:ison2013edam], which provides a structured vocabulary for describing bioinformatics tools, workflows, and data. This ensures that resources in MiCoReCa are consistently annotated, making them easier to discover and integrate into research workflows.
+To maximize interoperability, MiCoReCa leverages the **standardized ontology** [EDAM](https://edamontology.org/page) [@citesAsAuthority:ison2013edam], which provides a structured vocabulary for describing bioinformatics tools, workflows, and data. This ensures that resources in MiCoReCa are consistently annotated, making them easier to discover and integrate into research workflows.
 
 A defining feature of MiCoReCa is its **community-driven curation process**, where experts collaboratively identify missing ontological terms and metadata, ensuring the catalog remains **accurate, up-to-date, and aligned with researchers' needs**.
 
@@ -114,7 +114,7 @@ Before the ELIXIR BioHackathon 2025, the following objectives were defined to gu
     3. **Add Microbiome tools** found in **Bioconda** and **WorkflowHub** but missing in **bio.tools**.
     4. **Engage in discussions** to refine and expand **EDAM** terms related to **Topics**, **Formats**, **Operations**, and **Data** for microbiome analysis.
 
-3. **Document the Process** —from resource extraction and filtering to curation and annotation— **for Reusability by Other Communities** to ensure the sustainability and scalability of MiCoReCa.
+3. **Document the Process**—from resource extraction and filtering to curation and annotation—**for Reusability by Other Communities** to ensure the sustainability and scalability of MiCoReCa.
 
 These objectives laid the foundation for the work accomplished during the ELIXIR BioHackathon 2025, ensuring a structured and collaborative approach to building MiCoReCa.
 
@@ -149,7 +149,7 @@ To ensure the pipeline remains **up-to-date and reproducible**, we implemented *
 
 ## Manual Curation of Extracted Tools and Workflows for Microbiome Relevance
 
-ollowing the automated scraping and keyword-based filtering of resources from **bio.tools**, **WorkflowHub**, **Bioconda**, and **TeSS**, a rigorous **manual curation process** was conducted to ensure the inclusion of only the most relevant and high-quality resources for the microbiome research community. The primary objective of this curation was to refine the dataset by excluding resources that, despite passing the initial keyword filters, were not directly applicable to microbiome analysis. For instance, resources focused on **single-genome analysis**, **whole-genome sequencing**, **single-end ChIP-Seq data**, or other non-microbiome-specific applications were systematically removed.
+Following the automated scraping and keyword-based filtering of resources from **bio.tools**, **WorkflowHub**, **Bioconda**, and **TeSS**, a rigorous **manual curation process** was conducted to ensure the inclusion of only the most relevant and high-quality resources for the microbiome research community. The primary objective of this curation was to refine the dataset by excluding resources that, despite passing the initial keyword filters, were not directly applicable to microbiome analysis. For instance, resources focused on **single-genome analysis**, **whole-genome sequencing**, **single-end ChIP-Seq data**, or other non-microbiome-specific applications were systematically removed.
 
 To maintain a **focused and scientifically robust catalog**, resources were retained only if they aligned with one or more of the **key steps in microbiome data analysis**, including: (i) Quality Control (QC) and Filtering, (ii) Denoising or Clustering, (iii) Taxonomic Assignment and Phylogenetic Tree Construction, (iv) Functional Annotation, (v) Data Normalization, (vi) Diversity Analysis, (vii) Comparative Statistics, (viii) Association and Predictive Modeling. The **detailed curation protocol** is fully documented in the project's **[GitHub repository](https://github.com/research-software-ecosystem/micoreca/blob/main/doc/documentation_process.md)**, ensuring transparency and reproducibility for future contributions.
 
