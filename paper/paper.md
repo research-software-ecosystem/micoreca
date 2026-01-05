@@ -1,6 +1,6 @@
 ---
-title: 'BioHackEU25 report project 16: MiCoReCa (Microbiome Community Resource Catalogue) - Towards Centralized Curation and Integration of Microbiome Bioinformatics Resources'
-title_short: 'BioHackEU25 #16: MiCoReCa'
+title: 'MiCoReCa (Microbiome Community Resource Catalogue) - Towards Centralized Curation and Integration of Microbiome Bioinformatics Resources'
+title_short: 'MiCoReCa'
 tags:
   - microbiome
   - catalogue
