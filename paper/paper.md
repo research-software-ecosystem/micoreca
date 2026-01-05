@@ -213,7 +213,7 @@ Ultimately, MiCoReCa not only addresses a critical gap in microbiome research bu
 ## Acknowledgements
 
 This work was developed as part of BioHackathon Europe 2025.
-This work was supported by [ELIXIR](https://elixir-europe.org), the research infrastructure for life science data.
+This work was supported by [ELIXIR](https://elixir-europe.org), the research infrastructure for life science data. Generative AI tools (La Chat, Mistral; December, 2025) were used to revise and improve the clarity of the manuscript text. None of the manuscript content was generated entirely by AI.
 The French Institute of Bioinformatics (IFB) was founded by the Future Investment Program subsidized by the National Research Agency, number ANR-11-INBS-0013.
 This work received state aid managed by the National Research Agency under France 2030 for structural research equipment / EQUIPEX+ with reference ANR-21-ESRE-0048.
 
