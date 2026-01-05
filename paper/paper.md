@@ -159,7 +159,7 @@ The initial dataset of Bioconda recipes consisted of **10,136 recipes**. This se
 
 ### bio.tools Tools Curation
 
-The **bio.tools** (via RSEc-Atlas) yielded **over 4,000 potential microbiome tools** after filtering. Due to the **sheer volume** and **time constraints**, a **community-driven curation process** was initiated, with contributions expected from the microbiome research community in the coming months. To date, **201** tools have been reviewed with **169** tools confirmed as directly relevant to microbiome research. Additionally, the **integration of missing tools** identified from other platforms (e.g., WorkflowHub) could not be completed within the BioHackathon timeline, as the process required more extensive validation and coordination.
+The **bio.tools** (via RSEc-Atlas) yielded **over 3,000 potential microbiome tools** after filtering. Due to the **sheer volume** and **time constraints**, a **community-driven curation process** was initiated, with contributions expected from the microbiome research community in the coming months. To date, **201** tools have been reviewed with **169** tools confirmed as directly relevant to microbiome research. Additionally, the **integration of missing tools** identified from other platforms (e.g., WorkflowHub) could not be completed within the BioHackathon timeline, as the process required more extensive validation and coordination.
 
 ### WorkflowHub Workflow Curation
 
