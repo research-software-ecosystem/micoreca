@@ -90,6 +90,16 @@ def has_keyword(tags: dict, target: str, target_name: str) -> str:
     return ""
 
 
+def has_edam_terms(edam_topics: list[str], edam_operations: list[str], edam_keywords: dict) -> bool:
+    """
+    Search for EDAM topics and operations
+    """
+    matches_topic = set(edam_topics) & set(edam_keywords["topics"])
+    matches_operation = set(edam_operations) & set(edam_keywords["operations"])
+
+    return len(matches_topic) != 0 or len(matches_operation) != 0
+
+
 def get_edam_operation_from_tools(selected_tools: list, all_tools: dict) -> List:
     """
     NOT RUN

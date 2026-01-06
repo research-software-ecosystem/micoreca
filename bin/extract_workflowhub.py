@@ -176,13 +176,12 @@ class Workflow:
         """
         Test if workflow topics or operations are in keywords
         """
-        matches_topic = set(self.edam_topic) & set(edam_keywords["topics"])
-        matches_operation = set(self.edam_operation) & set(edam_keywords["operations"])
+        contain_edam_terms = utils.has_edam_terms(self.edam_topic, self.edam_operation, edam_keywords)
 
-        if len(matches_topic) != 0 or len(matches_operation) != 0:
+        if contain_edam_terms:
             self.filtered_on = "edam"
 
-        return len(matches_topic) != 0 or len(matches_operation) != 0
+        return contain_edam_terms
 
     def test_name(self, keywords_to_search: dict) -> bool:
         """
