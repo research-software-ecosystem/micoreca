@@ -1,7 +1,8 @@
+"""Script for WorkflowHub extraction"""
+
 #!/usr/bin/env python
 
 import argparse
-import re
 from typing import (
     Any,
     Dict,
@@ -37,10 +38,18 @@ class Workflow:
         self.doi = ""
         self.projects: List[str] = []
         self.keep = False
+        self.curation_date = "0000-00-00"
         self.type = ""
         self.description = ""
+        self.filtered_on = ""
 
     def init_by_importing(self, wf: dict) -> None:
+        """
+        Init Workflow instance by importing
+
+        :param wf: workflow metadata
+        :type wf: dict
+        """
         self.source = wf["source"]
         self.id = wf["id"]
         self.link = wf["link"]
@@ -60,31 +69,44 @@ class Workflow:
         self.projects = wf["projects"]
         self.type = wf["type"]
         self.description = wf["description"]
+        if "curation_date" in wf:
+            self.curation_date = wf["curation_date"]
+        if "filtered_on" in wf:
+            self.filtered_on = wf["filtered_on"]
         if "keep" in wf:
             self.keep = wf["keep"]
 
     def init_from_search(self, wf: dict, source: str) -> None:
+        """
+        Init Workflow instance from search
+
+        :param wf: workflow metadata
+        :type wf: dict
+        :param source: extraction source
+        :type source: str
+        """
+        wf_attributes = wf["data"]["attributes"]
         self.source = source
         self.id = wf["data"]["id"]
-        self.link = f"https:/{ source.lower() }.eu{ wf['data']['links']['self'] }"
-        self.name = wf["data"]["attributes"]["title"]
-        self.tags = [w.lower() for w in wf["data"]["attributes"]["tags"]]
-        self.create_time = utils.format_date(wf["data"]["attributes"]["created_at"])
-        self.update_time = utils.format_date(wf["data"]["attributes"]["updated_at"])
-        self.latest_version = wf["data"]["attributes"]["latest_version"]
-        self.versions = len(wf["data"]["attributes"]["versions"])
-        internals = wf["data"]["attributes"].get("internals", {})
+        self.link = f"https://{ source.lower() }.eu{ wf['data']['links']['self'] }"
+        self.name = wf_attributes["title"]
+        self.tags = [w.lower() for w in wf_attributes["tags"]]
+        self.create_time = utils.format_date(wf_attributes["created_at"])
+        self.update_time = utils.format_date(wf_attributes["updated_at"])
+        self.latest_version = wf_attributes["latest_version"]
+        self.versions = len(wf_attributes["versions"])
+        internals = wf_attributes.get("internals", {})
         steps = internals.get("steps")
         if steps is not None:
             self.number_of_steps = len(steps)
         else:
             self.number_of_steps = 0
-        self.license = wf["data"]["attributes"]["license"]
-        self.doi = wf["data"]["attributes"]["doi"]
-        self.edam_topic = [t["label"] for t in wf["data"]["attributes"]["topic_annotations"]]
-        self.edam_operation = [t["label"] for t in wf["data"]["attributes"]["operation_annotations"]]
-        self.type = wf["data"]["attributes"]["workflow_class"]["title"]
-        self.description = wf["data"]["attributes"]["description"]
+        self.license = wf_attributes["license"]
+        self.doi = wf_attributes["doi"]
+        self.edam_topic = [t["label"] for t in wf_attributes["topic_annotations"]]
+        self.edam_operation = [t["label"] for t in wf_attributes["operation_annotations"]]
+        self.type = wf_attributes["workflow_class"]["title"]
+        self.description = wf_attributes["description"]
 
         self.add_creators(wf)
         self.add_tools(wf)
@@ -133,49 +155,49 @@ class Workflow:
                 f"https://{ self.source.lower() }.eu/projects/{project['id']}",
                 {"Accept": "application/json"},
             )
-            if "attributes" in wfhub_project["data"] and "title" in wfhub_project["data"]["attributes"]:
-                self.projects.append(wfhub_project["data"]["attributes"]["title"])
+            wf_data = wfhub_project["data"]
+            wf_attributes = wfhub_project["data"]["attributes"]
+            if "attributes" in wf_data and "title" in wf_attributes:
+                self.projects.append(wf_attributes["title"])
 
-    def test_tags(self, tags: dict) -> bool:
+    def test_tags(self, keywords_to_search: dict) -> bool:
         """
         Test if there are overlap between workflow tags and target tags
         """
         # Put keywords and acronyms together since tags are saved in lowercase
-        keywords_list = tags["keywords"] + tags["acronyms"]
-        for tag in keywords_list:
-            regex = re.compile(utils.format_regex(tag), re.IGNORECASE)
-            if any(regex.search(wtag) for wtag in self.tags):
-                self.filtered_on = f"{tag} in tags"
-                return True
-        return False
-
-    def test_edam_terms(self, keywords: dict) -> bool:
-        """
-        Test if workflow topics or operations are in keywords
-        """
-        matches_topic = set(self.edam_topic) & set(keywords["topics"])
-        matches_operation = set(self.edam_operation) & set(keywords["operations"])
-
-        if len(matches_topic) != 0 or len(matches_operation) != 0:
-            self.filtered_on = "edam"
-
-        return len(matches_topic) != 0 or len(matches_operation) != 0
-
-    def test_name(self, tags: dict) -> bool:
-        """
-        Test if there are overlap between workflow name and target tags
-        """
-        filtered_on = utils.has_keyword(tags, self.name, "name")
+        keywords_list = keywords_to_search["keywords"] + keywords_to_search["acronyms"]
+        filtered_on = utils.tags_has_keyword(keywords_list, self.tags)
         if filtered_on != "":
             self.filtered_on = filtered_on
             return True
         return False
 
-    def test_description(self, tags: dict) -> bool:
+    def test_edam_terms(self, edam_keywords: dict) -> bool:
+        """
+        Test if workflow topics or operations are in keywords
+        """
+        contain_edam_terms = utils.has_edam_terms(self.edam_topic, self.edam_operation, edam_keywords)
+
+        if contain_edam_terms:
+            self.filtered_on = "edam"
+
+        return contain_edam_terms
+
+    def test_name(self, keywords_to_search: dict) -> bool:
+        """
+        Test if there are overlap between workflow name and target tags
+        """
+        filtered_on = utils.has_keyword(keywords_to_search, self.name, "name")
+        if filtered_on != "":
+            self.filtered_on = filtered_on
+            return True
+        return False
+
+    def test_description(self, keywords_to_search: dict) -> bool:
         """
         Test if there are overlap between workflow description and target tags
         """
-        filtered_on = utils.has_keyword(tags, self.description, "description")
+        filtered_on = utils.has_keyword(keywords_to_search, self.description, "description")
         if filtered_on != "":
             self.filtered_on = filtered_on
             return True
@@ -186,28 +208,7 @@ class Workflow:
         Update status from status table
         """
         self.keep = wf_status["To keep"]
-
-    def get_import_link(self) -> str:
-        """
-        Get import link
-        """
-        return (
-            "{{ galaxy_base_url }}"
-            + f"/workflows/trs_import?trs_server={ self.source.lower() }.eu&run_form=true&trs_id={ self.id }"
-        )
-
-    def get_description(self) -> str:
-        """
-        Get description with EDAM operations and EDAM topics
-        """
-        description = ""
-        prefix = "Workflow covering"
-        if len(self.edam_operation) > 0:
-            description += f"{ prefix } operations related to { ','.join(self.edam_operation) }"
-            prefix = "on"
-        if len(self.edam_topic) > 0:
-            description += f"{ prefix } topics related to { ','.join(self.edam_topic) }"
-        return description
+        self.curation_date = wf_status["Curation date"]
 
 
 class Workflows:
@@ -226,12 +227,12 @@ class Workflows:
         """
         self.add_workflows_from_workflowhub()
 
-    def init_by_importing(self, wfs: dict) -> None:
+    def init_by_importing(self, wfs_to_import: List[dict]) -> None:
         """
         Loads the workflows from a dict following the structure in communities/all/resources/test_workflows.json
         (the json created by init_by_searching)
         """
-        for iwf in wfs:
+        for iwf in wfs_to_import:
             wf = Workflow()
             wf.init_by_importing(iwf)
             self.workflows.append(wf)
@@ -270,36 +271,36 @@ class Workflows:
         """
         return [w.__dict__ for w in self.workflows]
 
-    def filter_workflows_by_tags(self, tags: dict, status: Dict) -> None:
+    def filter_workflows_by_tags(self, keywords: dict, wf_status: Dict) -> None:
         """
-        Filter workflows by tags
+        Filter workflows by keywords
         """
         to_keep_wf = []
         for w in self.workflows:
-            if w.link in status:
-                w.update_status(status[w.link])
+            if w.link in wf_status:
+                w.update_status(wf_status[w.link])
             # If workflow status is True, skip test and keep it
             if w.keep:
                 to_keep_wf.append(w)
-                w.filtered_on = status[w.link]["Filtered on"]
-            elif w.test_edam_terms(tags["edam"]):
+                w.filtered_on = wf_status[w.link]["Filtered on"]
+            elif w.test_edam_terms(keywords["edam"]):
                 to_keep_wf.append(w)
-            elif w.test_tags(tags):
+            elif w.test_tags(keywords):
                 to_keep_wf.append(w)
-            elif w.test_name(tags):
+            elif w.test_name(keywords):
                 to_keep_wf.append(w)
-            elif w.test_description(tags):
+            elif w.test_description(keywords):
                 to_keep_wf.append(w)
         self.workflows = to_keep_wf
 
-    def curate_workflows(self, status: Dict) -> None:
+    def curate_workflows(self, wf_status: Dict) -> None:
         """
         Curate workflows based on community feedback
         """
         curated_wfs = []
         for w in self.workflows:
-            if w.link in status:
-                w.update_status(status[w.link])
+            if w.link in wf_status:
+                w.update_status(wf_status[w.link])
             if w.keep:
                 curated_wfs.append(w)
         self.workflows = curated_wfs
@@ -329,6 +330,7 @@ class Workflows:
             "projects": "Projects",
             "filtered_on": "Filtered on",
             "keep": "To keep",
+            "curation_date": "Curation date",
         }
 
         df = pd.DataFrame(self.export_workflows_to_dict())
@@ -344,6 +346,26 @@ class Workflows:
             df = df[to_keep_columns]
 
         df.to_csv(output_fp, sep="\t", index=False)
+
+    def extract_tools(self, output_tools: str) -> None:
+        """
+        Extract tools information for workflows
+
+        :param output_tools: Path to JSON to save tools
+        :type output_tools: str
+        """
+        tools_dict: dict[str, list[str]] = {}
+        for wf in self.workflows:
+            tools_list = wf.tools
+            for tool in tools_list:
+                clean_tool_name = tool.replace("\n ", "")
+                if clean_tool_name != "":
+                    if clean_tool_name in tools_dict:
+                        tools_dict[clean_tool_name].append(wf.name)
+                    else:
+                        tools_dict[clean_tool_name] = [wf.name]
+
+        utils.export_to_json([tools_dict], output_tools)
 
 
 if __name__ == "__main__":
@@ -420,6 +442,11 @@ if __name__ == "__main__":
         help="Path to a TSV file with at least column 'link' and 'To keep'",
     )
 
+    # Extract tools from workflows
+    extractools = subparser.add_parser("extract_tools", help="Extract tools ")
+    extractools.add_argument("--workflows", "-w", required=True, help="Filepath to JSON with curated workflows")
+    extractools.add_argument("--tools", "-t", required=True, help="Filepath to a JSON file to save tools")
+
     args = parser.parse_args()
 
     # Extract all workflows from WorkflowHub
@@ -431,13 +458,13 @@ if __name__ == "__main__":
     # Filter the workflows
     elif args.command == "filter":
         wfs = Workflows()
-        wfs.init_by_importing(wfs=utils.load_json(args.all))
+        wfs.init_by_importing(wfs_to_import=utils.load_json(args.all))
         tags = utils.load_yaml(args.tags)
         # get status if file provided
         if args.status:
             try:
                 status = pd.read_csv(args.status, sep="\t", index_col="Link").to_dict("index")
-            except Exception:
+            except FileNotFoundError:
                 status = {}
         else:
             status = {}
@@ -456,16 +483,17 @@ if __name__ == "__main__":
                 "Update time",
                 "Filtered on",
                 "To keep",
+                "Curation date",
             ],
         )
 
     # Curate workflows list based on status column
     elif args.command == "curate":
         wfs = Workflows()
-        wfs.init_by_importing(wfs=utils.load_json(args.filtered))
+        wfs.init_by_importing(wfs_to_import=utils.load_json(args.filtered))
         try:
             status = pd.read_csv(args.status, sep="\t", index_col="Link").to_dict("index")
-        except Exception as ex:
+        except ValueError as ex:
             print(f"Failed to load {args.status} file or no 'Link' column with:\n{ex}")
             print("Not assigning tool status for this community !")
             status = {}
@@ -473,5 +501,14 @@ if __name__ == "__main__":
         try:
             utils.export_to_json(wfs.export_workflows_to_dict(), args.curated)
             wfs.export_workflows_to_tsv(args.tsv_curated)
-        except Exception:
-            print("No workflow extracted after curation.\n")
+        except Warning:
+            print("No workflow extracted after curation.")
+
+    # Extract all tools used in a list of workflows
+    elif args.command == "extract_tools":
+        wfs = Workflows()
+        wfs.init_by_importing(wfs_to_import=utils.load_json(args.workflows))
+        try:
+            wfs.extract_tools(output_tools=args.tools)
+        except FileNotFoundError as ex:
+            print(f"Failed to load JSON file {args.workflows} or to extract tools.\n{ex}")
