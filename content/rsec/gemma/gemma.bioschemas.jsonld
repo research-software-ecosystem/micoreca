@@ -36,65 +36,57 @@
   },
   "@graph": [
     {
-      "@id": "https://doi.org/10.1093/database/baab006",
-      "@type": "sc:CreativeWork"
-    },
-    {
-      "@id": "https://doi.org/10.1093/bioinformatics/btp259",
-      "@type": "sc:CreativeWork"
-    },
-    {
       "@id": "https://bio.tools/gemma",
       "@type": "sc:SoftwareApplication",
       "bsc:input": [
         {
-          "@id": "_:N9c00cafa77bd482eb174395f20483903"
+          "@id": "_:Ndf42387a71ba44429fb3eed07dfba8e6"
         },
         {
-          "@id": "_:N78118d1de2534d84905ba5dba8361128"
+          "@id": "_:N6983f73fd1a44bd895198ffedb6283c0"
         }
       ],
       "bsc:output": [
         {
-          "@id": "_:Nc9000620473a4fa5a3d4e7ba299162c5"
+          "@id": "_:N87bac1d373c14d3bbbd01584a13d8614"
         },
         {
-          "@id": "_:N920e73e7aabb49e382c2be551b9bfe29"
+          "@id": "_:N165a4d1a743e4557aff6ce97a45ff82c"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": [
-        "Web API",
-        "Web application"
+        "Web application",
+        "Web API"
       ],
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_3518"
-        },
-        {
-          "@id": "edam:topic_0203"
+          "@id": "edam:topic_0219"
         },
         {
           "@id": "edam:topic_3053"
         },
         {
-          "@id": "edam:topic_0219"
+          "@id": "edam:topic_3518"
         },
         {
           "@id": "edam:topic_3170"
+        },
+        {
+          "@id": "edam:topic_0203"
         }
       ],
       "sc:citation": [
+        "pmcid:PMC2687992",
         "pubmed:33599246",
         {
           "@id": "https://doi.org/10.1093/bioinformatics/btp259"
         },
-        "pmcid:PMC2687992",
-        "pmcid:PMC7904053",
-        "pubmed:19376825",
         {
           "@id": "https://doi.org/10.1093/database/baab006"
-        }
+        },
+        "pmcid:PMC7904053",
+        "pubmed:19376825"
       ],
       "sc:description": "Gemma provides data, experimental design annotations, and differential expression analysis results for thousands of microarray and RNA-seq experiments. We re-analyze raw data from public sources (primarily NCBI GEO), annotate experimental conditions, conduct quality control and compute differential expression using standardized procedures. We have especially good coverage of experiments relevant to the nervous system.",
       "sc:featureList": {
@@ -104,39 +96,31 @@
       "sc:license": "CC-BY-NC-4.0",
       "sc:name": "Gemma",
       "sc:operatingSystem": [
+        "Mac",
         "Windows",
-        "Linux",
-        "Mac"
+        "Linux"
       ],
       "sc:softwareHelp": [
         {
-          "@id": "https://gemma.msl.ubc.ca/resources/restapidocs/"
+          "@id": "https://pavlidislab.github.io/Gemma/"
         },
         {
-          "@id": "https://pavlidislab.github.io/Gemma/"
+          "@id": "https://gemma.msl.ubc.ca/resources/restapidocs/"
         }
       ],
       "sc:softwareVersion": "1.31.13",
       "sc:url": "https://gemma.msl.ubc.ca/"
     },
     {
-      "@id": "_:Nc9000620473a4fa5a3d4e7ba299162c5",
+      "@id": "_:Ndf42387a71ba44429fb3eed07dfba8e6",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
-        "@id": "edam:data_1636"
+        "@id": "edam:data_3112"
       },
-      "sc:name": "Heat map"
+      "sc:name": "Gene expression matrix"
     },
     {
-      "@id": "_:N920e73e7aabb49e382c2be551b9bfe29",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3914"
-      },
-      "sc:name": "Quality control report"
-    },
-    {
-      "@id": "_:N9c00cafa77bd482eb174395f20483903",
+      "@id": "_:N6983f73fd1a44bd895198ffedb6283c0",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3110"
@@ -144,12 +128,28 @@
       "sc:name": "Raw microarray data"
     },
     {
-      "@id": "_:N78118d1de2534d84905ba5dba8361128",
+      "@id": "_:N87bac1d373c14d3bbbd01584a13d8614",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
-        "@id": "edam:data_3112"
+        "@id": "edam:data_1636"
       },
-      "sc:name": "Gene expression matrix"
+      "sc:name": "Heat map"
+    },
+    {
+      "@id": "_:N165a4d1a743e4557aff6ce97a45ff82c",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3914"
+      },
+      "sc:name": "Quality control report"
+    },
+    {
+      "@id": "https://doi.org/10.1093/bioinformatics/btp259",
+      "@type": "sc:CreativeWork"
+    },
+    {
+      "@id": "https://doi.org/10.1093/database/baab006",
+      "@type": "sc:CreativeWork"
     }
   ]
 }

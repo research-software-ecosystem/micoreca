@@ -39,42 +39,39 @@
       "@id": "https://bio.tools/plasmapper_3.0",
       "@type": "sc:SoftwareApplication",
       "bsc:input": {
-        "@id": "_:Nd3de27de17664471bf763fc12b4ebac8"
+        "@id": "_:N24abd3cb7e3a43c79a9c0ea631579d31"
       },
       "bsc:output": {
-        "@id": "_:N9e4b9eff6de24f94b28823902ca79783"
+        "@id": "_:N3dae92606fa64249b9b2db21e5743cea"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Web application",
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_0102"
+          "@id": "edam:topic_3168"
         },
         {
           "@id": "edam:topic_0749"
         },
         {
-          "@id": "edam:topic_3382"
-        },
-        {
           "@id": "edam:topic_0632"
         },
         {
-          "@id": "edam:topic_3168"
+          "@id": "edam:topic_3382"
+        },
+        {
+          "@id": "edam:topic_0102"
         }
       ],
       "sc:citation": [
+        "pmcid:PMC10320132",
         {
           "@id": "https://doi.org/10.1093/NAR/GKAD276"
         },
-        "pmcid:PMC10320132",
         "pubmed:37099365"
       ],
       "sc:description": "Web server for generating, editing, annotating and visualizing publication quality plasmid maps.",
       "sc:featureList": [
-        {
-          "@id": "edam:operation_2429"
-        },
         {
           "@id": "edam:operation_3096"
         },
@@ -83,40 +80,43 @@
         },
         {
           "@id": "edam:operation_0335"
+        },
+        {
+          "@id": "edam:operation_2429"
         }
       ],
       "sc:isAccessibleForFree": true,
       "sc:name": "PlasMapper 3.0",
       "sc:operatingSystem": [
+        "Mac",
         "Windows",
-        "Linux",
-        "Mac"
+        "Linux"
       ],
       "sc:url": "https://plasmapper.ca"
     },
     {
-      "@id": "_:N9e4b9eff6de24f94b28823902ca79783",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3002"
-      },
-      "sc:name": "Annotation track"
-    },
-    {
-      "@id": "_:Nd3de27de17664471bf763fc12b4ebac8",
+      "@id": "_:N24abd3cb7e3a43c79a9c0ea631579d31",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2977"
       },
       "sc:encodingFormat": [
         {
-          "@id": "edam:format_1957"
+          "@id": "edam:format_1929"
         },
         {
-          "@id": "edam:format_1929"
+          "@id": "edam:format_1957"
         }
       ],
       "sc:name": "Nucleic acid sequence"
+    },
+    {
+      "@id": "_:N3dae92606fa64249b9b2db21e5743cea",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3002"
+      },
+      "sc:name": "Annotation track"
     },
     {
       "@id": "https://doi.org/10.1093/NAR/GKAD276",

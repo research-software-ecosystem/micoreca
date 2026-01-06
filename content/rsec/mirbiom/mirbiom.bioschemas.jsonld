@@ -39,17 +39,11 @@
       "@id": "https://bio.tools/mirbiom",
       "@type": "sc:SoftwareApplication",
       "bsc:input": {
-        "@id": "_:N4a69c2cc716f4f0cbe4ac1a36a4c8b32"
+        "@id": "_:N954befe9c0474450a3979b6f6e43e38d"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Web application",
       "sc:applicationSubCategory": [
-        {
-          "@id": "edam:topic_3170"
-        },
-        {
-          "@id": "edam:topic_0659"
-        },
         {
           "@id": "edam:topic_3794"
         },
@@ -57,21 +51,24 @@
           "@id": "edam:topic_3518"
         },
         {
+          "@id": "edam:topic_3170"
+        },
+        {
+          "@id": "edam:topic_0659"
+        },
+        {
           "@id": "edam:topic_3474"
         }
       ],
       "sc:citation": [
-        "pubmed:34637468",
-        "pmcid:PMC8509996",
         {
           "@id": "https://doi.org/10.1371/JOURNAL.PONE.0258550"
-        }
+        },
+        "pmcid:PMC8509996",
+        "pubmed:34637468"
       ],
       "sc:description": "Machine-learning on Bayesian causal nets of RBP-miRNA interactions successfully predicts miRNA profiles.",
       "sc:featureList": [
-        {
-          "@id": "edam:operation_3799"
-        },
         {
           "@id": "edam:operation_3792"
         },
@@ -83,19 +80,22 @@
         },
         {
           "@id": "edam:operation_3901"
+        },
+        {
+          "@id": "edam:operation_3799"
         }
       ],
       "sc:isAccessibleForFree": true,
       "sc:name": "miRbiom",
       "sc:operatingSystem": [
         "Windows",
-        "Linux",
-        "Mac"
+        "Mac",
+        "Linux"
       ],
       "sc:url": "https://scbb.ihbt.res.in/miRbiom-webserver/"
     },
     {
-      "@id": "_:N4a69c2cc716f4f0cbe4ac1a36a4c8b32",
+      "@id": "_:N954befe9c0474450a3979b6f6e43e38d",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2603"

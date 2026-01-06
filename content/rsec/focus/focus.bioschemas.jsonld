@@ -36,27 +36,31 @@
   },
   "@graph": [
     {
+      "@id": "https://doi.org/10.7717/peerj.425",
+      "@type": "sc:CreativeWork"
+    },
+    {
       "@id": "https://bio.tools/focus",
       "@type": "sc:SoftwareApplication",
       "bsc:input": [
         {
-          "@id": "_:N01b95840e0a541519f81e80d253dd78a"
+          "@id": "_:N463995a364494e1f903d08c13c0ea1b0"
         },
         {
-          "@id": "_:N246592c4e0e1402593f406ff52a8a792"
+          "@id": "_:N5fd129425e114c0e863a89a2cd8100cc"
         }
       ],
       "bsc:output": {
-        "@id": "_:N35e2fbc53a0447199a1e4c95dac252ef"
+        "@id": "_:N26222639f22c4bf7980f569c1ec2f4b3"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Command-line tool",
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_3174"
+          "@id": "edam:topic_3837"
         },
         {
-          "@id": "edam:topic_3837"
+          "@id": "edam:topic_3174"
         }
       ],
       "sc:citation": [
@@ -78,22 +82,54 @@
       "sc:license": "GPL-3.0",
       "sc:name": "FOCUS",
       "sc:operatingSystem": [
-        "Linux",
         "Mac",
-        "Windows"
+        "Windows",
+        "Linux"
       ],
       "sc:softwareHelp": [
         {
-          "@id": "https://github.com/metageni/FOCUS#usage"
+          "@id": "https://github.com/metageni/FOCUS#installation"
         },
         {
-          "@id": "https://github.com/metageni/FOCUS#installation"
+          "@id": "https://github.com/metageni/FOCUS#usage"
         }
       ],
       "sc:url": "https://github.com/metageni/FOCUS"
     },
     {
-      "@id": "_:N35e2fbc53a0447199a1e4c95dac252ef",
+      "@id": "_:N463995a364494e1f903d08c13c0ea1b0",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_2044"
+      },
+      "sc:encodingFormat": [
+        {
+          "@id": "edam:format_1929"
+        },
+        {
+          "@id": "edam:format_1930"
+        }
+      ],
+      "sc:name": "Sequence"
+    },
+    {
+      "@id": "_:N5fd129425e114c0e863a89a2cd8100cc",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_2044"
+      },
+      "sc:encodingFormat": [
+        {
+          "@id": "edam:format_1929"
+        },
+        {
+          "@id": "edam:format_1930"
+        }
+      ],
+      "sc:name": "Sequence"
+    },
+    {
+      "@id": "_:N26222639f22c4bf7980f569c1ec2f4b3",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_1872"
@@ -102,42 +138,6 @@
         "@id": "edam:format_3475"
       },
       "sc:name": "Taxonomic classification"
-    },
-    {
-      "@id": "_:N01b95840e0a541519f81e80d253dd78a",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_2044"
-      },
-      "sc:encodingFormat": [
-        {
-          "@id": "edam:format_1929"
-        },
-        {
-          "@id": "edam:format_1930"
-        }
-      ],
-      "sc:name": "Sequence"
-    },
-    {
-      "@id": "_:N246592c4e0e1402593f406ff52a8a792",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_2044"
-      },
-      "sc:encodingFormat": [
-        {
-          "@id": "edam:format_1930"
-        },
-        {
-          "@id": "edam:format_1929"
-        }
-      ],
-      "sc:name": "Sequence"
-    },
-    {
-      "@id": "https://doi.org/10.7717/peerj.425",
-      "@type": "sc:CreativeWork"
     }
   ]
 }

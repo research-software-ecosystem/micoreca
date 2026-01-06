@@ -2,7 +2,7 @@ package: paleomix
 distribution: debian
 release: sid
 component: main
-version: 1.3.8
+version: 1.3.10
 source: paleomix
 homepage: https://geogenetics.ku.dk/publications/paleomix
 license: unknown
@@ -19,9 +19,9 @@ bib:
 - key: doi
   value: 10.1038/nprot.2014.063
 popcon:
-- insts: 83
-  olde: 50
-  recent: 30
+- insts: 97
+  olde: 46
+  recent: 48
   vote: 3
 descr:
 - package: paleomix
