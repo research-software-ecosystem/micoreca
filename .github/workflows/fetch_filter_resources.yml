@@ -56,7 +56,6 @@ jobs:
   fetch-rsec:
     runs-on: ubuntu-latest
     name: Fetch RSEc resources
-    environment: fetch-tools
     steps:
       - name: Checkout main
         uses: actions/checkout@v5
