@@ -39,29 +39,29 @@
       "@id": "https://bio.tools/panoromics",
       "@type": "sc:SoftwareApplication",
       "bsc:input": {
-        "@id": "_:Nc280d421560f46a7a1930559e0017bf1"
+        "@id": "_:Nfd3556d5100d469ea3b738e95e560537"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_0634"
-        },
-        {
           "@id": "edam:topic_0602"
-        },
-        {
-          "@id": "edam:topic_3423"
         },
         {
           "@id": "edam:topic_3388"
         },
         {
+          "@id": "edam:topic_3423"
+        },
+        {
           "@id": "edam:topic_3444"
+        },
+        {
+          "@id": "edam:topic_0634"
         }
       ],
       "sc:citation": [
-        "pubmed:28453651",
         "pmcid:PMC5570074",
+        "pubmed:28453651",
         {
           "@id": "https://doi.org/10.1093/nar/gkx311"
         }
@@ -74,7 +74,7 @@
       "sc:url": "https://panoromics.irbbarcelona.org"
     },
     {
-      "@id": "_:Nc280d421560f46a7a1930559e0017bf1",
+      "@id": "_:Nfd3556d5100d469ea3b738e95e560537",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2600"

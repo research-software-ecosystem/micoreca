@@ -36,7 +36,159 @@
   },
   "@graph": [
     {
-      "@id": "https://doi.org/10.1093/nar/gkr1060",
+      "@id": "https://bio.tools/eggnog",
+      "@type": "sc:SoftwareApplication",
+      "biotools:primaryContact": {
+        "@id": "https://orcid.org/0000-0003-1429-7485"
+      },
+      "bsc:input": {
+        "@id": "_:N9b9332853b684d5bba35dc3a9ef93728"
+      },
+      "bsc:output": [
+        {
+          "@id": "_:Nc0da3de2819945f3b2d760de4e25a50f"
+        },
+        {
+          "@id": "_:N92c539b28aa64e5384a4e52f931c6e49"
+        },
+        {
+          "@id": "_:N8f2424a30f88429690321f113e5cebe8"
+        },
+        {
+          "@id": "_:Nbeaab7a0d66e47cb979021843dc6ab11"
+        }
+      ],
+      "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
+      "sc:additionalType": "Database portal",
+      "sc:applicationSubCategory": [
+        {
+          "@id": "edam:topic_0622"
+        },
+        {
+          "@id": "edam:topic_3174"
+        }
+      ],
+      "sc:citation": [
+        "pmcid:PMC6324079",
+        "pubmed:36399505",
+        "pmcid:PMC9825578",
+        "pubmed:26582926",
+        "pubmed:17942413",
+        {
+          "@id": "https://doi.org/10.1093/nar/gky1085"
+        },
+        "pmcid:PMC3245133",
+        "pubmed:24297252",
+        "pmcid:PMC2238944",
+        "pubmed:19900971",
+        "pmcid:PMC3964997",
+        {
+          "@id": "https://doi.org/10.1093/nar/gkt1253"
+        },
+        {
+          "@id": "https://doi.org/10.1093/nar/gkac1022"
+        },
+        "pmcid:PMC4702882",
+        "pmcid:PMC2808932",
+        {
+          "@id": "https://doi.org/10.1093/nar/gkv1248"
+        },
+        {
+          "@id": "https://doi.org/10.1093/nar/gkm796"
+        },
+        "pubmed:30418610",
+        {
+          "@id": "https://doi.org/10.1093/nar/gkp951"
+        },
+        "pubmed:22096231",
+        {
+          "@id": "https://doi.org/10.1093/nar/gkr1060"
+        }
+      ],
+      "sc:description": "eggNOG is a database of nested orthologous gene groups (NOGs) inferred using unsupervised clustering applied to >5,000 complete genomes followed by comprehensive characterization and analysis of the resulting gene families. eggNOG provides orthologous group assignments at 379 different taxonomic levels as well as multiple sequence alignments, maximum-likelihood trees and broad functional annotations for each group accessible via a web interface or through bulk download.",
+      "sc:featureList": [
+        {
+          "@id": "edam:operation_0346"
+        },
+        {
+          "@id": "edam:operation_0338"
+        }
+      ],
+      "sc:isAccessibleForFree": true,
+      "sc:license": "GPL-3.0",
+      "sc:name": "eggNOG",
+      "sc:operatingSystem": [
+        "Linux",
+        "Mac",
+        "Windows"
+      ],
+      "sc:provider": [
+        "HD-HuB",
+        "European Molecular Biology Laboratory (EMBL)"
+      ],
+      "sc:softwareHelp": {
+        "@id": "http://eggnogdb.embl.de/#/app/methods"
+      },
+      "sc:softwareVersion": "6.0",
+      "sc:url": "http://eggnogdb.embl.de/#/app/home"
+    },
+    {
+      "@id": "_:Nc0da3de2819945f3b2d760de4e25a50f",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_1384"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_1929"
+      },
+      "sc:name": "Sequence alignment (protein)"
+    },
+    {
+      "@id": "_:N92c539b28aa64e5384a4e52f931c6e49",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_0872"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_1910"
+      },
+      "sc:name": "Phylogenetic tree"
+    },
+    {
+      "@id": "_:N8f2424a30f88429690321f113e5cebe8",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_1233"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_1929"
+      },
+      "sc:name": "Sequence set (protein)"
+    },
+    {
+      "@id": "_:Nbeaab7a0d66e47cb979021843dc6ab11",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_1364"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_1369"
+      },
+      "sc:name": "Hidden Markov model"
+    },
+    {
+      "@id": "_:N9b9332853b684d5bba35dc3a9ef93728",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_2976"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_1929"
+      },
+      "sc:name": "Protein sequence"
+    },
+    {
+      "@id": "https://doi.org/10.1093/nar/gkm796",
       "@type": "sc:CreativeWork"
     },
     {
@@ -44,7 +196,11 @@
       "@type": "sc:CreativeWork"
     },
     {
-      "@id": "https://doi.org/10.1093/nar/gkt1253",
+      "@id": "https://orcid.org/0000-0003-1429-7485",
+      "@type": "sc:Person"
+    },
+    {
+      "@id": "https://doi.org/10.1093/nar/gkr1060",
       "@type": "sc:CreativeWork"
     },
     {
@@ -56,168 +212,12 @@
       "@type": "sc:CreativeWork"
     },
     {
+      "@id": "https://doi.org/10.1093/nar/gkt1253",
+      "@type": "sc:CreativeWork"
+    },
+    {
       "@id": "https://doi.org/10.1093/nar/gkv1248",
       "@type": "sc:CreativeWork"
-    },
-    {
-      "@id": "https://doi.org/10.1093/nar/gkm796",
-      "@type": "sc:CreativeWork"
-    },
-    {
-      "@id": "https://bio.tools/eggnog",
-      "@type": "sc:SoftwareApplication",
-      "biotools:primaryContact": {
-        "@id": "https://orcid.org/0000-0003-1429-7485"
-      },
-      "bsc:input": {
-        "@id": "_:N8f140c306a864a29b695eec6507143c2"
-      },
-      "bsc:output": [
-        {
-          "@id": "_:Ncc2f33240381403f84106f17643ce385"
-        },
-        {
-          "@id": "_:N5de2116ae23640a692c8c8584f193afd"
-        },
-        {
-          "@id": "_:N74ba3c06aa74419c89b1f17abcb9c49d"
-        },
-        {
-          "@id": "_:Nc331f749842f4c46be25d27c3ce3795b"
-        }
-      ],
-      "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
-      "sc:additionalType": "Database portal",
-      "sc:applicationSubCategory": [
-        {
-          "@id": "edam:topic_3174"
-        },
-        {
-          "@id": "edam:topic_0622"
-        }
-      ],
-      "sc:citation": [
-        "pubmed:30418610",
-        "pubmed:17942413",
-        "pmcid:PMC2238944",
-        {
-          "@id": "https://doi.org/10.1093/nar/gkac1022"
-        },
-        "pmcid:PMC2808932",
-        {
-          "@id": "https://doi.org/10.1093/nar/gkm796"
-        },
-        "pmcid:PMC6324079",
-        "pubmed:36399505",
-        {
-          "@id": "https://doi.org/10.1093/nar/gky1085"
-        },
-        {
-          "@id": "https://doi.org/10.1093/nar/gkv1248"
-        },
-        "pubmed:19900971",
-        {
-          "@id": "https://doi.org/10.1093/nar/gkr1060"
-        },
-        {
-          "@id": "https://doi.org/10.1093/nar/gkp951"
-        },
-        "pmcid:PMC3964997",
-        {
-          "@id": "https://doi.org/10.1093/nar/gkt1253"
-        },
-        "pubmed:26582926",
-        "pmcid:PMC3245133",
-        "pmcid:PMC4702882",
-        "pubmed:22096231",
-        "pmcid:PMC9825578",
-        "pubmed:24297252"
-      ],
-      "sc:description": "eggNOG is a database of nested orthologous gene groups (NOGs) inferred using unsupervised clustering applied to >5,000 complete genomes followed by comprehensive characterization and analysis of the resulting gene families. eggNOG provides orthologous group assignments at 379 different taxonomic levels as well as multiple sequence alignments, maximum-likelihood trees and broad functional annotations for each group accessible via a web interface or through bulk download.",
-      "sc:featureList": [
-        {
-          "@id": "edam:operation_0338"
-        },
-        {
-          "@id": "edam:operation_0346"
-        }
-      ],
-      "sc:isAccessibleForFree": true,
-      "sc:license": "GPL-3.0",
-      "sc:name": "eggNOG",
-      "sc:operatingSystem": [
-        "Windows",
-        "Linux",
-        "Mac"
-      ],
-      "sc:provider": [
-        "European Molecular Biology Laboratory (EMBL)",
-        "HD-HuB"
-      ],
-      "sc:softwareHelp": {
-        "@id": "http://eggnogdb.embl.de/#/app/methods"
-      },
-      "sc:softwareVersion": "6.0",
-      "sc:url": "http://eggnogdb.embl.de/#/app/home"
-    },
-    {
-      "@id": "_:Ncc2f33240381403f84106f17643ce385",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_1364"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_1369"
-      },
-      "sc:name": "Hidden Markov model"
-    },
-    {
-      "@id": "_:N5de2116ae23640a692c8c8584f193afd",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_0872"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_1910"
-      },
-      "sc:name": "Phylogenetic tree"
-    },
-    {
-      "@id": "_:N74ba3c06aa74419c89b1f17abcb9c49d",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_1384"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_1929"
-      },
-      "sc:name": "Sequence alignment (protein)"
-    },
-    {
-      "@id": "_:Nc331f749842f4c46be25d27c3ce3795b",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_1233"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_1929"
-      },
-      "sc:name": "Sequence set (protein)"
-    },
-    {
-      "@id": "_:N8f140c306a864a29b695eec6507143c2",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_2976"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_1929"
-      },
-      "sc:name": "Protein sequence"
-    },
-    {
-      "@id": "https://orcid.org/0000-0003-1429-7485",
-      "@type": "sc:Person"
     }
   ]
 }

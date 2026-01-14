@@ -44,10 +44,10 @@
       "@type": "sc:SoftwareApplication",
       "biotools:primaryContact": "Stefano Lonardi",
       "bsc:input": {
-        "@id": "_:N3e1716848167442fbd81364e4b1570df"
+        "@id": "_:N35a2c2e99f9b4671b5aec1a16b3d7fdf"
       },
       "bsc:output": {
-        "@id": "_:N9dbfac9649e442b3ba69ae8b75e1f9c3"
+        "@id": "_:N2aaad45a93864796bf41a228bf4981e3"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Command-line tool",
@@ -56,10 +56,10 @@
       },
       "sc:citation": [
         "pmcid:PMC4428112",
+        "pubmed:25879410",
         {
           "@id": "https://doi.org/10.1186/s12864-015-1419-2"
-        },
-        "pubmed:25879410"
+        }
       ],
       "sc:description": "Classification method based on a supervised sequence classification using discriminative k-mers.",
       "sc:featureList": {
@@ -68,8 +68,8 @@
       "sc:isAccessibleForFree": true,
       "sc:name": "CLARK",
       "sc:operatingSystem": [
-        "Windows",
-        "Mac"
+        "Mac",
+        "Windows"
       ],
       "sc:provider": "ebi.ac.uk",
       "sc:softwareHelp": {
@@ -79,7 +79,7 @@
       "sc:url": "http://clark.cs.ucr.edu/"
     },
     {
-      "@id": "_:N3e1716848167442fbd81364e4b1570df",
+      "@id": "_:N35a2c2e99f9b4671b5aec1a16b3d7fdf",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3494"
@@ -90,7 +90,7 @@
       "sc:name": "DNA sequence"
     },
     {
-      "@id": "_:N9dbfac9649e442b3ba69ae8b75e1f9c3",
+      "@id": "_:N2aaad45a93864796bf41a228bf4981e3",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3028"

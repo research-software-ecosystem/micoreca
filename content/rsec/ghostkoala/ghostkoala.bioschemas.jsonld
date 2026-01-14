@@ -36,31 +36,27 @@
   },
   "@graph": [
     {
-      "@id": "https://doi.org/10.1016/j.jmb.2015.11.006",
-      "@type": "sc:CreativeWork"
-    },
-    {
       "@id": "https://bio.tools/ghostkoala",
       "@type": "sc:SoftwareApplication",
       "bsc:input": {
-        "@id": "_:N5ee8789d0f5548b98f2ac0b1a900bf3b"
+        "@id": "_:N7e6f25626bce49b38fae98cc4fee4014"
       },
       "bsc:output": [
         {
-          "@id": "_:Nf45b0a8b2f844f55bd31ed99cbb8c551"
+          "@id": "_:N2f12c2d1e6324aac9efcaa5f7ba9fdc2"
         },
         {
-          "@id": "_:N6f5ec59d70a64304b063b566ee79149a"
+          "@id": "_:N4848a08217f14a748ea93241e3dc331f"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Web application",
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_3174"
+          "@id": "edam:topic_3837"
         },
         {
-          "@id": "edam:topic_3837"
+          "@id": "edam:topic_3174"
         },
         {
           "@id": "edam:topic_0602"
@@ -78,10 +74,10 @@
           "@id": "edam:operation_2421"
         },
         {
-          "@id": "edam:operation_0362"
+          "@id": "edam:operation_0533"
         },
         {
-          "@id": "edam:operation_0533"
+          "@id": "edam:operation_0362"
         }
       ],
       "sc:isAccessibleForFree": true,
@@ -92,7 +88,7 @@
       "sc:url": "https://www.kegg.jp/ghostkoala/"
     },
     {
-      "@id": "_:N5ee8789d0f5548b98f2ac0b1a900bf3b",
+      "@id": "_:N7e6f25626bce49b38fae98cc4fee4014",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2976"
@@ -103,7 +99,7 @@
       "sc:name": "Protein sequence"
     },
     {
-      "@id": "_:Nf45b0a8b2f844f55bd31ed99cbb8c551",
+      "@id": "_:N2f12c2d1e6324aac9efcaa5f7ba9fdc2",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_1872"
@@ -111,12 +107,16 @@
       "sc:name": "Taxonomic classification"
     },
     {
-      "@id": "_:N6f5ec59d70a64304b063b566ee79149a",
+      "@id": "_:N4848a08217f14a748ea93241e3dc331f",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0916"
       },
       "sc:name": "Gene report"
+    },
+    {
+      "@id": "https://doi.org/10.1016/j.jmb.2015.11.006",
+      "@type": "sc:CreativeWork"
     }
   ]
 }

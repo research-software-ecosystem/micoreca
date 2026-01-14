@@ -44,37 +44,37 @@
       "@type": "sc:SoftwareApplication",
       "bsc:input": [
         {
-          "@id": "_:N777f741216f741fb8329c61a01d0b628"
+          "@id": "_:N449dd736d4e44e7095d0c99f14e7935b"
         },
         {
-          "@id": "_:N36362fdf32b24f4d965e14a28e729101"
+          "@id": "_:Ne5ab8752652e48e7b9f5d8ca5f802e6e"
         },
         {
-          "@id": "_:N1c0f99cb45894d99962e70e19132e0f6"
+          "@id": "_:Nf36da2db0e244424b913af5f52877abc"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Command-line tool",
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_3293"
-        },
-        {
           "@id": "edam:topic_0637"
         },
         {
-          "@id": "edam:topic_3174"
+          "@id": "edam:topic_0091"
         },
         {
-          "@id": "edam:topic_0091"
+          "@id": "edam:topic_3293"
+        },
+        {
+          "@id": "edam:topic_3174"
         }
       ],
       "sc:author": "Benjamin Linard",
       "sc:citation": [
-        "pubmed:30698645",
         {
           "@id": "https://doi.org/10.1093/bioinformatics/btz068"
-        }
+        },
+        "pubmed:30698645"
       ],
       "sc:description": "RAPPAS stands for Rapid Alignment-free Phylogenetic Placement via Ancestral Sequences. It uses an alignment-free approach for phylogenetic placement, thus removing the hurdle of query sequence alignment.",
       "sc:featureList": {
@@ -90,7 +90,7 @@
       "sc:url": "http://www.atgc-montpellier.fr/RAPPAS/"
     },
     {
-      "@id": "_:N777f741216f741fb8329c61a01d0b628",
+      "@id": "_:N449dd736d4e44e7095d0c99f14e7935b",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3272"
@@ -98,20 +98,20 @@
       "sc:name": "Species tree"
     },
     {
-      "@id": "_:N36362fdf32b24f4d965e14a28e729101",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_2976"
-      },
-      "sc:name": "Protein sequence"
-    },
-    {
-      "@id": "_:N1c0f99cb45894d99962e70e19132e0f6",
+      "@id": "_:Ne5ab8752652e48e7b9f5d8ca5f802e6e",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3494"
       },
       "sc:name": "DNA sequence"
+    },
+    {
+      "@id": "_:Nf36da2db0e244424b913af5f52877abc",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_2976"
+      },
+      "sc:name": "Protein sequence"
     }
   ]
 }

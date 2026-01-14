@@ -36,10 +36,14 @@
   },
   "@graph": [
     {
+      "@id": "https://doi.org/10.1093/bioinformatics/btac715",
+      "@type": "sc:CreativeWork"
+    },
+    {
       "@id": "https://bio.tools/samppred-gat",
       "@type": "sc:SoftwareApplication",
       "bsc:input": {
-        "@id": "_:N424a500d458649108bf1e20d4ea1b125"
+        "@id": "_:N9d97662b9d714e2ca46b4a3c39906d3f"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": [
@@ -48,16 +52,16 @@
       ],
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_0121"
-        },
-        {
           "@id": "edam:topic_3474"
         },
         {
-          "@id": "edam:topic_0154"
+          "@id": "edam:topic_0082"
         },
         {
-          "@id": "edam:topic_0082"
+          "@id": "edam:topic_0121"
+        },
+        {
+          "@id": "edam:topic_0154"
         }
       ],
       "sc:citation": [
@@ -70,30 +74,30 @@
       "sc:description": "Prediction of antimicrobial peptide by graph attention network and predicted peptide structure.",
       "sc:featureList": [
         {
-          "@id": "edam:operation_0474"
+          "@id": "edam:operation_3927"
         },
         {
-          "@id": "edam:operation_3631"
+          "@id": "edam:operation_0474"
         },
         {
           "@id": "edam:operation_0267"
         },
         {
-          "@id": "edam:operation_3927"
+          "@id": "edam:operation_3631"
         }
       ],
       "sc:isAccessibleForFree": true,
       "sc:license": "Not licensed",
       "sc:name": "sAMPpred-GAT",
       "sc:operatingSystem": [
+        "Linux",
         "Mac",
-        "Windows",
-        "Linux"
+        "Windows"
       ],
       "sc:url": "http://bliulab.net/sAMPpred-GAT"
     },
     {
-      "@id": "_:N424a500d458649108bf1e20d4ea1b125",
+      "@id": "_:N9d97662b9d714e2ca46b4a3c39906d3f",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2976"
@@ -102,10 +106,6 @@
         "@id": "edam:format_1929"
       },
       "sc:name": "Protein sequence"
-    },
-    {
-      "@id": "https://doi.org/10.1093/bioinformatics/btac715",
-      "@type": "sc:CreativeWork"
     }
   ]
 }

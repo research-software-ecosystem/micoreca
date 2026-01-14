@@ -43,15 +43,15 @@
         "Australia"
       ],
       "bsc:input": {
-        "@id": "_:Nb768c3c0921042e8a334dccb573d90ac"
+        "@id": "_:N805cdcd440c24b36a68a8caafb1f9b8b"
       },
       "bsc:output": {
-        "@id": "_:Nfea9915de3aa4ea6b6c75d800a03ffda"
+        "@id": "_:Ndf942c27c07942a8bd9606aed66d3a27"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": [
-        "Web application",
-        "Command-line tool"
+        "Command-line tool",
+        "Web application"
       ],
       "sc:applicationSubCategory": [
         {
@@ -69,12 +69,12 @@
       "sc:license": "GPL-3.0",
       "sc:name": "Barrnap",
       "sc:operatingSystem": [
-        "Linux",
-        "Mac"
+        "Mac",
+        "Linux"
       ],
       "sc:provider": [
-        "University of Melbourne, Australia",
-        "unimelb.edu.au"
+        "unimelb.edu.au",
+        "University of Melbourne, Australia"
       ],
       "sc:softwareHelp": {
         "@id": "https://github.com/tseemann/barrnap/blob/master/README.md"
@@ -83,18 +83,7 @@
       "sc:url": "https://github.com/tseemann/barrnap"
     },
     {
-      "@id": "_:Nfea9915de3aa4ea6b6c75d800a03ffda",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_1255"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_1975"
-      },
-      "sc:name": "Sequence features"
-    },
-    {
-      "@id": "_:Nb768c3c0921042e8a334dccb573d90ac",
+      "@id": "_:N805cdcd440c24b36a68a8caafb1f9b8b",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3494"
@@ -103,6 +92,17 @@
         "@id": "edam:format_1929"
       },
       "sc:name": "DNA sequence"
+    },
+    {
+      "@id": "_:Ndf942c27c07942a8bd9606aed66d3a27",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_1255"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_1975"
+      },
+      "sc:name": "Sequence features"
     }
   ]
 }

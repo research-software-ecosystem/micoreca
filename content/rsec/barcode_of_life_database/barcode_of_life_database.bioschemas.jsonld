@@ -40,18 +40,18 @@
       "@type": "sc:SoftwareApplication",
       "bsc:input": [
         {
-          "@id": "_:N651e4bbcf45d4016a7ed1a2e1b97388c"
+          "@id": "_:N28be73b560624fa1ba6131ec07665f7a"
         },
         {
-          "@id": "_:Ned19c0e24ebb4fd5a6bc42b5705302c6"
+          "@id": "_:Nd8fe17ec0e7d4a7fa49c2ee0c4290340"
         }
       ],
       "bsc:output": [
         {
-          "@id": "_:N3fc5940c3ef945bfb47808d777b325e5"
+          "@id": "_:N8ba52e2c7a87403bb112dfd214a66ccf"
         },
         {
-          "@id": "_:N0d40687c9f3846c5834ebfdb248f439d"
+          "@id": "_:N401b5418d44549a5adf26a0441fde974"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
@@ -81,7 +81,15 @@
       "sc:url": "https://boldsystems.org/"
     },
     {
-      "@id": "_:N3fc5940c3ef945bfb47808d777b325e5",
+      "@id": "_:N8ba52e2c7a87403bb112dfd214a66ccf",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3720"
+      },
+      "sc:name": "Geographic location"
+    },
+    {
+      "@id": "_:N401b5418d44549a5adf26a0441fde974",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_1868"
@@ -89,7 +97,7 @@
       "sc:name": "Taxon"
     },
     {
-      "@id": "_:N0d40687c9f3846c5834ebfdb248f439d",
+      "@id": "_:N28be73b560624fa1ba6131ec07665f7a",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3720"
@@ -97,20 +105,12 @@
       "sc:name": "Geographic location"
     },
     {
-      "@id": "_:N651e4bbcf45d4016a7ed1a2e1b97388c",
+      "@id": "_:Nd8fe17ec0e7d4a7fa49c2ee0c4290340",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3494"
       },
       "sc:name": "DNA sequence"
-    },
-    {
-      "@id": "_:Ned19c0e24ebb4fd5a6bc42b5705302c6",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3720"
-      },
-      "sc:name": "Geographic location"
     }
   ]
 }

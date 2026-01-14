@@ -40,29 +40,29 @@
       "@type": "sc:SoftwareApplication",
       "bsc:input": [
         {
-          "@id": "_:Nacc574fe0d0d49da9849bdc263dbcc49"
+          "@id": "_:Nfc782594f37741e5924680eb2367bc6b"
         },
         {
-          "@id": "_:N1755fdda64ea4e10ac0c9193cca09d9b"
+          "@id": "_:Nafcd6c54694b48a1ac6b65ea0a38f34c"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": [
-        "Command-line tool",
-        "Library"
+        "Library",
+        "Command-line tool"
       ],
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_3174"
-        },
-        {
-          "@id": "edam:topic_0605"
+          "@id": "edam:topic_3474"
         },
         {
           "@id": "edam:topic_3697"
         },
         {
-          "@id": "edam:topic_3474"
+          "@id": "edam:topic_0605"
+        },
+        {
+          "@id": "edam:topic_3174"
         }
       ],
       "sc:citation": [
@@ -79,13 +79,13 @@
       "sc:license": "MIT",
       "sc:name": "VAMB",
       "sc:operatingSystem": [
-        "Mac",
-        "Linux"
+        "Linux",
+        "Mac"
       ],
       "sc:url": "https://github.com/RasmussenLab/vamb"
     },
     {
-      "@id": "_:Nacc574fe0d0d49da9849bdc263dbcc49",
+      "@id": "_:Nfc782594f37741e5924680eb2367bc6b",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0863"
@@ -96,7 +96,7 @@
       "sc:name": "Sequence alignment"
     },
     {
-      "@id": "_:N1755fdda64ea4e10ac0c9193cca09d9b",
+      "@id": "_:Nafcd6c54694b48a1ac6b65ea0a38f34c",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2977"

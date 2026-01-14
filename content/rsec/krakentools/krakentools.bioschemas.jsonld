@@ -40,40 +40,40 @@
       "@type": "sc:SoftwareApplication",
       "bsc:input": [
         {
-          "@id": "_:Nb32efa74b46447159805f3a9a85a2669"
+          "@id": "_:N91a190c93fef48249534e514d738d7c6"
         },
         {
-          "@id": "_:Nb9e7bc54c3674a0082879e52a9f369b2"
+          "@id": "_:N97b99f1dd8274796a3bc3838d554d587"
         }
       ],
       "bsc:output": {
-        "@id": "_:Nee9403aeac0c4a8ea7d1f350ef761e98"
+        "@id": "_:N4d74906e19894cafba7f0c1dbe0c4392"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Command-line tool",
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_0637"
+          "@id": "edam:topic_3174"
         },
         {
-          "@id": "edam:topic_3174"
+          "@id": "edam:topic_0637"
         }
       ],
       "sc:description": "KrakenTools provides individual scripts to analyze Kraken/Kraken2/Bracken/KrakenUniq output files",
       "sc:featureList": [
         {
-          "@id": "edam:operation_0337"
+          "@id": "edam:operation_3436"
         },
         {
-          "@id": "edam:operation_3436"
+          "@id": "edam:operation_0337"
         }
       ],
       "sc:isAccessibleForFree": true,
       "sc:license": "GPL-3.0",
       "sc:name": "KrakenTools",
       "sc:operatingSystem": [
-        "Mac",
-        "Linux"
+        "Linux",
+        "Mac"
       ],
       "sc:softwareHelp": {
         "@id": "https://github.com/jenniferlu717/KrakenTools/blob/master/README.md"
@@ -81,7 +81,7 @@
       "sc:url": "https://github.com/jenniferlu717/KrakenTools"
     },
     {
-      "@id": "_:Nee9403aeac0c4a8ea7d1f350ef761e98",
+      "@id": "_:N4d74906e19894cafba7f0c1dbe0c4392",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3028"
@@ -92,7 +92,7 @@
       "sc:name": "Taxonomy"
     },
     {
-      "@id": "_:Nb32efa74b46447159805f3a9a85a2669",
+      "@id": "_:N91a190c93fef48249534e514d738d7c6",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3028"
@@ -103,7 +103,7 @@
       "sc:name": "Taxonomy"
     },
     {
-      "@id": "_:Nb9e7bc54c3674a0082879e52a9f369b2",
+      "@id": "_:N97b99f1dd8274796a3bc3838d554d587",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3028"

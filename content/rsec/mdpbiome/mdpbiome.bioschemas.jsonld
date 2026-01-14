@@ -36,12 +36,12 @@
   },
   "@graph": [
     {
-      "@id": "https://orcid.org/0000-0002-8129-6506",
+      "@id": "https://orcid.org/0000-0001-6960-357X",
       "@type": "sc:Person"
     },
     {
-      "@id": "https://doi.org/10.1093/bioinformatics/bty562",
-      "@type": "sc:CreativeWork"
+      "@id": "https://orcid.org/0000-0002-1977-9777",
+      "@type": "sc:Person"
     },
     {
       "@id": "https://bio.tools/MDPBiome",
@@ -50,14 +50,14 @@
         "@id": "https://orcid.org/0000-0002-8129-6506"
       },
       "bsc:input": {
-        "@id": "_:N31e8b4753cd646e2abd19d11f51b4844"
+        "@id": "_:Naef40627533342cd8ca7d36a7d9b6ca3"
       },
       "bsc:output": [
         {
-          "@id": "_:N10751d85c69347f38b4e745c9e57420b"
+          "@id": "_:N441d6be38cbe439a818f6b2b55b9ccf0"
         },
         {
-          "@id": "_:N7ca59855f0044f4c8ecb51db04d74ebc"
+          "@id": "_:N246aac1c11764f9fb33e449e43c7d5f7"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
@@ -67,6 +67,9 @@
           "@id": "edam:topic_0091"
         },
         {
+          "@id": "edam:topic_3301"
+        },
+        {
           "@id": "edam:topic_3474"
         },
         {
@@ -74,9 +77,6 @@
         },
         {
           "@id": "edam:topic_0092"
-        },
-        {
-          "@id": "edam:topic_3301"
         }
       ],
       "sc:author": {
@@ -91,16 +91,10 @@
       "sc:description": "MDPbiome is a software developed in R that uses Markov Decision Processes to create \"policy prescriptions\" for microbiome engineering. MDPbiome performs a variety of analysis describing the robustness of the prescription, as well as a variety of visualizations to assist in manual interpretation of the state transitions and biological understanding of a microbiome's dynamics.",
       "sc:featureList": [
         {
-          "@id": "edam:operation_0337"
-        },
-        {
-          "@id": "edam:operation_3695"
-        },
-        {
           "@id": "edam:operation_0335"
         },
         {
-          "@id": "edam:operation_3731"
+          "@id": "edam:operation_3695"
         },
         {
           "@id": "edam:operation_3432"
@@ -109,7 +103,13 @@
           "@id": "edam:operation_3480"
         },
         {
+          "@id": "edam:operation_0337"
+        },
+        {
           "@id": "edam:operation_0004"
+        },
+        {
+          "@id": "edam:operation_3731"
         }
       ],
       "sc:isAccessibleForFree": true,
@@ -126,18 +126,7 @@
       "sc:url": "https://github.com/beatrizgj/MDPbiome"
     },
     {
-      "@id": "_:N31e8b4753cd646e2abd19d11f51b4844",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3917"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_3746"
-      },
-      "sc:name": "Count matrix"
-    },
-    {
-      "@id": "_:N10751d85c69347f38b4e745c9e57420b",
+      "@id": "_:N441d6be38cbe439a818f6b2b55b9ccf0",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0950"
@@ -148,7 +137,7 @@
       "sc:name": "Mathematical model"
     },
     {
-      "@id": "_:N7ca59855f0044f4c8ecb51db04d74ebc",
+      "@id": "_:N246aac1c11764f9fb33e449e43c7d5f7",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3905"
@@ -159,12 +148,23 @@
       "sc:name": "Histogram"
     },
     {
-      "@id": "https://orcid.org/0000-0002-1977-9777",
+      "@id": "_:Naef40627533342cd8ca7d36a7d9b6ca3",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3917"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_3746"
+      },
+      "sc:name": "Count matrix"
+    },
+    {
+      "@id": "https://orcid.org/0000-0002-8129-6506",
       "@type": "sc:Person"
     },
     {
-      "@id": "https://orcid.org/0000-0001-6960-357X",
-      "@type": "sc:Person"
+      "@id": "https://doi.org/10.1093/bioinformatics/bty562",
+      "@type": "sc:CreativeWork"
     }
   ]
 }

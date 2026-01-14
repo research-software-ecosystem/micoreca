@@ -50,14 +50,14 @@
         "@id": "https://orcid.org/0000-0001-5585-6277"
       },
       "bsc:input": {
-        "@id": "_:Nb1adde623e0e48378ccd209c107d94bd"
+        "@id": "_:N09b1a071ba984c65a9eb1e2995491ea8"
       },
       "bsc:output": [
         {
-          "@id": "_:N5b1911b2b4284e8f8797dd7f213a1942"
+          "@id": "_:N29256995266e488db337ebed163ba076"
         },
         {
-          "@id": "_:Nca0c54c425574e7ab62100611540dc9c"
+          "@id": "_:Na10d4727635f4f509be3f14283cfa3b3"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
@@ -67,13 +67,13 @@
           "@id": "edam:topic_3174"
         },
         {
-          "@id": "edam:topic_0654"
+          "@id": "edam:topic_3943"
         },
         {
           "@id": "edam:topic_0622"
         },
         {
-          "@id": "edam:topic_3943"
+          "@id": "edam:topic_0654"
         }
       ],
       "sc:citation": [
@@ -86,61 +86,61 @@
       "sc:description": "A fully reproducible and state-of-the-art ancient DNA analysis pipeline",
       "sc:featureList": [
         {
-          "@id": "edam:operation_3436"
-        },
-        {
-          "@id": "edam:operation_3182"
+          "@id": "edam:operation_3187"
         },
         {
           "@id": "edam:operation_3211"
         },
         {
-          "@id": "edam:operation_3187"
-        },
-        {
-          "@id": "edam:operation_3198"
+          "@id": "edam:operation_3182"
         },
         {
           "@id": "edam:operation_3798"
+        },
+        {
+          "@id": "edam:operation_3436"
+        },
+        {
+          "@id": "edam:operation_3198"
         }
       ],
       "sc:isAccessibleForFree": true,
       "sc:license": "MIT",
       "sc:name": "nf-core-eager",
       "sc:operatingSystem": [
-        "Linux",
-        "Mac"
+        "Mac",
+        "Linux"
       ],
       "sc:softwareHelp": {
         "@id": "https://nf-co.re/eager"
       },
       "sc:softwareVersion": [
-        "2.3.5",
-        "2.2.0",
+        "2.4.0",
+        "2.3.0",
         "2.3.2",
         "2.1.0",
-        "2.3.0",
-        "2.2.2",
-        "2.2.1",
-        "2.3.4",
         "2.3.3",
+        "2.2.0",
+        "2.2.2",
         "2.3.1",
-        "2.4.0"
+        "2.3.5",
+        "2.2.1",
+        "2.3.4"
       ],
       "sc:url": "https://nf-co.re/eager"
     },
     {
-      "@id": "_:Nb1adde623e0e48378ccd209c107d94bd",
+      "@id": "_:N09b1a071ba984c65a9eb1e2995491ea8",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3494"
       },
       "sc:encodingFormat": [
         {
-          "@id": "edam:format_1929"
+          "@id": "edam:format_2572"
         },
         {
-          "@id": "edam:format_2572"
+          "@id": "edam:format_1929"
         },
         {
           "@id": "edam:format_1930"
@@ -149,7 +149,23 @@
       "sc:name": "DNA sequence"
     },
     {
-      "@id": "_:N5b1911b2b4284e8f8797dd7f213a1942",
+      "@id": "_:N29256995266e488db337ebed163ba076",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3494"
+      },
+      "sc:encodingFormat": [
+        {
+          "@id": "edam:format_2572"
+        },
+        {
+          "@id": "edam:format_3016"
+        }
+      ],
+      "sc:name": "DNA sequence"
+    },
+    {
+      "@id": "_:Na10d4727635f4f509be3f14283cfa3b3",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0858"
@@ -158,22 +174,6 @@
         "@id": "edam:format_1930"
       },
       "sc:name": "Sequence signature matches"
-    },
-    {
-      "@id": "_:Nca0c54c425574e7ab62100611540dc9c",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3494"
-      },
-      "sc:encodingFormat": [
-        {
-          "@id": "edam:format_3016"
-        },
-        {
-          "@id": "edam:format_2572"
-        }
-      ],
-      "sc:name": "DNA sequence"
     }
   ]
 }

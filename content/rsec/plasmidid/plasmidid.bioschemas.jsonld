@@ -36,6 +36,14 @@
   },
   "@graph": [
     {
+      "@id": "https://orcid.org/0000-0002-5881-7377",
+      "@type": "sc:Person"
+    },
+    {
+      "@id": "https://orcid.org/0000-0002-0740-6324",
+      "@type": "sc:Person"
+    },
+    {
       "@id": "https://bio.tools/plasmidid",
       "@type": "sc:SoftwareApplication",
       "biotools:primaryContact": {
@@ -43,27 +51,27 @@
       },
       "bsc:input": [
         {
-          "@id": "_:N2d6b4203a39c47dda4bc50ef02dd3f25"
+          "@id": "_:N5bd8bc4379bf44fba1078345d4a0263c"
         },
         {
-          "@id": "_:Nccb5c4b1be30445b99bb00b7a78ce33e"
+          "@id": "_:N9c21a98707e74739b088488c770acf67"
         }
       ],
       "bsc:output": [
         {
-          "@id": "_:N933769d04f4a4f0a97c8e75cceb9c1f5"
+          "@id": "_:N7537d3618efe434086fbd4c30d6fff73"
         },
         {
-          "@id": "_:N99bd501d89674a4ebb9769b2a2114821"
+          "@id": "_:N9884fc1388f94ad6886612803ba877f8"
         },
         {
-          "@id": "_:Nfa19f7ee48d34547bf4b6bbbb3bd76bc"
+          "@id": "_:N8118f9dcd7894e9aadad7fbeec1e49cc"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": [
-        "Workflow",
-        "Command-line tool"
+        "Command-line tool",
+        "Workflow"
       ],
       "sc:applicationSubCategory": [
         {
@@ -79,22 +87,22 @@
       "sc:description": "PlasmidID is a mapping-based, assembly-assisted plasmid identification tool that analyzes and gives graphic solution for plasmid identification.",
       "sc:featureList": [
         {
-          "@id": "edam:operation_0524"
-        },
-        {
-          "@id": "edam:operation_2429"
+          "@id": "edam:operation_0291"
         },
         {
           "@id": "edam:operation_3472"
         },
         {
-          "@id": "edam:operation_0291"
+          "@id": "edam:operation_3184"
         },
         {
           "@id": "edam:operation_0578"
         },
         {
-          "@id": "edam:operation_3184"
+          "@id": "edam:operation_0524"
+        },
+        {
+          "@id": "edam:operation_2429"
         }
       ],
       "sc:isAccessibleForFree": true,
@@ -105,14 +113,36 @@
         "@id": "https://github.com/BU-ISCIII/plasmidID/wiki"
       },
       "sc:softwareVersion": [
+        "1.6.6",
         "1.6.5",
-        "1.6.4",
-        "1.6.6"
+        "1.6.4"
       ],
       "sc:url": "https://github.com/BU-ISCIII/plasmidID"
     },
     {
-      "@id": "_:N933769d04f4a4f0a97c8e75cceb9c1f5",
+      "@id": "_:N7537d3618efe434086fbd4c30d6fff73",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_1383"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_2572"
+      },
+      "sc:name": "Nucleic acid sequence alignment"
+    },
+    {
+      "@id": "_:N9884fc1388f94ad6886612803ba877f8",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_2969"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_3603"
+      },
+      "sc:name": "Sequence image"
+    },
+    {
+      "@id": "_:N8118f9dcd7894e9aadad7fbeec1e49cc",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2084"
@@ -128,29 +158,23 @@
       "sc:name": "Nucleic acid report"
     },
     {
-      "@id": "_:N99bd501d89674a4ebb9769b2a2114821",
+      "@id": "_:N5bd8bc4379bf44fba1078345d4a0263c",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
-        "@id": "edam:data_2969"
+        "@id": "edam:data_3494"
       },
-      "sc:encodingFormat": {
-        "@id": "edam:format_3603"
-      },
-      "sc:name": "Sequence image"
+      "sc:encodingFormat": [
+        {
+          "@id": "edam:format_1929"
+        },
+        {
+          "@id": "edam:format_1930"
+        }
+      ],
+      "sc:name": "DNA sequence"
     },
     {
-      "@id": "_:Nfa19f7ee48d34547bf4b6bbbb3bd76bc",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_1383"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_2572"
-      },
-      "sc:name": "Nucleic acid sequence alignment"
-    },
-    {
-      "@id": "_:N2d6b4203a39c47dda4bc50ef02dd3f25",
+      "@id": "_:N9c21a98707e74739b088488c770acf67",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_1234"
@@ -159,30 +183,6 @@
         "@id": "edam:format_1929"
       },
       "sc:name": "Sequence set (nucleic acid)"
-    },
-    {
-      "@id": "_:Nccb5c4b1be30445b99bb00b7a78ce33e",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3494"
-      },
-      "sc:encodingFormat": [
-        {
-          "@id": "edam:format_1930"
-        },
-        {
-          "@id": "edam:format_1929"
-        }
-      ],
-      "sc:name": "DNA sequence"
-    },
-    {
-      "@id": "https://orcid.org/0000-0002-5881-7377",
-      "@type": "sc:Person"
-    },
-    {
-      "@id": "https://orcid.org/0000-0002-0740-6324",
-      "@type": "sc:Person"
     }
   ]
 }

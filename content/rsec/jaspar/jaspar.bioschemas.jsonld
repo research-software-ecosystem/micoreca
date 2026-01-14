@@ -36,11 +36,27 @@
   },
   "@graph": [
     {
-      "@id": "https://orcid.org/0000-0002-1559-7802",
+      "@id": "https://doi.org/10.1093/nar/gkab1113",
+      "@type": "sc:CreativeWork"
+    },
+    {
+      "@id": "http://orcid.org/0000-0001-6098-6412",
       "@type": "sc:Person"
     },
     {
-      "@id": "https://orcid.org/0000-0002-2855-9952",
+      "@id": "https://doi.org/10.1093/nar/gkx1126",
+      "@type": "sc:CreativeWork"
+    },
+    {
+      "@id": "https://orcid.org/0000-0001-9253-8825",
+      "@type": "sc:Person"
+    },
+    {
+      "@id": "https://orcid.org/0000-0003-1069-8011",
+      "@type": "sc:Person"
+    },
+    {
+      "@id": "https://orcid.org/0000-0002-1559-7802",
       "@type": "sc:Person"
     },
     {
@@ -48,191 +64,243 @@
       "@type": "sc:Person"
     },
     {
+      "@id": "http://orcid.org/0000-0002-7109-7378",
+      "@type": "sc:Person"
+    },
+    {
+      "@id": "https://orcid.org/0000-0002-9485-6330",
+      "@type": "sc:Person"
+    },
+    {
+      "@id": "https://orcid.org/0000-0002-2791-5505",
+      "@type": "sc:Person"
+    },
+    {
+      "@id": "https://doi.org/10.1093/nar/gkv1176",
+      "@type": "sc:CreativeWork"
+    },
+    {
       "@id": "https://orcid.org/0000-0002-6459-6224",
       "@type": "sc:Person"
     },
     {
-      "@id": "https://orcid.org/0000-0002-0834-7135",
+      "@id": "http://orcid.org/0000-0001-5127-5459",
       "@type": "sc:Person"
+    },
+    {
+      "@id": "http://orcid.org/0000-0002-1114-1509",
+      "@type": "sc:Person"
+    },
+    {
+      "@id": "https://orcid.org/0000-0002-2855-9952",
+      "@type": "sc:Person"
+    },
+    {
+      "@id": "https://orcid.org/0000-0002-5969-3054",
+      "@type": "sc:Person"
+    },
+    {
+      "@id": "https://doi.org/10.1093/nar/gkt997",
+      "@type": "sc:CreativeWork"
+    },
+    {
+      "@id": "https://orcid.org/0000-0002-7311-0599",
+      "@type": "sc:Person"
+    },
+    {
+      "@id": "https://doi.org/10.1093/nar/gkz1001",
+      "@type": "sc:CreativeWork"
+    },
+    {
+      "@id": "https://doi.org/10.1093/nar/gkm955",
+      "@type": "sc:CreativeWork"
+    },
+    {
+      "@id": "https://orcid.org/0000-0002-2252-4732",
+      "@type": "sc:Person"
+    },
+    {
+      "@id": "https://doi.org/10.1093/bioinformatics/btx804",
+      "@type": "sc:CreativeWork"
     },
     {
       "@id": "https://bio.tools/jaspar",
       "@type": "sc:SoftwareApplication",
       "biotools:primaryContact": [
         {
-          "@id": "http://orcid.org/0000-0001-5127-5459"
+          "@id": "https://orcid.org/0000-0003-2191-500X"
+        },
+        {
+          "@id": "http://orcid.org/0000-0002-1114-1509"
         },
         {
           "@id": "http://orcid.org/0000-0002-7109-7378"
         },
         {
-          "@id": "https://orcid.org/0000-0003-2191-500X"
+          "@id": "http://orcid.org/0000-0001-5127-5459"
         },
         {
           "@id": "http://orcid.org/0000-0001-6098-6412"
-        },
-        {
-          "@id": "http://orcid.org/0000-0002-1114-1509"
         }
       ],
       "bsc:input": [
         {
-          "@id": "_:N68ce70aaf00045e29259b2c25056f46b"
+          "@id": "_:Na4ada677277d4732a5e40a756f95419e"
         },
         {
-          "@id": "_:Nea509854c38949d982b33de6465ff570"
+          "@id": "_:Nea083ddc20e44ab3842dfab58e3cefd6"
         },
         {
-          "@id": "_:N9aa5810ef2104d6c882fe007ee54b2c3"
+          "@id": "_:Nf8e0c7063a7b4bc9b7bfd41a05c6190f"
         },
         {
-          "@id": "_:Nec47543574304bfa9d327c5b9b8f738b"
+          "@id": "_:N21a359ef530b4c42a8742167b1d64402"
         },
         {
-          "@id": "_:N5ae7e1627a474db38c4a150ff0f9c5af"
+          "@id": "_:N191b8e65a7794a6b968291fa442caead"
         },
         {
-          "@id": "_:Na44d2a2a0b4246328e9cddc6f0272a9b"
+          "@id": "_:N2461eae3b0844174a1bad3759ee0cf4b"
         },
         {
-          "@id": "_:Nf0e59c2c8c4a46ef801a26cbdb7e4d37"
+          "@id": "_:Nc9178ee060ef44b9bbe376cb4e617126"
         },
         {
-          "@id": "_:Nc678cb72c7a242bd8e20e7aa684915be"
+          "@id": "_:N111ac6bd505b49c68a747aab834dafd6"
         },
         {
-          "@id": "_:N05ef4ec955184f52b15c2634d6190201"
+          "@id": "_:Nef0044a43db1479e9373de706c3313f7"
         }
       ],
       "bsc:output": [
         {
-          "@id": "_:N26af8d3682f04bab96bafcb2497b6efc"
+          "@id": "_:Nf897762dcd1f4066a779dc126eda46f1"
         },
         {
-          "@id": "_:N27cf01c0b60245988968ae748ceffce1"
+          "@id": "_:Neca292b992304aea9118ff4f4c7e89d4"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": [
-        "Database portal",
-        "Web application"
+        "Web application",
+        "Database portal"
       ],
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_0780"
+          "@id": "edam:topic_2815"
         },
         {
           "@id": "edam:topic_0204"
         },
         {
+          "@id": "edam:topic_3071"
+        },
+        {
           "@id": "edam:topic_0749"
+        },
+        {
+          "@id": "edam:topic_0622"
         },
         {
           "@id": "edam:topic_0621"
         },
         {
-          "@id": "edam:topic_3071"
-        },
-        {
-          "@id": "edam:topic_2815"
-        },
-        {
-          "@id": "edam:topic_0622"
+          "@id": "edam:topic_0780"
         }
       ],
       "sc:citation": [
         {
-          "@id": "https://doi.org/10.1093/nar/gkab1113"
-        },
-        {
-          "@id": "https://doi.org/10.1093/nar/gkx1126"
-        },
-        {
           "@id": "https://doi.org/10.1093/nar/gkm955"
         },
         {
-          "@id": "https://doi.org/10.1093/nar/gkp950"
+          "@id": "https://doi.org/10.1093/bioinformatics/btx804"
         },
-        {
-          "@id": "https://doi.org/10.1093/nar/gkt997"
-        },
-        "pubmed:19906716",
+        "pubmed:29140473",
+        "pubmed:29253085",
+        "pubmed:18006571",
         {
           "@id": "https://doi.org/10.1093/nar/gkv1176"
         },
+        "pubmed:34850907",
+        "pmcid:PMC8728201",
+        {
+          "@id": "https://doi.org/10.1093/nar/gkp950"
+        },
+        "pubmed:26531826",
+        "pubmed:31701148",
+        "pubmed:19906716",
         "pubmed:14681366",
-        "pmcid:PMC7145627",
         {
           "@id": "https://doi.org/10.1093/nar/gkj115"
         },
-        "pubmed:29253085",
+        "pmcid:PMC7145627",
         {
-          "@id": "https://doi.org/10.1093/bioinformatics/btx804"
+          "@id": "https://doi.org/10.1093/nar/gkh012"
         },
-        "pubmed:31701148",
-        "pmcid:PMC5753243",
-        "pubmed:16381983",
         "pubmed:24194598",
-        "pmcid:PMC8728201",
-        "pubmed:18006571",
-        "pubmed:34850907",
-        "pubmed:29140473",
-        "pubmed:26531826",
+        {
+          "@id": "https://doi.org/10.1093/nar/gkab1113"
+        },
+        "pubmed:16381983",
+        {
+          "@id": "https://doi.org/10.1093/nar/gkt997"
+        },
+        "pmcid:PMC5753243",
         {
           "@id": "https://doi.org/10.1093/nar/gkz1001"
         },
         {
-          "@id": "https://doi.org/10.1093/nar/gkh012"
+          "@id": "https://doi.org/10.1093/nar/gkx1126"
         }
       ],
       "sc:contributor": [
-        {
-          "@id": "https://orcid.org/0000-0002-0834-7135"
-        },
-        {
-          "@id": "https://orcid.org/0000-0002-7612-4953"
-        },
         "Tiffany Y Leung",
         {
-          "@id": "https://orcid.org/0000-0003-1069-8011"
+          "@id": "https://orcid.org/0000-0001-9253-8825"
         },
         {
-          "@id": "https://orcid.org/0000-0002-5969-3054"
+          "@id": "https://orcid.org/0000-0002-0834-7135"
         },
         {
           "@id": "https://orcid.org/0000-0002-2791-5505"
         },
         {
-          "@id": "https://orcid.org/0000-0001-9253-8825"
-        },
-        {
-          "@id": "https://orcid.org/0000-0002-9485-6330"
-        },
-        "Alejandro Aguirre",
-        {
-          "@id": "https://orcid.org/0000-0001-5948-0932"
-        },
-        {
-          "@id": "https://orcid.org/0000-0003-4790-2725"
+          "@id": "https://orcid.org/0000-0003-1069-8011"
         },
         "Paul Boddie",
-        {
-          "@id": "https://orcid.org/0000-0003-4069-357X"
-        },
+        "Alejandro Aguirre",
         {
           "@id": "https://orcid.org/0000-0002-2855-9952"
-        },
-        {
-          "@id": "https://orcid.org/0000-0002-7311-0599"
         },
         {
           "@id": "https://orcid.org/0000-0002-1559-7802"
         },
         {
+          "@id": "https://orcid.org/0000-0002-2252-4732"
+        },
+        {
+          "@id": "https://orcid.org/0000-0003-4069-357X"
+        },
+        {
           "@id": "https://orcid.org/0000-0002-6459-6224"
         },
         {
-          "@id": "https://orcid.org/0000-0002-2252-4732"
+          "@id": "https://orcid.org/0000-0002-5969-3054"
+        },
+        {
+          "@id": "https://orcid.org/0000-0002-7612-4953"
+        },
+        {
+          "@id": "https://orcid.org/0000-0001-5948-0932"
+        },
+        {
+          "@id": "https://orcid.org/0000-0002-9485-6330"
+        },
+        {
+          "@id": "https://orcid.org/0000-0002-7311-0599"
+        },
+        {
+          "@id": "https://orcid.org/0000-0003-4790-2725"
         }
       ],
       "sc:description": "JASPAR is a high-quality, open-access database that provides manually curated, non-redundant transcription factor (TF) binding profiles for six taxonomic groups (fungi, insecta, nematoda, plantae, urochordata, vertebrata). These profiles are stored as position frequency matrices (PFMs), which can be transformed into models to predict TF binding sites (TFBS) in DNA sequences. The database collects motifs both internally, analyzing sequences using a custom motif discovery pipeline, and externally from publications and other resources. All selected motifs are manually curated for quality and supporting evidence. JASPAR now offers a tool for TFBS enrichment analysis in user-provided genomic regions. Data is accessible through the JASPAR website, its RESTful API, Bioconductor, or the Python package pyJASPAR.",
@@ -249,79 +317,31 @@
       "sc:license": "CC-BY-4.0",
       "sc:name": "JASPAR",
       "sc:operatingSystem": [
-        "Windows",
         "Linux",
-        "Mac"
+        "Mac",
+        "Windows"
       ],
       "sc:softwareHelp": [
         {
-          "@id": "https://bioconductor.org/packages/release/data/annotation/vignettes/JASPAR2022/inst/doc/JASPAR2022.html"
-        },
-        {
-          "@id": "http://jaspar.genereg.net/api/v1/docs/"
-        },
-        {
           "@id": "https://pyjaspar.readthedocs.io/en/latest/"
+        },
+        {
+          "@id": "https://bioconductor.org/packages/release/data/annotation/vignettes/JASPAR2022/inst/doc/JASPAR2022.html"
         },
         {
           "@id": "http://jaspar.genereg.net/docs/"
         },
         {
           "@id": "http://jaspar.genereg.net/faq/"
+        },
+        {
+          "@id": "http://jaspar.genereg.net/api/v1/docs/"
         }
       ],
       "sc:url": "http://jaspar.genereg.net/"
     },
     {
-      "@id": "_:N68ce70aaf00045e29259b2c25056f46b",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_1077"
-      },
-      "sc:name": "Transcription factor identifier"
-    },
-    {
-      "@id": "_:Nea509854c38949d982b33de6465ff570",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3671"
-      },
-      "sc:name": "Text"
-    },
-    {
-      "@id": "_:N9aa5810ef2104d6c882fe007ee54b2c3",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_1868"
-      },
-      "sc:name": "Taxon"
-    },
-    {
-      "@id": "_:Nec47543574304bfa9d327c5b9b8f738b",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_1045"
-      },
-      "sc:name": "Species name"
-    },
-    {
-      "@id": "_:N5ae7e1627a474db38c4a150ff0f9c5af",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_2732"
-      },
-      "sc:name": "Family name"
-    },
-    {
-      "@id": "_:Na44d2a2a0b4246328e9cddc6f0272a9b",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_2755"
-      },
-      "sc:name": "Transcription factor name"
-    },
-    {
-      "@id": "_:Nf0e59c2c8c4a46ef801a26cbdb7e4d37",
+      "@id": "_:Na4ada677277d4732a5e40a756f95419e",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_1119"
@@ -329,7 +349,47 @@
       "sc:name": "JASPAR profile ID"
     },
     {
-      "@id": "_:Nc678cb72c7a242bd8e20e7aa684915be",
+      "@id": "_:Nea083ddc20e44ab3842dfab58e3cefd6",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_2291"
+      },
+      "sc:name": "UniProt ID"
+    },
+    {
+      "@id": "_:Nf8e0c7063a7b4bc9b7bfd41a05c6190f",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_1077"
+      },
+      "sc:name": "Transcription factor identifier"
+    },
+    {
+      "@id": "_:N21a359ef530b4c42a8742167b1d64402",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_1868"
+      },
+      "sc:name": "Taxon"
+    },
+    {
+      "@id": "_:N191b8e65a7794a6b968291fa442caead",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_1045"
+      },
+      "sc:name": "Species name"
+    },
+    {
+      "@id": "_:N2461eae3b0844174a1bad3759ee0cf4b",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3671"
+      },
+      "sc:name": "Text"
+    },
+    {
+      "@id": "_:Nc9178ee060ef44b9bbe376cb4e617126",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3494"
@@ -340,71 +400,63 @@
       "sc:name": "DNA sequence"
     },
     {
-      "@id": "_:N05ef4ec955184f52b15c2634d6190201",
+      "@id": "_:N111ac6bd505b49c68a747aab834dafd6",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
-        "@id": "edam:data_2291"
+        "@id": "edam:data_2732"
       },
-      "sc:name": "UniProt ID"
+      "sc:name": "Family name"
     },
     {
-      "@id": "_:N26af8d3682f04bab96bafcb2497b6efc",
+      "@id": "_:Nef0044a43db1479e9373de706c3313f7",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_2755"
+      },
+      "sc:name": "Transcription factor name"
+    },
+    {
+      "@id": "_:Nf897762dcd1f4066a779dc126eda46f1",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_1119"
+      },
+      "sc:name": "JASPAR profile ID"
+    },
+    {
+      "@id": "_:Neca292b992304aea9118ff4f4c7e89d4",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_1119"
       },
       "sc:encodingFormat": [
         {
-          "@id": "edam:format_1367"
-        },
-        {
-          "@id": "edam:format_3464"
+          "@id": "edam:format_3750"
         },
         {
           "@id": "edam:format_3475"
         },
         {
+          "@id": "edam:format_3752"
+        },
+        {
           "@id": "edam:format_2330"
         },
         {
-          "@id": "edam:format_3750"
+          "@id": "edam:format_3464"
         },
         {
-          "@id": "edam:format_3752"
+          "@id": "edam:format_1367"
         }
       ],
       "sc:name": "JASPAR profile ID"
     },
     {
-      "@id": "_:N27cf01c0b60245988968ae748ceffce1",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_1119"
-      },
-      "sc:name": "JASPAR profile ID"
-    },
-    {
-      "@id": "http://orcid.org/0000-0001-5127-5459",
+      "@id": "https://orcid.org/0000-0003-4790-2725",
       "@type": "sc:Person"
     },
     {
-      "@id": "https://orcid.org/0000-0002-9485-6330",
-      "@type": "sc:Person"
-    },
-    {
-      "@id": "https://orcid.org/0000-0002-5969-3054",
-      "@type": "sc:Person"
-    },
-    {
-      "@id": "https://orcid.org/0000-0002-2791-5505",
-      "@type": "sc:Person"
-    },
-    {
-      "@id": "https://orcid.org/0000-0002-7612-4953",
-      "@type": "sc:Person"
-    },
-    {
-      "@id": "https://orcid.org/0000-0003-2191-500X",
+      "@id": "https://orcid.org/0000-0003-4069-357X",
       "@type": "sc:Person"
     },
     {
@@ -412,75 +464,23 @@
       "@type": "sc:CreativeWork"
     },
     {
-      "@id": "http://orcid.org/0000-0001-6098-6412",
+      "@id": "https://orcid.org/0000-0002-0834-7135",
       "@type": "sc:Person"
-    },
-    {
-      "@id": "https://doi.org/10.1093/nar/gkab1113",
-      "@type": "sc:CreativeWork"
-    },
-    {
-      "@id": "https://doi.org/10.1093/nar/gkx1126",
-      "@type": "sc:CreativeWork"
-    },
-    {
-      "@id": "https://orcid.org/0000-0003-4069-357X",
-      "@type": "sc:Person"
-    },
-    {
-      "@id": "https://orcid.org/0000-0001-9253-8825",
-      "@type": "sc:Person"
-    },
-    {
-      "@id": "https://orcid.org/0000-0002-7311-0599",
-      "@type": "sc:Person"
-    },
-    {
-      "@id": "https://doi.org/10.1093/bioinformatics/btx804",
-      "@type": "sc:CreativeWork"
-    },
-    {
-      "@id": "https://doi.org/10.1093/nar/gkm955",
-      "@type": "sc:CreativeWork"
-    },
-    {
-      "@id": "https://doi.org/10.1093/nar/gkv1176",
-      "@type": "sc:CreativeWork"
-    },
-    {
-      "@id": "https://doi.org/10.1093/nar/gkt997",
-      "@type": "sc:CreativeWork"
-    },
-    {
-      "@id": "http://orcid.org/0000-0002-7109-7378",
-      "@type": "sc:Person"
-    },
-    {
-      "@id": "http://orcid.org/0000-0002-1114-1509",
-      "@type": "sc:Person"
-    },
-    {
-      "@id": "https://orcid.org/0000-0002-2252-4732",
-      "@type": "sc:Person"
-    },
-    {
-      "@id": "https://doi.org/10.1093/nar/gkz1001",
-      "@type": "sc:CreativeWork"
-    },
-    {
-      "@id": "https://orcid.org/0000-0003-4790-2725",
-      "@type": "sc:Person"
-    },
-    {
-      "@id": "https://doi.org/10.1093/nar/gkj115",
-      "@type": "sc:CreativeWork"
     },
     {
       "@id": "https://doi.org/10.1093/nar/gkp950",
       "@type": "sc:CreativeWork"
     },
     {
-      "@id": "https://orcid.org/0000-0003-1069-8011",
+      "@id": "https://doi.org/10.1093/nar/gkj115",
+      "@type": "sc:CreativeWork"
+    },
+    {
+      "@id": "https://orcid.org/0000-0002-7612-4953",
+      "@type": "sc:Person"
+    },
+    {
+      "@id": "https://orcid.org/0000-0003-2191-500X",
       "@type": "sc:Person"
     }
   ]

@@ -36,20 +36,24 @@
   },
   "@graph": [
     {
+      "@id": "https://doi.org/10.1080/15476286.2016.1141862",
+      "@type": "sc:CreativeWork"
+    },
+    {
       "@id": "https://bio.tools/ribogalaxy",
       "@type": "sc:SoftwareApplication",
       "bsc:input": {
-        "@id": "_:N34aece31b6d04dbd9281e34a53f9c628"
+        "@id": "_:Na8c00594e1c3411eaf947d4c41b9971e"
       },
       "bsc:output": [
         {
-          "@id": "_:Nc579c300fd5e438184f3862a928fc8ee"
+          "@id": "_:Nde80456747b245baae8833594c30f0ef"
         },
         {
-          "@id": "_:Nc7b450f13da648a1b8a7e94402f5645f"
+          "@id": "_:N432cca478a174b75a7f7aa473616f411"
         },
         {
-          "@id": "_:Nc535cb601de1429c9fe249663f6283b2"
+          "@id": "_:Nb2b4e2a1b4ec4e9e880dbaebeaf4e824"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
@@ -58,38 +62,38 @@
         "@id": "edam:topic_0203"
       },
       "sc:citation": [
+        "pubmed:26821742",
+        "pmcid:PMC4829337",
+        "pubmed:37356899",
         {
           "@id": "https://doi.org/10.1080/15476286.2016.1141862"
         },
-        "pubmed:26821742",
-        "pmcid:PMC4829337",
         {
           "@id": "https://doi.org/10.1016/j.jmb.2023.168043"
-        },
-        "pubmed:37356899"
+        }
       ],
       "sc:contributor": "Science Foundation Ireland",
       "sc:description": "Galaxy-based web server where researchers can pre-process, align, analyze and visualize their own ribosome profiling (ribo-seq) data. GUI-based tools are provided to determine the strength of the triplet periodicity signal in ribo-seq data, generate metagene and ribosome profiles and carry out differential translation expression analysis using the riboSeqR suite. The RUST suite of tools can be used to quickly characterize ribosome profiling datasets to assess their quality and more.",
       "sc:featureList": [
         {
-          "@id": "edam:operation_0337"
+          "@id": "edam:operation_0314"
+        },
+        {
+          "@id": "edam:operation_2495"
         },
         {
           "@id": "edam:operation_2928"
         },
         {
-          "@id": "edam:operation_0314"
-        },
-        {
-          "@id": "edam:operation_2495"
+          "@id": "edam:operation_0337"
         }
       ],
       "sc:funder": "Science Foundation Ireland",
       "sc:isAccessibleForFree": true,
       "sc:name": "RiboGalaxy",
       "sc:operatingSystem": [
-        "Windows",
-        "Mac"
+        "Mac",
+        "Windows"
       ],
       "sc:provider": "ucc.ie",
       "sc:softwareHelp": [
@@ -104,18 +108,7 @@
       "sc:url": "http://ribogalaxy.ucc.ie"
     },
     {
-      "@id": "_:Nc579c300fd5e438184f3862a928fc8ee",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_2969"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_3603"
-      },
-      "sc:name": "Sequence image"
-    },
-    {
-      "@id": "_:Nc7b450f13da648a1b8a7e94402f5645f",
+      "@id": "_:Nde80456747b245baae8833594c30f0ef",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2968"
@@ -126,23 +119,34 @@
       "sc:name": "Image"
     },
     {
-      "@id": "_:Nc535cb601de1429c9fe249663f6283b2",
+      "@id": "_:N432cca478a174b75a7f7aa473616f411",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_2969"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_3603"
+      },
+      "sc:name": "Sequence image"
+    },
+    {
+      "@id": "_:Nb2b4e2a1b4ec4e9e880dbaebeaf4e824",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0863"
       },
       "sc:encodingFormat": [
         {
-          "@id": "edam:format_2572"
+          "@id": "edam:format_3006"
         },
         {
-          "@id": "edam:format_3006"
+          "@id": "edam:format_2572"
         }
       ],
       "sc:name": "Sequence alignment"
     },
     {
-      "@id": "_:N34aece31b6d04dbd9281e34a53f9c628",
+      "@id": "_:Na8c00594e1c3411eaf947d4c41b9971e",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0848"
@@ -151,10 +155,6 @@
         "@id": "edam:format_1932"
       },
       "sc:name": "Raw sequence"
-    },
-    {
-      "@id": "https://doi.org/10.1080/15476286.2016.1141862",
-      "@type": "sc:CreativeWork"
     },
     {
       "@id": "https://doi.org/10.1016/j.jmb.2023.168043",

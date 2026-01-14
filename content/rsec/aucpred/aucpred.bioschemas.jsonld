@@ -36,21 +36,17 @@
   },
   "@graph": [
     {
-      "@id": "https://doi.org/10.1093/bioinformatics/btw446",
-      "@type": "sc:CreativeWork"
-    },
-    {
       "@id": "https://bio.tools/aucpred",
       "@type": "sc:SoftwareApplication",
       "bsc:input": [
         {
-          "@id": "_:N5fed0f29395b40779791b766995702d1"
+          "@id": "_:N6ce7068dd39c4446a45e3c501dbd44bf"
         },
         {
-          "@id": "_:Na3cbaa67135243e3bba4f4d2012f6bb1"
+          "@id": "_:N5a5d1e9faec84671b0e4289cd214126e"
         },
         {
-          "@id": "_:N99a9e0491d764c4b9093b9333dd96309"
+          "@id": "_:N968bab5cc8af4223b7fe87bbb5f23bc3"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
@@ -60,10 +56,10 @@
       },
       "sc:citation": [
         "pmcid:PMC5013916",
-        "pubmed:27587688",
         {
           "@id": "https://doi.org/10.1093/bioinformatics/btw446"
-        }
+        },
+        "pubmed:27587688"
       ],
       "sc:description": "AUCpreD is a method that predicts intrinsically disordered regions (IDR). AUCpreD works well without sequence profile, comparing favorably to or even outperforming many methods using sequence profile.",
       "sc:featureList": [
@@ -81,7 +77,7 @@
       "sc:url": "http://raptorx2.uchicago.edu/StructurePropertyPred/predict/"
     },
     {
-      "@id": "_:N5fed0f29395b40779791b766995702d1",
+      "@id": "_:N6ce7068dd39c4446a45e3c501dbd44bf",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_1526"
@@ -89,7 +85,7 @@
       "sc:name": "Protein globularity"
     },
     {
-      "@id": "_:Na3cbaa67135243e3bba4f4d2012f6bb1",
+      "@id": "_:N5a5d1e9faec84671b0e4289cd214126e",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_1354"
@@ -97,12 +93,16 @@
       "sc:name": "Sequence profile"
     },
     {
-      "@id": "_:N99a9e0491d764c4b9093b9333dd96309",
+      "@id": "_:N968bab5cc8af4223b7fe87bbb5f23bc3",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2969"
       },
       "sc:name": "Sequence image"
+    },
+    {
+      "@id": "https://doi.org/10.1093/bioinformatics/btw446",
+      "@type": "sc:CreativeWork"
     }
   ]
 }

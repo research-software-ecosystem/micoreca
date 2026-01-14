@@ -36,34 +36,30 @@
   },
   "@graph": [
     {
-      "@id": "https://doi.org/10.1093/nar/gkm160",
-      "@type": "sc:CreativeWork"
-    },
-    {
       "@id": "https://bio.tools/rnammer",
       "@type": "sc:SoftwareApplication",
       "biotools:primaryContact": "Hans-Henrik Staerfeldt",
       "bsc:input": {
-        "@id": "_:N86cf0354e1dd44fdaa6f11d03ec8f612"
+        "@id": "_:Nc54d72bd9be7499abba18074a38c2f4a"
       },
       "bsc:output": {
-        "@id": "_:N59bd02bbb0064b02be33a02178dcecc7"
+        "@id": "_:Nbb099c7d63bd485aa943d18f0737449a"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": [
-        "Web service",
         "Command-line tool",
-        "Web application"
+        "Web application",
+        "Web service"
       ],
       "sc:applicationSubCategory": {
         "@id": "edam:topic_0160"
       },
       "sc:citation": [
-        "pubmed:17452365",
-        "pmcid:PMC1888812",
         {
           "@id": "https://doi.org/10.1093/nar/gkm160"
-        }
+        },
+        "pmcid:PMC1888812",
+        "pubmed:17452365"
       ],
       "sc:description": "Prediction of 5S/8S, 16S/18S, and 23S/28S ribosomal RNA in full genome sequences.",
       "sc:featureList": {
@@ -81,7 +77,7 @@
       "sc:url": "http://cbs.dtu.dk/services/RNAmmer/"
     },
     {
-      "@id": "_:N59bd02bbb0064b02be33a02178dcecc7",
+      "@id": "_:Nbb099c7d63bd485aa943d18f0737449a",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_1277"
@@ -92,7 +88,7 @@
       "sc:name": "Protein features"
     },
     {
-      "@id": "_:N86cf0354e1dd44fdaa6f11d03ec8f612",
+      "@id": "_:Nc54d72bd9be7499abba18074a38c2f4a",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2044"
@@ -101,6 +97,10 @@
         "@id": "edam:format_1929"
       },
       "sc:name": "Sequence"
+    },
+    {
+      "@id": "https://doi.org/10.1093/nar/gkm160",
+      "@type": "sc:CreativeWork"
     }
   ]
 }

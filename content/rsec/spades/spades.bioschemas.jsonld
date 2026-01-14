@@ -36,28 +36,32 @@
   },
   "@graph": [
     {
+      "@id": "https://doi.org/10.7490/f1000research.1114334.1",
+      "@type": "sc:CreativeWork"
+    },
+    {
       "@id": "https://bio.tools/spades",
       "@type": "sc:SoftwareApplication",
       "bsc:input": [
         {
-          "@id": "_:N4eb613d45089456ea289fe18fe6793f7"
+          "@id": "_:Nee64760175ce4d56aa3b04a17e09011a"
         },
         {
-          "@id": "_:Na5629466fc394fdcbeedba695801183a"
+          "@id": "_:N003c0eb89eaf45b1a13fa6f449aaa63b"
         }
       ],
       "bsc:output": [
         {
-          "@id": "_:N2bfe685dedd647fa8ae631d359edffdb"
+          "@id": "_:Nb4457a953a354b3ea16da8757c262afe"
         },
         {
-          "@id": "_:N0401838d2261440bb628711bf4a4074f"
+          "@id": "_:N57dff58fb7214b9fab9cb98f77004edc"
         },
         {
-          "@id": "_:Nef0cb6b4aabe48969dce704cbf3e2a78"
+          "@id": "_:Ne3f3798458744e1494c914fa4d81144a"
         },
         {
-          "@id": "_:N50a2eade67744bfeb4033f23cc482b64"
+          "@id": "_:Ne2421d4e5ce54620ae58effbc4331597"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
@@ -66,14 +70,14 @@
         "@id": "edam:topic_0196"
       },
       "sc:citation": [
-        "pmcid:PMC3342519",
+        "pubmed:22506599",
         {
           "@id": "https://doi.org/10.1089/cmb.2012.0021"
         },
         {
           "@id": "https://doi.org/10.7490/f1000research.1114334.1"
         },
-        "pubmed:22506599"
+        "pmcid:PMC3342519"
       ],
       "sc:description": "St. Petersburg genome assembler – is intended for both standard isolates and single-cell MDA bacteria assemblies. SPAdes 3.9 works with Illumina or IonTorrent reads and is capable of providing hybrid assemblies using PacBio, Oxford Nanopore and Sanger reads. Additional contigs can be provided and can be used as long reads.",
       "sc:featureList": {
@@ -91,18 +95,7 @@
       "sc:url": "http://cab.spbu.ru/software/spades/"
     },
     {
-      "@id": "_:N4eb613d45089456ea289fe18fe6793f7",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_0006"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_1930"
-      },
-      "sc:name": "Data"
-    },
-    {
-      "@id": "_:Na5629466fc394fdcbeedba695801183a",
+      "@id": "_:Nb4457a953a354b3ea16da8757c262afe",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0863"
@@ -113,29 +106,7 @@
       "sc:name": "Sequence alignment"
     },
     {
-      "@id": "_:N2bfe685dedd647fa8ae631d359edffdb",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_0863"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_1929"
-      },
-      "sc:name": "Sequence alignment"
-    },
-    {
-      "@id": "_:N0401838d2261440bb628711bf4a4074f",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_0006"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_3475"
-      },
-      "sc:name": "Data"
-    },
-    {
-      "@id": "_:Nef0cb6b4aabe48969dce704cbf3e2a78",
+      "@id": "_:N57dff58fb7214b9fab9cb98f77004edc",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0006"
@@ -146,7 +117,7 @@
       "sc:name": "Data"
     },
     {
-      "@id": "_:N50a2eade67744bfeb4033f23cc482b64",
+      "@id": "_:Ne3f3798458744e1494c914fa4d81144a",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0006"
@@ -157,11 +128,40 @@
       "sc:name": "Data"
     },
     {
-      "@id": "https://doi.org/10.1089/cmb.2012.0021",
-      "@type": "sc:CreativeWork"
+      "@id": "_:Ne2421d4e5ce54620ae58effbc4331597",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_0006"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_3475"
+      },
+      "sc:name": "Data"
     },
     {
-      "@id": "https://doi.org/10.7490/f1000research.1114334.1",
+      "@id": "_:Nee64760175ce4d56aa3b04a17e09011a",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_0006"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_1930"
+      },
+      "sc:name": "Data"
+    },
+    {
+      "@id": "_:N003c0eb89eaf45b1a13fa6f449aaa63b",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_0863"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_1929"
+      },
+      "sc:name": "Sequence alignment"
+    },
+    {
+      "@id": "https://doi.org/10.1089/cmb.2012.0021",
       "@type": "sc:CreativeWork"
     }
   ]

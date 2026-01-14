@@ -43,18 +43,18 @@
       },
       "bsc:input": [
         {
-          "@id": "_:N341f1cfecb6f4aa79cc9bb0afad22a98"
+          "@id": "_:N4d4a8dd8838747fcb61d0a8ef93eb507"
         },
         {
-          "@id": "_:N1e8a2586b76247d981bedebb4b3b6e83"
+          "@id": "_:N584f8e9548d74034932a457683bed9e4"
         }
       ],
       "bsc:output": [
         {
-          "@id": "_:N39b62b9e26bf4dbdac722b6c56d4905e"
+          "@id": "_:N6cd6d63cb12b49deb91b487cd3adc1cc"
         },
         {
-          "@id": "_:N71f13fd8360f40b18fc93df1de2b9c85"
+          "@id": "_:Nfc2fd2c7c0d14d459e3b02e7354c297a"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
@@ -71,20 +71,20 @@
         "@id": "https://orcid.org/0000-0001-9092-8336"
       },
       "sc:citation": [
-        "pmcid:PMC6202455",
+        "pubmed:30265232",
         {
           "@id": "https://doi.org/10.1099/mgen.0.000211"
         },
-        "pubmed:30265232"
+        "pmcid:PMC6202455"
       ],
       "sc:contributor": "Mathieu Dubois",
       "sc:description": "PlaScope is a targeted approach to assess the plasmidome of bacteria.",
       "sc:featureList": [
         {
-          "@id": "edam:operation_0525"
+          "@id": "edam:operation_2995"
         },
         {
-          "@id": "edam:operation_2995"
+          "@id": "edam:operation_0525"
         }
       ],
       "sc:isAccessibleForFree": true,
@@ -101,40 +101,7 @@
       "sc:url": "https://github.com/labgem/PlaScope"
     },
     {
-      "@id": "_:N39b62b9e26bf4dbdac722b6c56d4905e",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_1354"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_2069"
-      },
-      "sc:name": "Sequence profile"
-    },
-    {
-      "@id": "_:N71f13fd8360f40b18fc93df1de2b9c85",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_1354"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_2069"
-      },
-      "sc:name": "Sequence profile"
-    },
-    {
-      "@id": "_:N341f1cfecb6f4aa79cc9bb0afad22a98",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_0924"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_1931"
-      },
-      "sc:name": "Sequence trace"
-    },
-    {
-      "@id": "_:N1e8a2586b76247d981bedebb4b3b6e83",
+      "@id": "_:N4d4a8dd8838747fcb61d0a8ef93eb507",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0925"
@@ -145,12 +112,45 @@
       "sc:name": "Sequence assembly"
     },
     {
-      "@id": "https://orcid.org/0000-0001-9092-8336",
-      "@type": "sc:Person"
+      "@id": "_:N584f8e9548d74034932a457683bed9e4",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_0924"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_1931"
+      },
+      "sc:name": "Sequence trace"
+    },
+    {
+      "@id": "_:N6cd6d63cb12b49deb91b487cd3adc1cc",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_1354"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_2069"
+      },
+      "sc:name": "Sequence profile"
+    },
+    {
+      "@id": "_:Nfc2fd2c7c0d14d459e3b02e7354c297a",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_1354"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_2069"
+      },
+      "sc:name": "Sequence profile"
     },
     {
       "@id": "https://doi.org/10.1099/mgen.0.000211",
       "@type": "sc:CreativeWork"
+    },
+    {
+      "@id": "https://orcid.org/0000-0001-9092-8336",
+      "@type": "sc:Person"
     }
   ]
 }

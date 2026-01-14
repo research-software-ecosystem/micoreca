@@ -36,46 +36,42 @@
   },
   "@graph": [
     {
-      "@id": "https://doi.org/10.1038/nmeth.3252",
-      "@type": "sc:CreativeWork"
-    },
-    {
       "@id": "https://bio.tools/metagenomefeatures",
       "@type": "sc:SoftwareApplication",
       "biotools:primaryContact": "Nathan D. Olson",
       "bsc:input": [
         {
-          "@id": "_:Nbc4570e238114bd6a4dc5624ca911f6c"
+          "@id": "_:N7c356b9b54974259b469e3a254c4e6f2"
         },
         {
-          "@id": "_:N02741ddd8773493288a9ef3184df4442"
+          "@id": "_:N545f82d41d0b47f0971089c87a153307"
         },
         {
-          "@id": "_:N40d46266ac0d479691e86d1cfecc59da"
+          "@id": "_:N90c6b22df658436b85b123aecd9c42a0"
         }
       ],
       "bsc:output": [
         {
-          "@id": "_:Ne2e6afd736224da3a9207b044effb3c5"
+          "@id": "_:Naddd8ef56499427895c615367dde6651"
         },
         {
-          "@id": "_:N37a6e86f9eef416d96366458e71b10d3"
+          "@id": "_:N53a5dca1b53f4de9abe2969dfbf8e395"
         },
         {
-          "@id": "_:Nf8f0b23597a845efa063d81a374dff23"
+          "@id": "_:N5dbde665709f46619e6d7b7f39a6df4b"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": [
-        "Command-line tool",
-        "Library"
+        "Library",
+        "Command-line tool"
       ],
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_3174"
+          "@id": "edam:topic_0637"
         },
         {
-          "@id": "edam:topic_0637"
+          "@id": "edam:topic_3174"
         }
       ],
       "sc:citation": [
@@ -97,9 +93,9 @@
       "sc:license": "Artistic-2.0",
       "sc:name": "metagenomeFeatures",
       "sc:operatingSystem": [
+        "Mac",
         "Windows",
-        "Linux",
-        "Mac"
+        "Linux"
       ],
       "sc:softwareHelp": {
         "@id": "http://bioconductor.org/packages/release/bioc/html/metagenomeFeatures.html"
@@ -108,7 +104,7 @@
       "sc:url": "http://bioconductor.org/packages/release/bioc/html/metagenomeFeatures.html"
     },
     {
-      "@id": "_:Nbc4570e238114bd6a4dc5624ca911f6c",
+      "@id": "_:N7c356b9b54974259b469e3a254c4e6f2",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3567"
@@ -124,7 +120,7 @@
       "sc:name": "Reference sample report"
     },
     {
-      "@id": "_:N02741ddd8773493288a9ef3184df4442",
+      "@id": "_:N545f82d41d0b47f0971089c87a153307",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3113"
@@ -140,7 +136,7 @@
       "sc:name": "Sample annotation"
     },
     {
-      "@id": "_:N40d46266ac0d479691e86d1cfecc59da",
+      "@id": "_:N90c6b22df658436b85b123aecd9c42a0",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3028"
@@ -156,7 +152,18 @@
       "sc:name": "Taxonomy"
     },
     {
-      "@id": "_:Ne2e6afd736224da3a9207b044effb3c5",
+      "@id": "_:Naddd8ef56499427895c615367dde6651",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3113"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_2330"
+      },
+      "sc:name": "Sample annotation"
+    },
+    {
+      "@id": "_:N53a5dca1b53f4de9abe2969dfbf8e395",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3028"
@@ -167,7 +174,7 @@
       "sc:name": "Taxonomy"
     },
     {
-      "@id": "_:N37a6e86f9eef416d96366458e71b10d3",
+      "@id": "_:N5dbde665709f46619e6d7b7f39a6df4b",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3567"
@@ -178,15 +185,8 @@
       "sc:name": "Reference sample report"
     },
     {
-      "@id": "_:Nf8f0b23597a845efa063d81a374dff23",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3113"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_2330"
-      },
-      "sc:name": "Sample annotation"
+      "@id": "https://doi.org/10.1038/nmeth.3252",
+      "@type": "sc:CreativeWork"
     }
   ]
 }

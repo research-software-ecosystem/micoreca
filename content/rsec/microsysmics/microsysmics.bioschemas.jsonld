@@ -40,6 +40,10 @@
       "@type": "sc:Person"
     },
     {
+      "@id": "https://orcid.org/0000-0002-8689-2083",
+      "@type": "sc:Person"
+    },
+    {
       "@id": "https://bio.tools/microSysMics",
       "@type": "sc:SoftwareApplication",
       "biotools:primaryContact": [
@@ -51,17 +55,17 @@
         }
       ],
       "bsc:input": {
-        "@id": "_:Nbba9a743afb146d7a20dd7554592e5a9"
+        "@id": "_:Ndac67b2bb6374328af14f26337ab57c5"
       },
       "bsc:output": [
         {
-          "@id": "_:N65cbd904bc3d412192db390e4ca12bc8"
+          "@id": "_:N03f8bb6cd0c941abbcfa82d1f822a529"
         },
         {
-          "@id": "_:N98021ff7540b4bd6aab97b06f56ae316"
+          "@id": "_:N47ccf52509924fdd8f8a9b2bb27f862e"
         },
         {
-          "@id": "_:Na190d7c95492431b80fdc389cc7bb67e"
+          "@id": "_:N9a7afe115a1541d39ff8e24d58a74c32"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
@@ -76,28 +80,50 @@
           "@id": "edam:operation_0544"
         },
         {
-          "@id": "edam:operation_0291"
+          "@id": "edam:operation_3460"
         },
         {
-          "@id": "edam:operation_3460"
+          "@id": "edam:operation_0291"
         }
       ],
       "sc:isAccessibleForFree": true,
       "sc:license": "Other",
       "sc:name": "microSysMics",
       "sc:operatingSystem": [
-        "Linux",
-        "Mac"
+        "Mac",
+        "Linux"
       ],
       "sc:provider": [
         "BiRD bioinformatics facility",
-        "LS2N",
-        "TENS"
+        "TENS",
+        "LS2N"
       ],
       "sc:url": "https://gitlab.univ-nantes.fr/bird_pipeline_registry/microSysMics"
     },
     {
-      "@id": "_:N65cbd904bc3d412192db390e4ca12bc8",
+      "@id": "_:N03f8bb6cd0c941abbcfa82d1f822a529",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3707"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_3752"
+      },
+      "sc:name": "Biodiversity data"
+    },
+    {
+      "@id": "_:N47ccf52509924fdd8f8a9b2bb27f862e",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3272"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_1910"
+      },
+      "sc:name": "Species tree"
+    },
+    {
+      "@id": "_:N9a7afe115a1541d39ff8e24d58a74c32",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_1872"
@@ -113,29 +139,7 @@
       "sc:name": "Taxonomic classification"
     },
     {
-      "@id": "_:N98021ff7540b4bd6aab97b06f56ae316",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3707"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_3752"
-      },
-      "sc:name": "Biodiversity data"
-    },
-    {
-      "@id": "_:Na190d7c95492431b80fdc389cc7bb67e",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3272"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_1910"
-      },
-      "sc:name": "Species tree"
-    },
-    {
-      "@id": "_:Nbba9a743afb146d7a20dd7554592e5a9",
+      "@id": "_:Ndac67b2bb6374328af14f26337ab57c5",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3494"
@@ -144,10 +148,6 @@
         "@id": "edam:format_2545"
       },
       "sc:name": "DNA sequence"
-    },
-    {
-      "@id": "https://orcid.org/0000-0002-8689-2083",
-      "@type": "sc:Person"
     }
   ]
 }

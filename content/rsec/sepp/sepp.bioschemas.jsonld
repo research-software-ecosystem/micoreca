@@ -39,10 +39,10 @@
       "@id": "https://bio.tools/sepp",
       "@type": "sc:SoftwareApplication",
       "bsc:input": {
-        "@id": "_:N288d3375b00c4e37a6f94401172e30cd"
+        "@id": "_:Ndc7686583a3a42548868fa05d3e1672e"
       },
       "bsc:output": {
-        "@id": "_:N0b44d2afdc8a4b219a8eeb3d604b8e3a"
+        "@id": "_:N7414c98c324249cc9c03ba58d0b0e270"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Command-line tool",
@@ -68,20 +68,20 @@
       "sc:url": "https://github.com/smirarab/sepp"
     },
     {
-      "@id": "_:N0b44d2afdc8a4b219a8eeb3d604b8e3a",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_2523"
-      },
-      "sc:name": "Phylogenetic data"
-    },
-    {
-      "@id": "_:N288d3375b00c4e37a6f94401172e30cd",
+      "@id": "_:Ndc7686583a3a42548868fa05d3e1672e",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0872"
       },
       "sc:name": "Phylogenetic tree"
+    },
+    {
+      "@id": "_:N7414c98c324249cc9c03ba58d0b0e270",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_2523"
+      },
+      "sc:name": "Phylogenetic data"
     },
     {
       "@id": "https://doi.org/10.1142/9789814366496_0024",

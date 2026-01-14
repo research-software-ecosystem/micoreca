@@ -39,10 +39,10 @@
       "@id": "https://bio.tools/aqmm",
       "@type": "sc:SoftwareApplication",
       "bsc:input": {
-        "@id": "_:Nd69bcd51f2564b79b6820d8cfef941f9"
+        "@id": "_:N13b04392ad534db2af82d7db47075645"
       },
       "bsc:output": {
-        "@id": "_:N6295091e88184f13ae82af990169931d"
+        "@id": "_:N203dceccf94b47c195f320da17081494"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Command-line tool",
@@ -64,21 +64,21 @@
       "sc:url": "https://github.com/biofuture/aqmm"
     },
     {
-      "@id": "_:N6295091e88184f13ae82af990169931d",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_2526"
-      },
-      "sc:name": "Text data"
-    },
-    {
-      "@id": "_:Nd69bcd51f2564b79b6820d8cfef941f9",
+      "@id": "_:N13b04392ad534db2af82d7db47075645",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2526"
       },
       "sc:encodingFormat": {
         "@id": "edam:format_2330"
+      },
+      "sc:name": "Text data"
+    },
+    {
+      "@id": "_:N203dceccf94b47c195f320da17081494",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_2526"
       },
       "sc:name": "Text data"
     }

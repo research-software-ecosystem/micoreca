@@ -43,27 +43,27 @@
       "@id": "https://bio.tools/phist",
       "@type": "sc:SoftwareApplication",
       "bsc:input": {
-        "@id": "_:Nab73d8e9beb1436c8d717526c4b8210a"
+        "@id": "_:N7262380073da40ba91d5623ce8972fcb"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Command-line tool",
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_3837"
+          "@id": "edam:topic_3174"
         },
         {
           "@id": "edam:topic_0621"
         },
         {
-          "@id": "edam:topic_3174"
+          "@id": "edam:topic_3837"
         }
       ],
       "sc:citation": [
         {
           "@id": "https://doi.org/10.1093/bioinformatics/btab837"
         },
-        "pmcid:PMC8826084",
-        "pubmed:34904625"
+        "pubmed:34904625",
+        "pmcid:PMC8826084"
       ],
       "sc:description": "A tool to predict prokaryotic hosts for phage (meta)genomic sequences. PHIST links viruses to hosts based on the number of k-mers shared between their sequences.",
       "sc:featureList": [
@@ -85,7 +85,7 @@
       "sc:url": "https://github.com/refresh-bio/phist"
     },
     {
-      "@id": "_:Nab73d8e9beb1436c8d717526c4b8210a",
+      "@id": "_:N7262380073da40ba91d5623ce8972fcb",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2044"

@@ -17,9 +17,9 @@ bib:
 - key: doi
   value: 10.1093/bib/3.3.265
 popcon:
-- insts: 163
-  olde: 113
-  recent: 34
+- insts: 178
+  olde: 116
+  recent: 46
   vote: 16
 descr:
 - package: pftools

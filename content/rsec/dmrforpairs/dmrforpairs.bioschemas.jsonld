@@ -36,37 +36,33 @@
   },
   "@graph": [
     {
-      "@id": "https://doi.org/10.1186/1471-2105-15-141",
-      "@type": "sc:CreativeWork"
-    },
-    {
       "@id": "https://bio.tools/dmrforpairs",
       "@type": "sc:SoftwareApplication",
       "biotools:primaryContact": {
         "@id": "http://orcid.org/0000-0002-2528-8077"
       },
       "bsc:input": {
-        "@id": "_:Nc628f46ee6ed49b0a3ce721931aa5c98"
+        "@id": "_:N5a757a150d7040a0bd7d48839c54d77f"
       },
       "bsc:output": [
         {
-          "@id": "_:N34d1745e3bf4455690c2c8c79bd8922c"
+          "@id": "_:Ndb071b57fd8849ed89c7fe9e9fd172f2"
         },
         {
-          "@id": "_:N9ac0a49f64e742578575792d5535d9e9"
+          "@id": "_:Ncef730961fdd45bba0fcca75eaca6912"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": [
-        "Command-line tool",
-        "Library"
+        "Library",
+        "Command-line tool"
       ],
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_3295"
+          "@id": "edam:topic_3518"
         },
         {
-          "@id": "edam:topic_3518"
+          "@id": "edam:topic_3295"
         },
         {
           "@id": "edam:topic_0160"
@@ -91,9 +87,9 @@
       "sc:license": "GPL-2.0",
       "sc:name": "DMRforPairs",
       "sc:operatingSystem": [
+        "Mac",
         "Windows",
-        "Linux",
-        "Mac"
+        "Linux"
       ],
       "sc:softwareHelp": {
         "@id": "http://bioconductor.org/packages/release/bioc/html/DMRforPairs.html"
@@ -102,42 +98,20 @@
       "sc:url": "http://bioconductor.org/packages/release/bioc/html/DMRforPairs.html"
     },
     {
-      "@id": "_:N34d1745e3bf4455690c2c8c79bd8922c",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_1255"
-      },
-      "sc:encodingFormat": [
-        {
-          "@id": "edam:format_2331"
-        },
-        {
-          "@id": "edam:format_3603"
-        },
-        {
-          "@id": "edam:format_3508"
-        },
-        {
-          "@id": "edam:format_3475"
-        }
-      ],
-      "sc:name": "Sequence features"
-    },
-    {
-      "@id": "_:N9ac0a49f64e742578575792d5535d9e9",
+      "@id": "_:Ndb071b57fd8849ed89c7fe9e9fd172f2",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2884"
       },
       "sc:encodingFormat": [
         {
-          "@id": "edam:format_2331"
+          "@id": "edam:format_3508"
         },
         {
           "@id": "edam:format_3603"
         },
         {
-          "@id": "edam:format_3508"
+          "@id": "edam:format_2331"
         },
         {
           "@id": "edam:format_3475"
@@ -146,7 +120,29 @@
       "sc:name": "Plot"
     },
     {
-      "@id": "_:Nc628f46ee6ed49b0a3ce721931aa5c98",
+      "@id": "_:Ncef730961fdd45bba0fcca75eaca6912",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_1255"
+      },
+      "sc:encodingFormat": [
+        {
+          "@id": "edam:format_3603"
+        },
+        {
+          "@id": "edam:format_3508"
+        },
+        {
+          "@id": "edam:format_2331"
+        },
+        {
+          "@id": "edam:format_3475"
+        }
+      ],
+      "sc:name": "Sequence features"
+    },
+    {
+      "@id": "_:N5a757a150d7040a0bd7d48839c54d77f",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_1276"
@@ -159,6 +155,10 @@
     {
       "@id": "http://orcid.org/0000-0002-2528-8077",
       "@type": "sc:Person"
+    },
+    {
+      "@id": "https://doi.org/10.1186/1471-2105-15-141",
+      "@type": "sc:CreativeWork"
     }
   ]
 }

@@ -36,21 +36,25 @@
   },
   "@graph": [
     {
+      "@id": "https://doi.org/10.1093/bib/bbac337",
+      "@type": "sc:CreativeWork"
+    },
+    {
       "@id": "https://bio.tools/toxcsm",
       "@type": "sc:SoftwareApplication",
       "bsc:input": [
         {
-          "@id": "_:N5030332a896d45679ac9ce59f242dc47"
+          "@id": "_:N564caeaa3c184893b496226efeada4e0"
         },
         {
-          "@id": "_:N16b4f434321b4501be38d664cf78aa49"
+          "@id": "_:N537073da3c7443ed80eba09e5f626f8f"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Web application",
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_3336"
+          "@id": "edam:topic_3047"
         },
         {
           "@id": "edam:topic_3474"
@@ -62,7 +66,7 @@
           "@id": "edam:topic_0154"
         },
         {
-          "@id": "edam:topic_3047"
+          "@id": "edam:topic_3336"
         }
       ],
       "sc:citation": [
@@ -78,14 +82,14 @@
       "sc:isAccessibleForFree": true,
       "sc:name": "toxCSM",
       "sc:operatingSystem": [
+        "Mac",
         "Windows",
-        "Linux",
-        "Mac"
+        "Linux"
       ],
       "sc:url": "http://biosig.lab.uq.edu.au/toxcsm"
     },
     {
-      "@id": "_:N5030332a896d45679ac9ce59f242dc47",
+      "@id": "_:N564caeaa3c184893b496226efeada4e0",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2301"
@@ -93,7 +97,7 @@
       "sc:name": "SMILES string"
     },
     {
-      "@id": "_:N16b4f434321b4501be38d664cf78aa49",
+      "@id": "_:N537073da3c7443ed80eba09e5f626f8f",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_1463"
@@ -107,10 +111,6 @@
         }
       ],
       "sc:name": "Small molecule structure"
-    },
-    {
-      "@id": "https://doi.org/10.1093/bib/bbac337",
-      "@type": "sc:CreativeWork"
     }
   ]
 }

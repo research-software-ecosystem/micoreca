@@ -40,19 +40,19 @@
       "@type": "sc:SoftwareApplication",
       "biotools:primaryContact": "Adam Rivers",
       "bsc:input": {
-        "@id": "_:N1245f2863fb4485ca93eef48089f67fd"
+        "@id": "_:N0ca356fed3e34b76977b77ab07720301"
       },
       "bsc:output": {
-        "@id": "_:Na0190ad390224094a48b45c9227ae362"
+        "@id": "_:N2a49f7babbd94b77b3fcda57d80be740"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Command-line tool",
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_3697"
+          "@id": "edam:topic_3174"
         },
         {
-          "@id": "edam:topic_3174"
+          "@id": "edam:topic_3697"
         }
       ],
       "sc:author": [
@@ -74,7 +74,7 @@
       "sc:url": "https://github.com/USDA-ARS-GBRU/q2_itsxpress"
     },
     {
-      "@id": "_:N1245f2863fb4485ca93eef48089f67fd",
+      "@id": "_:N2a49f7babbd94b77b3fcda57d80be740",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2975"
@@ -85,7 +85,7 @@
       "sc:name": "Nucleic acid sequence (raw)"
     },
     {
-      "@id": "_:Na0190ad390224094a48b45c9227ae362",
+      "@id": "_:N0ca356fed3e34b76977b77ab07720301",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2975"

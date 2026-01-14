@@ -36,27 +36,31 @@
   },
   "@graph": [
     {
+      "@id": "https://doi.org/10.7717/peerj.2584",
+      "@type": "sc:CreativeWork"
+    },
+    {
       "@id": "https://bio.tools/vsearch",
       "@type": "sc:SoftwareApplication",
       "bsc:input": {
-        "@id": "_:Ne269aedcfa4d492795171e5d0c3758c8"
+        "@id": "_:Nc254d2b98b2a499092c514ae64290ca1"
       },
       "bsc:output": [
         {
-          "@id": "_:Nccfe26907f34488d9a7d4a1b6ac72c26"
+          "@id": "_:Ndff9d285431c496ea08802930a616b84"
         },
         {
-          "@id": "_:N026a9e1ca32348899ddd944b4955c664"
+          "@id": "_:N97c23a6b444b4458b2241d4f561d9e2c"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Command-line tool",
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_3174"
+          "@id": "edam:topic_0080"
         },
         {
-          "@id": "edam:topic_0080"
+          "@id": "edam:topic_3174"
         }
       ],
       "sc:citation": [
@@ -90,15 +94,7 @@
       "sc:url": "https://github.com/torognes/vsearch"
     },
     {
-      "@id": "_:Ne269aedcfa4d492795171e5d0c3758c8",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_2977"
-      },
-      "sc:name": "Nucleic acid sequence"
-    },
-    {
-      "@id": "_:Nccfe26907f34488d9a7d4a1b6ac72c26",
+      "@id": "_:Ndff9d285431c496ea08802930a616b84",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0865"
@@ -106,7 +102,7 @@
       "sc:name": "Sequence similarity score"
     },
     {
-      "@id": "_:N026a9e1ca32348899ddd944b4955c664",
+      "@id": "_:N97c23a6b444b4458b2241d4f561d9e2c",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0863"
@@ -114,8 +110,12 @@
       "sc:name": "Sequence alignment"
     },
     {
-      "@id": "https://doi.org/10.7717/peerj.2584",
-      "@type": "sc:CreativeWork"
+      "@id": "_:Nc254d2b98b2a499092c514ae64290ca1",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_2977"
+      },
+      "sc:name": "Nucleic acid sequence"
     }
   ]
 }

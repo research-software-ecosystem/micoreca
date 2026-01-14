@@ -36,37 +36,41 @@
   },
   "@graph": [
     {
+      "@id": "https://doi.org/10.1101/2025.08.08.669426",
+      "@type": "sc:CreativeWork"
+    },
+    {
       "@id": "https://bio.tools/gffx",
       "@type": "sc:SoftwareApplication",
       "bsc:input": [
         {
-          "@id": "_:N9c8de34d62a54fd4ae5c629bfcf9f834"
+          "@id": "_:N4da3273da13f4b44aa6b79a1a42bf90e"
         },
         {
-          "@id": "_:N816a198685d648e3b6684d67a470b2b8"
+          "@id": "_:N75230870a3ae4de69faf0a7fc15cfb77"
         },
         {
-          "@id": "_:N95cd3922893a446ea9b8a72c1c960ea2"
+          "@id": "_:N6ae3289c4848410ab9850281dd701b7b"
         },
         {
-          "@id": "_:Nd8683c2cd9ce48ad9125dccf7fa66e25"
+          "@id": "_:N590a9cd47df94ae9b7d46e8553dd1500"
         },
         {
-          "@id": "_:Nf910eefc520c47bca9da1bb0b2402766"
+          "@id": "_:N5d6c3ec1d69f4135bba893fc60d70ff6"
         },
         {
-          "@id": "_:Nedaad3b060274e019943b957a945be48"
+          "@id": "_:N920e2718f3ec4c358860eaa7780161b5"
         }
       ],
       "bsc:output": [
         {
-          "@id": "_:N7ab535c83b8947bb97033dc58fc0650f"
+          "@id": "_:Nbc5d4db30a89457592bc92f337d991f3"
         },
         {
-          "@id": "_:N7ef2d7aeccfc4ebeab9796b2bd216b60"
+          "@id": "_:N240ec77603684b42ac378a72558d77f2"
         },
         {
-          "@id": "_:Nc02f7431b95e405ea7d4747c27583a24"
+          "@id": "_:Nd9d9651edea24d099a72104681a56eb4"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
@@ -88,18 +92,18 @@
       "sc:description": "GFFx is a Rust-based toolkit for ultra-fast and scalable genome annotation access. GFFx introduces a compact, model-aware indexing system inspired by binning strategies and leverages Rust’s strengths in execution speed, memory safety, and multithreading. It supports feature- and region-based feature extraction and coverage profiling with significant improvements in runtime and scalability over existing tools.",
       "sc:featureList": [
         {
-          "@id": "edam:operation_3230"
+          "@id": "edam:operation_2422"
         },
         {
-          "@id": "edam:operation_2422"
+          "@id": "edam:operation_3230"
         }
       ],
       "sc:isAccessibleForFree": true,
       "sc:license": "Apache-2.0",
       "sc:name": "GFFx",
       "sc:operatingSystem": [
-        "Linux",
         "Mac",
+        "Linux",
         "Windows"
       ],
       "sc:softwareHelp": {
@@ -109,81 +113,7 @@
       "sc:url": "https://github.com/Baohua-Chen/GFFx"
     },
     {
-      "@id": "_:N9c8de34d62a54fd4ae5c629bfcf9f834",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_1255"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_2305"
-      },
-      "sc:name": "Sequence features"
-    },
-    {
-      "@id": "_:N816a198685d648e3b6684d67a470b2b8",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_1916"
-      },
-      "sc:encodingFormat": [
-        {
-          "@id": "edam:format_3462"
-        },
-        {
-          "@id": "edam:format_3003"
-        },
-        {
-          "@id": "edam:format_2572"
-        },
-        {
-          "@id": "edam:format_2573"
-        }
-      ],
-      "sc:name": "Alignment"
-    },
-    {
-      "@id": "_:N95cd3922893a446ea9b8a72c1c960ea2",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_2872"
-      },
-      "sc:name": "ID list"
-    },
-    {
-      "@id": "_:Nd8683c2cd9ce48ad9125dccf7fa66e25",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_1255"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_2305"
-      },
-      "sc:name": "Sequence features"
-    },
-    {
-      "@id": "_:Nf910eefc520c47bca9da1bb0b2402766",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_1255"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_2305"
-      },
-      "sc:name": "Sequence features"
-    },
-    {
-      "@id": "_:Nedaad3b060274e019943b957a945be48",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_2012"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_3003"
-      },
-      "sc:name": "Sequence coordinates"
-    },
-    {
-      "@id": "_:N7ab535c83b8947bb97033dc58fc0650f",
+      "@id": "_:Nbc5d4db30a89457592bc92f337d991f3",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2914"
@@ -194,7 +124,7 @@
       "sc:name": "Sequence features metadata"
     },
     {
-      "@id": "_:N7ef2d7aeccfc4ebeab9796b2bd216b60",
+      "@id": "_:N240ec77603684b42ac378a72558d77f2",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_1255"
@@ -205,7 +135,7 @@
       "sc:name": "Sequence features"
     },
     {
-      "@id": "_:Nc02f7431b95e405ea7d4747c27583a24",
+      "@id": "_:Nd9d9651edea24d099a72104681a56eb4",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_1255"
@@ -216,8 +146,78 @@
       "sc:name": "Sequence features"
     },
     {
-      "@id": "https://doi.org/10.1101/2025.08.08.669426",
-      "@type": "sc:CreativeWork"
+      "@id": "_:N4da3273da13f4b44aa6b79a1a42bf90e",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_1255"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_2305"
+      },
+      "sc:name": "Sequence features"
+    },
+    {
+      "@id": "_:N75230870a3ae4de69faf0a7fc15cfb77",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_1255"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_2305"
+      },
+      "sc:name": "Sequence features"
+    },
+    {
+      "@id": "_:N6ae3289c4848410ab9850281dd701b7b",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_2872"
+      },
+      "sc:name": "ID list"
+    },
+    {
+      "@id": "_:N590a9cd47df94ae9b7d46e8553dd1500",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_2012"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_3003"
+      },
+      "sc:name": "Sequence coordinates"
+    },
+    {
+      "@id": "_:N5d6c3ec1d69f4135bba893fc60d70ff6",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_1916"
+      },
+      "sc:encodingFormat": [
+        {
+          "@id": "edam:format_3462"
+        },
+        {
+          "@id": "edam:format_2573"
+        },
+        {
+          "@id": "edam:format_3003"
+        },
+        {
+          "@id": "edam:format_2572"
+        }
+      ],
+      "sc:name": "Alignment"
+    },
+    {
+      "@id": "_:N920e2718f3ec4c358860eaa7780161b5",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_1255"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_2305"
+      },
+      "sc:name": "Sequence features"
     }
   ]
 }
