@@ -15,14 +15,13 @@ keywords:
     - binn.*
     - microbiom.*
     - microbiot.*
-    - 16S
     - Amplicon
-    - profil.*
-    - amr
     - antimicrobial.*
-    - MAGs
 
 acronyms:
     - ITS
     - OTU
     - ASV
+    - 16S
+    - MAG
+    - AMR
