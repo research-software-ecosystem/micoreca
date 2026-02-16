@@ -15,6 +15,8 @@ from typing import (
     Optional,
 )
 
+from utils import run_command_rsec, clone_rsec_data
+
 # --- Configuration paths  ---
 SCRIPT_PATH = Path(__file__).resolve()
 SCRIPT_BIN_DIR = SCRIPT_PATH.parent
@@ -67,85 +69,58 @@ REASON_MAPPING = {
 }
 
 # -------------------------------------------------------------
-#               FONCTIONS D'EXTRACTION (ex extract_rsec.py)
+#               FONCTIONS D'EXTRACTION
 # -------------------------------------------------------------
 
 
-def run_command(command: List[str], cwd: Optional[Path] = None) -> bool:
-    """Exécute une commande shell et gère les erreurs."""
-    try:
-        cwd_display = cwd.name if cwd else "CWD"
-        print(f"Executing: {' '.join(command)} (in directory: {cwd_display})")
-        result = subprocess.run(
-            command,
-            cwd=cwd,
-            check=True,
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-        )
-        if result.stdout and result.stdout.strip():
-            print(result.stdout.strip())
-        print("... Success.")
-        return True
-    except subprocess.CalledProcessError as e:
-        print(f"\n[ERROR] Command failed (Return Code {e.returncode}): {' '.join(command)}")
-        print(f"STDOUT:\n{e.stdout}")
-        print(f"STDERR:\n{e.stderr}")
-        return False
-    except FileNotFoundError:
-        print(f"\n[ERROR] Command '{command[0]}' not found. Is Git installed?")
-        return False
+# def clone_rsec_data() -> bool:
+#     """Nettoie et clone le sous-répertoire 'data' de RSEC dans RSEC_DIR."""
+#     print("=" * 60)
+#     print(f"Preparing to re-clone RSEC/data to {RSEC_DIR.relative_to(BASE_DIR)}/")
+#     print("=" * 60)
 
+#     if TEMP_CLONE_DIR.exists():
+#         shutil.rmtree(TEMP_CLONE_DIR)
 
-def clone_rsec_data() -> bool:
-    """Nettoie et clone le sous-répertoire 'data' de RSEC dans RSEC_DIR."""
-    print("=" * 60)
-    print(f"Preparing to re-clone RSEC/data to {RSEC_DIR.relative_to(BASE_DIR)}/")
-    print("=" * 60)
+#     if RSEC_DIR.exists():
+#         print(f"🗑️ Deleting old filtered folder: {RSEC_DIR.relative_to(BASE_DIR)}/")
+#         shutil.rmtree(RSEC_DIR)
 
-    if TEMP_CLONE_DIR.exists():
-        shutil.rmtree(TEMP_CLONE_DIR)
+#     CONTENT_DIR.mkdir(exist_ok=True, parents=True)
 
-    if RSEC_DIR.exists():
-        print(f"🗑️ Deleting old filtered folder: {RSEC_DIR.relative_to(BASE_DIR)}/")
-        shutil.rmtree(RSEC_DIR)
+#     # Sparse Checkout
+#     print("\n--- Step 1/4: Initial cloning (no-checkout) ---")
+#     command = ["git", "clone", "--depth", "1", "--no-checkout", RSEC_REPO_URL, TEMP_CLONE_DIR.name]
+#     if not run_command_rsec(command, cwd=BASE_DIR):
+#         return False
 
-    CONTENT_DIR.mkdir(exist_ok=True, parents=True)
+#     print("\n--- Step 2/4: Enabling Sparse-Checkout ---")
+#     if not run_command_rsec(["git", "config", "core.sparseCheckout", "true"], cwd=TEMP_CLONE_DIR):
+#         return False
 
-    # Sparse Checkout
-    print("\n--- Step 1/4: Initial cloning (no-checkout) ---")
-    command = ["git", "clone", "--depth", "1", "--no-checkout", RSEC_REPO_URL, TEMP_CLONE_DIR.name]
-    if not run_command(command, cwd=BASE_DIR):
-        return False
+#     print("\n--- Step 3/4: Defining path (data/) ---")
+#     sparse_checkout_file = TEMP_CLONE_DIR / ".git" / "info" / "sparse-checkout"
+#     try:
+#         with open(sparse_checkout_file, "w", encoding="utf-8") as f:
+#             f.write(f"/{TARGET_SUBDIR_IN_REPO}\n")
+#     except Exception as e:
+#         print(f"[ERROR] Failed to write sparse-checkout file: {e}")
+#         return False
 
-    print("\n--- Step 2/4: Enabling Sparse-Checkout ---")
-    if not run_command(["git", "config", "core.sparseCheckout", "true"], cwd=TEMP_CLONE_DIR):
-        return False
+#     print("\n--- Step 4/4: Checkout targeted files ---")
+#     if not run_command_rsec(["git", "checkout"], cwd=TEMP_CLONE_DIR):
+#         return False
 
-    print("\n--- Step 3/4: Defining path (data/) ---")
-    sparse_checkout_file = TEMP_CLONE_DIR / ".git" / "info" / "sparse-checkout"
-    try:
-        with open(sparse_checkout_file, "w", encoding="utf-8") as f:
-            f.write(f"/{TARGET_SUBDIR_IN_REPO}\n")
-    except Exception as e:
-        print(f"[ERROR] Failed to write sparse-checkout file: {e}")
-        return False
-
-    print("\n--- Step 4/4: Checkout targeted files ---")
-    if not run_command(["git", "checkout"], cwd=TEMP_CLONE_DIR):
-        return False
-
-    print("\n--- Finalization: Moving the folder ---")
-    source_dir = TEMP_CLONE_DIR / TARGET_SUBDIR_IN_REPO
-    if source_dir.is_dir():
-        shutil.move(source_dir, RSEC_DIR)
-        shutil.rmtree(TEMP_CLONE_DIR)
-        print(f"Move complete: {source_dir.name}/ -> {RSEC_DIR.relative_to(BASE_DIR)}/")
-        return True
-    else:
-        print(f"[CRITICAL] Target subdirectory '{TARGET_SUBDIR_IN_REPO}' not found.")
-        return False
+#     print("\n--- Finalization: Moving the folder ---")
+#     source_dir = TEMP_CLONE_DIR / TARGET_SUBDIR_IN_REPO
+#     if source_dir.is_dir():
+#         shutil.move(source_dir, RSEC_DIR)
+#         shutil.rmtree(TEMP_CLONE_DIR)
+#         print(f"Move complete: {source_dir.name}/ -> {RSEC_DIR.relative_to(BASE_DIR)}/")
+#         return True
+#     else:
+#         print(f"[CRITICAL] Target subdirectory '{TARGET_SUBDIR_IN_REPO}' not found.")
+#         return False
 
 
 # -------------------------------------------------------------
@@ -492,7 +467,12 @@ class ToolSet:
 
 if __name__ == "__main__":
     # --- STEP 1: Extraction ---
-    if not clone_rsec_data():
+    if not clone_rsec_data(
+        repo_url=RSEC_REPO_URL,  # Variable globale définie plus haut dans ce fichier
+        temp_dir=TEMP_CLONE_DIR,  # Variable globale définie plus haut
+        target_dir=RSEC_DIR,  # Variable globale définie plus haut
+        subdir_in_repo=TARGET_SUBDIR_IN_REPO,  # Variable globale définie plus haut
+    ):
         sys.exit(1)
 
     # --- STEP 2: Configuration ---

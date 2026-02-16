@@ -12,6 +12,15 @@ from typing import (
 import pandas as pd
 import requests
 import yaml
+import subprocess
+from pathlib import Path
+from typing import (
+    Any,
+    Dict,
+    List,
+    Optional,
+)
+import shutil
 
 
 def format_date(date: str) -> str:
@@ -136,3 +145,97 @@ def get_request_json(url: str, headers: dict, retries: int = 3, delay: float = 2
 
     # Return None if all retries are exhausted and no response is received
     return {}
+
+
+def run_command_rsec(command: List[str], cwd: Optional[Path] = None) -> bool:
+    """Exécute une commande shell et gère les erreurs."""
+    try:
+        cwd_display = cwd.name if cwd else "CWD"
+        print(f"Executing: {' '.join(command)} (in directory: {cwd_display})")
+        result = subprocess.run(
+            command,
+            cwd=cwd,
+            check=True,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+        )
+        if result.stdout and result.stdout.strip():
+            print(result.stdout.strip())
+        print("... Success.")
+        return True
+    except subprocess.CalledProcessError as e:
+        print(f"\n[ERROR] Command failed (Return Code {e.returncode}): {' '.join(command)}")
+        print(f"STDOUT:\n{e.stdout}")
+        print(f"STDERR:\n{e.stderr}")
+        return False
+    except FileNotFoundError:
+        print(f"\n[ERROR] Command '{command[0]}' not found. Is Git installed?")
+        return False
+
+
+def clone_rsec_data(repo_url: str, temp_dir: Path, target_dir: Path, subdir_in_repo: str = "data") -> bool:
+    """
+    Clone un dépôt distant et déplace un sous-répertoire spécifique vers sa destination finale.
+    Utilise Sparse-Checkout pour ne récupérer que le nécessaire.
+
+    Args:
+        repo_url: URL du dépôt git.
+        temp_dir: Chemin vers le dossier temporaire de clonage.
+        target_dir: Chemin final où le contenu doit être déplacé (ex: content/rsec).
+        subdir_in_repo: Nom du dossier à extraire du dépôt (défaut: 'data').
+    """
+    print("=" * 60)
+    print(f"Préparation du clonage de {subdir_in_repo} vers {target_dir.name}/")
+    print("=" * 60)
+
+    # 1. Nettoyage si un reste de clonage précédent existe
+    if temp_dir.exists():
+        shutil.rmtree(temp_dir)
+
+    # 2. Nettoyage de la destination si elle existe déjà
+    if target_dir.exists():
+        print(f"Suppression de l'ancien dossier : {target_dir.name}/")
+        shutil.rmtree(target_dir)
+
+    # 3. Création du parent si nécessaire
+    target_dir.parent.mkdir(parents=True, exist_ok=True)
+
+    # 4. Clonage initial (Sparse Checkout)
+    print("\n--- Étape 1/4 : Clonage initial (no-checkout) ---")
+    # On clone dans temp_dir (chemin complet)
+    clone_cmd = ["git", "clone", "--depth", "1", "--no-checkout", repo_url, str(temp_dir)]
+    if not run_command_rsec(clone_cmd):
+        return False
+
+    print("\n--- Étape 2/4 : Activation Sparse-Checkout ---")
+    if not run_command_rsec(["git", "config", "core.sparseCheckout", "true"], cwd=temp_dir):
+        return False
+
+    print(f"\n--- Étape 3/4 : Définition du chemin ({subdir_in_repo}/) ---")
+    sparse_checkout_file = temp_dir / ".git" / "info" / "sparse-checkout"
+    try:
+        with open(sparse_checkout_file, "w", encoding="utf-8") as f:
+            f.write(f"/{subdir_in_repo}\n")
+    except Exception as e:
+        print(f"[ERREUR] Écriture du fichier sparse-checkout impossible : {e}")
+        return False
+
+    print("\n--- Étape 4/4 : Extraction des fichiers (checkout) ---")
+    if not run_command_rsec(["git", "checkout"], cwd=temp_dir):
+        return False
+
+    print("\n--- Finalisation : Déplacement du dossier ---")
+    source_dir = temp_dir / subdir_in_repo
+
+    if source_dir.is_dir():
+        shutil.move(str(source_dir), str(target_dir))
+        print(f"Déplacement effectué vers : {target_dir}")
+
+        # Nettoyage final
+        shutil.rmtree(temp_dir)
+        print(f"Dossier temporaire {temp_dir.name} nettoyé.")
+        return True
+    else:
+        print(f"[CRITICAL] Le sous-répertoire cible '{subdir_in_repo}' est introuvable après clonage.")
+        return False
