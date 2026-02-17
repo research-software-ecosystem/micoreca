@@ -5,7 +5,6 @@ import re
 import shutil
 import sys
 import time
-import subprocess
 import yaml
 from pathlib import Path
 from typing import (
@@ -121,11 +120,6 @@ REASON_MAPPING = {
 #     else:
 #         print(f"[CRITICAL] Target subdirectory '{TARGET_SUBDIR_IN_REPO}' not found.")
 #         return False
-
-
-# -------------------------------------------------------------
-#               FONCTIONS DE FILTRAGE (ex filter_rsec.py)
-# -------------------------------------------------------------
 
 
 def load_keywords_from_yaml(filepath: Path) -> Dict[str, Any]:

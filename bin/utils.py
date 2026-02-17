@@ -3,16 +3,10 @@ import re
 import time
 from datetime import datetime
 from pathlib import Path
-from typing import (
-    Any,
-    Dict,
-    List,
-)
 import pandas as pd
 import requests
 import yaml
 import subprocess
-from pathlib import Path
 from typing import (
     Any,
     Dict,
@@ -146,6 +140,9 @@ def get_request_json(url: str, headers: dict, retries: int = 3, delay: float = 2
     return {}
 
 
+# -------------------------------------------------------------
+#               RSEc functions
+# -------------------------------------------------------------
 def run_command_rsec(command: List[str], cwd: Optional[Path] = None) -> bool:
     """Exécute une commande shell et gère les erreurs."""
     try:
@@ -242,3 +239,107 @@ def clone_rsec_data(repo_url: str, temp_dir: Path, target_dir: Path, subdir_in_r
     else:
         print(f"[CRITICAL] Target subdirectory '{subdir_in_repo}' is not found after cloning.")
         return False
+
+
+def load_keywords_from_yaml(filepath: Path) -> Dict[str, Any]:
+    """Charge les critères de filtrage depuis le fichier YAML."""
+    if not filepath.exists():
+        raise FileNotFoundError(f"Keywords file not found at: {filepath}")
+
+    with open(filepath, encoding="utf-8") as f:
+        data = yaml.safe_load(f)
+
+    edam_data = data.get("edam", {})
+    target_operations = edam_data.get("operations", [])
+    target_topics = edam_data.get("topics", [])
+
+    fragment_patterns_raw = data.get("keywords", [])
+    compiled_fragments = []
+    for pattern_raw in fragment_patterns_raw:
+        if isinstance(pattern_raw, str) and pattern_raw.strip():
+            try:
+                compiled_fragments.append(re.compile(pattern_raw, re.IGNORECASE))
+            except re.error as e:
+                print(f" [WARNING] Could not compile regex pattern '{pattern_raw}': {e}")
+
+    strict_keywords_list = [str(k).strip() for k in data.get("acronyms", []) if isinstance(k, str) and k.strip()]
+    for kw in fragment_patterns_raw:
+        if isinstance(kw, str) and kw.strip() and not any(c in kw for c in [".", "*", "+", "?"]):
+            if kw.upper() == kw:
+                strict_keywords_list.append(kw.strip())
+
+    strict_keywords_list = list(set([k.strip().upper() for k in strict_keywords_list if k.strip()]))
+    compiled_stricts = []
+    for strict_ref in strict_keywords_list:
+        regex_pattern = re.compile(r"\b" + re.escape(strict_ref) + r"\b")
+        compiled_stricts.append(regex_pattern)
+
+    return {
+        "operations": target_operations,
+        "topics": target_topics,
+        "compiled_fragments": compiled_fragments,
+        "stricts": strict_keywords_list,
+        "compiled_stricts": compiled_stricts,
+    }
+
+
+def generate_tsv_summary(json_path: Path, tsv_path: Path) -> None:
+    """Génère le résumé TSV à partir du JSON des métadonnées validées."""
+    try:
+        with open(json_path, encoding="utf-8") as f:
+            data: List[Dict[str, Any]] = json.load(f)
+    except Exception as e:
+        print(f"ERROR loading/parsing JSON for TSV: {e}")
+        return
+    if not isinstance(data, list) or not data:
+        return
+
+    summary_data: List[Dict[str, str]] = []
+    fieldnames = [
+        "tool_id",
+        "biotools_id",
+        "filtered_on",
+        "reason",
+        "to_keep",
+        "EDAM_operations",
+        "EDAM_topics",
+        "description",
+        "has_biocontainers_infos",
+        "has_biotools_infos",
+        "has_galaxy_infos",
+    ]
+    for item in data:
+        entry = {
+            "tool_id": item.get("tool_id", "N/A"),
+            "biotools_id": item.get("biotools_id", ""),
+            "EDAM_operations": item.get("EDAM_operations_full", ""),
+            "EDAM_topics": item.get("EDAM_topics_full", ""),
+            "has_biocontainers_infos": str(item.get("has_biocontainers_infos", False)),
+            "has_biotools_infos": str(item.get("has_biotools_infos", False)),
+            "has_galaxy_infos": str(item.get("has_galaxy_infos", False)),
+            "filtered_on": "UNKNOWN_REASON",
+            "reason": "N/A - Not Matched",
+            "to_keep": "True",
+        }
+        description = (
+            item.get("biotools_description_full", "")
+            or item.get("biocontainers_description_full", "")
+            or item.get("galaxy_description_full", "")
+            or "N/A"
+        )
+        entry["description"] = description
+
+        for key in CRITERIA_KEYS:
+            match_value = item.get(key)
+            if match_value:
+                entry["filtered_on"] = key
+                reason_template = REASON_MAPPING.get(key, "Match found on key: {key}")
+                entry["reason"] = reason_template.format(value=str(match_value))
+                break
+        summary_data.append(entry)
+
+    with open(tsv_path, "w", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames, delimiter="\t", extrasaction="ignore")
+        writer.writeheader()
+        writer.writerows(summary_data)
+    print(f"Summary TSV created: {tsv_path.name}")
