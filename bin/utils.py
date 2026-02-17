@@ -174,7 +174,7 @@ def run_command_rsec(command: List[str], cwd: Optional[Path] = None) -> bool:
 
 def clone_rsec_data(repo_url: str, temp_dir: Path, target_dir: Path, subdir_in_repo: str = "data") -> bool:
     """
-    Clone a remote repository and move a specific subdirectory to its final destination.
+    Clone the remote repository and move a specific subdirectory to its final destination.
     Uses sparse-checkout to retrieve only the required path.
 
     Args:
