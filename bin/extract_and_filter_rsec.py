@@ -19,7 +19,7 @@ class Tool:
         self.validation_data: Dict[str, Any] = {"tool_id": self.tool_id}
         self.metadata: Dict[str, Dict[str, Any]] = {}
         self.descriptions: Dict[str, str] = {}
-        self._load_all_metadata_optimized()
+        self._load_all_metadata()
         self._store_full_report_metadata()
 
     def _safe_load(self, filepath: Path) -> Optional[Dict[str, Any]]:
@@ -33,7 +33,7 @@ class Tool:
             pass
         return None
 
-    def _load_all_metadata_optimized(self) -> None:
+    def _load_all_metadata(self) -> None:
         self.validation_data.update(
             {
                 "has_biocontainers_infos": False,
