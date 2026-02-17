@@ -8,7 +8,6 @@ from typing import (
     Dict,
     List,
 )
-
 import pandas as pd
 import requests
 import yaml
@@ -176,34 +175,37 @@ def run_command_rsec(command: List[str], cwd: Optional[Path] = None) -> bool:
 
 def clone_rsec_data(repo_url: str, temp_dir: Path, target_dir: Path, subdir_in_repo: str = "data") -> bool:
     """
-    Clone un dépôt distant et déplace un sous-répertoire spécifique vers sa destination finale.
-    Utilise Sparse-Checkout pour ne récupérer que le nécessaire.
+    Clone a remote repository and move a specific subdirectory to its final destination.
+    Uses sparse-checkout to retrieve only the required path.
 
     Args:
-        repo_url: URL du dépôt git.
-        temp_dir: Chemin vers le dossier temporaire de clonage.
-        target_dir: Chemin final où le contenu doit être déplacé (ex: content/rsec).
-        subdir_in_repo: Nom du dossier à extraire du dépôt (défaut: 'data').
+        repo_url (str): URL of the git repository.
+        temp_dir (Path): Path to the temporary clone directory.
+        target_dir (Path): Final destination path for the extracted content (e.g. content/rsec).
+        subdir_in_repo (str): Subdirectory to extract from the repository (default: 'data').
+
+    Returns:
+        bool: True on success, False on failure.
     """
     print("=" * 60)
     print(f"Preparing to clone {subdir_in_repo} to {target_dir.name}/")
     print("=" * 60)
 
-    # 1. Nettoyage si un reste de clonage précédent existe
+    # 1. Cleanup any leftovers from a previous clone
     if temp_dir.exists():
         shutil.rmtree(temp_dir)
 
-    # 2. Nettoyage de la destination si elle existe déjà
+    # 2. Clean up the target directory if it already exists
     if target_dir.exists():
         print(f"Cleaning up old filtered folder : {target_dir.name}/")
         shutil.rmtree(target_dir)
 
-    # 3. Création du parent si nécessaire
+    # 3. Create parent directory if necessary
     target_dir.parent.mkdir(parents=True, exist_ok=True)
 
-    # 4. Clonage initial (Sparse Checkout)
+    # 4. Initial cloning (Sparse Checkout)
     print("\n--- Step 1/4: Initial cloning of the repository without checkout ---")
-    # On clone dans temp_dir (chemin complet)
+    # Clone in temp dir (absolute path)
     clone_cmd = ["git", "clone", "--depth", "1", "--no-checkout", repo_url, str(temp_dir)]
     if not run_command_rsec(clone_cmd):
         print("[CRITICAL] Initial cloning failed.")
