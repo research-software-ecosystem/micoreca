@@ -143,7 +143,7 @@ def get_request_json(url: str, headers: dict, retries: int = 3, delay: float = 2
 
 
 # -------------------------------------------------------------
-#               RSEc functions
+#               RSEc functions and others
 # -------------------------------------------------------------
 def run_command_rsec(command: List[str], cwd: Optional[Path] = None) -> bool:
     """Exécute une commande shell et gère les erreurs."""
@@ -345,3 +345,45 @@ def generate_tsv_summary(json_path: Path, tsv_path: Path) -> None:
         writer.writeheader()
         writer.writerows(summary_data)
     print(f"Summary TSV created: {tsv_path.name}")
+
+
+# --- Configuration paths  ---
+SCRIPT_PATH = Path(__file__).resolve()
+SCRIPT_BIN_DIR = SCRIPT_PATH.parent
+BASE_DIR = SCRIPT_BIN_DIR.parent
+
+# Dossiers cibles
+CONTENT_DIR = BASE_DIR / "content"
+RSEC_DIR = CONTENT_DIR / "rsec"
+KEYWORDS_FILEPATH = BASE_DIR / "keywords.yml"
+
+# Configuration Extraction RSEC
+RSEC_REPO_URL = "https://github.com/research-software-ecosystem/content.git"
+TARGET_SUBDIR_IN_REPO = "data"
+TEMP_CLONE_DIR = BASE_DIR / "temp_rsec_clone"
+
+# Filtering criterias (initialized in __main__)
+TARGET_OPERATIONS: List[str] = []
+TARGET_TOPICS: List[str] = []
+STRICT_KEYWORDS: List[str] = []
+COMPILED_FRAGMENT_PATTERNS: List[re.Pattern] = []
+COMPILED_STRICT_PATTERNS: List[re.Pattern] = []
+
+# CRITERIA KEYS and REASON MAPPING
+CRITERIA_KEYS = [
+    "EDAM_topics",
+    "EDAM_operation",
+    "biocontainers_keywords",
+    "biotools_description",
+    "biocontainers_description",
+    "galaxy_description",
+]
+
+REASON_MAPPING = {
+    "EDAM_topics": "{value} in EDAM Topics",
+    "EDAM_operation": "{value} in EDAM Operations",
+    "biocontainers_keywords": "{value} in BioContainers keywords",
+    "biotools_description": "{value} in bio.tools description",
+    "biocontainers_description": "{value} in BioContainers description",
+    "galaxy_description": "{value} in Galaxy description",
+}

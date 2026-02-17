@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 from pathlib import Path
 from utils import clone_rsec_data, load_keywords_from_yaml, generate_tsv_summary
+from utils import RSEC_DIR, RSEC_REPO_URL, TARGET_SUBDIR_IN_REPO, TEMP_CLONE_DIR, KEYWORDS_FILEPATH
 from typing import Any, Dict, List, Optional
 import yaml
 import json
@@ -8,21 +9,6 @@ import re
 import shutil
 import sys
 import time
-
-# --- Configuration paths  ---
-SCRIPT_PATH = Path(__file__).resolve()
-SCRIPT_BIN_DIR = SCRIPT_PATH.parent
-BASE_DIR = SCRIPT_BIN_DIR.parent
-
-# Dossiers cibles
-CONTENT_DIR = BASE_DIR / "content"
-RSEC_DIR = CONTENT_DIR / "rsec"
-KEYWORDS_FILEPATH = BASE_DIR / "keywords.yml"
-
-# Configuration Extraction RSEC
-RSEC_REPO_URL = "https://github.com/research-software-ecosystem/content.git"
-TARGET_SUBDIR_IN_REPO = "data"
-TEMP_CLONE_DIR = BASE_DIR / "temp_rsec_clone"
 
 
 class Tool:
