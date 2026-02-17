@@ -15,7 +15,7 @@ from typing import (
     Optional,
 )
 
-from utils import run_command_rsec, clone_rsec_data
+from utils import clone_rsec_data
 
 # --- Configuration paths  ---
 SCRIPT_PATH = Path(__file__).resolve()
