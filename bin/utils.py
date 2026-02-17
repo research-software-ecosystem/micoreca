@@ -186,7 +186,7 @@ def clone_rsec_data(repo_url: str, temp_dir: Path, target_dir: Path, subdir_in_r
         subdir_in_repo: Nom du dossier à extraire du dépôt (défaut: 'data').
     """
     print("=" * 60)
-    print(f"Préparation du clonage de {subdir_in_repo} vers {target_dir.name}/")
+    print(f"Preparing to clone {subdir_in_repo} to {target_dir.name}/")
     print("=" * 60)
 
     # 1. Nettoyage si un reste de clonage précédent existe
@@ -195,47 +195,48 @@ def clone_rsec_data(repo_url: str, temp_dir: Path, target_dir: Path, subdir_in_r
 
     # 2. Nettoyage de la destination si elle existe déjà
     if target_dir.exists():
-        print(f"Suppression de l'ancien dossier : {target_dir.name}/")
+        print(f"Cleaning up old filtered folder : {target_dir.name}/")
         shutil.rmtree(target_dir)
 
     # 3. Création du parent si nécessaire
     target_dir.parent.mkdir(parents=True, exist_ok=True)
 
     # 4. Clonage initial (Sparse Checkout)
-    print("\n--- Étape 1/4 : Clonage initial (no-checkout) ---")
+    print("\n--- Step 1/4: Initial cloning of the repository without checkout ---")
     # On clone dans temp_dir (chemin complet)
     clone_cmd = ["git", "clone", "--depth", "1", "--no-checkout", repo_url, str(temp_dir)]
     if not run_command_rsec(clone_cmd):
+        print("[CRITICAL] Initial cloning failed.")
         return False
 
-    print("\n--- Étape 2/4 : Activation Sparse-Checkout ---")
+    print("\n--- Step 2/4: Enabling Sparse-Checkout ---")
     if not run_command_rsec(["git", "config", "core.sparseCheckout", "true"], cwd=temp_dir):
         return False
 
-    print(f"\n--- Étape 3/4 : Définition du chemin ({subdir_in_repo}/) ---")
+    print(f"\n--- Step 3/4: Defining path ({subdir_in_repo}/) ---")
     sparse_checkout_file = temp_dir / ".git" / "info" / "sparse-checkout"
     try:
         with open(sparse_checkout_file, "w", encoding="utf-8") as f:
             f.write(f"/{subdir_in_repo}\n")
     except Exception as e:
-        print(f"[ERREUR] Écriture du fichier sparse-checkout impossible : {e}")
+        print(f"[ERROR] Failed to write sparse-checkout file : {e}")
         return False
 
-    print("\n--- Étape 4/4 : Extraction des fichiers (checkout) ---")
+    print("\n--- Step 4/4: Extracting files (checkout) ---")
     if not run_command_rsec(["git", "checkout"], cwd=temp_dir):
         return False
 
-    print("\n--- Finalisation : Déplacement du dossier ---")
+    print("\n--- Finalization : Moving the folder ---")
     source_dir = temp_dir / subdir_in_repo
 
     if source_dir.is_dir():
         shutil.move(str(source_dir), str(target_dir))
-        print(f"Déplacement effectué vers : {target_dir}")
+        print(f"Move complete: {source_dir.name}/ -> {target_dir.name}/")
 
         # Nettoyage final
         shutil.rmtree(temp_dir)
-        print(f"Dossier temporaire {temp_dir.name} nettoyé.")
+        print(f"Cleanup of temporary directory  {temp_dir.name} performed.")
         return True
     else:
-        print(f"[CRITICAL] Le sous-répertoire cible '{subdir_in_repo}' est introuvable après clonage.")
+        print(f"[CRITICAL] Target subdirectory '{subdir_in_repo}' is not found after cloning.")
         return False
