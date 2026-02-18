@@ -1,21 +1,20 @@
-import csv
 import json
 import re
-import shutil
-import subprocess
 import time
 from datetime import datetime
 from pathlib import Path
+import pandas as pd
+import requests
+import yaml
+import subprocess
 from typing import (
     Any,
     Dict,
     List,
     Optional,
 )
-
-import pandas as pd
-import requests
-import yaml
+import shutil
+import csv
 
 
 def format_date(date: str) -> str:
@@ -143,7 +142,7 @@ def get_request_json(url: str, headers: dict, retries: int = 3, delay: float = 2
 
 
 # -------------------------------------------------------------
-#               RSEc functions and others
+#               RSEc functions and variables
 # -------------------------------------------------------------
 def run_command_rsec(command: List[str], cwd: Optional[Path] = None) -> bool:
     """Exécute une commande shell et gère les erreurs."""
