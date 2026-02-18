@@ -1,14 +1,28 @@
 #!/usr/bin/env python
-from pathlib import Path
-from utils import clone_rsec_data, load_keywords_from_yaml, generate_tsv_summary
-from utils import RSEC_DIR, RSEC_REPO_URL, TARGET_SUBDIR_IN_REPO, TEMP_CLONE_DIR, KEYWORDS_FILEPATH
-from typing import Any, Dict, List, Optional
-import yaml
 import json
 import re
 import shutil
 import sys
 import time
+from pathlib import Path
+from typing import (
+    Any,
+    Dict,
+    List,
+    Optional,
+)
+
+import yaml
+from utils import (
+    clone_rsec_data,
+    generate_tsv_summary,
+    KEYWORDS_FILEPATH,
+    load_keywords_from_yaml,
+    RSEC_DIR,
+    RSEC_REPO_URL,
+    TARGET_SUBDIR_IN_REPO,
+    TEMP_CLONE_DIR,
+)
 
 
 class Tool:
