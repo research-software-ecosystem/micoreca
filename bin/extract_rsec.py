@@ -261,10 +261,10 @@ class ToolSet:
 if __name__ == "__main__":
     # --- STEP 1: Extraction ---
     if not clone_rsec_data(
-        repo_url=RSEC_REPO_URL,  # Variable globale définie plus haut dans ce fichier
-        temp_dir=TEMP_CLONE_DIR,  # Variable globale définie plus haut
-        target_dir=RSEC_DIR,  # Variable globale définie plus haut
-        subdir_in_repo=TARGET_SUBDIR_IN_REPO,  # Variable globale définie plus haut
+        repo_url=RSEC_REPO_URL,
+        temp_dir=TEMP_CLONE_DIR,
+        target_dir=RSEC_DIR,  # local rsec dir (micoreca/content/rsec)
+        subdir_in_repo=TARGET_SUBDIR_IN_REPO,  # content/data subdir from rsec repo
     ):
         sys.exit(1)
 
