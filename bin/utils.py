@@ -1,20 +1,21 @@
+import csv
 import json
 import re
+import shutil
+import subprocess
 import time
 from datetime import datetime
 from pathlib import Path
-import pandas as pd
-import requests
-import yaml
-import subprocess
 from typing import (
     Any,
     Dict,
     List,
     Optional,
 )
-import shutil
-import csv
+
+import pandas as pd
+import requests
+import yaml
 
 
 def format_date(date: str) -> str:
