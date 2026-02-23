@@ -314,7 +314,6 @@ if __name__ == "__main__":
     )
     parser.add_argument("--json-output", type=str, help="Path to the output JSON file for validated tools metadata.")
     parser.add_argument("--tsv-output", type=str, help="Path to the output TSV file for summary.")
-    parser.add_argument("--no-clone", action="store_true", help="Do not clone the data (use existing local data).")
 
     args = parser.parse_args()
 
@@ -325,20 +324,20 @@ if __name__ == "__main__":
     tsv_path = Path(args.tsv_output) if args.tsv_output else output_dir / "validated_tools_summary.tsv"
 
     # --- STEP 1 : Cloning ---
-    if not args.no_clone:
-        if not clone_rsec_data(
+    try:
+        clone_rsec_data(
             repo_url=RSEC_REPO_URL,
             temp_dir=TEMP_CLONE_DIR,
             target_dir=RSEC_DIR,
             subdir_in_repo=TARGET_SUBDIR_IN_REPO,
-        ):
-            sys.exit(1)
-    else:
-        print("Saut du clonage, utilisation des données locales.")
+        )
+    except Exception as e:
+        print(f"Cloning error: {e}")
+        sys.exit(1)
 
     # --- STEP 2 : Configuration verification ---
     if not kw_path.is_file():
-        print(f"ERREUR : {kw_path} introuvable.")
+        print(f"ERROR : {kw_path} not found .")
         sys.exit(1)
 
     # --- STEP 3 : Filtering ---
