@@ -112,11 +112,11 @@ def _make_tool_folder(
 
 def _make_tool(
     folder: Path,
-    target_ops=None,
-    target_topics=None,
-    strict_kw=None,
-    frag_patterns=None,
-    strict_patterns=None,
+    target_ops: list[str] | None = None,
+    target_topics: list[str] | None = None,
+    strict_kw: list[str] | None = None,
+    frag_patterns: list[re.Pattern] | None = None,
+    strict_patterns: list[re.Pattern] | None = None,
 ) -> Tool:
     """Instantiate a Tool with sensible defaults for keyword args."""
     return Tool(
@@ -804,7 +804,7 @@ class TestCloneRsecData:
 
         captured_contents = []
 
-        def mock_run(cmd, cwd=None):
+        def mock_run(cmd: Any, cwd: Any = None) -> bool:
             # After the first two successful calls, inspect the sparse-checkout file
             sc_file = temp_dir / ".git" / "info" / "sparse-checkout"
             if sc_file.exists():
