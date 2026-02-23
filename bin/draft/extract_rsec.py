@@ -43,7 +43,7 @@ class Tool:
         self.metadata: Dict[str, Dict[str, Any]] = {}
         self.descriptions: Dict[str, str] = {}
 
-        # Injection des mots-clés pour les filtres
+        # Kewords and EDAM terms (ops and topics) for filtering
         self.target_ops = target_ops
         self.target_topics = target_topics
         self.strict_kw = strict_kw
