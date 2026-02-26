@@ -1,22 +1,6 @@
 """
 Unit tests for extract_rsec.py and the utils functions it imports.
 
-Project layout assumed:
-    project_root/
-    ├── bin/
-    │   ├── extract_rsec.py
-    │   └── utils.py
-    ├── tests/
-    │   └── test_extract_rsec.py   ← this file
-    ├── keywords.yml
-    └── pytest.ini
-
-Test classes follow the same structure as the source modules:
-  - TestTool               → Tool class (extract_rsec.py)
-  - TestToolSet            → ToolSet class (extract_rsec.py)
-  - TestCloneRsecData      → clone_rsec_data() (utils.py)
-  - TestLoadKeywordsFromYaml → load_keywords_from_yaml() (utils.py)
-  - TestGenerateTsvSummary → generate_tsv_summary() (utils.py)
 
 Within each class, test methods follow the exact definition order of the
 function they cover in the source file.

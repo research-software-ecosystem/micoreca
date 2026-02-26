@@ -305,7 +305,13 @@ class ToolSet:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Extract and filter tools and associated metadata from RSEC, according to specified EDAM terms and keywords."
+        description=(
+            "Extract and filter tools and associated metadata from RSEC, "
+            "according to specified EDAM terms and keywords. "
+            "Clones the RSEC repository, applies keyword/EDAM filtering, "
+            "and outputs the results as JSON and TSV files."
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter,
     )
 
     # Arguments du CLI
@@ -313,10 +319,31 @@ if __name__ == "__main__":
         "--kw",
         type=str,
         default=str(KEYWORDS_FILEPATH),
-        help="Path to the YAML file containing keywords and patterns for filtering (default: utils/keywords.yml).",
+        metavar="PATH",
+        help=(
+            "Path to the YAML keywords file used for filtering. "
+            "Must contain 'edam.topics', 'edam.operations', 'keywords', and 'acronyms' sections. "
+            f"(default: {KEYWORDS_FILEPATH})"
+        ),
     )
-    parser.add_argument("--json-output", type=str, help="Path to the output JSON file for validated tools metadata.")
-    parser.add_argument("--tsv-output", type=str, help="Path to the output TSV file for summary.")
+    parser.add_argument(
+        "--json-output",
+        type=str,
+        metavar="PATH",
+        help=(
+            "Path to the output JSON file for validated tools metadata. "
+            f"(default: <rsec_dir>/infos/validated_tools_metadata.json)"
+        ),
+    )
+    parser.add_argument(
+        "--tsv-output",
+        type=str,
+        metavar="PATH",
+        help=(
+            "Path to the output TSV file for the validated tools summary. "
+            f"(default: <rsec_dir>/infos/validated_tools_summary.tsv)"
+        ),
+    )
 
     args = parser.parse_args()
 
