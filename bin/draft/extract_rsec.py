@@ -34,7 +34,6 @@ class Tool:
         target_topics: list,
         strict_kw: list,
         frag_patterns: list,
-        strict_patterns: list,
     ):
         self.folder_path = folder_path
         self.tool_id = folder_path.name
@@ -48,7 +47,6 @@ class Tool:
         self.target_topics = target_topics
         self.strict_kw = strict_kw
         self.frag_patterns = frag_patterns
-        self.strict_patterns = strict_patterns
 
         self._load_all_metadata()
         self._store_full_report_metadata()
@@ -247,7 +245,6 @@ class ToolSet:
                 self.kw_data["topics"],
                 self.kw_data["stricts"],
                 self.kw_data["compiled_fragments"],
-                self.kw_data["compiled_stricts"],
             )
 
             tool.run_checks()

@@ -110,7 +110,6 @@ def _make_tool(
         target_topics=target_topics if target_topics is not None else DEFAULT_TARGET_TOPICS,
         strict_kw=strict_kw if strict_kw is not None else DEFAULT_STRICT_KW,
         frag_patterns=frag_patterns if frag_patterns is not None else DEFAULT_FRAG_PATTERNS,
-        strict_patterns=strict_patterns if strict_patterns is not None else DEFAULT_STRICT_PATTERNS,
     )
 
 
