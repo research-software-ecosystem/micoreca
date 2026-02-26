@@ -203,7 +203,6 @@ class ToolSet:
 
         # output paths for reporting files, all in the same directory as json_out
         self.output_dir = json_out.parent
-        self.failed_json_out = self.output_dir / "failed_tools_metadata.json"
         self.report_txt_out = self.output_dir / "filtering_report.txt"
 
         self.tools: List[Tool] = []
@@ -221,14 +220,14 @@ class ToolSet:
 
     def _prepare_output_dir(self) -> None:
         self.output_dir.mkdir(parents=True, exist_ok=True)
-        for f in [self.json_out, self.failed_json_out, self.report_txt_out, self.tsv_out]:
+        for f in [self.json_out, self.report_txt_out, self.tsv_out]:
             if f.exists():
                 f.unlink()
 
     def run_filtering(self) -> None:
         start_time = time.time()
         self._prepare_output_dir()
-        to_delete, validated_meta, failed_meta = [], [], []
+        to_delete, validated_meta = [], []
 
         print(f"Start of filtering in : {self.root_dir}")
         all_items = [item for item in self.root_dir.iterdir() if item.is_dir() and item.name != self.output_dir.name]
@@ -258,12 +257,10 @@ class ToolSet:
                     self.report_counts["validated_filter_3"] += 1
             else:
                 to_delete.append(item)
-                failed_meta.append(tool.validation_data)
                 self.report_counts["did_not_pass_any"] += 1
 
         sys.stdout.write("\n")
         self._write_json(validated_meta, self.json_out)
-        self._write_json(failed_meta, self.failed_json_out)
         self._finalize(to_delete)
         print(f"\nFiltering time : {time.time() - start_time:.2f}s")
 
@@ -309,7 +306,7 @@ if __name__ == "__main__":
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
 
-    # Arguments du CLI
+    # CLI arguments
     parser.add_argument(
         "--kw",
         type=str,
