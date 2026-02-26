@@ -41,6 +41,7 @@ import yaml
 # This works whether you run pytest from the project root or from tests/.
 # ---------------------------------------------------------------------------
 sys.path.insert(0, str(Path(__file__).parent.parent / "bin"))
+sys.path.insert(0, str(Path(__file__).parent.parent / "bin" / "draft"))
 
 # ---------------------------------------------------------------------------
 # Import the classes and utils functions under test
@@ -384,17 +385,40 @@ class TestTool:
         tool = _make_tool(folder)
         assert tool.check_criteria_2() is False
 
+    def test_check_criteria_2_fragment_matches_uppercase_keyword(self, tmp_path: Path) -> None:
+        # "METAGENOMICS" (uppercase) must match a pattern compiled with re.IGNORECASE
+        folder = _make_tool_folder(tmp_path, biocontainers={"keywords": ["METAGENOMICS"]})
+        pat = re.compile(r"(?<![A-Za-z])metage[a-z]*(?![A-Za-z])", re.IGNORECASE)
+        tool = _make_tool(folder, strict_kw=[], frag_patterns=[pat])
+        assert tool.check_criteria_2() is True
+
+    def test_check_criteria_2_fragment_matches_mixed_case_keyword(self, tmp_path: Path) -> None:
+        # "Metagenomics" (title case) must also match
+        folder = _make_tool_folder(tmp_path, biocontainers={"keywords": ["Metagenomics"]})
+        pat = re.compile(r"(?<![A-Za-z])metage[a-z]*(?![A-Za-z])", re.IGNORECASE)
+        tool = _make_tool(folder, strict_kw=[], frag_patterns=[pat])
+        assert tool.check_criteria_2() is True
+
+    def test_check_criteria_2_strict_does_not_match_substring(self, tmp_path: Path) -> None:
+        # "ITS" must NOT match "Inherits" — strict keywords require an exact word match
+        folder = _make_tool_folder(tmp_path, biocontainers={"keywords": ["Inherits", "distributed"]})
+        tool = _make_tool(folder, strict_kw=["ITS"], frag_patterns=[])
+        assert tool.check_criteria_2() is False
+
+    def test_check_criteria_2_fragment_matches_acronym_inside_compound_word(self, tmp_path: Path) -> None:
+        # "OTU" MUST match "xOTUanalysis" — biological compound terms embed acronyms
+        # This requires a fragment pattern (substring search), not a strict exact match
+        folder = _make_tool_folder(tmp_path, biocontainers={"keywords": ["xOTUanalysis"]})
+        pat = re.compile(r"OTU", re.IGNORECASE)
+        tool = _make_tool(folder, strict_kw=[], frag_patterns=[pat])
+        assert tool.check_criteria_2() is True
+
     # ------------------------------------------------------------------ check_criteria_3
 
     def test_check_criteria_3_matches_strict_in_biotools_description(self, tmp_path: Path) -> None:
         bt = {**SAMPLE_BIOTOOLS, "description": "Processes FASTA files for alignment"}
         folder = _make_tool_folder(tmp_path, biotools=bt)
-        tool = _make_tool(
-            folder,
-            strict_kw=["FASTA"],
-            strict_patterns=[re.compile(r"\bFASTA\b")],
-            frag_patterns=[],
-        )
+        tool = _make_tool(folder, strict_kw=["FASTA"], strict_patterns=[], frag_patterns=[])
         assert tool.check_criteria_3() is True
         assert tool.validation_data.get("biotools_description") == "FASTA"
 
@@ -434,15 +458,63 @@ class TestTool:
             biotools=bt,
             galaxy={"description": "FASTA tool"},
         )
-        tool = _make_tool(
-            folder,
-            strict_kw=["FASTA"],
-            strict_patterns=[re.compile(r"\bFASTA\b")],
-            frag_patterns=[],
-        )
+        tool = _make_tool(folder, strict_kw=["FASTA"], strict_patterns=[], frag_patterns=[])
         tool.check_criteria_3()
         assert "biotools_description" in tool.validation_data
         assert "galaxy_description" not in tool.validation_data
+
+    def test_check_criteria_3_fragment_matches_uppercase_in_description(self, tmp_path: Path) -> None:
+        # Description in uppercase: "METAGENOMICS TOOL" must match re.IGNORECASE pattern
+        folder = _make_tool_folder(tmp_path, biotools={**SAMPLE_BIOTOOLS, "description": "METAGENOMICS TOOL"})
+        pat = re.compile(r"(?<![A-Za-z])metage[a-z]*(?![A-Za-z])", re.IGNORECASE)
+        tool = _make_tool(folder, strict_kw=[], strict_patterns=[], frag_patterns=[pat])
+        assert tool.check_criteria_3() is True
+
+    def test_check_criteria_3_fragment_matches_mixed_case_in_description(self, tmp_path: Path) -> None:
+        # "Metagenomics" (title case) in description must match
+        folder = _make_tool_folder(tmp_path, biotools={**SAMPLE_BIOTOOLS, "description": "Metagenomics analysis tool"})
+        pat = re.compile(r"(?<![A-Za-z])metage[a-z]*(?![A-Za-z])", re.IGNORECASE)
+        tool = _make_tool(folder, strict_kw=[], strict_patterns=[], frag_patterns=[pat])
+        assert tool.check_criteria_3() is True
+
+    def test_check_criteria_3_strict_does_not_match_substring_in_description(self, tmp_path: Path) -> None:
+        # "ITS" must NOT match when it appears inside a longer word like "Inherits"
+        folder = _make_tool_folder(
+            tmp_path, biotools={**SAMPLE_BIOTOOLS, "description": "Inherits properties from base"}
+        )
+        tool = _make_tool(folder, strict_kw=["ITS"], strict_patterns=[], frag_patterns=[])
+        assert tool.check_criteria_3() is False
+
+    def test_check_criteria_3_strict_does_not_match_word_containing_acronym(self, tmp_path: Path) -> None:
+        # "MAG" must NOT match "image" or "magnitude" — only standalone word
+        folder = _make_tool_folder(tmp_path, biotools={**SAMPLE_BIOTOOLS, "description": "image magnitude processing"})
+        tool = _make_tool(folder, strict_kw=["MAG"], strict_patterns=[], frag_patterns=[])
+        assert tool.check_criteria_3() is False
+
+    def test_check_criteria_3_strict_matches_acronym_inside_compound_word(self, tmp_path: Path) -> None:
+        # "xOTUanalysis" contains uppercase "OTU" → strict case-sensitive search must match
+        folder = _make_tool_folder(tmp_path, biotools={**SAMPLE_BIOTOOLS, "description": "xOTUanalysis pipeline"})
+        tool = _make_tool(folder, strict_kw=["OTU"], strict_patterns=[], frag_patterns=[])
+        assert tool.check_criteria_3() is True
+        assert tool.validation_data.get("biotools_description") == "OTU"
+
+    def test_check_criteria_3_strict_does_not_match_lowercase_in_compound_word(self, tmp_path: Path) -> None:
+        # "xotuanalysis" contains "otu" in lowercase → must NOT match "OTU" (case-sensitive)
+        folder = _make_tool_folder(tmp_path, biotools={**SAMPLE_BIOTOOLS, "description": "xotuanalysis pipeline"})
+        tool = _make_tool(folder, strict_kw=["OTU"], strict_patterns=[], frag_patterns=[])
+        assert tool.check_criteria_3() is False
+
+    def test_check_criteria_3_strict_matches_acronym_with_suffix(self, tmp_path: Path) -> None:
+        # "OTUs" contains uppercase "OTU" → must match
+        folder = _make_tool_folder(tmp_path, biotools={**SAMPLE_BIOTOOLS, "description": "OTUs clustering analysis"})
+        tool = _make_tool(folder, strict_kw=["OTU"], strict_patterns=[], frag_patterns=[])
+        assert tool.check_criteria_3() is True
+
+    def test_check_criteria_3_strict_does_not_match_lowercase_with_suffix(self, tmp_path: Path) -> None:
+        # "motus" contains "otu" in lowercase → must NOT match "OTU" (case-sensitive)
+        folder = _make_tool_folder(tmp_path, biotools={**SAMPLE_BIOTOOLS, "description": "motus profiling tool"})
+        tool = _make_tool(folder, strict_kw=["OTU"], strict_patterns=[], frag_patterns=[])
+        assert tool.check_criteria_3() is False
 
     # ------------------------------------------------------------------ run_checks
 
@@ -861,6 +933,29 @@ class TestCloneRsecData:
             )
 
         assert not temp_dir.exists()
+
+    def test_return_value_is_bool(self, tmp_path: Path) -> None:
+        # clone_rsec_data must return a bool so callers can do `if not clone_rsec_data(...)`.
+        # Returning None silently would make the __main__ guard ineffective.
+        with self._patch_run(False):
+            result = clone_rsec_data(
+                repo_url="https://example.com/repo.git",
+                temp_dir=tmp_path / "temp",
+                target_dir=tmp_path / "target",
+                subdir_in_repo="data",
+            )
+        assert isinstance(result, bool)
+
+    def test_failure_returns_false_not_none(self, tmp_path: Path) -> None:
+        # Explicitly False (not None): `if not clone_rsec_data(...)` must trigger sys.exit on failure
+        with self._patch_run(False):
+            result = clone_rsec_data(
+                repo_url="https://example.com/repo.git",
+                temp_dir=tmp_path / "temp",
+                target_dir=tmp_path / "target",
+                subdir_in_repo="data",
+            )
+        assert result is False
 
 
 # ===========================================================================
