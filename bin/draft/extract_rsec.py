@@ -152,8 +152,10 @@ class Tool:
 
         for kw in file_keywords:
             kw_s = str(kw).strip()
-            if kw_s.upper() in self.strict_kw:
-                self.validation_data["biocontainers_keywords"] = kw_s
+            # Case-sensitive substring search: "OTU" matches "xOTUanalysis" but not "xotuanalysis"
+            matched_acronym = next((acr for acr in self.strict_kw if acr in kw_s), None)
+            if matched_acronym:
+                self.validation_data["biocontainers_keywords"] = matched_acronym
                 return True
             kw_l = kw_s.lower()
             for pattern in self.frag_patterns:
@@ -170,13 +172,14 @@ class Tool:
             ("galaxy_description", self.descriptions.get("galaxy", "")),
         ]
         for key, content in sources:
-            content_l = content.lower()
-            if not content_l:
+            if not content:
                 continue
-            for strict_up, pattern in zip(self.strict_kw, self.strict_patterns):
-                if pattern.search(content_l):
+            # Case-sensitive substring search: "OTU" matches "xOTUanalysis" but not "xotuanalysis"
+            for strict_up in self.strict_kw:
+                if strict_up in content:
                     self.validation_data[key] = strict_up
                     return True
+            content_l = content.lower()
             for pattern in self.frag_patterns:
                 match = pattern.search(content_l)
                 if match:
@@ -325,12 +328,14 @@ if __name__ == "__main__":
 
     # --- STEP 1 : Cloning ---
     try:
-        clone_rsec_data(
+        if not clone_rsec_data(
             repo_url=RSEC_REPO_URL,
             temp_dir=TEMP_CLONE_DIR,
             target_dir=RSEC_DIR,
             subdir_in_repo=TARGET_SUBDIR_IN_REPO,
-        )
+        ):
+            print("Cloning failed.")
+            sys.exit(1)
     except Exception as e:
         print(f"Cloning error: {e}")
         sys.exit(1)
