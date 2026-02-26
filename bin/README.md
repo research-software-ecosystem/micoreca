@@ -36,7 +36,7 @@
     ```
 
     This keeps only workflows in the scope of microbiome analysis. 
-    
+
 ## RSEC
 
 - Clone the RSEC repository and filter tools based on EDAM terms and keywords defined in `keywords.yml`. Validated tools are written to a JSON and a TSV file.
