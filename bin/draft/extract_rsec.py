@@ -203,7 +203,7 @@ class ToolSet:
         self.tsv_out = tsv_out
         self.kw_file = kw_file
 
-        # Fichiers fixes basés sur l'emplacement du JSON
+        # output paths for reporting files, all in the same directory as json_out
         self.output_dir = json_out.parent
         self.failed_json_out = self.output_dir / "failed_tools_metadata.json"
         self.report_txt_out = self.output_dir / "filtering_report.txt"
@@ -217,7 +217,7 @@ class ToolSet:
             "did_not_pass_any": 0,
         }
 
-        # Chargement des mots-clés
+        # keywords loading
         kw = load_keywords_from_yaml(self.kw_file)
         self.kw_data = kw
 
@@ -232,7 +232,7 @@ class ToolSet:
         self._prepare_output_dir()
         to_delete, validated_meta, failed_meta = [], [], []
 
-        print(f"Démarrage du filtrage dans : {self.root_dir}")
+        print(f"Start of filtering in : {self.root_dir}")
         all_items = [item for item in self.root_dir.iterdir() if item.is_dir() and item.name != self.output_dir.name]
         total = len(all_items)
 
@@ -268,7 +268,7 @@ class ToolSet:
         self._write_json(validated_meta, self.json_out)
         self._write_json(failed_meta, self.failed_json_out)
         self._finalize(to_delete)
-        print(f"\nTemps de filtrage : {time.time() - start_time:.2f}s")
+        print(f"\nFiltering time : {time.time() - start_time:.2f}s")
 
     def _write_json(self, data: List[Dict[str, Any]], path: Path) -> None:
         with open(path, "w", encoding="utf-8") as f:
@@ -280,9 +280,7 @@ class ToolSet:
             + self.report_counts["validated_filter_2"]
             + self.report_counts["validated_filter_3"]
         )
-        print(
-            f"\nAnalysés : {self.report_counts['total_folders']} | Conservés : {total_kept} | Supprimés : {len(to_delete)}"
-        )
+        print(f"\nAnalysed : {self.report_counts['total_folders']} | Kept : {total_kept} | Deleted : {len(to_delete)}")
         for folder in to_delete:
             try:
                 shutil.rmtree(folder)
