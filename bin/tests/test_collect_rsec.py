@@ -765,7 +765,7 @@ class TestCloneRsecData:
         # The git-config call (core.sparseCheckout) must fail → False expected.
         # We make run_command_rsec return False whenever "config" appears in the command,
         # True otherwise. This is order-independent.
-        def side_effect(cmd) -> None:
+        def side_effect(cmd: Any, cwd: Any = None) -> bool:
             return "config" not in cmd
 
         with patch("utils.run_command_rsec", side_effect=side_effect):
@@ -780,7 +780,7 @@ class TestCloneRsecData:
     def test_returns_false_when_checkout_command_fails(self, tmp_path: Path) -> None:
         # The final "git checkout" call must fail → False expected.
         # We make run_command_rsec return False only when "checkout" is the git sub-command.
-        def side_effect(cmd, cwd=None):
+        def side_effect(cmd: Any, cwd: Any = None) -> bool:
             return "checkout" not in cmd
 
         with patch("utils.run_command_rsec", side_effect=side_effect):
