@@ -324,7 +324,7 @@ if __name__ == "__main__":
         metavar="PATH",
         help=(
             "Path to the output JSON file for validated tools metadata. "
-            f"(default: <rsec_dir>/infos/validated_tools_metadata.json)"
+            "(default: <rsec_dir>/infos/validated_tools_metadata.json)"
         ),
     )
     parser.add_argument(
@@ -333,7 +333,7 @@ if __name__ == "__main__":
         metavar="PATH",
         help=(
             "Path to the output TSV file for the validated tools summary. "
-            f"(default: <rsec_dir>/infos/validated_tools_summary.tsv)"
+            "(default: <rsec_dir>/infos/validated_tools_summary.tsv)"
         ),
     )
 
