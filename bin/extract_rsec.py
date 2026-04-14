@@ -1,10 +1,10 @@
 #!/usr/bin/env python
+import argparse
 import json
 import re
 import shutil
 import sys
 import time
-import argparse
 from pathlib import Path
 from typing import (
     Any,

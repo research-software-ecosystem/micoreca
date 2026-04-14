@@ -9,10 +9,10 @@ Run from project root with:
     pytest
 """
 
-import sys
 import csv
 import json
 import re
+import sys
 from pathlib import Path
 from typing import Any
 from unittest.mock import patch
@@ -30,9 +30,15 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "bin" / "draft"))
 # ---------------------------------------------------------------------------
 # Import the classes and utils functions under test
 # ---------------------------------------------------------------------------
-from extract_rsec import Tool, ToolSet  # noqa: E402
-from utils import clone_rsec_data, generate_tsv_summary, load_keywords_from_yaml  # noqa: E402
-
+from extract_rsec import (  # noqa: E402
+    Tool,
+    ToolSet,
+)
+from utils import (  # noqa: E402
+    clone_rsec_data,
+    generate_tsv_summary,
+    load_keywords_from_yaml,
+)
 
 # ===========================================================================
 #  Shared test fixtures / factories
