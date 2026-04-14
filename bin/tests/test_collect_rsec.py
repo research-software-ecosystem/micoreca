@@ -101,7 +101,6 @@ def _make_tool(
     target_topics: list[str] | None = None,
     strict_kw: list[str] | None = None,
     frag_patterns: list[re.Pattern] | None = None,
-    strict_patterns: list[re.Pattern] | None = None,
 ) -> Tool:
     """Instantiate a Tool with sensible defaults for keyword args."""
     return Tool(
@@ -401,21 +400,21 @@ class TestTool:
     def test_check_criteria_3_matches_strict_in_biotools_description(self, tmp_path: Path) -> None:
         bt = {**SAMPLE_BIOTOOLS, "description": "Processes FASTA files for alignment"}
         folder = _make_tool_folder(tmp_path, biotools=bt)
-        tool = _make_tool(folder, strict_kw=["FASTA"], strict_patterns=[], frag_patterns=[])
+        tool = _make_tool(folder, strict_kw=["FASTA"], frag_patterns=[])
         assert tool.check_criteria_3() is True
         assert tool.validation_data.get("biotools_description") == "FASTA"
 
     def test_check_criteria_3_matches_fragment_in_biocontainers_description(self, tmp_path: Path) -> None:
         folder = _make_tool_folder(tmp_path, biocontainers={"description": "genomics pipeline"})
         pat = re.compile(r"(?<![A-Za-z])genomic[s]?(?![A-Za-z])", re.IGNORECASE)
-        tool = _make_tool(folder, strict_kw=[], strict_patterns=[], frag_patterns=[pat])
+        tool = _make_tool(folder, strict_kw=[], frag_patterns=[pat])
         assert tool.check_criteria_3() is True
         assert "biocontainers_description" in tool.validation_data
 
     def test_check_criteria_3_matches_fragment_in_galaxy_description(self, tmp_path: Path) -> None:
         folder = _make_tool_folder(tmp_path, galaxy={"description": "Tool for variant detection"})
         pat = re.compile(r"(?<![A-Za-z])variant(?![A-Za-z])", re.IGNORECASE)
-        tool = _make_tool(folder, strict_kw=[], strict_patterns=[], frag_patterns=[pat])
+        tool = _make_tool(folder, strict_kw=[], frag_patterns=[pat])
         assert tool.check_criteria_3() is True
         assert "galaxy_description" in tool.validation_data
 
@@ -424,7 +423,6 @@ class TestTool:
         tool = _make_tool(
             folder,
             strict_kw=["UNMATCHABLE_TERM"],
-            strict_patterns=[re.compile(r"\bUNMATCHABLE_TERM\b")],
             frag_patterns=[re.compile(r"unmatchable_fragment")],
         )
         assert tool.check_criteria_3() is False
@@ -441,7 +439,7 @@ class TestTool:
             biotools=bt,
             galaxy={"description": "FASTA tool"},
         )
-        tool = _make_tool(folder, strict_kw=["FASTA"], strict_patterns=[], frag_patterns=[])
+        tool = _make_tool(folder, strict_kw=["FASTA"], frag_patterns=[])
         tool.check_criteria_3()
         assert "biotools_description" in tool.validation_data
         assert "galaxy_description" not in tool.validation_data
@@ -450,14 +448,14 @@ class TestTool:
         # Description in uppercase: "METAGENOMICS TOOL" must match re.IGNORECASE pattern
         folder = _make_tool_folder(tmp_path, biotools={**SAMPLE_BIOTOOLS, "description": "METAGENOMICS TOOL"})
         pat = re.compile(r"(?<![A-Za-z])metage[a-z]*(?![A-Za-z])", re.IGNORECASE)
-        tool = _make_tool(folder, strict_kw=[], strict_patterns=[], frag_patterns=[pat])
+        tool = _make_tool(folder, strict_kw=[], frag_patterns=[pat])
         assert tool.check_criteria_3() is True
 
     def test_check_criteria_3_fragment_matches_mixed_case_in_description(self, tmp_path: Path) -> None:
         # "Metagenomics" (title case) in description must match
         folder = _make_tool_folder(tmp_path, biotools={**SAMPLE_BIOTOOLS, "description": "Metagenomics analysis tool"})
         pat = re.compile(r"(?<![A-Za-z])metage[a-z]*(?![A-Za-z])", re.IGNORECASE)
-        tool = _make_tool(folder, strict_kw=[], strict_patterns=[], frag_patterns=[pat])
+        tool = _make_tool(folder, strict_kw=[], frag_patterns=[pat])
         assert tool.check_criteria_3() is True
 
     def test_check_criteria_3_strict_does_not_match_substring_in_description(self, tmp_path: Path) -> None:
@@ -465,38 +463,38 @@ class TestTool:
         folder = _make_tool_folder(
             tmp_path, biotools={**SAMPLE_BIOTOOLS, "description": "Inherits properties from base"}
         )
-        tool = _make_tool(folder, strict_kw=["ITS"], strict_patterns=[], frag_patterns=[])
+        tool = _make_tool(folder, strict_kw=["ITS"], frag_patterns=[])
         assert tool.check_criteria_3() is False
 
     def test_check_criteria_3_strict_does_not_match_word_containing_acronym(self, tmp_path: Path) -> None:
         # "MAG" must NOT match "image" or "magnitude" — only standalone word
         folder = _make_tool_folder(tmp_path, biotools={**SAMPLE_BIOTOOLS, "description": "image magnitude processing"})
-        tool = _make_tool(folder, strict_kw=["MAG"], strict_patterns=[], frag_patterns=[])
+        tool = _make_tool(folder, strict_kw=["MAG"], frag_patterns=[])
         assert tool.check_criteria_3() is False
 
     def test_check_criteria_3_strict_matches_acronym_inside_compound_word(self, tmp_path: Path) -> None:
         # "xOTUanalysis" contains uppercase "OTU" → strict case-sensitive search must match
         folder = _make_tool_folder(tmp_path, biotools={**SAMPLE_BIOTOOLS, "description": "xOTUanalysis pipeline"})
-        tool = _make_tool(folder, strict_kw=["OTU"], strict_patterns=[], frag_patterns=[])
+        tool = _make_tool(folder, strict_kw=["OTU"], frag_patterns=[])
         assert tool.check_criteria_3() is True
         assert tool.validation_data.get("biotools_description") == "OTU"
 
     def test_check_criteria_3_strict_does_not_match_lowercase_in_compound_word(self, tmp_path: Path) -> None:
         # "xotuanalysis" contains "otu" in lowercase → must NOT match "OTU" (case-sensitive)
         folder = _make_tool_folder(tmp_path, biotools={**SAMPLE_BIOTOOLS, "description": "xotuanalysis pipeline"})
-        tool = _make_tool(folder, strict_kw=["OTU"], strict_patterns=[], frag_patterns=[])
+        tool = _make_tool(folder, strict_kw=["OTU"], frag_patterns=[])
         assert tool.check_criteria_3() is False
 
     def test_check_criteria_3_strict_matches_acronym_with_suffix(self, tmp_path: Path) -> None:
         # "OTUs" contains uppercase "OTU" → must match
         folder = _make_tool_folder(tmp_path, biotools={**SAMPLE_BIOTOOLS, "description": "OTUs clustering analysis"})
-        tool = _make_tool(folder, strict_kw=["OTU"], strict_patterns=[], frag_patterns=[])
+        tool = _make_tool(folder, strict_kw=["OTU"], frag_patterns=[])
         assert tool.check_criteria_3() is True
 
     def test_check_criteria_3_strict_does_not_match_lowercase_with_suffix(self, tmp_path: Path) -> None:
         # "motus" contains "otu" in lowercase → must NOT match "OTU" (case-sensitive)
         folder = _make_tool_folder(tmp_path, biotools={**SAMPLE_BIOTOOLS, "description": "motus profiling tool"})
-        tool = _make_tool(folder, strict_kw=["OTU"], strict_patterns=[], frag_patterns=[])
+        tool = _make_tool(folder, strict_kw=["OTU"], frag_patterns=[])
         assert tool.check_criteria_3() is False
 
     # ------------------------------------------------------------------ run_checks
@@ -515,7 +513,6 @@ class TestTool:
             target_ops=[],
             strict_kw=["FASTA"],
             frag_patterns=[],
-            strict_patterns=[],
         )
         assert tool.run_checks() is True
         assert tool.keep is True
@@ -528,7 +525,6 @@ class TestTool:
             target_topics=[],
             target_ops=[],
             strict_kw=[],
-            strict_patterns=[],
             frag_patterns=[pat],
         )
         assert tool.run_checks() is True
@@ -542,7 +538,6 @@ class TestTool:
             target_ops=[],
             strict_kw=[],
             frag_patterns=[],
-            strict_patterns=[],
         )
         assert tool.run_checks() is False
         assert tool.keep is False
@@ -565,10 +560,6 @@ class TestToolSet:
     def test_init_output_dir_derived_from_json_out(self, tmp_path: Path) -> None:
         ts = _make_toolset(tmp_path)
         assert ts.output_dir == tmp_path / "infos"
-
-    def test_init_failed_json_out_in_output_dir(self, tmp_path: Path) -> None:
-        ts = _make_toolset(tmp_path)
-        assert ts.failed_json_out.parent == ts.output_dir
 
     def test_init_report_txt_out_in_output_dir(self, tmp_path: Path) -> None:
         ts = _make_toolset(tmp_path)
@@ -636,19 +627,6 @@ class TestToolSet:
         ids = [v["tool_id"] for v in validated]
         assert "good_tool" in ids
         assert "bad_tool" not in ids
-
-    def test_run_filtering_puts_rejected_tool_in_failed_json(self, tmp_path: Path) -> None:
-        kw_content = {
-            "edam": {"operations": [], "topics": []},
-            "keywords": [],
-            "acronyms": [],
-        }
-        kw = _make_keywords_yaml(tmp_path, content=kw_content)
-        _make_tool_folder(tmp_path, "rejected")
-        ts = _make_toolset(tmp_path, kw_file=kw)
-        ts.run_filtering()
-        failed = json.loads(ts.failed_json_out.read_text())
-        assert any(f["tool_id"] == "rejected" for f in failed)
 
     def test_run_filtering_deletes_rejected_folders(self, tmp_path: Path) -> None:
         kw_content = {
@@ -784,7 +762,13 @@ class TestCloneRsecData:
         assert result is False
 
     def test_returns_false_when_sparse_checkout_config_fails(self, tmp_path: Path) -> None:
-        with patch("utils.run_command_rsec", side_effect=[True, False]):
+        # The git-config call (core.sparseCheckout) must fail → False expected.
+        # We make run_command_rsec return False whenever "config" appears in the command,
+        # True otherwise. This is order-independent.
+        def side_effect(cmd, cwd=None):
+            return "config" not in cmd
+
+        with patch("utils.run_command_rsec", side_effect=side_effect):
             result = clone_rsec_data(
                 repo_url="https://example.com/repo.git",
                 temp_dir=tmp_path / "temp",
@@ -794,8 +778,12 @@ class TestCloneRsecData:
         assert result is False
 
     def test_returns_false_when_checkout_command_fails(self, tmp_path: Path) -> None:
-        # clone OK, config OK, checkout fails
-        with patch("utils.run_command_rsec", side_effect=[True, True, True, False]):
+        # The final "git checkout" call must fail → False expected.
+        # We make run_command_rsec return False only when "checkout" is the git sub-command.
+        def side_effect(cmd, cwd=None):
+            return "checkout" not in cmd
+
+        with patch("utils.run_command_rsec", side_effect=side_effect):
             result = clone_rsec_data(
                 repo_url="https://example.com/repo.git",
                 temp_dir=tmp_path / "temp",
