@@ -765,7 +765,7 @@ class TestCloneRsecData:
         # The git-config call (core.sparseCheckout) must fail → False expected.
         # We make run_command_rsec return False whenever "config" appears in the command,
         # True otherwise. This is order-independent.
-        def side_effect(cmd, cwd=None):
+        def side_effect(cmd) -> None:
             return "config" not in cmd
 
         with patch("utils.run_command_rsec", side_effect=side_effect):
