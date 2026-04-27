@@ -415,6 +415,8 @@ REASON_MAPPING = {
     "biocontainers_description": "{value} in BioContainers description",
     "galaxy_description": "{value} in Galaxy description",
 }
+
+
 def setup_logger(verbosity: int) -> None:
     """
     Configure the logger based on verbosity level.
