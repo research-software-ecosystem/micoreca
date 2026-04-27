@@ -32,7 +32,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent / "bin" / "draft"))
 # ---------------------------------------------------------------------------
 # Import the classes and utils functions under test
 # ---------------------------------------------------------------------------
-from extract_rsec_draft import (  # noqa: E402
+from extract_rsec import (  # noqa: E402
     Tool,
     ToolSet,
 )
