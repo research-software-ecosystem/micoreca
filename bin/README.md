@@ -37,6 +37,15 @@
 
     This keeps only workflows in the scope of microbiome analysis. 
 
+- Extract tools used in curated workflows as JSON
+
+    ```
+    $ python bin/extract_workflowhub.py \
+        extract_tools \
+        --workflows content/workflowhub/workflows_curated.json \
+        --tools content/workflowhub/tools_from_workflows.json
+    ```
+
 ## RSEC
 
 - Clone the RSEC repository and filter tools based on EDAM terms and keywords defined in `keywords.yml`. Validated tools are written to a JSON and a TSV file.
@@ -55,3 +64,4 @@
     ```
 
     Tools are filtered against three successive criteria: EDAM topics/operations from bio.tools metadata, keywords and acronyms from BioContainers metadata, then the same matching applied to free-text descriptions from bio.tools, BioContainers and Galaxy. A tool is kept if it passes any of them.
+

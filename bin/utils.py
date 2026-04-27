@@ -1,5 +1,6 @@
 import csv
 import json
+import logging
 import re
 import shutil
 import subprocess
@@ -16,6 +17,8 @@ from typing import (
 import pandas as pd
 import requests
 import yaml
+
+logger = logging.getLogger()
 
 
 def format_date(date: str) -> str:
@@ -36,25 +39,48 @@ def format_regex(pattern: str) -> str:
     return rf"(?<![A-Za-z]){pattern}(?![A-Za-z])"
 
 
-def load_yaml(input_df: str) -> Dict:
+def load_yaml(input_fp: str) -> Dict:
     """
     Read a YAML file
     """
-    with Path(input_df).open("r") as t:
+    with Path(input_fp).open("r") as t:
         content = yaml.safe_load(t)
     return content
 
 
-def load_json(input_df: str) -> Any:
+def load_json(input_fp: str) -> Any:
     """
     Read a JSON file
     """
-    with Path(input_df).open("r") as t:
+    with Path(input_fp).open("r") as t:
         content = json.load(t)
     return content
 
 
+def export_to_json(data: List[Dict], output_fp: str) -> None:
+    """
+    Export to a JSON file
+    """
+    with Path(output_fp).open("w") as f:
+        json.dump(data, f, indent=4, sort_keys=True, default=str)
+
+
+def tags_has_keyword(keywords_list: dict, target_tags: List[str]) -> str:
+    """
+    Search for keywords and acronyms in tags
+    """
+    for tag in keywords_list:
+        regex = re.compile(format_regex(tag), re.IGNORECASE)
+        if any(regex.search(wtag) for wtag in target_tags):
+            return f"{tag} in tags"
+
+    return ""
+
+
 def has_keyword(tags: dict, target: str, target_name: str) -> str:
+    """
+    Search for keywords and acronyms in target
+    """
     for tag in tags["keywords"]:
         regexk = re.compile(format_regex(tag), re.IGNORECASE)
         if regexk.search(target):
@@ -68,12 +94,14 @@ def has_keyword(tags: dict, target: str, target_name: str) -> str:
     return ""
 
 
-def export_to_json(data: List[Dict], output_fp: str) -> None:
+def has_edam_terms(edam_topics: list[str], edam_operations: list[str], edam_keywords: dict) -> bool:
     """
-    Export to a JSON file
+    Search for EDAM topics and operations
     """
-    with Path(output_fp).open("w") as f:
-        json.dump(data, f, indent=4, sort_keys=True)
+    matches_topic = set(edam_topics) & set(edam_keywords["topics"])
+    matches_operation = set(edam_operations) & set(edam_keywords["operations"])
+
+    return len(matches_topic) != 0 or len(matches_operation) != 0
 
 
 def get_edam_operation_from_tools(selected_tools: list, all_tools: dict) -> List:
@@ -387,3 +415,20 @@ REASON_MAPPING = {
     "biocontainers_description": "{value} in BioContainers description",
     "galaxy_description": "{value} in Galaxy description",
 }
+def setup_logger(verbosity: int) -> None:
+    """
+    Configure the logger based on verbosity level.
+
+    :param verbosity: verbosity level
+    """
+    log_levels = {
+        0: logging.CRITICAL,
+        1: logging.ERROR,
+        2: logging.WARN,
+        3: logging.INFO,
+        4: logging.DEBUG,
+    }
+    logging.basicConfig(
+        format="%(asctime)s - %(levelname)s - %(message)s",
+        level=log_levels.get(verbosity, logging.INFO),
+    )
