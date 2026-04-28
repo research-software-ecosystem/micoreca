@@ -50,37 +50,37 @@
         "@id": "http://orcid.org/0000-0002-6485-8781"
       },
       "bsc:input": {
-        "@id": "_:Nf25860f1cecd45dd89a31c6a0ca184f2"
+        "@id": "_:Nf6b879c152c64131ab935391a46f9987"
       },
       "bsc:output": [
         {
-          "@id": "_:Ne71f4be4060241dc98038a6357727fc3"
+          "@id": "_:Nb51e4654e38a435890adac8a6a3b809c"
         },
         {
-          "@id": "_:N7d15c9d984a740c9949b450e59bd1c29"
+          "@id": "_:N75fd551ece2b4a268b05313625f3945e"
         },
         {
-          "@id": "_:N39f308d284724719904d3464139ce849"
+          "@id": "_:N324401b92c3945ef872eee2b81f532ee"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": [
-        "Command-line tool",
-        "Library"
+        "Library",
+        "Command-line tool"
       ],
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_3053"
+          "@id": "edam:topic_0092"
         },
         {
-          "@id": "edam:topic_0092"
+          "@id": "edam:topic_3053"
         }
       ],
       "sc:citation": [
-        "pmcid:PMC3339379",
         {
           "@id": "https://doi.org/10.1089/omi.2011.0118"
         },
+        "pmcid:PMC3339379",
         "pubmed:22455463"
       ],
       "sc:description": "This package implements methods to analyze and visualize functional profiles (GO and KEGG) of gene and gene clusters.",
@@ -96,8 +96,8 @@
       "sc:license": "Artistic-2.0",
       "sc:name": "clusterProfiler",
       "sc:operatingSystem": [
-        "Linux",
         "Mac",
+        "Linux",
         "Windows"
       ],
       "sc:softwareHelp": {
@@ -107,18 +107,7 @@
       "sc:url": "http://bioconductor.org/packages/release/bioc/html/clusterProfiler.html"
     },
     {
-      "@id": "_:Nf25860f1cecd45dd89a31c6a0ca184f2",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_1027"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_2330"
-      },
-      "sc:name": "Gene ID (NCBI)"
-    },
-    {
-      "@id": "_:Ne71f4be4060241dc98038a6357727fc3",
+      "@id": "_:Nb51e4654e38a435890adac8a6a3b809c",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2884"
@@ -129,7 +118,18 @@
       "sc:name": "Plot"
     },
     {
-      "@id": "_:N7d15c9d984a740c9949b450e59bd1c29",
+      "@id": "_:N75fd551ece2b4a268b05313625f3945e",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_0862"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_3547"
+      },
+      "sc:name": "Dotplot"
+    },
+    {
+      "@id": "_:N324401b92c3945ef872eee2b81f532ee",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_1669"
@@ -140,15 +140,15 @@
       "sc:name": "P-value"
     },
     {
-      "@id": "_:N39f308d284724719904d3464139ce849",
+      "@id": "_:Nf6b879c152c64131ab935391a46f9987",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
-        "@id": "edam:data_0862"
+        "@id": "edam:data_1027"
       },
       "sc:encodingFormat": {
-        "@id": "edam:format_3547"
+        "@id": "edam:format_2330"
       },
-      "sc:name": "Dotplot"
+      "sc:name": "Gene ID (NCBI)"
     }
   ]
 }

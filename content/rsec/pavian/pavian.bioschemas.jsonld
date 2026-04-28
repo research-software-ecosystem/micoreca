@@ -36,29 +36,25 @@
   },
   "@graph": [
     {
-      "@id": "https://doi.org/10.1101/084715",
-      "@type": "sc:CreativeWork"
-    },
-    {
       "@id": "https://bio.tools/pavian",
       "@type": "sc:SoftwareApplication",
       "bsc:input": {
-        "@id": "_:Nf22c086eb1e34cd095e930dc87b8c231"
+        "@id": "_:N8f59577bae7c49e78b14975145dfbc5a"
       },
       "bsc:output": {
-        "@id": "_:Ncb2eaea641854cd393c12e639d7fa4ec"
+        "@id": "_:N1def365d5d204f6d8cfe85eac4684fe8"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": [
-        "Web application",
-        "Command-line tool"
+        "Command-line tool",
+        "Web application"
       ],
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_0621"
+          "@id": "edam:topic_3174"
         },
         {
-          "@id": "edam:topic_3174"
+          "@id": "edam:topic_0621"
         }
       ],
       "sc:citation": {
@@ -67,18 +63,18 @@
       "sc:description": "Web application for exploring metagenomics classification results, with a special focus on infectious disease diagnosis. Pinpointing pathogens in metagenomics classification results is often complicated by host and laboratory contaminants as well as many non-pathogenic microbiota. Researchers can analyze, display and transform results from the Kraken and Centrifuge classifiers using interactive tables, heatmaps and flow diagrams.",
       "sc:featureList": [
         {
-          "@id": "edam:operation_3460"
+          "@id": "edam:operation_0226"
         },
         {
-          "@id": "edam:operation_0226"
+          "@id": "edam:operation_3460"
         }
       ],
       "sc:license": "GPL-3.0",
       "sc:name": "Pavian",
       "sc:operatingSystem": [
-        "Mac",
         "Windows",
-        "Linux"
+        "Linux",
+        "Mac"
       ],
       "sc:softwareHelp": {
         "@id": "https://ccb.jhu.edu/software/pavian/index.shtml?t=manual"
@@ -86,7 +82,15 @@
       "sc:url": "https://ccb.jhu.edu/software/pavian/"
     },
     {
-      "@id": "_:Nf22c086eb1e34cd095e930dc87b8c231",
+      "@id": "_:N1def365d5d204f6d8cfe85eac4684fe8",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_2884"
+      },
+      "sc:name": "Plot"
+    },
+    {
+      "@id": "_:N8f59577bae7c49e78b14975145dfbc5a",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3028"
@@ -97,12 +101,8 @@
       "sc:name": "Taxonomy"
     },
     {
-      "@id": "_:Ncb2eaea641854cd393c12e639d7fa4ec",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_2884"
-      },
-      "sc:name": "Plot"
+      "@id": "https://doi.org/10.1101/084715",
+      "@type": "sc:CreativeWork"
     }
   ]
 }

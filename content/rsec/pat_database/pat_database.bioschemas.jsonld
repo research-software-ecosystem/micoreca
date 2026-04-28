@@ -36,41 +36,31 @@
   },
   "@graph": [
     {
-      "@id": "https://doi.org/10.1093/NAR/GKAC879",
-      "@type": "sc:CreativeWork"
-    },
-    {
       "@id": "https://bio.tools/pat_database",
       "@type": "sc:SoftwareApplication",
       "bsc:input": [
         {
-          "@id": "_:Nb69721167e654d518d42ec8611150485"
+          "@id": "_:N461b6b6ecb4848e5abfe7cf8af43da8a"
         },
         {
-          "@id": "_:N4c9a9bacc8b447b58d339bfa8926aaf8"
+          "@id": "_:N4bd4af534d97417fa69dca2f6f85759e"
         },
         {
-          "@id": "_:N4917f930199b43d396fea2b2ea8e2aa9"
+          "@id": "_:N093d7e75850b447bbe3f9c2938a882a7"
         },
         {
-          "@id": "_:N1da9827e34524f7bb2ef02e41357c00a"
+          "@id": "_:Nee09fad8234b4b8aaeaa7e3ba4652176"
         },
         {
-          "@id": "_:Nb3220fbffdbb4eceb13ff2ab785459bc"
+          "@id": "_:Nc30b97b04e174770be001c52f44a43ff"
         },
         {
-          "@id": "_:N2d7c8cc8e502493c96b4d7d9c41c9aeb"
+          "@id": "_:N19016b7f9cef4f5b9c467f668ca9ebfc"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Database portal",
       "sc:applicationSubCategory": [
-        {
-          "@id": "edam:topic_2830"
-        },
-        {
-          "@id": "edam:topic_0154"
-        },
         {
           "@id": "edam:topic_3068"
         },
@@ -78,70 +68,44 @@
           "@id": "edam:topic_0219"
         },
         {
+          "@id": "edam:topic_2830"
+        },
+        {
           "@id": "edam:topic_0749"
+        },
+        {
+          "@id": "edam:topic_0154"
         }
       ],
       "sc:citation": [
+        "pubmed:36243963",
         {
           "@id": "https://doi.org/10.1093/NAR/GKAC879"
-        },
-        "pubmed:36243963"
+        }
       ],
       "sc:description": "A comprehensive database of prokaryotic antimicrobial toxins.",
       "sc:featureList": [
-        {
-          "@id": "edam:operation_2421"
-        },
         {
           "@id": "edam:operation_0306"
         },
         {
           "@id": "edam:operation_3482"
+        },
+        {
+          "@id": "edam:operation_2421"
         }
       ],
       "sc:isAccessibleForFree": true,
       "sc:name": "PAT",
       "sc:operatingSystem": [
-        "Windows",
         "Linux",
-        "Mac"
+        "Mac",
+        "Windows"
       ],
       "sc:url": "http://bioinfo.qd.sdu.edu.cn/PAT/"
     },
     {
-      "@id": "_:Nb69721167e654d518d42ec8611150485",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_2291"
-      },
-      "sc:name": "UniProt ID"
-    },
-    {
-      "@id": "_:N4c9a9bacc8b447b58d339bfa8926aaf8",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_1009"
-      },
-      "sc:name": "Protein name"
-    },
-    {
-      "@id": "_:N4917f930199b43d396fea2b2ea8e2aa9",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_2909"
-      },
-      "sc:name": "Organism name"
-    },
-    {
-      "@id": "_:N1da9827e34524f7bb2ef02e41357c00a",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_1027"
-      },
-      "sc:name": "Gene ID (NCBI)"
-    },
-    {
-      "@id": "_:Nb3220fbffdbb4eceb13ff2ab785459bc",
+      "@id": "_:N461b6b6ecb4848e5abfe7cf8af43da8a",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2299"
@@ -149,12 +113,48 @@
       "sc:name": "Gene name"
     },
     {
-      "@id": "_:N2d7c8cc8e502493c96b4d7d9c41c9aeb",
+      "@id": "_:N4bd4af534d97417fa69dca2f6f85759e",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_1027"
+      },
+      "sc:name": "Gene ID (NCBI)"
+    },
+    {
+      "@id": "_:N093d7e75850b447bbe3f9c2938a882a7",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_2291"
+      },
+      "sc:name": "UniProt ID"
+    },
+    {
+      "@id": "_:Nee09fad8234b4b8aaeaa7e3ba4652176",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_1127"
       },
       "sc:name": "PDB ID"
+    },
+    {
+      "@id": "_:Nc30b97b04e174770be001c52f44a43ff",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_1009"
+      },
+      "sc:name": "Protein name"
+    },
+    {
+      "@id": "_:N19016b7f9cef4f5b9c467f668ca9ebfc",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_2909"
+      },
+      "sc:name": "Organism name"
+    },
+    {
+      "@id": "https://doi.org/10.1093/NAR/GKAC879",
+      "@type": "sc:CreativeWork"
     }
   ]
 }

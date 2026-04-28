@@ -36,29 +36,33 @@
   },
   "@graph": [
     {
+      "@id": "https://doi.org/10.1371/journal.pcbi.1005595",
+      "@type": "sc:CreativeWork"
+    },
+    {
       "@id": "https://bio.tools/unicycler",
       "@type": "sc:SoftwareApplication",
       "biotools:primaryContact": "Ryan R. Wick",
       "bsc:input": {
-        "@id": "_:Nb03ae43e8390426c946a09cf4d60d738"
+        "@id": "_:Nd63348e897d14e8f841b6fdaded5fd6c"
       },
       "bsc:output": {
-        "@id": "_:Ne35d60b5d0924640b68c94e7e5fbfd86"
+        "@id": "_:Nd2f4cf77309842cb8d3323d5c1858ef0"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Command-line tool",
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_3168"
-        },
-        {
-          "@id": "edam:topic_3301"
+          "@id": "edam:topic_0622"
         },
         {
           "@id": "edam:topic_0196"
         },
         {
-          "@id": "edam:topic_0622"
+          "@id": "edam:topic_3301"
+        },
+        {
+          "@id": "edam:topic_3168"
         }
       ],
       "sc:citation": [
@@ -81,8 +85,8 @@
       "sc:license": "GPL-3.0",
       "sc:name": "Unicycler",
       "sc:operatingSystem": [
-        "Linux",
-        "Mac"
+        "Mac",
+        "Linux"
       ],
       "sc:softwareHelp": {
         "@id": "https://github.com/rrwick/Unicycler"
@@ -90,7 +94,18 @@
       "sc:url": "https://github.com/rrwick/Unicycler"
     },
     {
-      "@id": "_:Ne35d60b5d0924640b68c94e7e5fbfd86",
+      "@id": "_:Nd63348e897d14e8f841b6fdaded5fd6c",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_0848"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_2571"
+      },
+      "sc:name": "Raw sequence"
+    },
+    {
+      "@id": "_:Nd2f4cf77309842cb8d3323d5c1858ef0",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0925"
@@ -104,21 +119,6 @@
         }
       ],
       "sc:name": "Sequence assembly"
-    },
-    {
-      "@id": "_:Nb03ae43e8390426c946a09cf4d60d738",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_0848"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_2571"
-      },
-      "sc:name": "Raw sequence"
-    },
-    {
-      "@id": "https://doi.org/10.1371/journal.pcbi.1005595",
-      "@type": "sc:CreativeWork"
     }
   ]
 }

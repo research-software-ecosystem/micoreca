@@ -44,14 +44,14 @@
       "@type": "sc:SoftwareApplication",
       "bsc:input": [
         {
-          "@id": "_:N5ccddb487515456cbea746a9f7762673"
+          "@id": "_:N83031257abc44e719c77bb20b686e88e"
         },
         {
-          "@id": "_:N2b1967cc1f5249dcb95a130e6ecd2885"
+          "@id": "_:N7802380a59dc4b969f3e4bb7f5e72497"
         }
       ],
       "bsc:output": {
-        "@id": "_:N8c489802653e4770a592ea53aca30e4a"
+        "@id": "_:N3356a83e1c2940a3b67a726cb1de4d3d"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Database portal",
@@ -88,15 +88,7 @@
       "sc:url": "https://sandpiper.qut.edu.au/"
     },
     {
-      "@id": "_:N5ccddb487515456cbea746a9f7762673",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3028"
-      },
-      "sc:name": "Taxonomy"
-    },
-    {
-      "@id": "_:N2b1967cc1f5249dcb95a130e6ecd2885",
+      "@id": "_:N83031257abc44e719c77bb20b686e88e",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2091"
@@ -104,7 +96,15 @@
       "sc:name": "Accession"
     },
     {
-      "@id": "_:N8c489802653e4770a592ea53aca30e4a",
+      "@id": "_:N7802380a59dc4b969f3e4bb7f5e72497",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3028"
+      },
+      "sc:name": "Taxonomy"
+    },
+    {
+      "@id": "_:N3356a83e1c2940a3b67a726cb1de4d3d",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2091"

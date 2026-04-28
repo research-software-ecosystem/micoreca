@@ -113,7 +113,7 @@
                 "redirects": [
                     {
                         "status": 302,
-                        "url": "https://accounts.google.com/InteractiveLogin?continue=https://sites.google.com/site/baldingstatisticalgenetics/&followup=https://sites.google.com/site/baldingstatisticalgenetics/&osid=1&passive=1209600&dsh=S1494340055:1761985617820585&ifkv=ARESoU1Z_XsxdH6pHGLg6KyyjjKTR9Tiwj-leUqMq_EtcvZiqNDFnk_-ahAdYvv6EMBgM63Fd87ArA"
+                        "url": "https://accounts.google.com/InteractiveLogin?continue=https://sites.google.com/site/baldingstatisticalgenetics/&followup=https://sites.google.com/site/baldingstatisticalgenetics/&osid=1&passive=1209600&dsh=S1275285114:1763196113155455&ifkv=ARESoU0tfEZNEunbbcRJmv_Wbf_jiaG1DhYp7gH5-lgdgy01VFWXyf5KVyd3gA1yG4cEa_JGH4Cu"
                     },
                     {
                         "status": 302,
@@ -121,7 +121,7 @@
                     },
                     {
                         "status": 302,
-                        "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fsites.google.com%2Fsite%2Fbaldingstatisticalgenetics%2F&dsh=S1494340055%3A1761985617820585&followup=https%3A%2F%2Fsites.google.com%2Fsite%2Fbaldingstatisticalgenetics%2F&ifkv=ARESoU3MeSWBtMhmBgjdoYbzVUOVhkVNtbYrCOH6TSbtmpyvbSx0Jic0nGusreUCdSAU2cINQpUM8Q&osid=1&passive=1209600&flowName=GlifWebSignIn&flowEntry=ServiceLogin"
+                        "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fsites.google.com%2Fsite%2Fbaldingstatisticalgenetics%2F&dsh=S1275285114%3A1763196113155455&followup=https%3A%2F%2Fsites.google.com%2Fsite%2Fbaldingstatisticalgenetics%2F&ifkv=ARESoU2Np7NiNGJVVlI-ZGeNhC8YAqxZ044E5hYsXHY_pAZGRz9YkPKLIyMFwj0EQGZOECuyLZdz&osid=1&passive=1209600&flowName=GlifWebSignIn&flowEntry=ServiceLogin"
                     }
                 ],
                 "ssl": true,
@@ -156,7 +156,7 @@
                 "redirects": [
                     {
                         "status": 302,
-                        "url": "https://accounts.google.com/InteractiveLogin?continue=https://sites.google.com/site/baldingstatisticalgenetics/&followup=https://sites.google.com/site/baldingstatisticalgenetics/&osid=1&passive=1209600&dsh=S1378145770:1761985617683297&ifkv=ARESoU1aN6v8lkvQYgr1RX91xpwENT6Ys0Vd4RvBY8xB98ruTsUCgxi26GY-C4ESOfs3hLVws_1Z6g"
+                        "url": "https://accounts.google.com/InteractiveLogin?continue=https://sites.google.com/site/baldingstatisticalgenetics/&followup=https://sites.google.com/site/baldingstatisticalgenetics/&osid=1&passive=1209600&dsh=S-1036466106:1763196113333930&ifkv=ARESoU1rv-Oblwqnf6x1ZavnhaIWs4gUI32l4G3rJyOPZJPuhtJZo7AKdvbPsa2sOlAVqk7y7BfDHg"
                     },
                     {
                         "status": 302,
@@ -164,7 +164,7 @@
                     },
                     {
                         "status": 302,
-                        "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fsites.google.com%2Fsite%2Fbaldingstatisticalgenetics%2F&dsh=S1378145770%3A1761985617683297&followup=https%3A%2F%2Fsites.google.com%2Fsite%2Fbaldingstatisticalgenetics%2F&ifkv=ARESoU38lXe2XbLG3L6Vr-sQyYPLwdPhofsek1MDhbLm1uPdAQOEbB7o4VXomx5C7kan_CxblVBHWA&osid=1&passive=1209600&flowName=GlifWebSignIn&flowEntry=ServiceLogin"
+                        "url": "https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fsites.google.com%2Fsite%2Fbaldingstatisticalgenetics%2F&dsh=S-1036466106%3A1763196113333930&followup=https%3A%2F%2Fsites.google.com%2Fsite%2Fbaldingstatisticalgenetics%2F&ifkv=ARESoU262To5M8qL7n_0Wa78-QpWVgcx_Np1Bw45yfIHXx0jn0VWcJWj_2Uc_9goHQu08DXTTMdMGg&osid=1&passive=1209600&flowName=GlifWebSignIn&flowEntry=ServiceLogin"
                     }
                 ],
                 "ssl": true,

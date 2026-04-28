@@ -36,6 +36,10 @@
   },
   "@graph": [
     {
+      "@id": "https://orcid.org/0000-0002-6173-7255",
+      "@type": "sc:Person"
+    },
+    {
       "@id": "https://doi.org/10.1186/s12859-017-1990-4",
       "@type": "sc:CreativeWork"
     },
@@ -46,34 +50,34 @@
         "@id": "https://orcid.org/0000-0002-6173-7255"
       },
       "bsc:input": {
-        "@id": "_:N2444d0d879584585be61bb093778953c"
+        "@id": "_:Nc4eb0849344d40faab5870f14c94166b"
       },
       "bsc:output": {
-        "@id": "_:Ncbe516a8e22a45d1b57eadcd0849c3f9"
+        "@id": "_:Na2df660491374fe68f66e2b9f3dd33fe"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Web application",
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_2885"
+          "@id": "edam:topic_0625"
         },
         {
           "@id": "edam:topic_0080"
         },
         {
-          "@id": "edam:topic_0625"
+          "@id": "edam:topic_2269"
         },
         {
-          "@id": "edam:topic_2269"
+          "@id": "edam:topic_2885"
         }
       ],
       "sc:author": "Jordi Martorell-Marugán",
       "sc:citation": [
+        "pubmed:29246109",
+        "pmcid:PMC5732412",
         {
           "@id": "https://doi.org/10.1186/s12859-017-1990-4"
-        },
-        "pubmed:29246109",
-        "pmcid:PMC5732412"
+        }
       ],
       "sc:description": "MetaGenyo is a simple, ready-to-use software which has been designed to perform meta-analysis of genetic association studies.",
       "sc:featureList": {
@@ -82,14 +86,14 @@
       "sc:isAccessibleForFree": true,
       "sc:name": "MetaGenyo",
       "sc:operatingSystem": [
-        "Windows",
         "Linux",
-        "Mac"
+        "Mac",
+        "Windows"
       ],
       "sc:url": "https://metagenyo.genyo.es"
     },
     {
-      "@id": "_:N2444d0d879584585be61bb093778953c",
+      "@id": "_:Nc4eb0849344d40faab5870f14c94166b",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0920"
@@ -99,25 +103,21 @@
           "@id": "edam:format_3475"
         },
         {
-          "@id": "edam:format_3752"
+          "@id": "edam:format_3468"
         },
         {
-          "@id": "edam:format_3468"
+          "@id": "edam:format_3752"
         }
       ],
       "sc:name": "Genotype/phenotype report"
     },
     {
-      "@id": "_:Ncbe516a8e22a45d1b57eadcd0849c3f9",
+      "@id": "_:Na2df660491374fe68f66e2b9f3dd33fe",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0920"
       },
       "sc:name": "Genotype/phenotype report"
-    },
-    {
-      "@id": "https://orcid.org/0000-0002-6173-7255",
-      "@type": "sc:Person"
     }
   ]
 }

@@ -47,29 +47,29 @@
         "Peter Menzel"
       ],
       "bsc:input": {
-        "@id": "_:Nef43a705ec304772affc5fc02f7e28da"
+        "@id": "_:Na64636936b644ebebab50301de052c62"
       },
       "bsc:output": {
-        "@id": "_:Nb867b5fb8d994be58651b1d291425a65"
+        "@id": "_:N57f9c63cc2f34a50837c2e5b95c01200"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": [
-        "Web application",
-        "Command-line tool"
+        "Command-line tool",
+        "Web application"
       ],
       "sc:applicationSubCategory": {
         "@id": "edam:topic_3174"
       },
       "sc:author": [
-        "Peter Menzel",
-        "Anders Krogh"
+        "Anders Krogh",
+        "Peter Menzel"
       ],
       "sc:citation": [
-        "pubmed:27071849",
-        "pmcid:PMC4833860",
         {
           "@id": "https://doi.org/10.1038/ncomms11257"
-        }
+        },
+        "pubmed:27071849",
+        "pmcid:PMC4833860"
       ],
       "sc:contributor": "Kim Lee Ng",
       "sc:description": "Program for the taxonomic assignment of high-throughput sequencing reads, e.g., Illumina or Roche/454, from whole-genome sequencing of metagenomic DNA. Reads are directly assigned to taxa using the NCBI taxonomy and a reference database of protein sequences from Bacteria, Archaea, Fungi, microbial eukaryotes and viruses.",
@@ -80,8 +80,8 @@
       "sc:license": "GPL-3.0",
       "sc:name": "Kaiju",
       "sc:operatingSystem": [
-        "Linux",
-        "Mac"
+        "Mac",
+        "Linux"
       ],
       "sc:provider": [
         "Section for Bioinformatics, Department of Biology, University of Copenhagen",
@@ -94,23 +94,23 @@
       "sc:url": "http://kaiju.binf.ku.dk"
     },
     {
-      "@id": "_:Nef43a705ec304772affc5fc02f7e28da",
+      "@id": "_:Na64636936b644ebebab50301de052c62",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2975"
       },
       "sc:encodingFormat": [
         {
-          "@id": "edam:format_1930"
+          "@id": "edam:format_1929"
         },
         {
-          "@id": "edam:format_1929"
+          "@id": "edam:format_1930"
         }
       ],
       "sc:name": "Nucleic acid sequence (raw)"
     },
     {
-      "@id": "_:Nb867b5fb8d994be58651b1d291425a65",
+      "@id": "_:N57f9c63cc2f34a50837c2e5b95c01200",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3028"

@@ -43,22 +43,19 @@
       "@id": "https://bio.tools/webquast",
       "@type": "sc:SoftwareApplication",
       "bsc:input": {
-        "@id": "_:Ne7bec6e2e40c4bbb9b03dfb406188802"
+        "@id": "_:Nc65ef79fa17b45d5884c0abae571fa56"
       },
       "bsc:output": {
-        "@id": "_:Na61f6247aae24fe79678d2c1b14dfe98"
+        "@id": "_:N2daf674babbc483ba39c6089f8e3505b"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": [
-        "Web application",
-        "Command-line tool"
+        "Command-line tool",
+        "Web application"
       ],
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_0621"
-        },
-        {
-          "@id": "edam:topic_0769"
+          "@id": "edam:topic_3174"
         },
         {
           "@id": "edam:topic_3175"
@@ -67,15 +64,18 @@
           "@id": "edam:topic_0196"
         },
         {
-          "@id": "edam:topic_3174"
+          "@id": "edam:topic_0769"
+        },
+        {
+          "@id": "edam:topic_0621"
         }
       ],
       "sc:citation": [
+        "pmcid:PMC10320133",
         "pubmed:37194696",
         {
           "@id": "https://doi.org/10.1093/nar/gkad406"
-        },
-        "pmcid:PMC10320133"
+        }
       ],
       "sc:description": "Online evaluation of genome assemblies.",
       "sc:featureList": [
@@ -83,13 +83,13 @@
           "@id": "edam:operation_3216"
         },
         {
+          "@id": "edam:operation_0523"
+        },
+        {
           "@id": "edam:operation_0525"
         },
         {
           "@id": "edam:operation_3180"
-        },
-        {
-          "@id": "edam:operation_0523"
         },
         {
           "@id": "edam:operation_3192"
@@ -104,7 +104,7 @@
       "sc:url": "https://www.ccb.uni-saarland.de/quast/"
     },
     {
-      "@id": "_:Ne7bec6e2e40c4bbb9b03dfb406188802",
+      "@id": "_:Nc65ef79fa17b45d5884c0abae571fa56",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2977"
@@ -115,7 +115,7 @@
       "sc:name": "Nucleic acid sequence"
     },
     {
-      "@id": "_:Na61f6247aae24fe79678d2c1b14dfe98",
+      "@id": "_:N2daf674babbc483ba39c6089f8e3505b",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3914"

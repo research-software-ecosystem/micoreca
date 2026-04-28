@@ -40,14 +40,14 @@
       "@type": "sc:SoftwareApplication",
       "bsc:input": [
         {
-          "@id": "_:Nd93126b2959b45d8a3dce88fc1059c53"
+          "@id": "_:N593a425670134ce292c34b0c83670b01"
         },
         {
-          "@id": "_:N3c98bfd0a74a426a9828ab23e48b36be"
+          "@id": "_:N794b22daaae54696a404b30cd7df6900"
         }
       ],
       "bsc:output": {
-        "@id": "_:Nd6bce077c5e347ffa0634ef1a2acc32c"
+        "@id": "_:Nc7a163f20d804c67b9e3230269868bbf"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Workflow",
@@ -71,18 +71,18 @@
       "sc:url": "https://www.ncbi.nlm.nih.gov/genbank/tbl2asn2/"
     },
     {
-      "@id": "_:Nd6bce077c5e347ffa0634ef1a2acc32c",
+      "@id": "_:N593a425670134ce292c34b0c83670b01",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
-        "@id": "edam:data_2887"
+        "@id": "edam:data_2977"
       },
       "sc:encodingFormat": {
-        "@id": "edam:format_2333"
+        "@id": "edam:format_1929"
       },
-      "sc:name": "Nucleic acid sequence record"
+      "sc:name": "Nucleic acid sequence"
     },
     {
-      "@id": "_:Nd93126b2959b45d8a3dce88fc1059c53",
+      "@id": "_:N794b22daaae54696a404b30cd7df6900",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_1270"
@@ -93,15 +93,15 @@
       "sc:name": "Feature table"
     },
     {
-      "@id": "_:N3c98bfd0a74a426a9828ab23e48b36be",
+      "@id": "_:Nc7a163f20d804c67b9e3230269868bbf",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
-        "@id": "edam:data_2977"
+        "@id": "edam:data_2887"
       },
       "sc:encodingFormat": {
-        "@id": "edam:format_1929"
+        "@id": "edam:format_2333"
       },
-      "sc:name": "Nucleic acid sequence"
+      "sc:name": "Nucleic acid sequence record"
     }
   ]
 }

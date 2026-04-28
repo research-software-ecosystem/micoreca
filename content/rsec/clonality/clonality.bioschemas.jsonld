@@ -36,31 +36,35 @@
   },
   "@graph": [
     {
+      "@id": "https://doi.org/10.1093/bioinformatics/btr268",
+      "@type": "sc:CreativeWork"
+    },
+    {
       "@id": "https://bio.tools/clonality",
       "@type": "sc:SoftwareApplication",
       "biotools:primaryContact": "Irina Ostrovnaya",
       "bsc:input": {
-        "@id": "_:Nc39441b561254f628a4f6e084a7747b8"
+        "@id": "_:N78b9aba066de4453a35a068976c98d71"
       },
       "bsc:output": [
         {
-          "@id": "_:N719234b055c54017847da20888f6cdcf"
+          "@id": "_:Nc051485a499a4484b80d708beb94723e"
         },
         {
-          "@id": "_:N152e1779cb544fff88e103575e9c6062"
+          "@id": "_:N05c2f84ff4034beab734b3e6810ba112"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": [
-        "Command-line tool",
-        "Library"
+        "Library",
+        "Command-line tool"
       ],
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_2640"
+          "@id": "edam:topic_2269"
         },
         {
-          "@id": "edam:topic_2269"
+          "@id": "edam:topic_2640"
         },
         {
           "@id": "edam:topic_3360"
@@ -68,10 +72,10 @@
       ],
       "sc:citation": [
         "pmcid:PMC3106203",
-        "pubmed:21546397",
         {
           "@id": "https://doi.org/10.1093/bioinformatics/btr268"
-        }
+        },
+        "pubmed:21546397"
       ],
       "sc:description": "Statistical tests for clonality versus independence of tumors from the same patient based on their LOH or genomewide copy number profiles.",
       "sc:featureList": {
@@ -91,7 +95,7 @@
       "sc:url": "http://bioconductor.org/packages/release/bioc/html/Clonality.html"
     },
     {
-      "@id": "_:Nc39441b561254f628a4f6e084a7747b8",
+      "@id": "_:N78b9aba066de4453a35a068976c98d71",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3498"
@@ -102,18 +106,7 @@
       "sc:name": "Sequence variations"
     },
     {
-      "@id": "_:N719234b055c54017847da20888f6cdcf",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_1622"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_2330"
-      },
-      "sc:name": "Disease report"
-    },
-    {
-      "@id": "_:N152e1779cb544fff88e103575e9c6062",
+      "@id": "_:Nc051485a499a4484b80d708beb94723e",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2884"
@@ -124,8 +117,15 @@
       "sc:name": "Plot"
     },
     {
-      "@id": "https://doi.org/10.1093/bioinformatics/btr268",
-      "@type": "sc:CreativeWork"
+      "@id": "_:N05c2f84ff4034beab734b3e6810ba112",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_1622"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_2330"
+      },
+      "sc:name": "Disease report"
     }
   ]
 }

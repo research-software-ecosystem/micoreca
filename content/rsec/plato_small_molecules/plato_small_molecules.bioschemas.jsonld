@@ -44,34 +44,34 @@
       "@type": "sc:SoftwareApplication",
       "bsc:input": [
         {
-          "@id": "_:N6d37773c0aa140cfbd18d7c9f7c11cf6"
+          "@id": "_:N39e74e2965b6476e9ccf87f6d56c6076"
         },
         {
-          "@id": "_:Na9162208a19c4ec08ca5dfbec2f1ef7f"
+          "@id": "_:N1a63dc1a37fb463b9873b6e45d1fce66"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Web application",
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_3047"
+          "@id": "edam:topic_0154"
         },
         {
           "@id": "edam:topic_0621"
         },
         {
+          "@id": "edam:topic_3336"
+        },
+        {
           "@id": "edam:topic_2275"
         },
         {
-          "@id": "edam:topic_0154"
-        },
-        {
-          "@id": "edam:topic_3336"
+          "@id": "edam:topic_3047"
         }
       ],
       "sc:citation": [
-        "pubmed:35563636",
         "pmcid:PMC9103655",
+        "pubmed:35563636",
         {
           "@id": "https://doi.org/10.3390/ijms23095245"
         }
@@ -98,20 +98,20 @@
       "sc:url": "http://plato.uniba.it/"
     },
     {
-      "@id": "_:N6d37773c0aa140cfbd18d7c9f7c11cf6",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_1463"
-      },
-      "sc:name": "Small molecule structure"
-    },
-    {
-      "@id": "_:Na9162208a19c4ec08ca5dfbec2f1ef7f",
+      "@id": "_:N39e74e2965b6476e9ccf87f6d56c6076",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2301"
       },
       "sc:name": "SMILES string"
+    },
+    {
+      "@id": "_:N1a63dc1a37fb463b9873b6e45d1fce66",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_1463"
+      },
+      "sc:name": "Small molecule structure"
     }
   ]
 }

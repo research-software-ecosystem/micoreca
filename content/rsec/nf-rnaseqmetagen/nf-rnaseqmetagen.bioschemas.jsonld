@@ -42,15 +42,15 @@
         "@id": "https://orcid.org/0000-0001-8280-8940"
       },
       "bsc:input": {
-        "@id": "_:N59e1fe5ec3e9476bb0984b50dafb2a8e"
+        "@id": "_:N057bcd8fbc734319abf0468b5315adf2"
       },
       "bsc:output": {
-        "@id": "_:N5a7d123b479c4df7bb26fb9980c177a2"
+        "@id": "_:N3998b2c127f94a919126ea9eb2b3c357"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": [
-        "Command-line tool",
-        "Workflow"
+        "Workflow",
+        "Command-line tool"
       ],
       "sc:applicationSubCategory": [
         {
@@ -86,18 +86,7 @@
       "sc:url": "https://github.com/phelelani/nf-rnaSeqMetagen"
     },
     {
-      "@id": "_:N5a7d123b479c4df7bb26fb9980c177a2",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3028"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_2331"
-      },
-      "sc:name": "Taxonomy"
-    },
-    {
-      "@id": "_:N59e1fe5ec3e9476bb0984b50dafb2a8e",
+      "@id": "_:N057bcd8fbc734319abf0468b5315adf2",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2603"
@@ -108,12 +97,23 @@
       "sc:name": "Expression data"
     },
     {
-      "@id": "https://orcid.org/0000-0001-8280-8940",
-      "@type": "sc:Person"
+      "@id": "_:N3998b2c127f94a919126ea9eb2b3c357",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3028"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_2331"
+      },
+      "sc:name": "Taxonomy"
     },
     {
       "@id": "https://doi.org/10.1016/j.medmic.2020.100011",
       "@type": "sc:CreativeWork"
+    },
+    {
+      "@id": "https://orcid.org/0000-0001-8280-8940",
+      "@type": "sc:Person"
     }
   ]
 }

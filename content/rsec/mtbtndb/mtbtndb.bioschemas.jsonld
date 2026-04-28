@@ -36,15 +36,17 @@
   },
   "@graph": [
     {
-      "@id": "https://doi.org/10.1101/2021.03.05.434127",
-      "@type": "sc:CreativeWork"
-    },
-    {
       "@id": "https://bio.tools/mtbtndb",
       "@type": "sc:SoftwareApplication",
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Web application",
       "sc:applicationSubCategory": [
+        {
+          "@id": "edam:topic_0621"
+        },
+        {
+          "@id": "edam:topic_0203"
+        },
         {
           "@id": "edam:topic_0798"
         },
@@ -52,13 +54,7 @@
           "@id": "edam:topic_3518"
         },
         {
-          "@id": "edam:topic_0203"
-        },
-        {
           "@id": "edam:topic_3170"
-        },
-        {
-          "@id": "edam:topic_0621"
         }
       ],
       "sc:citation": {
@@ -84,6 +80,10 @@
       ],
       "sc:name": "MtbTnDB",
       "sc:url": "http://www.mtbtndb.app"
+    },
+    {
+      "@id": "https://doi.org/10.1101/2021.03.05.434127",
+      "@type": "sc:CreativeWork"
     }
   ]
 }

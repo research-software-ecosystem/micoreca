@@ -36,7 +36,11 @@
   },
   "@graph": [
     {
-      "@id": "https://doi.org/10.1093/nar/gkm226",
+      "@id": "https://doi.org/10.1093/nar/gkw343",
+      "@type": "sc:CreativeWork"
+    },
+    {
+      "@id": "https://doi.org/10.7490/f1000research.1114334.1",
       "@type": "sc:CreativeWork"
     },
     {
@@ -44,22 +48,22 @@
       "@type": "sc:SoftwareApplication",
       "biotools:primaryContact": "Galaxy Support Team",
       "bsc:input": {
-        "@id": "_:N0ae8e21cb2dd432e9de7bc8c28713cc2"
+        "@id": "_:N0e5855597688410d943cff861a804823"
       },
       "bsc:output": {
-        "@id": "_:Nd48a62895a1a4636884a6aa56206f84f"
+        "@id": "_:Ne31654daa7fd4391888bcc1ae7a7e59d"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Web application",
       "sc:applicationSubCategory": [
         {
+          "@id": "edam:topic_3473"
+        },
+        {
           "@id": "edam:topic_1775"
         },
         {
           "@id": "edam:topic_0089"
-        },
-        {
-          "@id": "edam:topic_3473"
         }
       ],
       "sc:citation": [
@@ -70,23 +74,23 @@
         {
           "@id": "https://doi.org/10.1093/nar/gkm226"
         },
-        "pmcid:PMC1933153",
-        "pubmed:17478515",
+        "pubmed:27137889",
         {
           "@id": "https://doi.org/10.1093/nar/gkw343"
         },
-        "pubmed:27137889"
+        "pubmed:17478515",
+        "pmcid:PMC1933153"
       ],
       "sc:description": "This tool creates a link to the g:GOSt tool (Gene Group Functional Profiling), which provides functional profiling of gene lists.",
       "sc:featureList": [
-        {
-          "@id": "edam:operation_3672"
-        },
         {
           "@id": "edam:operation_3763"
         },
         {
           "@id": "edam:operation_2409"
+        },
+        {
+          "@id": "edam:operation_3672"
         }
       ],
       "sc:name": "hgv_linktogprofile",
@@ -102,18 +106,7 @@
       "sc:url": "https://github.com/galaxyproject/galaxy/tree/dev/tools"
     },
     {
-      "@id": "_:Nd48a62895a1a4636884a6aa56206f84f",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_2048"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_2331"
-      },
-      "sc:name": "Report"
-    },
-    {
-      "@id": "_:N0ae8e21cb2dd432e9de7bc8c28713cc2",
+      "@id": "_:N0e5855597688410d943cff861a804823",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0006"
@@ -124,11 +117,18 @@
       "sc:name": "Data"
     },
     {
-      "@id": "https://doi.org/10.7490/f1000research.1114334.1",
-      "@type": "sc:CreativeWork"
+      "@id": "_:Ne31654daa7fd4391888bcc1ae7a7e59d",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_2048"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_2331"
+      },
+      "sc:name": "Report"
     },
     {
-      "@id": "https://doi.org/10.1093/nar/gkw343",
+      "@id": "https://doi.org/10.1093/nar/gkm226",
       "@type": "sc:CreativeWork"
     }
   ]

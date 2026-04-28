@@ -37,16 +37,14 @@ class TestBiocondaRecipe(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmpdir:
             recipe_dir = Path(tmpdir) / "example_package"
             recipe_dir.mkdir(parents=True, exist_ok=True)
-            meta_content = textwrap.dedent(
-                """\
+            meta_content = textwrap.dedent("""\
                 package:
                   name: example_package
                   version: "1.0"
                 about:
                   summary: "A test package"
                   description: "This is a test package description"
-            """
-            )
+            """)
             meta_yaml_path = recipe_dir / "meta.yaml"
             meta_yaml_path.write_text(meta_content)
 
@@ -162,16 +160,14 @@ class TestBiocondaRecipes(unittest.TestCase):
             for name, meta in self.sample_conda.items():
                 recipe_dir = recipes_dir / name
                 recipe_dir.mkdir(parents=True, exist_ok=True)
-                meta_content = textwrap.dedent(
-                    f"""\
+                meta_content = textwrap.dedent(f"""\
                     package:
                       name: {name}
                       version: "1.0"
                     about:
                       summary: "{meta['about']['summary']}"
                       description: "{meta['about']['description']}"
-                """
-                )
+                """)
                 meta_yaml_path = recipe_dir / "meta.yaml"
                 meta_yaml_path.write_text(meta_content)
 

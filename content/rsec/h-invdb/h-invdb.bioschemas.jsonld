@@ -40,78 +40,78 @@
       "@type": "sc:SoftwareApplication",
       "bsc:input": [
         {
-          "@id": "_:N12fa44d5978748b2ad215092ade585cc"
+          "@id": "_:N17600a201d2f4e8f86fe0c04608fb473"
         },
         {
-          "@id": "_:N364094c008494f818af6e8927a6f96c5"
+          "@id": "_:Na2c4242237c14a9aba3ff136fe7d64f9"
         },
         {
-          "@id": "_:Nd0d5ead424f54b3caa8355bd07375fb2"
+          "@id": "_:Ncc875e9c039f43058101f0d2403fc40e"
         },
         {
-          "@id": "_:Nef04a82a82df49bba037c85c2fe38f56"
+          "@id": "_:N897c74f0938d494ea1dccf6f7a490215"
         },
         {
-          "@id": "_:N1c23eb4c9aff4c06a54aaec22d857fe1"
+          "@id": "_:Na568cd5589434e57b1dc85489f500ea4"
         },
         {
-          "@id": "_:N5e61292078ea45aaa86174fa207e72e6"
+          "@id": "_:N962445eea1a742338bfb04648758a60a"
         }
       ],
       "bsc:output": [
         {
-          "@id": "_:Nbc683c3b5d6b489db39fabef5ec4388d"
+          "@id": "_:Nc93a8bc8c9f6477ba95b4f8aa1a65e9f"
         },
         {
-          "@id": "_:N1037fa072fff4f169557325ffade4308"
+          "@id": "_:Ne23fe1e17d6b48e3930b92442a301464"
         },
         {
-          "@id": "_:N17324a5833e4499fbfa56cccd109e33d"
+          "@id": "_:N3a3ba104b0b541bd96aba214ffeccfea"
         },
         {
-          "@id": "_:N0e3e8d8e2aed4bacbf6cbf66db74d880"
+          "@id": "_:Nc42eb3baac2f4e799939ebedfde18bc0"
         },
         {
-          "@id": "_:Nb959d6c699b34d87b5e7e584dea1250b"
+          "@id": "_:N881516e5be84452a9e72104bb4bbd0fb"
         },
         {
-          "@id": "_:N1e8a2646cbab4f81a31374f4958b0b39"
+          "@id": "_:Ncbd2b8ad947846c3a4478fc2a71803af"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Database portal",
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_0140"
-        },
-        {
           "@id": "edam:topic_0602"
         },
         {
-          "@id": "edam:topic_0634"
-        },
-        {
-          "@id": "edam:topic_0199"
+          "@id": "edam:topic_0140"
         },
         {
           "@id": "edam:topic_0623"
         },
         {
-          "@id": "edam:topic_0659"
-        },
-        {
-          "@id": "edam:topic_2815"
+          "@id": "edam:topic_0199"
         },
         {
           "@id": "edam:topic_3308"
+        },
+        {
+          "@id": "edam:topic_0659"
+        },
+        {
+          "@id": "edam:topic_0634"
+        },
+        {
+          "@id": "edam:topic_2815"
         }
       ],
       "sc:citation": [
         "pmcid:PMC2808976",
-        "pubmed:19933760",
         {
           "@id": "https://doi.org/10.1093/nar/gkp1020"
-        }
+        },
+        "pubmed:19933760"
       ],
       "sc:description": "This tool provides curated annotations of human genes and transcripts that include gene structures, alternative splicing isoforms, non-coding functional RNAs, protein functions, functional domains, sub-cellular localizations, metabolic pathways, protein 3D structure, genetic polymorphisms (SNPs, indels and microsatellite repeats), relation with diseases, gene expression profiling, and molecular evolutionary features, protein-protein interactions and gene families/groups.",
       "sc:featureList": {
@@ -129,29 +129,7 @@
       "sc:url": "http://www.h-invitational.jp/"
     },
     {
-      "@id": "_:Nbc683c3b5d6b489db39fabef5ec4388d",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_0916"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_2330"
-      },
-      "sc:name": "Gene report"
-    },
-    {
-      "@id": "_:N1037fa072fff4f169557325ffade4308",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3134"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_2332"
-      },
-      "sc:name": "Gene transcript report"
-    },
-    {
-      "@id": "_:N17324a5833e4499fbfa56cccd109e33d",
+      "@id": "_:Nc93a8bc8c9f6477ba95b4f8aa1a65e9f",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3134"
@@ -162,18 +140,7 @@
       "sc:name": "Gene transcript report"
     },
     {
-      "@id": "_:N0e3e8d8e2aed4bacbf6cbf66db74d880",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3134"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_2331"
-      },
-      "sc:name": "Gene transcript report"
-    },
-    {
-      "@id": "_:Nb959d6c699b34d87b5e7e584dea1250b",
+      "@id": "_:Ne23fe1e17d6b48e3930b92442a301464",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0916"
@@ -184,7 +151,29 @@
       "sc:name": "Gene report"
     },
     {
-      "@id": "_:N1e8a2646cbab4f81a31374f4958b0b39",
+      "@id": "_:N3a3ba104b0b541bd96aba214ffeccfea",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_0916"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_2330"
+      },
+      "sc:name": "Gene report"
+    },
+    {
+      "@id": "_:Nc42eb3baac2f4e799939ebedfde18bc0",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3134"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_2332"
+      },
+      "sc:name": "Gene transcript report"
+    },
+    {
+      "@id": "_:N881516e5be84452a9e72104bb4bbd0fb",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0916"
@@ -195,7 +184,18 @@
       "sc:name": "Gene report"
     },
     {
-      "@id": "_:N12fa44d5978748b2ad215092ade585cc",
+      "@id": "_:Ncbd2b8ad947846c3a4478fc2a71803af",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3134"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_2331"
+      },
+      "sc:name": "Gene transcript report"
+    },
+    {
+      "@id": "_:N17600a201d2f4e8f86fe0c04608fb473",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2771"
@@ -203,7 +203,7 @@
       "sc:name": "HIX ID"
     },
     {
-      "@id": "_:N364094c008494f818af6e8927a6f96c5",
+      "@id": "_:Na2c4242237c14a9aba3ff136fe7d64f9",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2770"
@@ -211,7 +211,15 @@
       "sc:name": "HIT ID"
     },
     {
-      "@id": "_:Nd0d5ead424f54b3caa8355bd07375fb2",
+      "@id": "_:Ncc875e9c039f43058101f0d2403fc40e",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_2771"
+      },
+      "sc:name": "HIX ID"
+    },
+    {
+      "@id": "_:N897c74f0938d494ea1dccf6f7a490215",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2770"
@@ -219,7 +227,7 @@
       "sc:name": "HIT ID"
     },
     {
-      "@id": "_:Nef04a82a82df49bba037c85c2fe38f56",
+      "@id": "_:Na568cd5589434e57b1dc85489f500ea4",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2771"
@@ -227,15 +235,7 @@
       "sc:name": "HIX ID"
     },
     {
-      "@id": "_:N1c23eb4c9aff4c06a54aaec22d857fe1",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_2771"
-      },
-      "sc:name": "HIX ID"
-    },
-    {
-      "@id": "_:N5e61292078ea45aaa86174fa207e72e6",
+      "@id": "_:N962445eea1a742338bfb04648758a60a",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2770"

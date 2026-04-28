@@ -36,49 +36,41 @@
   },
   "@graph": [
     {
+      "@id": "https://doi.org/10.1093/nar/gkv384",
+      "@type": "sc:CreativeWork"
+    },
+    {
       "@id": "https://bio.tools/babelomics",
       "@type": "sc:SoftwareApplication",
       "biotools:primaryContact": "babelomics@cipf.es  (Francisco García)",
       "bsc:input": [
         {
-          "@id": "_:N2d6e7647abd64e8588dc2149710835e5"
+          "@id": "_:N64f9e1af11a643b5a010332c5b0bc63c"
         },
         {
-          "@id": "_:N56260791ad024c1abd63e4c8277f17dc"
+          "@id": "_:N23404fe22c8446ee83435f5431e01c60"
         },
         {
-          "@id": "_:N552f283ef1c246f393e320b18014827a"
+          "@id": "_:N4f93fc69b9da43429f1e9e0af98df941"
         },
         {
-          "@id": "_:Nab4167d2d6f543dfbe027b6c07522d04"
+          "@id": "_:N5b2d05cc55234aa191b58fa3cc43bcb2"
         }
       ],
       "bsc:output": [
         {
-          "@id": "_:N64b0841d7561467e8b0e2db1d6c47b19"
+          "@id": "_:Nb98ee413ece844809da042bb19df5fab"
         },
         {
-          "@id": "_:Na7015643c20e4cbe84cbde5f9b62e3b9"
+          "@id": "_:N820df58eae9c4f49a536c6c49c817daa"
         },
         {
-          "@id": "_:Nff6be8eed1834e3e80d9a4cd5561c6d3"
+          "@id": "_:N3c8ffafbe7594af3bb6d9e4fbbb678ef"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Web application",
       "sc:applicationSubCategory": [
-        {
-          "@id": "edam:topic_0622"
-        },
-        {
-          "@id": "edam:topic_3308"
-        },
-        {
-          "@id": "edam:topic_0121"
-        },
-        {
-          "@id": "edam:topic_3517"
-        },
         {
           "@id": "edam:topic_3071"
         },
@@ -86,15 +78,27 @@
           "@id": "edam:topic_2259"
         },
         {
+          "@id": "edam:topic_0622"
+        },
+        {
+          "@id": "edam:topic_3517"
+        },
+        {
           "@id": "edam:topic_3172"
+        },
+        {
+          "@id": "edam:topic_0121"
+        },
+        {
+          "@id": "edam:topic_3308"
         }
       ],
       "sc:citation": [
-        "pmcid:PMC4489263",
+        "pubmed:25897133",
         {
           "@id": "https://doi.org/10.1093/nar/gkv384"
         },
-        "pubmed:25897133"
+        "pmcid:PMC4489263"
       ],
       "sc:description": "Integrative platform for the analysis of Transcriptomics, Proteomics and Genomics data with advanced functional profiling. It integrates primary (normalization, calls, etc.) and secondary (signatures, predictors, associations, TDTs, clustering, etc.) analysis tools within an environment that allows relating genomic data and/or interpreting them by means of different functional enrichment or gene set methods.",
       "sc:featureList": [
@@ -102,69 +106,45 @@
           "@id": "edam:operation_0313"
         },
         {
-          "@id": "edam:operation_3463"
+          "@id": "edam:operation_3559"
         },
         {
           "@id": "edam:operation_3501"
         },
         {
-          "@id": "edam:operation_3559"
-        },
-        {
-          "@id": "edam:operation_0277"
+          "@id": "edam:operation_3463"
         },
         {
           "@id": "edam:operation_2495"
+        },
+        {
+          "@id": "edam:operation_0277"
         }
       ],
       "sc:name": "Babelomics",
       "sc:operatingSystem": [
+        "Mac",
         "Windows",
-        "Linux",
-        "Mac"
+        "Linux"
       ],
       "sc:provider": [
-        "cipf.es",
         "Computational Genomics Department. Prince Felipe Research Center (CIPF)",
+        "cipf.es",
         "http://bioinfo.cipf.es"
       ],
       "sc:softwareHelp": [
         {
-          "@id": "https://github.com/babelomics/babelomics/wiki#citation"
+          "@id": "https://github.com/babelomics/babelomics/wiki"
         },
         {
-          "@id": "https://github.com/babelomics/babelomics/wiki"
+          "@id": "https://github.com/babelomics/babelomics/wiki#citation"
         }
       ],
       "sc:softwareVersion": "5",
       "sc:url": "http://babelomics.bioinfo.cipf.es/"
     },
     {
-      "@id": "_:N64b0841d7561467e8b0e2db1d6c47b19",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_2884"
-      },
-      "sc:name": "Plot"
-    },
-    {
-      "@id": "_:Na7015643c20e4cbe84cbde5f9b62e3b9",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_1636"
-      },
-      "sc:name": "Heat map"
-    },
-    {
-      "@id": "_:Nff6be8eed1834e3e80d9a4cd5561c6d3",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_0582"
-      },
-      "sc:name": "Ontology"
-    },
-    {
-      "@id": "_:N2d6e7647abd64e8588dc2149710835e5",
+      "@id": "_:N64f9e1af11a643b5a010332c5b0bc63c",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2082"
@@ -172,7 +152,7 @@
       "sc:name": "Matrix"
     },
     {
-      "@id": "_:N56260791ad024c1abd63e4c8277f17dc",
+      "@id": "_:N23404fe22c8446ee83435f5431e01c60",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3110"
@@ -180,7 +160,7 @@
       "sc:name": "Raw microarray data"
     },
     {
-      "@id": "_:N552f283ef1c246f393e320b18014827a",
+      "@id": "_:N4f93fc69b9da43429f1e9e0af98df941",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2872"
@@ -188,7 +168,7 @@
       "sc:name": "ID list"
     },
     {
-      "@id": "_:Nab4167d2d6f543dfbe027b6c07522d04",
+      "@id": "_:N5b2d05cc55234aa191b58fa3cc43bcb2",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3112"
@@ -199,8 +179,28 @@
       "sc:name": "Gene expression matrix"
     },
     {
-      "@id": "https://doi.org/10.1093/nar/gkv384",
-      "@type": "sc:CreativeWork"
+      "@id": "_:Nb98ee413ece844809da042bb19df5fab",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_0582"
+      },
+      "sc:name": "Ontology"
+    },
+    {
+      "@id": "_:N820df58eae9c4f49a536c6c49c817daa",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_2884"
+      },
+      "sc:name": "Plot"
+    },
+    {
+      "@id": "_:N3c8ffafbe7594af3bb6d9e4fbbb678ef",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_1636"
+      },
+      "sc:name": "Heat map"
     }
   ]
 }

@@ -40,31 +40,31 @@
       "@type": "sc:SoftwareApplication",
       "bsc:input": [
         {
-          "@id": "_:Ncb151a11950640ad939f6abb0fe0aed3"
+          "@id": "_:Na16dcf53995f4db8b6cf0fe8e10c900c"
         },
         {
-          "@id": "_:Na1bd7a6ad62240fc8c3a7b779e4dc66f"
+          "@id": "_:Nfd708f8cfdca4c1d8a8ab6e30d3ddeff"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Web application",
       "sc:applicationSubCategory": [
         {
+          "@id": "edam:topic_3174"
+        },
+        {
           "@id": "edam:topic_0089"
         },
         {
           "@id": "edam:topic_3342"
-        },
-        {
-          "@id": "edam:topic_3174"
         }
       ],
       "sc:citation": [
         {
           "@id": "https://doi.org/10.3390/biology11081113"
         },
-        "pmcid:PMC9332626",
-        "pubmed:35892968"
+        "pubmed:35892968",
+        "pmcid:PMC9332626"
       ],
       "sc:description": "A web application to assist with gene identifiers for the non-bioinformatics-savvy scientist.",
       "sc:featureList": {
@@ -73,27 +73,27 @@
       "sc:isAccessibleForFree": true,
       "sc:name": "GeneToList",
       "sc:operatingSystem": [
+        "Windows",
         "Linux",
-        "Mac",
-        "Windows"
+        "Mac"
       ],
       "sc:url": "https://www.genetolist.com/"
     },
     {
-      "@id": "_:Ncb151a11950640ad939f6abb0fe0aed3",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_1026"
-      },
-      "sc:name": "Gene symbol"
-    },
-    {
-      "@id": "_:Na1bd7a6ad62240fc8c3a7b779e4dc66f",
+      "@id": "_:Na16dcf53995f4db8b6cf0fe8e10c900c",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_1904"
       },
       "sc:name": "Locus ID (EntrezGene)"
+    },
+    {
+      "@id": "_:Nfd708f8cfdca4c1d8a8ab6e30d3ddeff",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_1026"
+      },
+      "sc:name": "Gene symbol"
     },
     {
       "@id": "https://doi.org/10.3390/biology11081113",

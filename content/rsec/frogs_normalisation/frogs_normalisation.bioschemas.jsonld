@@ -36,11 +36,11 @@
   },
   "@graph": [
     {
-      "@id": "https://doi.org/10.7490/f1000research.1114334.1",
+      "@id": "https://doi.org/10.1093/nar/gkw343",
       "@type": "sc:CreativeWork"
     },
     {
-      "@id": "https://doi.org/10.1093/nar/gkw343",
+      "@id": "https://doi.org/10.7490/f1000research.1114334.1",
       "@type": "sc:CreativeWork"
     },
     {
@@ -49,44 +49,44 @@
       "biotools:primaryContact": "Galaxy Support Team",
       "bsc:input": [
         {
-          "@id": "_:N3a0b9e0ca9e9451f8ae158712bb33717"
+          "@id": "_:N677612d741844b079f885d0c423bb165"
         },
         {
-          "@id": "_:Nf303cefe3ff148ac881b13bd2c2442a7"
+          "@id": "_:Nc88717e97be64ad6b8f39b9ba413f531"
         }
       ],
       "bsc:output": [
         {
-          "@id": "_:Nfde794168c93404780d5345b5c1792a6"
+          "@id": "_:N4fdb71803ece45e4be7e11dacef16e80"
         },
         {
-          "@id": "_:Nd97cc18f84ef42f7b125dfd816730c01"
+          "@id": "_:N7838f5569c6b4aabb8d1ab40d72ddfe2"
         },
         {
-          "@id": "_:N16f4858f50da4af092713c562b521afb"
+          "@id": "_:N92e9e59b678e4e6286b139bb20d04bec"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Web application",
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_3168"
+          "@id": "edam:topic_3174"
         },
         {
           "@id": "edam:topic_3301"
         },
         {
-          "@id": "edam:topic_3174"
+          "@id": "edam:topic_3168"
         }
       ],
       "sc:citation": [
-        "pmcid:PMC4987906",
-        {
-          "@id": "https://doi.org/10.1093/nar/gkw343"
-        },
-        "pubmed:27137889",
         {
           "@id": "https://doi.org/10.7490/f1000research.1114334.1"
+        },
+        "pmcid:PMC4987906",
+        "pubmed:27137889",
+        {
+          "@id": "https://doi.org/10.1093/nar/gkw343"
         }
       ],
       "sc:description": "Keeps in each sample the same number of element by random sampling.",
@@ -95,9 +95,9 @@
       },
       "sc:name": "frogs_normalisation",
       "sc:operatingSystem": [
+        "Linux",
         "Mac",
-        "Windows",
-        "Linux"
+        "Windows"
       ],
       "sc:softwareHelp": {
         "@id": "https://galaxy.pasteur.fr/root?tool_id=toolshed.pasteur.fr%2Frepos%2Fmvalade%2Ffrogs%2FFROGS_normalisation%2F1.1.0"
@@ -106,7 +106,29 @@
       "sc:url": "http://frogs.toulouse.inra.fr/"
     },
     {
-      "@id": "_:Nfde794168c93404780d5345b5c1792a6",
+      "@id": "_:N677612d741844b079f885d0c423bb165",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_0006"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_3464"
+      },
+      "sc:name": "Data"
+    },
+    {
+      "@id": "_:Nc88717e97be64ad6b8f39b9ba413f531",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_0863"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_1929"
+      },
+      "sc:name": "Sequence alignment"
+    },
+    {
+      "@id": "_:N4fdb71803ece45e4be7e11dacef16e80",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2048"
@@ -117,18 +139,7 @@
       "sc:name": "Report"
     },
     {
-      "@id": "_:Nd97cc18f84ef42f7b125dfd816730c01",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_0863"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_1929"
-      },
-      "sc:name": "Sequence alignment"
-    },
-    {
-      "@id": "_:N16f4858f50da4af092713c562b521afb",
+      "@id": "_:N7838f5569c6b4aabb8d1ab40d72ddfe2",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0006"
@@ -139,7 +150,7 @@
       "sc:name": "Data"
     },
     {
-      "@id": "_:N3a0b9e0ca9e9451f8ae158712bb33717",
+      "@id": "_:N92e9e59b678e4e6286b139bb20d04bec",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0863"
@@ -148,17 +159,6 @@
         "@id": "edam:format_1929"
       },
       "sc:name": "Sequence alignment"
-    },
-    {
-      "@id": "_:Nf303cefe3ff148ac881b13bd2c2442a7",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_0006"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_3464"
-      },
-      "sc:name": "Data"
     }
   ]
 }

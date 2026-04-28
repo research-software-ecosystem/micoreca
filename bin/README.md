@@ -45,3 +45,23 @@
         --workflows content/workflowhub/workflows_curated.json \
         --tools content/workflowhub/tools_from_workflows.json
     ```
+
+## RSEC
+
+- Clone the RSEC repository and filter tools based on EDAM terms and keywords defined in `keywords.yml`. Validated tools are written to a JSON and a TSV file.
+
+    ```
+    $ python bin/extract_rsec.py
+    ```
+
+    Custom output paths can be provided if needed:
+
+    ```
+    $ python bin/extract_rsec.py \
+        --kw keywords.yml \
+        --json-output content/rsec/infos/validated_tools_metadata.json \
+        --tsv-output content/rsec/infos/validated_tools_summary.tsv
+    ```
+
+    Tools are filtered against three successive criteria: EDAM topics/operations from bio.tools metadata, keywords and acronyms from BioContainers metadata, then the same matching applied to free-text descriptions from bio.tools, BioContainers and Galaxy. A tool is kept if it passes any of them.
+

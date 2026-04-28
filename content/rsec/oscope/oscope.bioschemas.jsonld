@@ -36,10 +36,6 @@
   },
   "@graph": [
     {
-      "@id": "https://doi.org/10.1038/nmeth.3549",
-      "@type": "sc:CreativeWork"
-    },
-    {
       "@id": "https://bio.tools/oscope",
       "@type": "sc:SoftwareApplication",
       "biotools:primaryContact": "Ning Leng",
@@ -50,18 +46,18 @@
       ],
       "sc:applicationSubCategory": [
         {
+          "@id": "edam:topic_3170"
+        },
+        {
           "@id": "edam:topic_0204"
         },
         {
           "@id": "edam:topic_0203"
-        },
-        {
-          "@id": "edam:topic_3170"
         }
       ],
       "sc:citation": [
-        "pubmed:26301841",
         "pmcid:PMC4589503",
+        "pubmed:26301841",
         {
           "@id": "https://doi.org/10.1038/nmeth.3549"
         }
@@ -78,15 +74,19 @@
       "sc:license": "Artistic-2.0",
       "sc:name": "Oscope",
       "sc:operatingSystem": [
-        "Windows",
         "Linux",
-        "Mac"
+        "Mac",
+        "Windows"
       ],
       "sc:softwareHelp": {
         "@id": "http://bioconductor.org/packages/release/bioc/html/Oscope.html"
       },
       "sc:softwareVersion": "1.4.0",
       "sc:url": "http://bioconductor.org/packages/release/bioc/html/Oscope.html"
+    },
+    {
+      "@id": "https://doi.org/10.1038/nmeth.3549",
+      "@type": "sc:CreativeWork"
     }
   ]
 }

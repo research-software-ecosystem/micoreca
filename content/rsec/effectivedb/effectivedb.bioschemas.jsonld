@@ -39,10 +39,10 @@
       "@id": "https://bio.tools/effectivedb",
       "@type": "sc:SoftwareApplication",
       "bsc:input": {
-        "@id": "_:Nd72ee66c73394317824dd8f9eb927883"
+        "@id": "_:N567b23e1d1014d60a299a7c003809a7d"
       },
       "bsc:output": {
-        "@id": "_:N95d38bf873e243f79c49ac77d96dff7a"
+        "@id": "_:Nd9a9c3d45edc4fb588f5fc7288b90fa4"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": [
@@ -64,8 +64,8 @@
         }
       ],
       "sc:citation": [
-        "pubmed:21071416",
         "pmcid:PMC3013723",
+        "pubmed:21071416",
         {
           "@id": "https://doi.org/10.1093/nar/gkq1154"
         }
@@ -73,22 +73,22 @@
       "sc:description": "Prediction of intact bacterial protein secretion systems and putative secreted proteins.",
       "sc:featureList": [
         {
-          "@id": "edam:operation_3461"
+          "@id": "edam:operation_3092"
         },
         {
-          "@id": "edam:operation_3092"
+          "@id": "edam:operation_3461"
         }
       ],
       "sc:isAccessibleForFree": true,
       "sc:name": "EffectiveDB",
       "sc:operatingSystem": [
+        "Mac",
         "Windows",
-        "Linux",
-        "Mac"
+        "Linux"
       ],
       "sc:provider": [
-        "CUBE - Computational Systems Biology",
-        "AT-CUBE"
+        "AT-CUBE",
+        "CUBE - Computational Systems Biology"
       ],
       "sc:softwareHelp": {
         "@id": "http://www.effectivedb.org/"
@@ -96,7 +96,7 @@
       "sc:url": "http://www.effectivedb.org/"
     },
     {
-      "@id": "_:Nd72ee66c73394317824dd8f9eb927883",
+      "@id": "_:N567b23e1d1014d60a299a7c003809a7d",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2976"
@@ -107,7 +107,7 @@
       "sc:name": "Protein sequence"
     },
     {
-      "@id": "_:N95d38bf873e243f79c49ac77d96dff7a",
+      "@id": "_:Nd9a9c3d45edc4fb588f5fc7288b90fa4",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0896"

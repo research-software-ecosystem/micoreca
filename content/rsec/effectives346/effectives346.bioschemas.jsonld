@@ -43,14 +43,14 @@
       "@id": "https://bio.tools/effectives346",
       "@type": "sc:SoftwareApplication",
       "bsc:input": {
-        "@id": "_:Nbdd6f49cf46d4d9ab1893186d7f3f688"
+        "@id": "_:N9d7b4340f66343fba8a2be1e55d0670c"
       },
       "bsc:output": [
         {
-          "@id": "_:N2327889d191e484080118335e9420e00"
+          "@id": "_:Nd7ad80022c484614aace042bdf2da820"
         },
         {
-          "@id": "_:N0891982d357d4edf8f42c2efc50c5e66"
+          "@id": "_:N7a0f7e99d02947c6b72585906d01bca9"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
@@ -60,18 +60,18 @@
       ],
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_0797"
+          "@id": "edam:topic_3174"
         },
         {
-          "@id": "edam:topic_3174"
+          "@id": "edam:topic_0797"
         }
       ],
       "sc:citation": [
         "pmcid:PMC3013723",
+        "pubmed:21071416",
         {
           "@id": "https://doi.org/10.1093/nar/gkq1154"
-        },
-        "pubmed:21071416"
+        }
       ],
       "sc:description": "Prediction of intact secretion systems III, IV and VI in bacterial genomes by using a Support Vector Machine (SVM) approach.",
       "sc:featureList": {
@@ -94,7 +94,7 @@
       "sc:url": "http://www.effectivedb.org/method/effectives346"
     },
     {
-      "@id": "_:Nbdd6f49cf46d4d9ab1893186d7f3f688",
+      "@id": "_:N9d7b4340f66343fba8a2be1e55d0670c",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2976"
@@ -105,7 +105,7 @@
       "sc:name": "Protein sequence"
     },
     {
-      "@id": "_:N2327889d191e484080118335e9420e00",
+      "@id": "_:Nd7ad80022c484614aace042bdf2da820",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0920"
@@ -113,7 +113,7 @@
       "sc:name": "Genotype/phenotype report"
     },
     {
-      "@id": "_:N0891982d357d4edf8f42c2efc50c5e66",
+      "@id": "_:N7a0f7e99d02947c6b72585906d01bca9",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0896"

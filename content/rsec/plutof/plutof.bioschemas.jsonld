@@ -40,34 +40,34 @@
       "@type": "sc:SoftwareApplication",
       "bsc:input": [
         {
-          "@id": "_:N876ac2fe45c94266817df06f81ddb8ff"
+          "@id": "_:N0cf6a6636daf4012bb23239dee14cb26"
         },
         {
-          "@id": "_:Nc11f9f3550794014b203c3984fa017f5"
+          "@id": "_:N5e02cd96504a498b8835cca713a2be10"
         },
         {
-          "@id": "_:Nc0a1f2253d814c798e5b00be5e1b6c90"
+          "@id": "_:N1532f23eaabc4e509650c397669c61a3"
         }
       ],
       "bsc:output": [
         {
-          "@id": "_:Ne292bbd5a5e04746a2277ee3ac358bfb"
+          "@id": "_:N0b27552804434eceba40fa51d9907dfb"
         },
         {
-          "@id": "_:Ndc96289cf7da45aba3b0f8549647e439"
+          "@id": "_:N2a839ae0a05a46b98c1e13bb45150b5a"
         }
       ],
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Workbench",
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_0219"
+          "@id": "edam:topic_3489"
         },
         {
           "@id": "edam:topic_3050"
         },
         {
-          "@id": "edam:topic_3489"
+          "@id": "edam:topic_0219"
         }
       ],
       "sc:citation": {
@@ -76,37 +76,72 @@
       "sc:description": "PlutoF is an online data management platform and computing service provider for biology\nand related disciplines. Registered users can enter and manage a wide range of data, e.g.,\ntaxon occurrences, metabarcoding data, taxon classifications, traits, and lab data. It\nfeatures an annotation module where third-party annotations (on material source,\ngeolocation and habitat, taxonomic identifications, interacting taxa, etc.) can be added to\nany collection specimen, living culture or DNA sequence record. It also features an analysis module by providing digital services for molecular sequence identification and species discovery from eDNA samples.",
       "sc:featureList": [
         {
-          "@id": "edam:operation_3431"
-        },
-        {
           "@id": "edam:operation_3778"
         },
         {
           "@id": "edam:operation_2403"
+        },
+        {
+          "@id": "edam:operation_3431"
         }
       ],
       "sc:isAccessibleForFree": true,
       "sc:name": "PlutoF",
       "sc:operatingSystem": [
+        "Mac",
         "Windows",
-        "Linux",
-        "Mac"
+        "Linux"
       ],
       "sc:softwareHelp": [
-        {
-          "@id": "https://plutof.ut.ee/#/videos"
-        },
         {
           "@id": "https://plutof.docs.apiary.io/#"
         },
         {
           "@id": "https://plutof.ut.ee/#/manual"
+        },
+        {
+          "@id": "https://plutof.ut.ee/#/videos"
         }
       ],
       "sc:url": "https://plutof.ut.ee"
     },
     {
-      "@id": "_:N876ac2fe45c94266817df06f81ddb8ff",
+      "@id": "_:N0cf6a6636daf4012bb23239dee14cb26",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_2887"
+      },
+      "sc:encodingFormat": [
+        {
+          "@id": "edam:format_3752"
+        },
+        {
+          "@id": "edam:format_1929"
+        },
+        {
+          "@id": "edam:format_2330"
+        }
+      ],
+      "sc:name": "Nucleic acid sequence record"
+    },
+    {
+      "@id": "_:N5e02cd96504a498b8835cca713a2be10",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3707"
+      },
+      "sc:encodingFormat": [
+        {
+          "@id": "edam:format_2330"
+        },
+        {
+          "@id": "edam:format_3752"
+        }
+      ],
+      "sc:name": "Biodiversity data"
+    },
+    {
+      "@id": "_:N1532f23eaabc4e509650c397669c61a3",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_1255"
@@ -117,42 +152,7 @@
       "sc:name": "Sequence features"
     },
     {
-      "@id": "_:Nc11f9f3550794014b203c3984fa017f5",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3707"
-      },
-      "sc:encodingFormat": [
-        {
-          "@id": "edam:format_3752"
-        },
-        {
-          "@id": "edam:format_2330"
-        }
-      ],
-      "sc:name": "Biodiversity data"
-    },
-    {
-      "@id": "_:Nc0a1f2253d814c798e5b00be5e1b6c90",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_2887"
-      },
-      "sc:encodingFormat": [
-        {
-          "@id": "edam:format_3752"
-        },
-        {
-          "@id": "edam:format_2330"
-        },
-        {
-          "@id": "edam:format_1929"
-        }
-      ],
-      "sc:name": "Nucleic acid sequence record"
-    },
-    {
-      "@id": "_:Ne292bbd5a5e04746a2277ee3ac358bfb",
+      "@id": "_:N0b27552804434eceba40fa51d9907dfb",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3707"
@@ -168,7 +168,7 @@
       "sc:name": "Biodiversity data"
     },
     {
-      "@id": "_:Ndc96289cf7da45aba3b0f8549647e439",
+      "@id": "_:N2a839ae0a05a46b98c1e13bb45150b5a",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2337"

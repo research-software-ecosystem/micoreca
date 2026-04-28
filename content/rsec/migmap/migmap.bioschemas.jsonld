@@ -40,37 +40,37 @@
       "@type": "sc:SoftwareApplication",
       "biotools:primaryContact": "Mikhail Shugay",
       "bsc:input": {
-        "@id": "_:Nfe9ebd8247d44cd9b3ab80bad8c99f00"
+        "@id": "_:Nf92c9c5dfd3c48cbad44c1bb2522208c"
       },
       "bsc:output": {
-        "@id": "_:N57523a14397e46dba26e226e31b8fa40"
+        "@id": "_:N8ef94c752dbe4e508968b396d317268f"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Command-line tool",
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_2830"
+          "@id": "edam:topic_0080"
         },
         {
-          "@id": "edam:topic_0080"
+          "@id": "edam:topic_2830"
         }
       ],
       "sc:description": "Mapper for full-length T- and B-cell repertoire sequencing.",
       "sc:featureList": [
         {
-          "@id": "edam:operation_3198"
+          "@id": "edam:operation_2403"
         },
         {
-          "@id": "edam:operation_2403"
+          "@id": "edam:operation_3198"
         }
       ],
       "sc:isAccessibleForFree": true,
       "sc:license": "Apache-2.0",
       "sc:name": "MiGMAP",
       "sc:operatingSystem": [
-        "Mac",
         "Windows",
-        "Linux"
+        "Linux",
+        "Mac"
       ],
       "sc:softwareHelp": {
         "@id": "https://github.com/mikessh/migmap/blob/master/README.md"
@@ -78,18 +78,7 @@
       "sc:url": "https://github.com/mikessh/migmap"
     },
     {
-      "@id": "_:N57523a14397e46dba26e226e31b8fa40",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_2048"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_2330"
-      },
-      "sc:name": "Report"
-    },
-    {
-      "@id": "_:Nfe9ebd8247d44cd9b3ab80bad8c99f00",
+      "@id": "_:Nf92c9c5dfd3c48cbad44c1bb2522208c",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_2044"
@@ -98,6 +87,17 @@
         "@id": "edam:format_2182"
       },
       "sc:name": "Sequence"
+    },
+    {
+      "@id": "_:N8ef94c752dbe4e508968b396d317268f",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_2048"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_2330"
+      },
+      "sc:name": "Report"
     }
   ]
 }

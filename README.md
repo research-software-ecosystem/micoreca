@@ -61,6 +61,22 @@ The extraction, filtering and curation are done following the workflow below and
         --status content/workflowhub/workflows_status.tsv
     ```
 
+    As explained in the decision tree above, workflows are filtered first on EDAM terms (topics and operations), then on tags, workflow name and finally description based on the keywords provided in `keywords.yml` file.
+
+
+# Tools from RSEc
+
+- Extract all metadata from RSEc/content/data 
+
+    ```
+    $ python bin/extract_rsec.py 
+    ```
+
+- Filter RSEc tools based on keywords and EDAM terms, place them in content/rsec
+
+    ```
+    $ python bin/filter_rsec.py
+    ```
     As explained in the decision tree above, workflows are filtered first on EDAM terms (topics and operations), then on tags, workflow name and finally description based on the keywords provided in `keywords.yml` file. 
     Workflows are filtered first on EDAM terms (topics and operations), then on tags, workflow name and finally description based on the keywords provided in "keywords.yml". 
 

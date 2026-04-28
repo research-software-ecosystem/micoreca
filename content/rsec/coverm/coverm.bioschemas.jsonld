@@ -40,26 +40,26 @@
       "@type": "sc:SoftwareApplication",
       "bsc:input": [
         {
-          "@id": "_:Na4df358f231144bbad431c2e4ffa0490"
+          "@id": "_:N92b7ee8e4c114217b276f025a2e9c4fc"
         },
         {
-          "@id": "_:Ncbff1b1b82e14d5e9faae0f3bbf6eb29"
+          "@id": "_:N2af083eb84b34f448f72b2f5bcf2879f"
         },
         {
-          "@id": "_:N6edb5955264946c78959c92bd8e78e03"
+          "@id": "_:N0c0f4cae5d05436fb1728283d312043d"
         }
       ],
       "bsc:output": {
-        "@id": "_:Nea896edd5ad1483c98e6546b0769606f"
+        "@id": "_:N3a4dfebaa0084d39bc0cfa86027aed59"
       },
       "dcterms:conformsTo": "https://bioschemas.org/profiles/ComputationalTool/0.6-DRAFT",
       "sc:additionalType": "Command-line tool",
       "sc:applicationSubCategory": [
         {
-          "@id": "edam:topic_0080"
+          "@id": "edam:topic_3174"
         },
         {
-          "@id": "edam:topic_3174"
+          "@id": "edam:topic_0080"
         }
       ],
       "sc:citation": {
@@ -83,18 +83,7 @@
       "sc:url": "https://github.com/wwood/CoverM"
     },
     {
-      "@id": "_:Na4df358f231144bbad431c2e4ffa0490",
-      "@type": "bsct:FormalParameter",
-      "sc:additionalType": {
-        "@id": "edam:data_3494"
-      },
-      "sc:encodingFormat": {
-        "@id": "edam:format_2200"
-      },
-      "sc:name": "DNA sequence"
-    },
-    {
-      "@id": "_:Ncbff1b1b82e14d5e9faae0f3bbf6eb29",
+      "@id": "_:N92b7ee8e4c114217b276f025a2e9c4fc",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_1383"
@@ -105,7 +94,18 @@
       "sc:name": "Nucleic acid sequence alignment"
     },
     {
-      "@id": "_:N6edb5955264946c78959c92bd8e78e03",
+      "@id": "_:N2af083eb84b34f448f72b2f5bcf2879f",
+      "@type": "bsct:FormalParameter",
+      "sc:additionalType": {
+        "@id": "edam:data_3494"
+      },
+      "sc:encodingFormat": {
+        "@id": "edam:format_2200"
+      },
+      "sc:name": "DNA sequence"
+    },
+    {
+      "@id": "_:N0c0f4cae5d05436fb1728283d312043d",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_3494"
@@ -116,7 +116,7 @@
       "sc:name": "DNA sequence"
     },
     {
-      "@id": "_:Nea896edd5ad1483c98e6546b0769606f",
+      "@id": "_:N3a4dfebaa0084d39bc0cfa86027aed59",
       "@type": "bsct:FormalParameter",
       "sc:additionalType": {
         "@id": "edam:data_0951"
