@@ -950,7 +950,7 @@ class TestCloneRsecData(RsecTestCase):
         with tempfile.TemporaryDirectory() as tmp:
             temp_dir = Path(tmp) / "temp"
             temp_dir.mkdir()
-            # On crée manuellement le dossier .git/info pour le test
+            # manually create the .git/info directory where the sparse-checkout file will be written
             (temp_dir / ".git" / "info").mkdir(parents=True)
 
             captured_contents = []
@@ -979,7 +979,7 @@ class TestCloneRsecData(RsecTestCase):
             temp_dir.mkdir()
             (temp_dir / ".git" / "info").mkdir(parents=True)
 
-            # On simule un fichier qui aurait été téléchargé par git
+            # we simulate a successful sparse checkout by creating the expected subdir and file before clone_rsec_data checks for them
             subdir = temp_dir / "data"
             subdir.mkdir()
             (subdir / "sample.json").write_text("{}")
