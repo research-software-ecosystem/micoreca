@@ -26,8 +26,7 @@ import yaml
 # Make sure Python can find the source modules in bin/
 # This works whether you run pytest from the project root or from tests/.
 # ---------------------------------------------------------------------------
-sys.path.insert(0, str(Path(__file__).parent.parent / "bin"))
-sys.path.insert(0, str(Path(__file__).parent.parent / "bin" / "draft"))
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 # ---------------------------------------------------------------------------
 # Import the classes and utils functions under test
@@ -948,56 +947,56 @@ class TestCloneRsecData(RsecTestCase):
         assert not temp_dir.exists()
 
     def test_writes_sparse_checkout_file_with_correct_content(self) -> None:
-        tmp_path = self.tmp_path
-        temp_dir = tmp_path / "temp"
-        temp_dir.mkdir()
-        git_info = temp_dir / ".git" / "info"
-        git_info.mkdir(parents=True)
+        with tempfile.TemporaryDirectory() as tmp:
+            temp_dir = Path(tmp) / "temp"
+            temp_dir.mkdir()
+            # On crée manuellement le dossier .git/info pour le test
+            (temp_dir / ".git" / "info").mkdir(parents=True)
 
-        captured_contents = []
+            captured_contents = []
 
-        def mock_run(cmd: Any, cwd: Any = None) -> bool:
-            # After the first two successful calls, inspect the sparse-checkout file
-            sc_file = temp_dir / ".git" / "info" / "sparse-checkout"
-            if sc_file.exists():
-                captured_contents.append(sc_file.read_text(encoding="utf-8"))
-            return True  # checkout will succeed but subdir won't exist
+            def mock_run(cmd: Any, cwd: Any = None) -> bool:
+                sc_file = temp_dir / ".git" / "info" / "sparse-checkout"
+                if sc_file.exists():
+                    captured_contents.append(sc_file.read_text(encoding="utf-8"))
+                return True
 
-        with patch("utils.run_command_rsec", side_effect=mock_run):
-            clone_rsec_data(
-                repo_url="https://example.com/repo.git",
-                temp_dir=temp_dir,
-                target_dir=tmp_path / "target",
-                subdir_in_repo="mydata",
-            )
+            with patch("utils.run_command_rsec", side_effect=mock_run):
+                clone_rsec_data(
+                    repo_url="https://example.com/repo.git",
+                    temp_dir=temp_dir,
+                    target_dir=Path(tmp) / "target",
+                    subdir_in_repo="mydata",
+                )
 
-        assert any("/mydata\n" in c for c in captured_contents)
+            self.assertTrue(any("/mydata\n" in c for c in captured_contents))
 
     # ------------------------------------------------------------------ happy path
 
     def test_returns_true_and_moves_subdir_to_target(self) -> None:
-        tmp_path = self.tmp_path
-        temp_dir = tmp_path / "temp"
-        temp_dir.mkdir()
-        (temp_dir / ".git" / "info").mkdir(parents=True)
-        # Simulate git checkout creating the subdirectory
-        subdir = temp_dir / "data"
-        subdir.mkdir()
-        (subdir / "sample.json").write_text("{}")
+        with tempfile.TemporaryDirectory() as tmp:
+            temp_dir = Path(tmp) / "temp"
+            temp_dir.mkdir()
+            (temp_dir / ".git" / "info").mkdir(parents=True)
 
-        target = tmp_path / "target"
+            # On simule un fichier qui aurait été téléchargé par git
+            subdir = temp_dir / "data"
+            subdir.mkdir()
+            (subdir / "sample.json").write_text("{}")
 
-        with self._patch_run(True):
-            result = clone_rsec_data(
-                repo_url="https://example.com/repo.git",
-                temp_dir=temp_dir,
-                target_dir=target,
-                subdir_in_repo="data",
-            )
+            target = Path(tmp) / "target"
 
-        assert result is True
-        assert target.is_dir()
-        assert (target / "sample.json").exists()
+            with patch("utils.run_command_rsec", return_value=True):
+                result = clone_rsec_data(
+                    repo_url="https://example.com/repo.git",
+                    temp_dir=temp_dir,
+                    target_dir=target,
+                    subdir_in_repo="data",
+                )
+
+            self.assertTrue(result)
+            self.assertTrue(target.is_dir())
+            self.assertTrue((target / "sample.json").exists())
 
     def test_cleans_up_temp_dir_after_success(self) -> None:
         tmp_path = self.tmp_path

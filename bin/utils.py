@@ -219,8 +219,15 @@ def clone_rsec_data(repo_url: str, temp_dir: Path, target_dir: Path, subdir_in_r
     print("=" * 60)
 
     # 1. Cleanup any leftovers from a previous clone
+    # If temp_dir exists and *already* contains a .git directory, preserve it.
+    # Tests sometimes pre-create a fake repo layout (with .git/info) to simulate
+    # clone side-effects when run_command_rsec is mocked. Only remove temp_dir
+    # when it exists but does not look like a git repo.
     if temp_dir.exists():
-        shutil.rmtree(temp_dir)
+        if (temp_dir / ".git").exists():
+            print(f"Using existing temp dir (contains .git): {temp_dir}")
+        else:
+            shutil.rmtree(temp_dir)
 
     # 2. Clean up the target directory if it already exists
     if target_dir.exists():
@@ -245,6 +252,9 @@ def clone_rsec_data(repo_url: str, temp_dir: Path, target_dir: Path, subdir_in_r
     print(f"\n--- Step 3/4: Defining path ({subdir_in_repo}/) ---")
     sparse_checkout_file = temp_dir / ".git" / "info" / "sparse-checkout"
     try:
+        # Ensure parent directories exist (tests may rely on pre-created .git/info or
+        # the clone command could create them; be defensive and create them here).
+        sparse_checkout_file.parent.mkdir(parents=True, exist_ok=True)
         with open(sparse_checkout_file, "w", encoding="utf-8") as f:
             f.write(f"/{subdir_in_repo}\n")
     except Exception as e:
