@@ -48,16 +48,23 @@
 
 ## RSEC
 
-- Clone the RSEC repository and filter tools based on EDAM terms and keywords defined in `keywords.yml`. Validated tools are written to a JSON and a TSV file.
+- Clone the RSEC repository into `content/rsec/`.
 
     ```
-    $ python bin/extract_rsec.py
+    $ python bin/extract_rsec.py extract
+    ```
+
+- Filter the cloned tools based on EDAM terms and keywords defined in `keywords.yml`. Validated tools are written to a JSON and a TSV file.
+
+    ```
+    $ python bin/extract_rsec.py filter --kw keywords.yml
     ```
 
     Custom output paths can be provided if needed:
 
     ```
     $ python bin/extract_rsec.py \
+        filter \
         --kw keywords.yml \
         --json-output content/rsec/infos/validated_tools_metadata.json \
         --tsv-output content/rsec/infos/validated_tools_summary.tsv
