@@ -388,10 +388,10 @@ class TestWorkflows(unittest.TestCase):
         self.assertEqual(self.workflows.workflows[0].id, 1)
         self.assertEqual(self.workflows.workflows[1].id, 2)
 
-    def test_add_workflows_from_workflowhub(self) -> None:
-        """Test add_workflows_from_workflowhub method"""
+    def test_clone_workflows_from_rsec(self) -> None:
+        """Test clone_workflows_from_rsec method"""
         workflows = Workflows(test=True)
-        workflows.add_workflows_from_workflowhub()
+        workflows.clone_workflows_from_rsec()
 
         self.assertGreaterEqual(len(workflows.workflows), 10)
 
