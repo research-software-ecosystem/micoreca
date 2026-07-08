@@ -66,45 +66,19 @@ The extraction, filtering and curation are done following the workflow below and
 
 # Tools from RSEc
 
-- Clone RSEc/content/data into content/rsec
+The [Research Software Ecosystem content repository](https://github.com/research-software-ecosystem/content) is the single upstream source. It is not committed here: `filter` sparse-clones it into a temporary directory, filters it, then removes the clone. Bioconda is sourced from this repository's `imports/bioconda` tree, so there is no separate Bioconda scrape.
 
-    ```
-    $ python bin/extract_rsec.py extract
-    ```
-
-- Filter the cloned RSEc tools based on keywords and EDAM terms
+- Filter the RSEc `data/`, `imports/bioconda/` and `imports/galaxy/` trees based on keywords and EDAM terms defined in `keywords.yml`. Outputs go to `content/rsec/`, `content/bioconda/` and `content/galaxy/`.
 
     ```
     $ python bin/extract_rsec.py filter --kw keywords.yml
     ```
-    As explained in the decision tree above, workflows are filtered first on EDAM terms (topics and operations), then on tags, workflow name and finally description based on the keywords provided in `keywords.yml` file. 
-    Workflows are filtered first on EDAM terms (topics and operations), then on tags, workflow name and finally description based on the keywords provided in "keywords.yml". 
 
-# Bioconda
+    `data/` tools are filtered first on EDAM topics/operations, then on BioContainers keywords, then on free-text descriptions; a tool is kept if it passes any of them. bioconda imports are matched on their `about` summary/description, galaxy imports on EDAM topics/operations then name/description.
 
-- Extract all bioconda metadata as a JSON file
+    Each filter run also writes a `*_status.tsv` file alongside the filtered outputs for later community review.
 
-    ```
-    mkdir -p ./tmp
-
-    # download ZIP file *into tmp/*
-    wget -O ./tmp/bioconda-recipes.zip https://codeload.github.com/bioconda/bioconda-recipes/zip/master
-
-    # unzip from tmp into tmp/
-    unzip ./tmp/bioconda-recipes.zip -d ./tmp/
-
-    # remove the ZIP after extraction
-    rm ./tmp/bioconda-recipes.zip
-
-    # run your Python script
-    python bin/collect_bioconda_recipes.py \
-        --bioconda-path ./tmp/bioconda-recipes-master/recipes \
-        --keywords-file ./keywords.yml \
-        --output-file ./content/bioconda_filtered.json
-
-    # cleanup
-    rm -r ./tmp
-    ```
+# Curate workflows and extract tools
 
 - Curate workflows based on community curation
     

@@ -48,27 +48,21 @@
 
 ## RSEC
 
-- Clone the RSEC repository into `content/rsec/`.
+The RSEc [content repository](https://github.com/research-software-ecosystem/content) is the single upstream source. It is never committed here: `filter` sparse-clones it into a temporary directory, filters it, then removes the clone. Only the post-filter outputs are committed.
 
-    ```
-    $ python bin/extract_rsec.py extract
-    ```
+Three trees are filtered from one clone:
 
-- Filter the cloned tools based on EDAM terms and keywords defined in `keywords.yml`. Validated tools are written to a JSON and a TSV file.
+- `data/` (bio.tools-mapped tools) → `content/rsec/` (`validated_tools_metadata.json`, `validated_tools_summary.tsv`, `filtering_report.txt`).
+- `imports/bioconda/` (conda recipes not mapped to bio.tools) → `content/bioconda/` (`bioconda_filtered.json/.tsv`).
+- `imports/galaxy/` (Galaxy tools not mapped to bio.tools) → `content/galaxy/` (`galaxy_filtered.json/.tsv`).
+
+- Filter all three trees based on EDAM terms and keywords defined in `keywords.yml`.
 
     ```
     $ python bin/extract_rsec.py filter --kw keywords.yml
     ```
 
-    Custom output paths can be provided if needed:
+    `data/` tools are filtered against three successive criteria: EDAM topics/operations from bio.tools metadata, keywords and acronyms from BioContainers metadata, then the same matching on free-text descriptions from bio.tools, BioContainers and Galaxy. A tool is kept if it passes any of them. bioconda imports are matched on their `about` summary/description; galaxy imports on EDAM topics/operations then name/description.
 
-    ```
-    $ python bin/extract_rsec.py \
-        filter \
-        --kw keywords.yml \
-        --json-output content/rsec/infos/validated_tools_metadata.json \
-        --tsv-output content/rsec/infos/validated_tools_summary.tsv
-    ```
-
-    Tools are filtered against three successive criteria: EDAM topics/operations from bio.tools metadata, keywords and acronyms from BioContainers metadata, then the same matching applied to free-text descriptions from bio.tools, BioContainers and Galaxy. A tool is kept if it passes any of them.
+    Each filter also writes a `*_status.tsv` with a keep column for later community review. The curation step that consumes it is not part of this pipeline yet.
 
