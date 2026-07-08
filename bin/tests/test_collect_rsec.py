@@ -31,13 +31,15 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 # ---------------------------------------------------------------------------
 # Import the classes and utils functions under test
 # ---------------------------------------------------------------------------
+import extract_rsec  # noqa: E402
 from extract_rsec import (  # noqa: E402
+    ImportCollection,
     main,
     Tool,
     ToolSet,
 )
 from utils import (  # noqa: E402
-    clone_rsec_data,
+    clone_rsec_content,
     generate_tsv_summary,
     load_keywords_from_yaml,
 )
@@ -137,10 +139,14 @@ def _make_keywords_yaml(base: Path, content: dict | None = None) -> Path:
 
 
 def _make_toolset(tmp_path: Path, kw_file: Path | None = None) -> ToolSet:
-    """Return a ToolSet pointing at tmp_path, with a real keywords file."""
+    """Return a ToolSet pointing at tmp_path, with a real keywords file.
+
+    Outputs go to a dedicated ``out`` subdir (mirroring the production case where
+    the output dir, content/rsec, is separate from the disposable clone).
+    """
     if kw_file is None:
         kw_file = _make_keywords_yaml(tmp_path)
-    out_dir = tmp_path / "infos"
+    out_dir = tmp_path / "out"
     return ToolSet(
         root_dir=tmp_path,
         json_out=out_dir / "validated_tools_metadata.json",
@@ -641,7 +647,7 @@ class TestToolSet(RsecTestCase):
     def test_init_output_dir_derived_from_json_out(self) -> None:
         tmp_path = self.tmp_path
         ts = _make_toolset(tmp_path)
-        assert ts.output_dir == tmp_path / "infos"
+        assert ts.output_dir == tmp_path / "out"
 
     def test_init_report_txt_out_in_output_dir(self) -> None:
         tmp_path = self.tmp_path
@@ -719,7 +725,8 @@ class TestToolSet(RsecTestCase):
         assert "good_tool" in ids
         assert "bad_tool" not in ids
 
-    def test_run_filtering_deletes_rejected_folders(self) -> None:
+    def test_run_filtering_keeps_rejected_folders_on_disk(self) -> None:
+        # Filtering is non-destructive now: the disposable clone is never mutated.
         kw_content = {
             "edam": {"operations": [], "topics": []},
             "keywords": [],
@@ -727,10 +734,11 @@ class TestToolSet(RsecTestCase):
         }
         tmp_path = self.tmp_path
         kw = _make_keywords_yaml(tmp_path, content=kw_content)
-        doomed = _make_tool_folder(tmp_path, "doomed")
+        rejected = _make_tool_folder(tmp_path, "rejected")
         ts = _make_toolset(tmp_path, kw_file=kw)
         ts.run_filtering()
-        assert not doomed.exists()
+        assert rejected.exists()
+        assert ts.report_counts["did_not_pass_any"] == 1
 
     def test_run_filtering_does_not_delete_output_dir(self) -> None:
         tmp_path = self.tmp_path
@@ -776,38 +784,6 @@ class TestToolSet(RsecTestCase):
         ts._write_json([], out)
         assert json.loads(out.read_text()) == []
 
-    # ------------------------------------------------------------------ _finalize
-
-    def test_finalize_deletes_listed_folders(self) -> None:
-        tmp_path = self.tmp_path
-        ts = _make_toolset(tmp_path)
-        ts._prepare_output_dir()
-        folder = tmp_path / "to_delete"
-        folder.mkdir()
-        ts._finalize([folder])
-        assert not folder.exists()
-
-    def test_finalize_writes_report_file(self) -> None:
-        tmp_path = self.tmp_path
-        ts = _make_toolset(tmp_path)
-        ts._prepare_output_dir()
-        ts.report_counts["total_folders"] = 10
-        ts.report_counts["validated_filter_1"] = 4
-        ts.report_counts["validated_filter_2"] = 2
-        ts.report_counts["validated_filter_3"] = 1
-        ts._finalize([])
-        content = ts.report_txt_out.read_text()
-        assert "Total: 10" in content
-        assert "Kept: 7" in content
-
-    def test_finalize_does_not_raise_if_folder_already_deleted(self) -> None:
-        tmp_path = self.tmp_path
-        ts = _make_toolset(tmp_path)
-        ts._prepare_output_dir()
-        phantom = tmp_path / "phantom"
-        # do NOT create it — _finalize must handle missing folder gracefully
-        ts._finalize([phantom])  # should not raise
-
     # ------------------------------------------------------------------ _write_report
 
     def test_write_report_contains_all_required_fields(self) -> None:
@@ -821,11 +797,11 @@ class TestToolSet(RsecTestCase):
             "did_not_pass_any": 10,
         }
         report_file = tmp_path / "report.txt"
-        ts._write_report(report_file, deleted=10, kept=10)
+        ts._write_report(report_file)
         content = report_file.read_text()
         assert "Total: 20" in content
-        assert "Kept: 10" in content
-        assert "Deleted: 10" in content
+        assert "Kept: 10" in content  # 5 + 3 + 2, derived from the filter tallies
+        assert "Rejected: 10" in content  # did_not_pass_any
         assert "Filter 1: 5" in content
         assert "Filter 2: 3" in content
         assert "Filter 3: 2" in content
@@ -835,18 +811,18 @@ class TestToolSet(RsecTestCase):
         ts = _make_toolset(tmp_path)
         report_file = tmp_path / "new_report.txt"
         assert not report_file.exists()
-        ts._write_report(report_file, deleted=0, kept=0)
+        ts._write_report(report_file)
         assert report_file.exists()
 
 
 # ===========================================================================
-#  TestCloneRsecData  —  function in utils.py (imported in extract_rsec)
+#  TestCloneRsecContent  —  function in utils.py (imported in extract_rsec)
 #  All subprocess/git calls are mocked so no network or git is needed.
 # ===========================================================================
 
 
-class TestCloneRsecData(RsecTestCase):
-    """Tests for utils.clone_rsec_data."""
+class TestCloneRsecContent(RsecTestCase):
+    """Tests for utils.clone_rsec_content."""
 
     def _patch_run(self, return_value: bool = True) -> Any:
         return patch("utils.run_command_rsec", return_value=return_value)
@@ -856,102 +832,74 @@ class TestCloneRsecData(RsecTestCase):
     def test_returns_false_when_clone_command_fails(self) -> None:
         tmp_path = self.tmp_path
         with self._patch_run(False):
-            result = clone_rsec_data(
+            result = clone_rsec_content(
                 repo_url="https://example.com/repo.git",
                 temp_dir=tmp_path / "temp",
-                target_dir=tmp_path / "target",
-                subdir_in_repo="data",
+                subdirs=["data"],
             )
         assert result is False
 
     def test_returns_false_when_sparse_checkout_config_fails(self) -> None:
-        # The git-config call (core.sparseCheckout) must fail → False expected.
-        # We make run_command_rsec return False whenever "config" appears in the command,
-        # True otherwise. This is order-independent.
         def side_effect(cmd: Any, cwd: Any = None) -> bool:
             return "config" not in cmd
 
         tmp_path = self.tmp_path
         with patch("utils.run_command_rsec", side_effect=side_effect):
-            result = clone_rsec_data(
+            result = clone_rsec_content(
                 repo_url="https://example.com/repo.git",
                 temp_dir=tmp_path / "temp",
-                target_dir=tmp_path / "target",
-                subdir_in_repo="data",
+                subdirs=["data"],
             )
         assert result is False
 
     def test_returns_false_when_checkout_command_fails(self) -> None:
-        # The final "git checkout" call must fail → False expected.
-        # We make run_command_rsec return False only when "checkout" is the git sub-command.
         def side_effect(cmd: Any, cwd: Any = None) -> bool:
             return "checkout" not in cmd
 
         tmp_path = self.tmp_path
         with patch("utils.run_command_rsec", side_effect=side_effect):
-            result = clone_rsec_data(
+            result = clone_rsec_content(
                 repo_url="https://example.com/repo.git",
                 temp_dir=tmp_path / "temp",
-                target_dir=tmp_path / "target",
-                subdir_in_repo="data",
+                subdirs=["data"],
             )
         assert result is False
 
-    def test_returns_false_when_subdir_absent_after_checkout(self) -> None:
-        """All git commands succeed but the expected subdir was never created."""
+    def test_returns_false_when_a_subdir_absent_after_checkout(self) -> None:
+        """All git commands succeed but one requested subdir was never created."""
         tmp_path = self.tmp_path
         temp_dir = tmp_path / "temp"
-        temp_dir.mkdir()
         (temp_dir / ".git" / "info").mkdir(parents=True)
-        # No "data/" subdirectory is created, simulating a git sparse-checkout
-        # that returned nothing.
+        (temp_dir / "data").mkdir()
+        # "imports/galaxy" is missing → overall failure expected.
         with self._patch_run(True):
-            result = clone_rsec_data(
+            result = clone_rsec_content(
                 repo_url="https://example.com/repo.git",
                 temp_dir=temp_dir,
-                target_dir=tmp_path / "target",
-                subdir_in_repo="data",
+                subdirs=["data", "imports/galaxy"],
             )
         assert result is False
 
     # ------------------------------------------------------------------ side-effects on filesystem
 
-    def test_removes_existing_target_dir_before_cloning(self) -> None:
-        tmp_path = self.tmp_path
-        target = tmp_path / "target"
-        target.mkdir()
-        stale = target / "old.txt"
-        stale.write_text("stale")
-        with self._patch_run(False):  # clone fails, but target must still be wiped
-            clone_rsec_data(
-                repo_url="https://example.com/repo.git",
-                temp_dir=tmp_path / "temp",
-                target_dir=target,
-                subdir_in_repo="data",
-            )
-        assert not target.exists()
-
-    def test_removes_leftover_temp_dir_before_cloning(self) -> None:
+    def test_removes_leftover_non_git_temp_dir_before_cloning(self) -> None:
         tmp_path = self.tmp_path
         temp_dir = tmp_path / "temp"
         temp_dir.mkdir()
         leftover = temp_dir / "leftover.txt"
         leftover.write_text("leftover")
         with self._patch_run(False):
-            clone_rsec_data(
+            clone_rsec_content(
                 repo_url="https://example.com/repo.git",
                 temp_dir=temp_dir,
-                target_dir=tmp_path / "target",
-                subdir_in_repo="data",
+                subdirs=["data"],
             )
-        # temp dir is cleaned up at the start
+        # a leftover temp dir without .git is cleaned up at the start
         assert not temp_dir.exists()
 
-    def test_writes_sparse_checkout_file_with_correct_content(self) -> None:
+    def test_writes_sparse_checkout_file_with_all_subdirs(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             temp_dir = Path(tmp) / "temp"
-            temp_dir.mkdir()
-            # manually create the .git/info directory where the sparse-checkout file will be written
             (temp_dir / ".git" / "info").mkdir(parents=True)
 
             captured_contents = []
@@ -963,81 +911,65 @@ class TestCloneRsecData(RsecTestCase):
                 return True
 
             with patch("utils.run_command_rsec", side_effect=mock_run):
-                clone_rsec_data(
+                clone_rsec_content(
                     repo_url="https://example.com/repo.git",
                     temp_dir=temp_dir,
-                    target_dir=Path(tmp) / "target",
-                    subdir_in_repo="mydata",
+                    subdirs=["data", "imports/bioconda", "imports/galaxy"],
                 )
 
-            self.assertTrue(any("/mydata\n" in c for c in captured_contents))
+            written = "".join(captured_contents)
+            self.assertIn("/data\n", written)
+            self.assertIn("/imports/bioconda\n", written)
+            self.assertIn("/imports/galaxy\n", written)
 
     # ------------------------------------------------------------------ happy path
 
-    def test_returns_true_and_moves_subdir_to_target(self) -> None:
+    def test_returns_true_and_leaves_files_in_place(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             temp_dir = Path(tmp) / "temp"
-            temp_dir.mkdir()
             (temp_dir / ".git" / "info").mkdir(parents=True)
 
-            # we simulate a successful sparse checkout by creating the expected subdir and file before clone_rsec_data checks for them
-            subdir = temp_dir / "data"
-            subdir.mkdir()
-            (subdir / "sample.json").write_text("{}")
-
-            target = Path(tmp) / "target"
+            # simulate a successful sparse checkout by creating the subdirs
+            (temp_dir / "data").mkdir()
+            (temp_dir / "data" / "sample.json").write_text("{}")
+            (temp_dir / "imports" / "bioconda").mkdir(parents=True)
 
             with patch("utils.run_command_rsec", return_value=True):
-                result = clone_rsec_data(
+                result = clone_rsec_content(
                     repo_url="https://example.com/repo.git",
                     temp_dir=temp_dir,
-                    target_dir=target,
-                    subdir_in_repo="data",
+                    subdirs=["data", "imports/bioconda"],
                 )
 
             self.assertTrue(result)
-            self.assertTrue(target.is_dir())
-            self.assertTrue((target / "sample.json").exists())
+            # no move: files stay in the temp dir for the caller to filter
+            self.assertTrue((temp_dir / "data" / "sample.json").exists())
+            self.assertTrue(temp_dir.exists())
 
-    def test_cleans_up_temp_dir_after_success(self) -> None:
+    def test_does_not_remove_temp_dir_on_success(self) -> None:
+        # The caller (run_filter) owns the temp dir lifecycle; the helper must not delete it.
         tmp_path = self.tmp_path
         temp_dir = tmp_path / "temp"
-        temp_dir.mkdir()
         (temp_dir / ".git" / "info").mkdir(parents=True)
         (temp_dir / "data").mkdir()
 
         with self._patch_run(True):
-            clone_rsec_data(
+            clone_rsec_content(
                 repo_url="https://example.com/repo.git",
                 temp_dir=temp_dir,
-                target_dir=tmp_path / "target",
-                subdir_in_repo="data",
+                subdirs=["data"],
             )
 
-        assert not temp_dir.exists()
+        assert temp_dir.exists()
 
     def test_return_value_is_bool(self) -> None:
-        # clone_rsec_data must return a bool so callers can do `if not clone_rsec_data(...)`.
-        # Returning None silently would make the __main__ guard ineffective.
         with self._patch_run(False):
-            result = clone_rsec_data(
+            result = clone_rsec_content(
                 repo_url="https://example.com/repo.git",
                 temp_dir=self.tmp_path / "temp",
-                target_dir=self.tmp_path / "target",
-                subdir_in_repo="data",
+                subdirs=["data"],
             )
         assert isinstance(result, bool)
-
-    def test_failure_returns_false_not_none(self) -> None:
-        # Explicitly False (not None): `if not clone_rsec_data(...)` must trigger sys.exit on failure
-        with self._patch_run(False):
-            result = clone_rsec_data(
-                repo_url="https://example.com/repo.git",
-                temp_dir=self.tmp_path / "temp",
-                target_dir=self.tmp_path / "target",
-                subdir_in_repo="data",
-            )
-        assert result is False
 
 
 # ===========================================================================
@@ -1338,14 +1270,14 @@ class TestGenerateTsvSummary(RsecTestCase):
         out = buf.getvalue()
         assert "ERROR" in out
 
-    def test_to_keep_column_always_true(self) -> None:
+    def test_to_keep_column_always_false(self) -> None:
         tmp_path = self.tmp_path
         json_path = tmp_path / "v.json"
         tsv_path = tmp_path / "out.tsv"
         self._write_json(json_path, [{"tool_id": "t1"}, {"tool_id": "t2"}])
         generate_tsv_summary(json_path, tsv_path)
         for row in self._read_tsv(tsv_path):
-            assert row["to_keep"] == "True"
+            assert row["to_keep"] == "False"
 
 
 # ===========================================================================
@@ -1357,30 +1289,147 @@ class TestGenerateTsvSummary(RsecTestCase):
 class TestMainDispatch(RsecTestCase):
     """Tests for the argparse dispatch in extract_rsec.main."""
 
-    def test_extract_calls_clone_only(self) -> None:
-        with patch("extract_rsec.clone_rsec_data", return_value=True) as clone, patch(
-            "extract_rsec.ToolSet"
-        ) as tool_set, patch("extract_rsec.generate_tsv_summary") as gen_tsv:
-            main(["extract"])
-        clone.assert_called_once()
-        tool_set.assert_not_called()
-        gen_tsv.assert_not_called()
-
-    def test_filter_runs_filtering_and_summary_without_cloning(self) -> None:
+    def test_filter_clones_then_filters_all_three_sources(self) -> None:
         kw_file = _make_keywords_yaml(self.tmp_path)
-        with patch("extract_rsec.clone_rsec_data") as clone, patch("extract_rsec.ToolSet") as tool_set, patch(
-            "extract_rsec.generate_tsv_summary"
-        ) as gen_tsv:
+        with patch("extract_rsec.clone_rsec_content", return_value=True) as clone, patch(
+            "extract_rsec.filter_rsec_data"
+        ) as f_rsec, patch("extract_rsec.filter_bioconda_imports") as f_bioconda, patch(
+            "extract_rsec.filter_galaxy_imports"
+        ) as f_galaxy, patch(
+            "extract_rsec.shutil.rmtree"
+        ) as rmtree:
             main(["filter", "--kw", str(kw_file)])
-        clone.assert_not_called()
-        tool_set.return_value.run_filtering.assert_called_once()
-        gen_tsv.assert_called_once()
+        clone.assert_called_once()
+        f_rsec.assert_called_once()
+        f_bioconda.assert_called_once()
+        f_galaxy.assert_called_once()
+        rmtree.assert_called_once()  # temp clone removed afterwards
+
+    def test_filter_removes_temp_dir_even_when_a_filter_raises(self) -> None:
+        kw_file = _make_keywords_yaml(self.tmp_path)
+        with patch("extract_rsec.clone_rsec_content", return_value=True), patch(
+            "extract_rsec.filter_rsec_data", side_effect=RuntimeError("boom")
+        ), patch("extract_rsec.shutil.rmtree") as rmtree:
+            with self.assertRaises(RuntimeError):
+                main(["filter", "--kw", str(kw_file)])
+        rmtree.assert_called_once()
 
     def test_no_subcommand_is_a_noop(self) -> None:
-        with patch("extract_rsec.clone_rsec_data") as clone, patch("extract_rsec.ToolSet") as tool_set, patch(
-            "extract_rsec.generate_tsv_summary"
-        ) as gen_tsv:
+        with patch("extract_rsec.clone_rsec_content") as clone, patch("extract_rsec.filter_rsec_data") as f_rsec:
             main([])
         clone.assert_not_called()
-        tool_set.assert_not_called()
-        gen_tsv.assert_not_called()
+        f_rsec.assert_not_called()
+
+
+# ===========================================================================
+#  TestBiocondaImportFilter / TestGalaxyImportFilter
+#  Filtering the RSEc imports/bioconda and imports/galaxy trees.
+# ===========================================================================
+
+
+def _redirect_bioconda_outputs(base: Path) -> None:
+    base.mkdir(parents=True, exist_ok=True)
+    extract_rsec.BIOCONDA_DIR = base
+    extract_rsec.BIOCONDA_FILTERED_JSON = base / "bioconda_filtered.json"
+    extract_rsec.BIOCONDA_FILTERED_TSV = base / "bioconda_filtered.tsv"
+    extract_rsec.BIOCONDA_STATUS_TSV = base / "bioconda_status.tsv"
+
+
+def _redirect_galaxy_outputs(base: Path) -> None:
+    base.mkdir(parents=True, exist_ok=True)
+    extract_rsec.GALAXY_DIR = base
+    extract_rsec.GALAXY_FILTERED_JSON = base / "galaxy_filtered.json"
+    extract_rsec.GALAXY_FILTERED_TSV = base / "galaxy_filtered.tsv"
+    extract_rsec.GALAXY_STATUS_TSV = base / "galaxy_status.tsv"
+
+
+SAMPLE_KEYWORDS = {
+    "edam": {"operations": [], "topics": ["Genomics"]},
+    "keywords": [r"genomic[s]?"],
+    "acronyms": ["FASTA"],
+}
+
+
+class TestBiocondaImportFilter(RsecTestCase):
+    """Tests for the bioconda import filter in extract_rsec."""
+
+    def _write_recipe(self, directory: Path, name: str, summary: str) -> None:
+        directory.mkdir(parents=True, exist_ok=True)
+        (directory / f"bioconda_{name}.yaml").write_text(
+            yaml.dump({"package": {"name": name}, "about": {"summary": summary, "home": "http://x"}}),
+            encoding="utf-8",
+        )
+
+    def test_filter_keeps_matching_recipe_only(self) -> None:
+        tmp_path = self.tmp_path
+        imports = tmp_path / "imports"
+        self._write_recipe(imports, "goodbio", "a genomics toolkit")
+        self._write_recipe(imports, "badbio", "an unrelated cooking app")
+        _redirect_bioconda_outputs(tmp_path / "out")
+        extract_rsec.filter_bioconda_imports(imports, SAMPLE_KEYWORDS)
+        names = [e["package"]["name"] for e in json.loads(extract_rsec.BIOCONDA_FILTERED_JSON.read_text())]
+        assert names == ["goodbio"]
+
+    def test_filter_writes_status_with_keep_column(self) -> None:
+        tmp_path = self.tmp_path
+        imports = tmp_path / "imports"
+        self._write_recipe(imports, "goodbio", "a genomics toolkit")
+        _redirect_bioconda_outputs(tmp_path / "out")
+        extract_rsec.filter_bioconda_imports(imports, SAMPLE_KEYWORDS)
+        with extract_rsec.BIOCONDA_STATUS_TSV.open() as handle:
+            rows = list(csv.DictReader(handle, delimiter="\t"))
+        assert rows[0]["package.name"] == "goodbio"
+        assert rows[0]["keep"] == "False"  # opt-in: community must flip it
+
+
+class TestGalaxyImportFilter(RsecTestCase):
+    """Tests for the galaxy import filter in extract_rsec."""
+
+    def _write_tool(self, directory: Path, name: str, topics: list[str], description: str) -> None:
+        directory.mkdir(parents=True, exist_ok=True)
+        (directory / f"{name}.galaxy.json").write_text(
+            json.dumps(
+                {"Description": description, "EDAM_topics": topics, "EDAM_operations": [], "Homepage": "h"}
+            ),
+            encoding="utf-8",
+        )
+
+    def test_filter_matches_on_edam_topic(self) -> None:
+        tmp_path = self.tmp_path
+        imports = tmp_path / "imports"
+        self._write_tool(imports, "goodgal", ["Genomics"], "some tool")
+        self._write_tool(imports, "badgal", ["Cooking"], "unrelated tool")
+        _redirect_galaxy_outputs(tmp_path / "out")
+        extract_rsec.filter_galaxy_imports(imports, SAMPLE_KEYWORDS)
+        ids = [e["id"] for e in json.loads(extract_rsec.GALAXY_FILTERED_JSON.read_text())]
+        assert ids == ["goodgal"]
+
+    def test_filter_matches_on_description_keyword(self) -> None:
+        tmp_path = self.tmp_path
+        imports = tmp_path / "imports"
+        self._write_tool(imports, "descgal", ["Cooking"], "a genomics pipeline")
+        _redirect_galaxy_outputs(tmp_path / "out")
+        extract_rsec.filter_galaxy_imports(imports, SAMPLE_KEYWORDS)
+        ids = [e["id"] for e in json.loads(extract_rsec.GALAXY_FILTERED_JSON.read_text())]
+        assert ids == ["descgal"]
+
+
+class TestImportCollection(RsecTestCase):
+    """Direct tests for the ImportCollection filter semantics."""
+
+    def _coll(self) -> ImportCollection:
+        return ImportCollection("id", lambda e: str(e.get("id", "")), lambda e: e.get("match", False))
+
+    def test_filter_keeps_matched_entries_with_keep_false(self) -> None:
+        coll = self._coll()
+        coll.load_entries([{"id": "a", "match": True}, {"id": "b", "match": False}])
+        coll.filter(status={})
+        assert set(coll.entries) == {"a"}
+        assert coll.entries["a"]["keep"] is False
+
+    def test_filter_keeps_community_accepted_even_without_match(self) -> None:
+        coll = self._coll()
+        coll.load_entries([{"id": "a", "match": False}])
+        coll.filter(status={"a": True})
+        assert set(coll.entries) == {"a"}
+        assert coll.entries["a"]["keep"] is True
