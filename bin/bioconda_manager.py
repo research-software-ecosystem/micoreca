@@ -109,7 +109,7 @@ class BiocondaRecipe:
 
     def test_about(self, keywords: Dict[str, Any]) -> bool:
         """Test if description and/or summary have keywords"""
-        text = (self.get_description() + " " + self.get_summary()).lower()
+        text = self.get_description() + " " + self.get_summary()
         filtered_on = utils.has_keyword(keywords, text, "description")
         return filtered_on != ""
 
