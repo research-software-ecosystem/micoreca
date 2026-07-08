@@ -1,5 +1,6 @@
 """Unit tests for extract_workflowhub.py"""
 
+import tempfile
 import unittest
 from unittest.mock import (
     Mock,
@@ -526,7 +527,8 @@ class TestWorkflows(unittest.TestCase):
         wf.projects = ["Project A"]
 
         self.workflows.workflows = [wf]
-        self.workflows.export_workflows_to_tsv("output.tsv")
+        with tempfile.TemporaryDirectory() as tmp:
+            self.workflows.export_workflows_to_tsv(f"{tmp}/output.tsv")
 
     def test_export_workflows_to_tsv_with_columns(self) -> None:
         """Test export_workflows_to_tsv with specific columns"""
@@ -537,7 +539,8 @@ class TestWorkflows(unittest.TestCase):
         self.workflows.workflows = [wf]
 
         to_keep_columns = ["Name", "Link"]
-        self.workflows.export_workflows_to_tsv("output.tsv", to_keep_columns)
+        with tempfile.TemporaryDirectory() as tmp:
+            self.workflows.export_workflows_to_tsv(f"{tmp}/output.tsv", to_keep_columns)
 
     @patch("utils.export_to_json")
     def test_extract_tools(self, mock_export: Mock) -> None:
