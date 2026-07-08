@@ -1,0 +1,6 @@
+Total: 44177
+Kept: 3653
+Rejected: 40524
+Filter 1: 1179
+Filter 2: 746
+Filter 3: 1728
