@@ -32,6 +32,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 # Import the classes and utils functions under test
 # ---------------------------------------------------------------------------
 from extract_rsec import (  # noqa: E402
+    main,
     Tool,
     ToolSet,
 )
@@ -1345,3 +1346,41 @@ class TestGenerateTsvSummary(RsecTestCase):
         generate_tsv_summary(json_path, tsv_path)
         for row in self._read_tsv(tsv_path):
             assert row["to_keep"] == "True"
+
+
+# ===========================================================================
+#  TestMainDispatch  —  the CLI wiring in main()
+#  The heavy functions are mocked so no network/git/filtering runs.
+# ===========================================================================
+
+
+class TestMainDispatch(RsecTestCase):
+    """Tests for the argparse dispatch in extract_rsec.main."""
+
+    def test_extract_calls_clone_only(self) -> None:
+        with patch("extract_rsec.clone_rsec_data", return_value=True) as clone, patch(
+            "extract_rsec.ToolSet"
+        ) as tool_set, patch("extract_rsec.generate_tsv_summary") as gen_tsv:
+            main(["extract"])
+        clone.assert_called_once()
+        tool_set.assert_not_called()
+        gen_tsv.assert_not_called()
+
+    def test_filter_runs_filtering_and_summary_without_cloning(self) -> None:
+        kw_file = _make_keywords_yaml(self.tmp_path)
+        with patch("extract_rsec.clone_rsec_data") as clone, patch("extract_rsec.ToolSet") as tool_set, patch(
+            "extract_rsec.generate_tsv_summary"
+        ) as gen_tsv:
+            main(["filter", "--kw", str(kw_file)])
+        clone.assert_not_called()
+        tool_set.return_value.run_filtering.assert_called_once()
+        gen_tsv.assert_called_once()
+
+    def test_no_subcommand_is_a_noop(self) -> None:
+        with patch("extract_rsec.clone_rsec_data") as clone, patch("extract_rsec.ToolSet") as tool_set, patch(
+            "extract_rsec.generate_tsv_summary"
+        ) as gen_tsv:
+            main([])
+        clone.assert_not_called()
+        tool_set.assert_not_called()
+        gen_tsv.assert_not_called()
