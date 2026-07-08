@@ -200,46 +200,37 @@ def run_command_rsec(command: List[str], cwd: Optional[Path] = None) -> bool:
         return False
 
 
-def clone_rsec_data(repo_url: str, temp_dir: Path, target_dir: Path, subdir_in_repo: str = "data") -> bool:
+def clone_rsec_content(repo_url: str, temp_dir: Path, subdirs: List[str]) -> bool:
     """
-    Clone the remote repository and move a specific subdirectory to its final destination.
-    Uses sparse-checkout to retrieve only the required path.
+    Sparse-clone one or more subdirectories of the remote repository into temp_dir
+    and leave them in place (no move). The caller is responsible for removing temp_dir.
 
     Args:
         repo_url (str): URL of the git repository.
         temp_dir (Path): Path to the temporary clone directory.
-        target_dir (Path): Final destination path for the extracted content (e.g. content/rsec).
-        subdir_in_repo (str): Subdirectory to extract from the repository (default: 'data').
+        subdirs (List[str]): Subdirectories to extract (e.g. ["data", "imports/bioconda"]).
 
     Returns:
         bool: True on success, False on failure.
     """
     print("=" * 60)
-    print(f"Preparing to clone {subdir_in_repo} to {target_dir.name}/")
+    print(f"Preparing to clone {', '.join(subdirs)} into {temp_dir.name}/")
     print("=" * 60)
 
-    # 1. Cleanup any leftovers from a previous clone
+    # Cleanup any leftovers from a previous clone.
     # If temp_dir exists and *already* contains a .git directory, preserve it.
-    # Tests sometimes pre-create a fake repo layout (with .git/info) to simulate
-    # clone side-effects when run_command_rsec is mocked. Only remove temp_dir
-    # when it exists but does not look like a git repo.
+    # Tests pre-create a fake repo layout (with .git/info) to simulate clone
+    # side-effects when run_command_rsec is mocked. Only remove temp_dir when it
+    # exists but does not look like a git repo.
     if temp_dir.exists():
         if (temp_dir / ".git").exists():
             print(f"Using existing temp dir (contains .git): {temp_dir}")
         else:
             shutil.rmtree(temp_dir)
 
-    # 2. Clean up the target directory if it already exists
-    if target_dir.exists():
-        print(f"Cleaning up old filtered folder : {target_dir.name}/")
-        shutil.rmtree(target_dir)
+    temp_dir.parent.mkdir(parents=True, exist_ok=True)
 
-    # 3. Create parent directory if necessary
-    target_dir.parent.mkdir(parents=True, exist_ok=True)
-
-    # 4. Initial cloning (Sparse Checkout)
     print("\n--- Step 1/4: Initial cloning of the repository without checkout ---")
-    # Clone in temp dir (absolute path)
     clone_cmd = ["git", "clone", "--depth", "1", "--no-checkout", repo_url, str(temp_dir)]
     if not run_command_rsec(clone_cmd):
         print("[CRITICAL] Initial cloning failed.")
@@ -249,14 +240,15 @@ def clone_rsec_data(repo_url: str, temp_dir: Path, target_dir: Path, subdir_in_r
     if not run_command_rsec(["git", "config", "core.sparseCheckout", "true"], cwd=temp_dir):
         return False
 
-    print(f"\n--- Step 3/4: Defining path ({subdir_in_repo}/) ---")
+    print(f"\n--- Step 3/4: Defining paths ({', '.join(subdirs)}) ---")
     sparse_checkout_file = temp_dir / ".git" / "info" / "sparse-checkout"
     try:
         # Ensure parent directories exist (tests may rely on pre-created .git/info or
         # the clone command could create them; be defensive and create them here).
         sparse_checkout_file.parent.mkdir(parents=True, exist_ok=True)
         with open(sparse_checkout_file, "w", encoding="utf-8") as f:
-            f.write(f"/{subdir_in_repo}\n")
+            for subdir in subdirs:
+                f.write(f"/{subdir}\n")
     except Exception as e:
         print(f"[ERROR] Failed to write sparse-checkout file : {e}")
         return False
@@ -265,20 +257,13 @@ def clone_rsec_data(repo_url: str, temp_dir: Path, target_dir: Path, subdir_in_r
     if not run_command_rsec(["git", "checkout"], cwd=temp_dir):
         return False
 
-    print("\n--- Finalization : Moving the folder ---")
-    source_dir = temp_dir / subdir_in_repo
-
-    if source_dir.is_dir():
-        shutil.move(str(source_dir), str(target_dir))
-        print(f"Move complete: {source_dir.name}/ -> {target_dir.name}/")
-
-        # Nettoyage final
-        shutil.rmtree(temp_dir)
-        print(f"Cleanup of temporary directory  {temp_dir.name} performed.")
-        return True
-    else:
-        print(f"[CRITICAL] Target subdirectory '{subdir_in_repo}' is not found after cloning.")
+    missing = [s for s in subdirs if not (temp_dir / s).is_dir()]
+    if missing:
+        print(f"[CRITICAL] Subdirectories not found after cloning: {missing}")
         return False
+
+    print("\n--- Clone complete; files left in place ---")
+    return True
 
 
 def load_keywords_from_yaml(filepath: Path) -> Dict[str, Any]:
@@ -359,7 +344,7 @@ def generate_tsv_summary(json_path: Path, tsv_path: Path) -> None:
             "has_galaxy_infos": str(item.get("has_galaxy_infos", False)),
             "filtered_on": "UNKNOWN_REASON",
             "reason": "N/A - Not Matched",
-            "to_keep": "True",
+            "to_keep": "False",
         }
         description = (
             item.get("biotools_description_full", "")
@@ -393,12 +378,12 @@ BASE_DIR = SCRIPT_BIN_DIR.parent
 # Dossiers cibles
 CONTENT_DIR = BASE_DIR / "content"
 RSEC_DIR = CONTENT_DIR / "rsec"
+BIOCONDA_DIR = CONTENT_DIR / "bioconda"
+GALAXY_DIR = CONTENT_DIR / "galaxy"
 KEYWORDS_FILEPATH = BASE_DIR / "keywords.yml"
 
 # Configuration Extraction RSEC
 RSEC_REPO_URL = "https://github.com/research-software-ecosystem/content.git"
-TARGET_SUBDIR_IN_REPO = "data"
-TEMP_CLONE_DIR = BASE_DIR / "temp_rsec_clone"
 
 # Filtering criterias (initialized in __main__)
 TARGET_OPERATIONS: List[str] = []

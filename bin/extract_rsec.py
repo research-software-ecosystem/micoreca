@@ -1,28 +1,39 @@
 #!/usr/bin/env python
 import argparse
+import csv
 import json
 import re
 import shutil
 import sys
+import tempfile
 import time
 from pathlib import Path
 from typing import (
     Any,
+    Callable,
     Dict,
     List,
     Optional,
 )
 
+import pandas as pd
 import yaml
 from utils import (
-    clone_rsec_data,
+    BIOCONDA_DIR,
+    clone_rsec_content,
+    CRITERIA_KEYS,
+    export_to_json,
+    GALAXY_DIR,
     generate_tsv_summary,
+    has_edam_terms,
+    has_keyword,
     KEYWORDS_FILEPATH,
+    load_json,
     load_keywords_from_yaml,
+    load_yaml,
+    REASON_MAPPING,
     RSEC_DIR,
     RSEC_REPO_URL,
-    TARGET_SUBDIR_IN_REPO,
-    TEMP_CLONE_DIR,
 )
 
 
@@ -227,7 +238,7 @@ class ToolSet:
     def run_filtering(self) -> None:
         start_time = time.time()
         self._prepare_output_dir()
-        to_delete, validated_meta = [], []
+        validated_meta: List[Dict[str, Any]] = []
 
         print(f"Start of filtering in : {self.root_dir}")
         all_items = [item for item in self.root_dir.iterdir() if item.is_dir() and item.name != self.output_dir.name]
@@ -256,99 +267,297 @@ class ToolSet:
                 else:
                     self.report_counts["validated_filter_3"] += 1
             else:
-                to_delete.append(item)
                 self.report_counts["did_not_pass_any"] += 1
 
         sys.stdout.write("\n")
         self._write_json(validated_meta, self.json_out)
-        self._finalize(to_delete)
+        self._write_report(self.report_txt_out)
         print(f"\nFiltering time : {time.time() - start_time:.2f}s")
 
     def _write_json(self, data: List[Dict[str, Any]], path: Path) -> None:
         with open(path, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=4, ensure_ascii=False)
 
-    def _finalize(self, to_delete: List[Path]) -> None:
+    def _write_report(self, path: Path) -> None:
         total_kept = (
             self.report_counts["validated_filter_1"]
             + self.report_counts["validated_filter_2"]
             + self.report_counts["validated_filter_3"]
         )
-        print(f"\nAnalysed : {self.report_counts['total_folders']} | Kept : {total_kept} | Deleted : {len(to_delete)}")
-        for folder in to_delete:
-            try:
-                shutil.rmtree(folder)
-            except Exception:
-                pass
-        self._write_report(self.report_txt_out, len(to_delete), total_kept)
-
-    def _write_report(self, path: Path, deleted: int, kept: int) -> None:
+        rejected = self.report_counts["did_not_pass_any"]
+        print(f"\nAnalysed : {self.report_counts['total_folders']} | Kept : {total_kept} | Rejected : {rejected}")
         with open(path, "w", encoding="utf-8") as f:
-            f.write(f"Total: {self.report_counts['total_folders']}\nKept: {kept}\nDeleted: {deleted}\n")
+            f.write(f"Total: {self.report_counts['total_folders']}\nKept: {total_kept}\nRejected: {rejected}\n")
             f.write(f"Filter 1: {self.report_counts['validated_filter_1']}\n")
             f.write(f"Filter 2: {self.report_counts['validated_filter_2']}\n")
             f.write(f"Filter 3: {self.report_counts['validated_filter_3']}\n")
 
 
 # -------------------------------------------------------------
-#                    MAIN EXECUTION (CLI)
+#          RSEC data filter outputs / status round-trip
+# -------------------------------------------------------------
+
+# rsec output files (all live directly under content/rsec/)
+RSEC_METADATA_JSON = RSEC_DIR / "validated_tools_metadata.json"
+RSEC_SUMMARY_TSV = RSEC_DIR / "validated_tools_summary.tsv"
+RSEC_STATUS_TSV = RSEC_DIR / "validated_tools_status.tsv"
+
+RSEC_STATUS_FIELDS = ["tool_id", "to_keep", "reason"]
+
+
+def _match_reason(item: Dict[str, Any]) -> str:
+    """Derive the human-readable match reason for a validated tool entry."""
+    for key in CRITERIA_KEYS:
+        match_value = item.get(key)
+        if match_value:
+            template = REASON_MAPPING.get(key, "Match found on key: {key}")
+            return template.format(value=str(match_value))
+    return "N/A - Not Matched"
+
+
+def _read_status_keep(status_path: Path, key_col: str, keep_col: str = "to_keep") -> Dict[str, bool]:
+    """Read a community status TSV as {id: keep}. Only an explicit 'False' drops an entry."""
+    result: Dict[str, bool] = {}
+    if not status_path.exists():
+        return result
+    with open(status_path, encoding="utf-8") as f:
+        for row in csv.DictReader(f, delimiter="\t"):
+            key = row.get(key_col, "")
+            if key:
+                result[key] = str(row.get(keep_col, "True")).strip().lower() != "false"
+    return result
+
+
+def write_rsec_status(json_path: Path, status_path: Path) -> None:
+    """Write the community-editable status TSV; new tools default to_keep=False (opt-in),
+    preserving prior community approvals."""
+    data: List[Dict[str, Any]] = load_json(str(json_path))
+    existing = _read_status_keep(status_path, "tool_id")
+    with open(status_path, "w", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=RSEC_STATUS_FIELDS, delimiter="\t", extrasaction="ignore")
+        writer.writeheader()
+        for item in data:
+            tool_id = item.get("tool_id", "")
+            writer.writerow(
+                {
+                    "tool_id": tool_id,
+                    "to_keep": str(existing.get(tool_id, False)),
+                    "reason": _match_reason(item),
+                }
+            )
+    print(f"Status TSV written: {status_path.name}")
+
+
+def filter_rsec_data(data_dir: Path, kw_path: Path) -> None:
+    """Filter the cloned RSEc data/ tools and write metadata, summary, report and status."""
+    tool_set = ToolSet(root_dir=data_dir, json_out=RSEC_METADATA_JSON, tsv_out=RSEC_SUMMARY_TSV, kw_file=kw_path)
+    tool_set.run_filtering()
+    generate_tsv_summary(RSEC_METADATA_JSON, RSEC_SUMMARY_TSV)
+    write_rsec_status(RSEC_METADATA_JSON, RSEC_STATUS_TSV)
+    print(f"Done : rsec results in {RSEC_DIR}")
+
+
+# -------------------------------------------------------------
+#          bioconda / galaxy import filters (full-recipe)
 # -------------------------------------------------------------
 
 
-def run_extract() -> None:
-    """Clone the RSEC data repository into content/rsec/."""
+class ImportCollection:
+    """A flat collection of RSEc import files (full-dict entries) filtered by a match callback.
+
+    Each kept entry is the entire parsed import file (plus a ``keep`` flag). Filtering
+    proposes candidates (keep defaults False) and writes the ``keep`` column to the
+    status TSV for later community review.
+    """
+
+    def __init__(
+        self,
+        index_col: str,
+        name_fn: Callable[[Dict[str, Any]], str],
+        match_fn: Callable[[Dict[str, Any]], bool],
+    ):
+        self.index_col = index_col
+        self.name_fn = name_fn
+        self.match_fn = match_fn
+        self.entries: Dict[str, Dict[str, Any]] = {}
+
+    def load_entries(self, entries: List[Dict[str, Any]]) -> None:
+        for entry in entries:
+            name = self.name_fn(entry)
+            if name:
+                self.entries[name] = entry
+
+    def filter(self, status: Dict[str, bool]) -> None:
+        """Keep entries matching the keywords, or already accepted by the community."""
+        filtered: Dict[str, Dict[str, Any]] = {}
+        for name, entry in self.entries.items():
+            keep = status.get(name, False)
+            if keep or self.match_fn(entry):
+                entry["keep"] = keep
+                filtered[name] = entry
+        self.entries = filtered
+
+    def export_to_json(self, path: Path) -> None:
+        export_to_json(list(self.entries.values()), str(path))
+
+    def export_to_tsv(self, path: Path, columns: Optional[List[str]] = None) -> None:
+        df = pd.json_normalize(list(self.entries.values()))
+        if not df.empty and self.index_col in df.columns:
+            df = df.set_index(self.index_col)
+        if columns is not None:
+            df = df[[c for c in columns if c in df.columns]]
+        df.to_csv(path, sep="\t")
+
+
+def _read_import_status(status_path: Path, index_col: str) -> Dict[str, bool]:
+    """Read an import status TSV as {id: keep}. Only an explicit 'False' drops an entry."""
+    if not status_path.exists():
+        return {}
     try:
-        if not clone_rsec_data(
-            repo_url=RSEC_REPO_URL,
-            temp_dir=TEMP_CLONE_DIR,
-            target_dir=RSEC_DIR,
-            subdir_in_repo=TARGET_SUBDIR_IN_REPO,
-        ):
-            print("Cloning failed.")
-            sys.exit(1)
-    except Exception as e:
-        print(f"Cloning error: {e}")
-        sys.exit(1)
+        df = pd.read_csv(status_path, sep="\t", index_col=index_col)
+    except Exception:
+        return {}
+    if "keep" not in df.columns:
+        return {}
+    return {str(idx): str(val).strip().lower() != "false" for idx, val in df["keep"].items()}
 
 
-def run_filter(kw: str, json_output: Optional[str], tsv_output: Optional[str]) -> None:
-    """Filter the already-cloned RSEC tools by keywords and EDAM terms."""
+def _bioconda_name(entry: Dict[str, Any]) -> str:
+    return str((entry.get("package") or {}).get("name", ""))
+
+
+def _bioconda_match(keywords: Dict[str, Any]) -> Callable[[Dict[str, Any]], bool]:
+    def match(entry: Dict[str, Any]) -> bool:
+        about = entry.get("about") or {}
+        text = (str(about.get("description", "")) + " " + str(about.get("summary", ""))).lower()
+        return has_keyword(keywords, text, "description") != ""
+
+    return match
+
+
+def _load_bioconda_imports(directory: Path) -> List[Dict[str, Any]]:
+    entries: List[Dict[str, Any]] = []
+    for path in sorted(directory.glob("*.yaml")):
+        try:
+            data = yaml.safe_load(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        if isinstance(data, dict) and _bioconda_name(data):
+            entries.append(data)
+    return entries
+
+
+def _galaxy_name(entry: Dict[str, Any]) -> str:
+    return str(entry.get("id", ""))
+
+
+def _galaxy_match(keywords: Dict[str, Any]) -> Callable[[Dict[str, Any]], bool]:
+    edam = keywords.get("edam", {}) or {}
+
+    def match(entry: Dict[str, Any]) -> bool:
+        topics = entry.get("EDAM_topics") or []
+        operations = entry.get("EDAM_operations") or []
+        if has_edam_terms(topics, operations, edam):
+            return True
+        text = (str(entry.get("id", "")) + " " + str(entry.get("Description", ""))).lower()
+        return has_keyword(keywords, text, "description") != ""
+
+    return match
+
+
+def _load_galaxy_imports(directory: Path) -> List[Dict[str, Any]]:
+    entries: List[Dict[str, Any]] = []
+    for path in sorted(directory.glob("*.json")):
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        if not isinstance(data, dict):
+            continue
+        name = path.name
+        for suffix in (".galaxy.json", ".json"):
+            if name.endswith(suffix):
+                name = name[: -len(suffix)]
+                break
+        data["id"] = name
+        entries.append(data)
+    return entries
+
+
+# bioconda / galaxy output files
+BIOCONDA_FILTERED_JSON = BIOCONDA_DIR / "bioconda_filtered.json"
+BIOCONDA_FILTERED_TSV = BIOCONDA_DIR / "bioconda_filtered.tsv"
+BIOCONDA_STATUS_TSV = BIOCONDA_DIR / "bioconda_status.tsv"
+BIOCONDA_STATUS_COLUMNS = ["keep", "about.summary", "about.description", "about.home"]
+
+GALAXY_FILTERED_JSON = GALAXY_DIR / "galaxy_filtered.json"
+GALAXY_FILTERED_TSV = GALAXY_DIR / "galaxy_filtered.tsv"
+GALAXY_STATUS_TSV = GALAXY_DIR / "galaxy_status.tsv"
+GALAXY_STATUS_COLUMNS = ["keep", "Description", "Homepage", "EDAM_operations", "EDAM_topics"]
+
+
+def filter_bioconda_imports(imports_dir: Path, keywords: Dict[str, Any]) -> None:
+    BIOCONDA_DIR.mkdir(parents=True, exist_ok=True)
+    coll = ImportCollection("package.name", _bioconda_name, _bioconda_match(keywords))
+    coll.load_entries(_load_bioconda_imports(imports_dir))
+    coll.filter(_read_import_status(BIOCONDA_STATUS_TSV, "package.name"))
+    coll.export_to_json(BIOCONDA_FILTERED_JSON)
+    coll.export_to_tsv(BIOCONDA_FILTERED_TSV)
+    coll.export_to_tsv(BIOCONDA_STATUS_TSV, columns=BIOCONDA_STATUS_COLUMNS)
+    print(f"Filtered {len(coll.entries)} bioconda imports -> {BIOCONDA_DIR}")
+
+
+def filter_galaxy_imports(imports_dir: Path, keywords: Dict[str, Any]) -> None:
+    GALAXY_DIR.mkdir(parents=True, exist_ok=True)
+    coll = ImportCollection("id", _galaxy_name, _galaxy_match(keywords))
+    coll.load_entries(_load_galaxy_imports(imports_dir))
+    coll.filter(_read_import_status(GALAXY_STATUS_TSV, "id"))
+    coll.export_to_json(GALAXY_FILTERED_JSON)
+    coll.export_to_tsv(GALAXY_FILTERED_TSV)
+    coll.export_to_tsv(GALAXY_STATUS_TSV, columns=GALAXY_STATUS_COLUMNS)
+    print(f"Filtered {len(coll.entries)} galaxy imports -> {GALAXY_DIR}")
+
+
+# -------------------------------------------------------------
+#                    MAIN EXECUTION (CLI)
+# -------------------------------------------------------------
+
+RSEC_SUBDIRS = ["data", "imports/bioconda", "imports/galaxy"]
+
+
+def run_filter(kw: str) -> None:
+    """Clone RSEc content to a temp dir, filter it, then remove the clone."""
     kw_path = Path(kw)
-    output_dir = RSEC_DIR / "infos"
-    json_path = Path(json_output) if json_output else output_dir / "validated_tools_metadata.json"
-    tsv_path = Path(tsv_output) if tsv_output else output_dir / "validated_tools_summary.tsv"
-
     if not kw_path.is_file():
         print(f"ERROR : {kw_path} not found .")
         sys.exit(1)
 
+    keywords = load_yaml(str(kw_path))
+    temp_dir = Path(tempfile.mkdtemp(prefix="rsec_clone_"))
     try:
-        tool_set = ToolSet(root_dir=RSEC_DIR, json_out=json_path, tsv_out=tsv_path, kw_file=kw_path)
-        tool_set.run_filtering()
-        generate_tsv_summary(json_path, tsv_path)
-        print(f"Done : results in : {json_path.parent}")
-    except Exception as e:
-        print(f"Execution error: {e}")
-        sys.exit(1)
-
+        if not clone_rsec_content(RSEC_REPO_URL, temp_dir, RSEC_SUBDIRS):
+            print("Cloning failed.")
+            sys.exit(1)
+        filter_rsec_data(temp_dir / "data", kw_path)
+        filter_bioconda_imports(temp_dir / "imports" / "bioconda", keywords)
+        filter_galaxy_imports(temp_dir / "imports" / "galaxy", keywords)
+    finally:
+        shutil.rmtree(temp_dir, ignore_errors=True)
 
 def main(argv: Optional[List[str]] = None) -> None:
     parser = argparse.ArgumentParser(
         description=(
-            "Extract and filter tools and associated metadata from RSEC, "
-            "according to specified EDAM terms and keywords."
+            "Filter tools and associated metadata from RSEC according to "
+            "specified EDAM terms and keywords."
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     subparser = parser.add_subparsers(dest="command")
 
-    # Extract: clone the RSEC data repository into content/rsec/
-    subparser.add_parser("extract", help="Clone the RSEC data repository")
-
-    # Filter: apply keyword/EDAM filtering on the already-cloned data
+    # Filter: clone RSEc content to a temp dir and filter it into content/
     filter_parser = subparser.add_parser(
         "filter",
-        help="Filter cloned RSEC tools by keywords and EDAM terms",
+        help="Clone RSEc content to a temp dir and filter it by keywords and EDAM terms",
     )
     filter_parser.add_argument(
         "--kw",
@@ -361,31 +570,11 @@ def main(argv: Optional[List[str]] = None) -> None:
             f"(default: {KEYWORDS_FILEPATH})"
         ),
     )
-    filter_parser.add_argument(
-        "--json-output",
-        type=str,
-        metavar="PATH",
-        help=(
-            "Path to the output JSON file for validated tools metadata. "
-            "(default: <rsec_dir>/infos/validated_tools_metadata.json)"
-        ),
-    )
-    filter_parser.add_argument(
-        "--tsv-output",
-        type=str,
-        metavar="PATH",
-        help=(
-            "Path to the output TSV file for the validated tools summary. "
-            "(default: <rsec_dir>/infos/validated_tools_summary.tsv)"
-        ),
-    )
 
     args = parser.parse_args(argv)
 
-    if args.command == "extract":
-        run_extract()
-    elif args.command == "filter":
-        run_filter(args.kw, args.json_output, args.tsv_output)
+    if args.command == "filter":
+        run_filter(args.kw)
     else:
         parser.print_help()
 
