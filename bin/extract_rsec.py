@@ -295,57 +295,8 @@ class ToolSet:
 # -------------------------------------------------------------
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description=(
-            "Extract and filter tools and associated metadata from RSEC, "
-            "according to specified EDAM terms and keywords. "
-            "Clones the RSEC repository, applies keyword/EDAM filtering, "
-            "and outputs the results as JSON and TSV files."
-        ),
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-    )
-
-    # CLI arguments
-    parser.add_argument(
-        "--kw",
-        type=str,
-        default=str(KEYWORDS_FILEPATH),
-        metavar="PATH",
-        help=(
-            "Path to the YAML keywords file used for filtering. "
-            "Must contain 'edam.topics', 'edam.operations', 'keywords', and 'acronyms' sections. "
-            f"(default: {KEYWORDS_FILEPATH})"
-        ),
-    )
-    parser.add_argument(
-        "--json-output",
-        type=str,
-        metavar="PATH",
-        help=(
-            "Path to the output JSON file for validated tools metadata. "
-            "(default: <rsec_dir>/infos/validated_tools_metadata.json)"
-        ),
-    )
-    parser.add_argument(
-        "--tsv-output",
-        type=str,
-        metavar="PATH",
-        help=(
-            "Path to the output TSV file for the validated tools summary. "
-            "(default: <rsec_dir>/infos/validated_tools_summary.tsv)"
-        ),
-    )
-
-    args = parser.parse_args()
-
-    # Default paths if not provided via CLI
-    kw_path = Path(args.kw)
-    output_dir = RSEC_DIR / "infos"
-    json_path = Path(args.json_output) if args.json_output else output_dir / "validated_tools_metadata.json"
-    tsv_path = Path(args.tsv_output) if args.tsv_output else output_dir / "validated_tools_summary.tsv"
-
-    # --- STEP 1 : Cloning ---
+def run_extract() -> None:
+    """Clone the RSEC data repository into content/rsec/."""
     try:
         if not clone_rsec_data(
             repo_url=RSEC_REPO_URL,
@@ -359,12 +310,18 @@ if __name__ == "__main__":
         print(f"Cloning error: {e}")
         sys.exit(1)
 
-    # --- STEP 2 : Configuration verification ---
+
+def run_filter(kw: str, json_output: Optional[str], tsv_output: Optional[str]) -> None:
+    """Filter the already-cloned RSEC tools by keywords and EDAM terms."""
+    kw_path = Path(kw)
+    output_dir = RSEC_DIR / "infos"
+    json_path = Path(json_output) if json_output else output_dir / "validated_tools_metadata.json"
+    tsv_path = Path(tsv_output) if tsv_output else output_dir / "validated_tools_summary.tsv"
+
     if not kw_path.is_file():
         print(f"ERROR : {kw_path} not found .")
         sys.exit(1)
 
-    # --- STEP 3 : Filtering ---
     try:
         tool_set = ToolSet(root_dir=RSEC_DIR, json_out=json_path, tsv_out=tsv_path, kw_file=kw_path)
         tool_set.run_filtering()
@@ -373,3 +330,65 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"Execution error: {e}")
         sys.exit(1)
+
+
+def main(argv: Optional[List[str]] = None) -> None:
+    parser = argparse.ArgumentParser(
+        description=(
+            "Extract and filter tools and associated metadata from RSEC, "
+            "according to specified EDAM terms and keywords."
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    subparser = parser.add_subparsers(dest="command")
+
+    # Extract: clone the RSEC data repository into content/rsec/
+    subparser.add_parser("extract", help="Clone the RSEC data repository")
+
+    # Filter: apply keyword/EDAM filtering on the already-cloned data
+    filter_parser = subparser.add_parser(
+        "filter",
+        help="Filter cloned RSEC tools by keywords and EDAM terms",
+    )
+    filter_parser.add_argument(
+        "--kw",
+        type=str,
+        default=str(KEYWORDS_FILEPATH),
+        metavar="PATH",
+        help=(
+            "Path to the YAML keywords file used for filtering. "
+            "Must contain 'edam.topics', 'edam.operations', 'keywords', and 'acronyms' sections. "
+            f"(default: {KEYWORDS_FILEPATH})"
+        ),
+    )
+    filter_parser.add_argument(
+        "--json-output",
+        type=str,
+        metavar="PATH",
+        help=(
+            "Path to the output JSON file for validated tools metadata. "
+            "(default: <rsec_dir>/infos/validated_tools_metadata.json)"
+        ),
+    )
+    filter_parser.add_argument(
+        "--tsv-output",
+        type=str,
+        metavar="PATH",
+        help=(
+            "Path to the output TSV file for the validated tools summary. "
+            "(default: <rsec_dir>/infos/validated_tools_summary.tsv)"
+        ),
+    )
+
+    args = parser.parse_args(argv)
+
+    if args.command == "extract":
+        run_extract()
+    elif args.command == "filter":
+        run_filter(args.kw, args.json_output, args.tsv_output)
+    else:
+        parser.print_help()
+
+
+if __name__ == "__main__":
+    main()
