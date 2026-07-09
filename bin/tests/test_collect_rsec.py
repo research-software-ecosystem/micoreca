@@ -1423,13 +1423,13 @@ class TestImportCollection(RsecTestCase):
     def test_filter_keeps_matched_entries_with_keep_false(self) -> None:
         coll = self._coll()
         coll.load_entries([{"id": "a", "match": True}, {"id": "b", "match": False}])
-        coll.filter(status={})
+        coll.filter_entries(status={})
         assert set(coll.entries) == {"a"}
         assert coll.entries["a"]["keep"] is False
 
     def test_filter_keeps_community_accepted_even_without_match(self) -> None:
         coll = self._coll()
         coll.load_entries([{"id": "a", "match": False}])
-        coll.filter(status={"a": True})
+        coll.filter_entries(status={"a": True})
         assert set(coll.entries) == {"a"}
         assert coll.entries["a"]["keep"] is True

@@ -306,7 +306,7 @@ RSEC_STATUS_FIELDS = ["tool_id", "to_keep", "reason"]
 
 
 def _match_reason(item: Dict[str, Any]) -> str:
-    """Derive the human-readable match reason for a validated tool entry."""
+    """Derive the match reason for a validated tool entry."""
     for key in CRITERIA_KEYS:
         match_value = item.get(key)
         if match_value:
@@ -387,7 +387,7 @@ class ImportCollection:
             if name:
                 self.entries[name] = entry
 
-    def filter(self, status: Dict[str, bool]) -> None:
+    def filter_entries(self, status: Dict[str, bool]) -> None:
         """Keep entries matching the keywords, or already accepted by the community."""
         filtered: Dict[str, Dict[str, Any]] = {}
         for name, entry in self.entries.items():
@@ -500,7 +500,7 @@ def filter_bioconda_imports(imports_dir: Path, keywords: Dict[str, Any]) -> None
     BIOCONDA_DIR.mkdir(parents=True, exist_ok=True)
     coll = ImportCollection("package.name", _bioconda_name, _bioconda_match(keywords))
     coll.load_entries(_load_bioconda_imports(imports_dir))
-    coll.filter(_read_import_status(BIOCONDA_STATUS_TSV, "package.name"))
+    coll.filter_entries(_read_import_status(BIOCONDA_STATUS_TSV, "package.name"))
     coll.export_to_json(BIOCONDA_FILTERED_JSON)
     coll.export_to_tsv(BIOCONDA_FILTERED_TSV)
     coll.export_to_tsv(BIOCONDA_STATUS_TSV, columns=BIOCONDA_STATUS_COLUMNS)
@@ -511,7 +511,7 @@ def filter_galaxy_imports(imports_dir: Path, keywords: Dict[str, Any]) -> None:
     GALAXY_DIR.mkdir(parents=True, exist_ok=True)
     coll = ImportCollection("id", _galaxy_name, _galaxy_match(keywords))
     coll.load_entries(_load_galaxy_imports(imports_dir))
-    coll.filter(_read_import_status(GALAXY_STATUS_TSV, "id"))
+    coll.filter_entries(_read_import_status(GALAXY_STATUS_TSV, "id"))
     coll.export_to_json(GALAXY_FILTERED_JSON)
     coll.export_to_tsv(GALAXY_FILTERED_TSV)
     coll.export_to_tsv(GALAXY_STATUS_TSV, columns=GALAXY_STATUS_COLUMNS)
