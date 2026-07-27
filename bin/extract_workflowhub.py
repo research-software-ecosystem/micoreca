@@ -262,9 +262,6 @@ class Workflows:
 
         # Clone workflowhub JSON from RSEc
         try:
-            # Remove TEMP directory
-            shutil.rmtree(TEMP_CLONE_DIR)
-            
             rsec_dir = BASE_DIR / "content" / "rsec_workflowhub"
             if not clone_rsec_data(
                 repo_url=RSEC_REPO_URL,
