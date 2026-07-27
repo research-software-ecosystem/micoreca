@@ -64,7 +64,7 @@ class TestWorkflow(unittest.TestCase):
             "license": "MIT",
             "doi": "10.1234/test",
             "projects": ["Project A"],
-            "type": "Galaxy",
+            "workflow_class": "Galaxy",
             "description": "Test description",
             "curation_date": "2023-12-01",
             "filtered_on": "edam",
