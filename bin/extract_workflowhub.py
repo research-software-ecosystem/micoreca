@@ -85,7 +85,7 @@ class Workflow:
         self.license = wf["license"]
         self.doi = wf["doi"]
         self.projects = wf["projects"]
-        self.type = wf["type"]
+        self.type = wf["workflow_class"]
         self.description = wf["description"]
         if "curation_date" in wf:
             self.curation_date = wf["curation_date"]
@@ -94,6 +94,7 @@ class Workflow:
         if "keep" in wf:
             self.keep = wf["keep"]
 
+    # NOT USED
     def init_from_search(self, wf: dict, source: str) -> None:
         """
         Init Workflow instance from search
