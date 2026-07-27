@@ -356,7 +356,7 @@ class TestWorkflows(unittest.TestCase):
                 "license": "",
                 "doi": "",
                 "projects": [],
-                "type": "",
+                "workflow_class": "Nextflow",
                 "description": "",
             },
             {
@@ -377,7 +377,7 @@ class TestWorkflows(unittest.TestCase):
                 "license": "",
                 "doi": "",
                 "projects": [],
-                "type": "",
+                "workflow_class": "Galaxy",
                 "description": "",
             },
         ]
